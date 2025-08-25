@@ -1,7 +1,5 @@
 # Pokémon FireRed Reignited Legacy and LeafGreen Regrown Legacy
 
-<img width="1471" height="1472" alt="regrown" src="https://github.com/user-attachments/assets/60b338ca-77f4-4316-9120-d3f6eb4f235a" /> <img width="1000" height="1000" alt="reignited" src="https://github.com/user-attachments/assets/87bab07f-7d39-4edb-a7d3-a92381935c6d" />
-
 This is a decompilation of English Pokémon FireRed and LeafGreen that acts as the Unoffical Legacy Game of FRLG.
 a QOL if you will
 
@@ -77,19 +75,6 @@ QOL:
 - Safari Zone improvements to make rocks baits and balls better
 - Relearn Move Tutor Moves at a price
 - Daisy grooming is avaible earlier and gives more friendship
-- All Rev1 Changes besides Ttars pokedex change (which is here)
-"
-Normal:
-"Its body can't be harmed by any sort of\n"
-    "attack, so it is very eager to make\n"
-    "challenges against enemies."
-Rev1:
-"It has an impudent nature. Having great\n"
-    "strength, it can even change surrounding\n"
-    "landforms."
-"
-);
-- Some more stuff I forgot
 
 - VERSION DIFFERENCES:
 - Both versions are available to play, You can catch all of them in both version but some pokemon are earlier in certain versions (For Example Viridian Forest has Oddish in Fire Red, Bellsprout in Leaf Green, but both can be caught in route 24 and 25 in both versions + More)
@@ -103,21 +88,7 @@ For Info on Pokemon Stat Changes, Move Changes, Trainer Teams, ETC, consult this
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
-For contacts and other pret projects, see [pret.github.io](https://pret.github.io/).
-
-Delevoper:
-- SpikeCation (Sole Dev)
-
-Helper:
-- therealteamplayer (Did lots of text fixes and edits)
-
-Playtesters:
-
-- BlazeTorrent
-
-- BasedTuxedoMan
-
-- Kewaun
+----------
 
 Credits:
 - Pokemon Legacy Team - (Inspiration)
