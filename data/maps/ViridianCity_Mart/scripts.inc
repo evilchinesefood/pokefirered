@@ -141,9 +141,9 @@ ViridianCity_Mart_Items::
 # 71 "data/maps/ViridianCity_Mart/scripts.pory"
 	.2byte ITEM_ANTIDOTE
 # 72 "data/maps/ViridianCity_Mart/scripts.pory"
-	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_MASTER_BALL
 # 73 "data/maps/ViridianCity_Mart/scripts.pory"
-	.2byte ITEM_NONE
+	.2byte ITEM_RARE_CANDY
 # 74 "data/maps/ViridianCity_Mart/scripts.pory"
 	release
 # 75 "data/maps/ViridianCity_Mart/scripts.pory"
