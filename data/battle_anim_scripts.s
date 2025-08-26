@@ -7484,6 +7484,21 @@ Move_SHADOW_BALL:
 	waitbgfadein
 	end
 
+Move_SHADOW_BLAST:
+	loadspritegfx ANIM_TAG_SHADOW_BALL
+	fadetobg BG_GHOST
+	waitbgfadein
+	delay 15
+	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_MIST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 5, 5, 0, 5
+	createsprite gShadowBallSpriteTemplate, ANIM_TARGET, 2, 16, 16, 8
+	waitforvisualfinish
+	playsewithpan SE_M_SAND_ATTACK, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 8, 1
+	waitforvisualfinish
+	restorebg
+	waitbgfadein
+	end
+
 Move_LICK:
 	loadspritegfx ANIM_TAG_LICK
 	delay 15
