@@ -268,6 +268,7 @@ gBattleAnims_Moves::
 	.4byte Move_EXTREME_SPEED
 	.4byte Move_ANCIENT_POWER
 	.4byte Move_SHADOW_BALL
+	.4byte Move_SHADOW_BLAST
 	.4byte Move_FUTURE_SIGHT
 	.4byte Move_ROCK_SMASH
 	.4byte Move_WHIRLPOOL
