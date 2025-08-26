@@ -7,18 +7,18 @@
         {
           "type": "land_mons",
           "encounter_rates": [
-            16,
-            16,
-            11,
-            11,
-            11,
-            11,
-            11,
-            3,
-            3,
-            3,
-            3,
-            1
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            12,
+            8,
+            8,
+            8,
+            8,
+            8
           ]
         },
         {
@@ -16342,37 +16342,37 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_PIDGEY"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_PIDGEY"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_PIDGEY"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_PIDGEY"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_RATTATA"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_RATTATA"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_RATTATA"
               }
             ]
           }
@@ -22080,7 +22080,7 @@
           "map": "MAP_PALLET_TOWN",
           "base_label": "sPalletTown0",
           "land_mons": {
-            "encounter_rate": 5,
+            "encounter_rate": 4,
             "mons": [
               {
                 "min_level": 5,
@@ -22140,7 +22140,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_DRATINI"
               }
             ]
           },
