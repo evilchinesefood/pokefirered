@@ -387,12 +387,12 @@ static const u8 sReelIconAnimByReelAndPos[NUM_REELS][REEL_LENGTH] = {
 
 static const u16 sPayoutTable[] = {
     [PAYOUT_NONE]      =   0,
-    [PAYOUT_CHERRIES2] =   2,
-    [PAYOUT_CHERRIES3] =   6,
-    [PAYOUT_MAGSHELL]  =   8,
-    [PAYOUT_PIKAPSY]   =  15,
-    [PAYOUT_ROCKET]    = 100,
-    [PAYOUT_7]         = 300
+    [PAYOUT_CHERRIES2] =   20,
+    [PAYOUT_CHERRIES3] =   60,
+    [PAYOUT_MAGSHELL]  =   80,
+    [PAYOUT_PIKAPSY]   =  150,
+    [PAYOUT_ROCKET]    = 1000,
+    [PAYOUT_7]         = 3000
 };
 
 #if defined(FIRERED)
