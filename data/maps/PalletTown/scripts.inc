@@ -839,86 +839,86 @@ PalletTown_EventScript_TownSign::
 # 420 "data/maps/PalletTown/scripts.pory"
 
 # 421 "data/maps/PalletTown/scripts.pory"
-PalletTown_EventScript_TrainerTips::
-# 422 "data/maps/PalletTown/scripts.pory"
-	lockall
-# 423 "data/maps/PalletTown/scripts.pory"
-	msgbox PalletTown_Text_PressStartToOpenMenu
-# 424 "data/maps/PalletTown/scripts.pory"
-	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
-# 425 "data/maps/PalletTown/scripts.pory"
-	releaseall
-# 426 "data/maps/PalletTown/scripts.pory"
-	end
-# 427 "data/maps/PalletTown/scripts.pory"
-
-# 428 "data/maps/PalletTown/scripts.pory"
-PalletTown_EventScript_SignLadyTrigger::
-# 429 "data/maps/PalletTown/scripts.pory"
-	lockall
-# 430 "data/maps/PalletTown/scripts.pory"
-	applymovement LOCALID_SIGN_LADY, Common_Movement_WalkInPlaceFasterRight
-# 431 "data/maps/PalletTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-# 432 "data/maps/PalletTown/scripts.pory"
-	waitmovement 0
-# 433 "data/maps/PalletTown/scripts.pory"
-	call PalletTown_EventScript_SignLadyShowSign
-# 434 "data/maps/PalletTown/scripts.pory"
-	releaseall
-# 435 "data/maps/PalletTown/scripts.pory"
-	end
-# 436 "data/maps/PalletTown/scripts.pory"
-
-# 437 "data/maps/PalletTown/scripts.pory"
-PalletTown_EventScript_SignLadyShowSign::
-# 438 "data/maps/PalletTown/scripts.pory"
-	textcolor NPC_TEXT_COLOR_FEMALE
-# 439 "data/maps/PalletTown/scripts.pory"
-	msgbox PalletTown_Text_LookCopiedTrainerTipsSign
-# 440 "data/maps/PalletTown/scripts.pory"
-	closemessage
-# 441 "data/maps/PalletTown/scripts.pory"
-	delay 20
-# 442 "data/maps/PalletTown/scripts.pory"
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-# 443 "data/maps/PalletTown/scripts.pory"
-	setflag FLAG_OPENED_START_MENU
-# 444 "data/maps/PalletTown/scripts.pory"
-	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
-# 445 "data/maps/PalletTown/scripts.pory"
-	setvar SIGN_LADY_READY, FALSE
-# 446 "data/maps/PalletTown/scripts.pory"
-	special SetWalkingIntoSignVars
-# 447 "data/maps/PalletTown/scripts.pory"
-	special DisableMsgBoxWalkaway
-# 448 "data/maps/PalletTown/scripts.pory"
-	signmsg
-# 449 "data/maps/PalletTown/scripts.pory"
-	msgbox PalletTown_Text_PressStartToOpenMenuCopy
-# 450 "data/maps/PalletTown/scripts.pory"
-	normalmsg
-# 451 "data/maps/PalletTown/scripts.pory"
-	return
-# 452 "data/maps/PalletTown/scripts.pory"
-
-# 453 "data/maps/PalletTown/scripts.pory"
-PalletTown_EventScript_SignLadyStartShowSign::
-# 454 "data/maps/PalletTown/scripts.pory"
-	applymovement LOCALID_SIGN_LADY, Common_Movement_FacePlayer
-# 455 "data/maps/PalletTown/scripts.pory"
-	waitmovement 0
-# 456 "data/maps/PalletTown/scripts.pory"
-	call PalletTown_EventScript_SignLadyShowSign
-# 457 "data/maps/PalletTown/scripts.pory"
-	release
-# 458 "data/maps/PalletTown/scripts.pory"
-	end
-
-# 459 "data/maps/PalletTown/scripts.pory"
 PalletTown_EventScript_OakSign::
-# 460 "data/maps/PalletTown/scripts.pory"
+# 422 "data/maps/PalletTown/scripts.pory"
 	msgbox PalletTown_Text_OakSign, MSGBOX_SIGN
-# 461 "data/maps/PalletTown/scripts.pory"
+# 423 "data/maps/PalletTown/scripts.pory"
 	end
+# 424 "data/maps/PalletTown/scripts.pory"
+
+# 425 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_TrainerTips::
+# 426 "data/maps/PalletTown/scripts.pory"
+	lockall
+# 427 "data/maps/PalletTown/scripts.pory"
+	msgbox PalletTown_Text_PressStartToOpenMenu
+# 428 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
+# 429 "data/maps/PalletTown/scripts.pory"
+	releaseall
+# 430 "data/maps/PalletTown/scripts.pory"
+	end
+# 431 "data/maps/PalletTown/scripts.pory"
+
+# 432 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_SignLadyTrigger::
+# 433 "data/maps/PalletTown/scripts.pory"
+	lockall
+# 434 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_SIGN_LADY, Common_Movement_WalkInPlaceFasterRight
+# 435 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+# 436 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 437 "data/maps/PalletTown/scripts.pory"
+	call PalletTown_EventScript_SignLadyShowSign
+# 438 "data/maps/PalletTown/scripts.pory"
+	releaseall
+# 439 "data/maps/PalletTown/scripts.pory"
+	end
+# 440 "data/maps/PalletTown/scripts.pory"
+
+# 441 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_SignLadyShowSign::
+# 442 "data/maps/PalletTown/scripts.pory"
+	textcolor NPC_TEXT_COLOR_FEMALE
+# 443 "data/maps/PalletTown/scripts.pory"
+	msgbox PalletTown_Text_LookCopiedTrainerTipsSign
+# 444 "data/maps/PalletTown/scripts.pory"
+	closemessage
+# 445 "data/maps/PalletTown/scripts.pory"
+	delay 20
+# 446 "data/maps/PalletTown/scripts.pory"
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+# 447 "data/maps/PalletTown/scripts.pory"
+	setflag FLAG_OPENED_START_MENU
+# 448 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
+# 449 "data/maps/PalletTown/scripts.pory"
+	setvar SIGN_LADY_READY, FALSE
+# 450 "data/maps/PalletTown/scripts.pory"
+	special SetWalkingIntoSignVars
+# 451 "data/maps/PalletTown/scripts.pory"
+	special DisableMsgBoxWalkaway
+# 452 "data/maps/PalletTown/scripts.pory"
+	signmsg
+# 453 "data/maps/PalletTown/scripts.pory"
+	msgbox PalletTown_Text_PressStartToOpenMenuCopy
+# 454 "data/maps/PalletTown/scripts.pory"
+	normalmsg
+# 455 "data/maps/PalletTown/scripts.pory"
+	return
+# 456 "data/maps/PalletTown/scripts.pory"
+
+# 457 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_SignLadyStartShowSign::
+# 458 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_SIGN_LADY, Common_Movement_FacePlayer
+# 459 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 460 "data/maps/PalletTown/scripts.pory"
+	call PalletTown_EventScript_SignLadyShowSign
+# 461 "data/maps/PalletTown/scripts.pory"
+	release
 # 462 "data/maps/PalletTown/scripts.pory"
+	end
