@@ -914,3 +914,11 @@ PalletTown_EventScript_SignLadyStartShowSign::
 	release
 # 458 "data/maps/PalletTown/scripts.pory"
 	end
+
+# 459 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakSign::
+# 460 "data/maps/PalletTown/scripts.pory"
+	msgbox PalletTown_Text_OakSign, MSGBOX_SIGN
+# 461 "data/maps/PalletTown/scripts.pory"
+	end
+# 462 "data/maps/PalletTown/scripts.pory"

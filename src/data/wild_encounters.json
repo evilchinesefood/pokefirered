@@ -7,18 +7,18 @@
         {
           "type": "land_mons",
           "encounter_rates": [
+            30,
+            30,
             11,
-            10,
-            10,
-            10,
-            10,
-            10,
-            10,
-            10,
-            10,
-            3,
-            3,
-            3
+            11,
+            11,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
           ]
         },
         {
@@ -16326,53 +16326,53 @@
               },
               {
                 "min_level": 3,
-                "max_level": 5,
+                "max_level": 3,
                 "species": "SPECIES_CHARMANDER"
               },
               {
                 "min_level": 3,
-                "max_level": 5,
+                "max_level": 3,
                 "species": "SPECIES_BULBASAUR"
               },
               {
                 "min_level": 3,
-                "max_level": 5,
+                "max_level": 3,
                 "species": "SPECIES_SQUIRTLE"
               },
               {
                 "min_level": 3,
-                "max_level": 5,
-                "species": "SPECIES_PIKACHU"
+                "max_level": 3,
+                "species": "SPECIES_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_CYNDAQUIL"
+                "species": "SPECIES_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_TOTODILE"
+                "species": "SPECIES_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_CHIKORITA"
+                "species": "SPECIES_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_MEW"
+                "species": "SPECIES_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_CELEBI"
+                "species": "SPECIES_NONE"
               },
               {
                 "min_level": 3,
                 "max_level": 5,
-                "species": "SPECIES_RAYQUAZA"
+                "species": "SPECIES_NONE"
               }
             ]
           }
@@ -22079,6 +22079,71 @@
         {
           "map": "MAP_PALLET_TOWN",
           "base_label": "sPalletTown0",
+          "land_mons": {
+            "encounter_rate": 5,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHARMANDER"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_BULBASAUR"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SQUIRTLE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CYNDAQUIL"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CHIKORITA"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_TOTODILE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_EEVEE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MEOWTH"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_RALTS"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_LARVITAR"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_PIKACHU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              }
+            ]
+          },
           "water_mons": {
             "encounter_rate": 1,
             "mons": [

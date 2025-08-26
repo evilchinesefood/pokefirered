@@ -418,6 +418,10 @@ PalletTown_EventScript_TownSign::
 	msgbox PalletTown_Text_TownSign, MSGBOX_SIGN
 	end
 
+PalletTown_EventScript_OakSign::
+	msgbox PalletTown_Text_OakSign, MSGBOX_SIGN
+	end
+
 PalletTown_EventScript_TrainerTips::
 	lockall
 	msgbox PalletTown_Text_PressStartToOpenMenu

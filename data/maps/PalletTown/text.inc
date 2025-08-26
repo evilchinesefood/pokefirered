@@ -33,6 +33,9 @@ PalletTown_Text_TownSign::
     .string "PALLET TOWN\n"
     .string "Shades of your journey await!$"
 
+PalletTown_Text_OakSign::
+    .string "OAK POKéMON Sanctuary$"
+
 PalletTown_Text_OakLetMeSeePokedex::
     .string "OAK: Ah, {PLAYER}!\n"
     .string "You're back, are you?\p"
