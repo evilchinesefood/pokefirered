@@ -7,17 +7,17 @@
         {
           "type": "land_mons",
           "encounter_rates": [
-            30,
-            30,
+            16,
+            16,
             11,
             11,
             11,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
+            11,
+            11,
+            3,
+            3,
+            3,
+            3,
             1
           ]
         },
@@ -1074,9 +1074,9 @@
                 "species": "SPECIES_ODDISH"
               },
               {
-                "min_level": 7,
-                "max_level": 7,
-                "species": "SPECIES_PIDGEY"
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_BELLSPROUT"
               },
               {
                 "min_level": 5,
@@ -17074,7 +17074,7 @@
               {
                 "min_level": 16,
                 "max_level": 16,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_CUBONE"
               },
               {
                 "min_level": 15,
@@ -17811,12 +17811,12 @@
               {
                 "min_level": 23,
                 "max_level": 23,
-                "species": "SPECIES_PINSIR"
+                "species": "SPECIES_SCYTHER"
               },
               {
                 "min_level": 23,
                 "max_level": 23,
-                "species": "SPECIES_TANGELA"
+                "species": "SPECIES_NONE"
               }
             ]
           }
@@ -19517,7 +19517,7 @@
               {
                 "min_level": 27,
                 "max_level": 27,
-                "species": "SPECIES_MURKROW"
+                "species": "SPECIES_SNEASEL"
               },
               {
                 "min_level": 27,
