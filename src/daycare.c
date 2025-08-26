@@ -523,8 +523,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL 
     && !levelCappedNuzlocke(GetMonData(&pokemon, MON_DATA_LEVEL)))
     {
-
-        experience = GetBoxMonData(&tempMon, MON_DATA_EXP) + (steps * 5);
+        experience = GetMonData(&pokemon, MON_DATA_EXP) + (daycareMon->steps * 5);
         levelCap = getLevelCap();
         if (experience <= gExperienceTables[gSpeciesInfo[species].growthRate][levelCap])
         {
