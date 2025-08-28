@@ -17791,7 +17791,7 @@
               {
                 "min_level": 18,
                 "max_level": 18,
-                "species": "SPECIES_SPEAROW"
+                "species": "SPECIES_SCYTHER"
               },
               {
                 "min_level": 20,
@@ -17816,7 +17816,7 @@
               {
                 "min_level": 23,
                 "max_level": 23,
-                "species": "SPECIES_NONE"
+                "species": "SPECIES_PINSIR"
               }
             ]
           }
