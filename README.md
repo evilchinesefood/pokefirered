@@ -86,6 +86,9 @@ QOL:
 
 For Info on Pokemon Stat Changes, Move Changes, Trainer Teams, ETC, consult this link (for pokemon stuff check the pokemon file) [Docs](https://github.com/Bruhcation/pokefireredlegacy/tree/master/src/data).
 
+Bug Report and suggestion form
+https://docs.google.com/forms/d/e/1FAIpQLSftd59jgOLFhinVvUtk21HF1V60qqbyjseby5WtTARGM1U4jA/viewform?usp=sharing&ouid=110493140650004787266 
+
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ----------

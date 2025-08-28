@@ -322,7 +322,7 @@ FiveIsland_MemorialPillar_Text_CelebiQuest::
 	.string "CHARMANDER to the mountain\n"
 	.string "of embers…\p"
 	.string "DELIBIRD down the ice cellar…\p"
-	.string "NATU to its puzzled cave…\p"
+	.string "NATU to its puzzled hole…\p"
 	.string "PSYDUCK beneath the fallen waves…\p"
 	.string "And ONIX to its island home,\n"
 	.string "once again left all alone.\p"

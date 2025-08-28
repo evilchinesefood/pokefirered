@@ -999,6 +999,9 @@ BattleScript_EffectTransform::
 	waitanimation
 	printfromtable gTransformUsedStringIds
 	waitmessage B_WAIT_TIME_LONG
+	setprotectlike
+	printfromtable gProtectLikeUsedStringIds
+	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackDown2::
