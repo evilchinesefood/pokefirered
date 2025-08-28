@@ -647,7 +647,7 @@ FiveIsland_MemorialPillar_Text_CelebiQuest::
 # 324 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
 	.string "DELIBIRD down the ice cellar…\p"
 # 325 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
-	.string "NATU to its puzzled cave…\p"
+	.string "NATU to its puzzled hole…\p"
 # 326 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
 	.string "PSYDUCK beneath the fallen waves…\p"
 # 327 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
