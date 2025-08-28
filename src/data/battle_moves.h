@@ -821,7 +821,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_HYPER_BEAM] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_ATTACK_DOWN_HIT,
         .power = 180,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -4006,7 +4006,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BLAST_BURN] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_BURN_HIT,
         .power = 180,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -4019,7 +4019,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_HYDRO_CANNON] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_CONFUSE_HIT,
         .power = 180,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -4409,7 +4409,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FRENZY_PLANT] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_HIGH_CRITICAL,
         .power = 180,
         .type = TYPE_GRASS,
         .accuracy = 100,
