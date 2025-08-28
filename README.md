@@ -1,4 +1,4 @@
-# Pokémon FireRed Reignited Legacy and LeafGreen Regrown Legacy
+# Pokémon FireRed
 
 This is a decompilation of English Pokémon FireRed and LeafGreen that acts as the Unoffical Legacy Game of FRLG.
 a QOL if you will
@@ -7,7 +7,7 @@ a QOL if you will
 FRLG was one of the first games I ever played, and as I much of do like certain features a lot of decisions were dumb, such as removing cross gen evos.
 Kanto itself as a region has a lot of issues present in gen 1, that was kept in the remakes. Like in Legacy, I tried to keep the general feeling intact while making the experience much better. I would say this game is 80% legacy as I did my own things that are a bit far off (such as map changes cause mt moon looks like ass), but it still should be close. 
 
-Documentation: https://docs.google.com/spreadsheets/d/1_Mfvqn7awV_FzNYLhpQIl1AKRlfHUGq4F_q_IeZ7K2c/edit?pli=1&gid=1004306526#gid=1004306526
+Documentation: https://docs.google.com/spreadsheets/d/1XENt1XODj0N65byUGlV-7f2iLPthZKJbQpQNFBuynMs/edit?usp=sharing and https://docs.google.com/spreadsheets/d/1_Mfvqn7awV_FzNYLhpQIl1AKRlfHUGq4F_q_IeZ7K2c/edit?usp=sharing
 
 Features:
 - All Kanto and Johto Pokemon Available in both Versions
@@ -78,47 +78,10 @@ QOL:
 
 - VERSION DIFFERENCES:
 - Both versions are available to play, You can catch all of them in both version but some pokemon are earlier in certain versions (For Example Viridian Forest has Oddish in Fire Red, Bellsprout in Leaf Green, but both can be caught in route 24 and 25 in both versions + More)
-- Viridian Forest has Oddish in Fire Red, Bellsprout in Leaf Green
-- Route 9 has Pinsir in Fire Red, Scyther in Leaf Green
-- Route 16 has Murkrow in Fire Red, Sneasel in Leaf Green
 - Certain Traded mons are different
 - Most Importantly, Pontya Trade in Fire Red and Cubone Trade in Leaf Green
 
-For Info on Pokemon Stat Changes, Move Changes, Trainer Teams, ETC, consult this link (for pokemon stuff check the pokemon file) [Docs](https://github.com/Bruhcation/pokefireredlegacy/tree/master/src/data).
-
-Bug Report and suggestion form
-https://docs.google.com/forms/d/e/1FAIpQLSftd59jgOLFhinVvUtk21HF1V60qqbyjseby5WtTARGM1U4jA/viewform?usp=sharing&ouid=110493140650004787266 
-
-To set up the repository, see [INSTALL.md](INSTALL.md).
-
 ----------
-
-Credits:
-- Pokemon Legacy Team - (Inspiration)
-
-- Emerald Legacy (Smith and Craig) - Battle Engine Changes and More, Brick Piece also by Isona, Houndoom Sprite by ZuperZach
-
-- Yellow Legacy - Text that was Ported as well as certain events
-
-- FRLG + (Deokishisu) - Lots of the QOL Changes you see here and the Extra Overworld Sprites, Porting Emerald Stuff (Was a huge help with FRLG Documentation)
-
-- Charles Fire Red (Charles) - Priemere Ball Code 
-
-- Celia's Stupid RomHack (Dawn) - Repeated Medicine/Rare Candy Use 
-
-- Pokemon FireGold - Certain Leader Sprites
-
-- Pokemon Crystal Dust - Team Rocket Battle Music
-
-- Pret Team - Help with Stuff and this Entire Project Possible
-
-- Team Aqua Hideout - Like Above for help
-
-- Project Palladium Team - Male Guard Sprite
-
-- Invis (HMA Discord) - Nurse Joy Sprite
-
-- Numerous Pret Tutorials
 
 Item Locations:
 
@@ -143,16 +106,6 @@ Shadow Ball	Mt Ember
 Iron Tail	Rock Tunnel (Rock Smash)		
 Thunderbolt	Power Plant		
 Eggtutor	Beat the 7 Johto Leaders
-
-Tutorials:
-
-locations guide (og by a guy on reddit)
-https://docs.google.com/spreadsheets/d/100n-2riTFc4Smetj2cQECD3f45pw_zIaaYIpKeJ-Luk/edit?gid=0#gid=0
-
-- Some Fanmade tutorials for the hack:
-https://www.youtube.com/playlist?list=PLaXfMWm8D14lc8qGFEe9OCIpMUyKkWoqw
-
-Stats and movepools in src/data
 
 - Patching Info, best for your sha1 to have this
 pokefirered.gba sha1: 41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc
