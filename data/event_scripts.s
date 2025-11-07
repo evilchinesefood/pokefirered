@@ -1294,7 +1294,7 @@ VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman::
 	end
 
 VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker::
-	call_if_unset VermilionCity_PokemonCenter_1F_EventScript_AmongUs
+	call_if_unset FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_AmongUs
 	msgbox VermilionCity_PokemonCenter_1F_Text_ExplainVSSeeker
 	release
 	end
@@ -1305,7 +1305,7 @@ VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker::
 VermilionCity_PokemonCenter_1F_EventScript_UpgradeVSSeeker::
 	lock
 	faceplayer
-	call_if_unset VermilionCity_PokemonCenter_1F_EventScript_AmongUs
+	call_if_unset FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_AmongUs
 	msgbox VermilionCity_PokemonCenter_1F_Text_Upgrade
 	setflag FLAG_VS_SEEKER_UPGRADE
 	playfanfare MUS_OBTAIN_KEY_ITEM
