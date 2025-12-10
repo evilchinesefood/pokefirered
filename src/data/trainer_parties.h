@@ -10449,6 +10449,11 @@ static const struct TrainerMon sParty_PkmnBreederAlize[] = {
     {
         .iv = TRAINER_PARTY_IVS(25, 25, 25, 25, 25, 25),
         .lvl = 63,
+        .species = SPECIES_AZURILL,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(25, 25, 25, 25, 25, 25),
+        .lvl = 63,
         .species = SPECIES_AZUMARILL,
     },
 };
@@ -13784,6 +13789,11 @@ static const struct TrainerMon sParty_PkmnBreederAlize2[] = {
         .iv = TRAINER_PARTY_IVS(25, 25, 25, 25, 25, 25),
         .lvl = 63,
         .species = SPECIES_TOGETIC,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(25, 25, 25, 25, 25, 25),
+        .lvl = 63,
+        .species = SPECIES_AZURILL,
     },
     {
         .iv = TRAINER_PARTY_IVS(25, 25, 25, 25, 25, 25),
