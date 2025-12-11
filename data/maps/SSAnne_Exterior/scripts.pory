@@ -62,11 +62,8 @@ SSAnne_Exterior_EventScript_Ditto2::
 	release
 	end
 
-
-
 SSAnne_Deck_Text_Meowth::
-    .string "Sounds like something\n"  
-    .string "is under here,\p"  
+    .string "Sounds like something is under here\n"  
     .string "I should take a look.\p"  
     .string "Oh, it's just a MEOWTH.$"  
 
