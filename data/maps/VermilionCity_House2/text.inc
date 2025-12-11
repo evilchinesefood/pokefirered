@@ -19,6 +19,6 @@ VermilionCity_House2_Text_ThankYou::
 
 VermilionCity_House2_Text_HowIsMyOldMon::
 	.string "How is my old {STR_VAR_2}?\p"
-	.string "My {STR_VAR_1} is doing great!p"
+	.string "My {STR_VAR_1} is doing great!\p"
 	.string "I heard someone say DUX may\n"
 	.string "learn a special move soon.$"
