@@ -57,7 +57,7 @@ SSAnne_Exterior_EventScript_Ditto::
 	end
 
 SSAnne_Exterior_EventScript_Ditto2::
-	msgbox SSAnne_Deck_Text_Meowths
+	msgbox SSAnne_Deck_Text_Meowth, MSGBOX_SIGN
 	setflag FLAG_SHINY_DITTO
 	release
 	end
