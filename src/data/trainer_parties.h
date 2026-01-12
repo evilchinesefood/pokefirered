@@ -42,7 +42,63 @@ static const struct TrainerMon sParty_Interviewer[] = {
 static const struct TrainerMon sParty_RSTuberF[] = {DUMMY_TRAINER_STARMIE};
 static const struct TrainerMon sParty_RSTuberM[] = {DUMMY_TRAINER_STARMIE};
 static const struct TrainerMon sParty_RSCooltrainerM[] = {DUMMY_TRAINER_MON_IV};
-static const struct TrainerMon sParty_RSCooltrainerF[] = {DUMMY_TRAINER_MON_IV};
+static const struct TrainerMon sParty_RSCooltrainerF[] = {
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 73,
+        .species = SPECIES_CASTFORM,
+        .heldItem = ITEM_FOCUS_BAND,
+        .nature = TRAINER_PARTY_NATURE(NATURE_JOLLY),
+        .moves = {MOVE_WEATHER_BALL, MOVE_HAIL, MOVE_FLAMETHROWER, MOVE_HYDRO_PUMP},
+        .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 72,
+        .species = SPECIES_PILOSWINE,
+        .heldItem = ITEM_QUICK_CLAW
+        .nature = TRAINER_PARTY_NATURE(NATURE_SERIOUS),
+        .moves = {MOVE_EARTHQUAKE, MOVE_HAIL, MOVE_ROCK_SLIDE, MOVE_BLIZZARD},
+        .ev = TRAINER_PARTY_EVS(0, 252, 0, 0, 252, 0),
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 71,
+        .species = SPECIES_WALREIN,
+        .heldItem = ITEM_CHESTO_BERRY,
+        .nature = TRAINER_PARTY_NATURE(NATURE_SERIOUS),
+        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_REST, MOVE_TOXIC},
+        .ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 252),
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 70,
+        .species = SPECIES_ARTICUNO,
+        .heldItem = ITEM_LEFTOVERS,
+        .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
+        .moves = {MOVE_TOXIC, MOVE_ICE_BEAM, MOVE_SKY_ATTACK, MOVE_HAIL},
+        .ev = TRAINER_PARTY_EVS(252, 0, 252, 0, 0, 0),
+        .isShiny = TRUE,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 71,
+        .species = SPECIES_JYNX,
+        .heldItem = ITEM_QUICK_CLAW,
+        .nature = TRAINER_PARTY_NATURE(NATURE_JOLLY),
+        .moves = {MOVE_PSYCHIC, MOVE_ICE_BEAM, MOVE_LOVELY_KISS, MOVE_ICY_WIND},
+        .ev = TRAINER_PARTY_EVS(0, 0, 0, 252, 252, 0),
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 70,
+        .species = SPECIES_REGICE,
+        .heldItem = ITEM_LEFTOVERS,
+        .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
+        .moves = {MOVE_BLIZZARD, MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_REST},
+        .ev = TRAINER_PARTY_EVS(252, 0, 4, 252, 0, 0),
+    },
+};
 static const struct TrainerMon sParty_HexManiac[] = {
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),

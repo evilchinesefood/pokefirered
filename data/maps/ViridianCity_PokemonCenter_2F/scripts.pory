@@ -19,6 +19,22 @@ ViridianCity_PokemonCenter_2F_EventScript_EVCheck::
 	release
 	end
 
+ViridianCity_PokemonCenter_2F_EventScript_Pichu::
+	lock
+	faceplayer
+	msgbox ViridianCity_PokemonCenter_2F_Text_Pichu
+	goto_if_set FLAG_MYSTERY_GIFT_DONE, ViridianCity_PokemonCenter_2F_EventScript_End
+	goto MysteryEventScript_SurfPichu
+	release
+	end
+
+ViridianCity_PokemonCenter_2F_EventScript_End::
+	release
+	end
+
+ViridianCity_PokemonCenter_2F_Text_Pichu::
+	.string "Thank you for Playing\n"
+	.string "This POKEMON Rom hack!$"
 
 @ The below 3 are unused and leftover from RS
 ViridianCity_PokemonCenter_2F_EventScript_Colosseum::

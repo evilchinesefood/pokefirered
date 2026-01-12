@@ -236,9 +236,9 @@
 #define FLAG_CAUGHT_SUDOWOODO                                0x0D9
 #define FLAG_DEFEATED_SUDOWOODO                              0x0DA
 #define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO                  0x0DB
-#define FLAG_0x0DC               0x0DC
-#define FLAG_0x0DD               0x0DD
-#define FLAG_0x0DE               0x0DE
+#define FLAG_GOT_CLAW              0x0DC
+#define FLAG_GOT_ROOT               0x0DD
+#define FLAG_JIRACHI              0x0DE
 #define FLAG_0x0DF               0x0DF
 #define FLAG_0x0E0               0x0E0
 #define FLAG_0x0E1               0x0E1
