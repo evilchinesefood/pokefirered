@@ -6,6 +6,10 @@ RockTunnel_B2F_MapScripts::
 RockTunnel_B2F_EventScript_ClawBall::
 	lock
 	faceplayer
+	message RockTunnel_B2F_Text_ObtainedAnFossil
+	waitmessage
+	message RockTunnel_B2F_Text_However
+	waitmessage
 	setvar VAR_TEMP_1, SPECIES_ANORITH
 	givemon SPECIES_ANORITH, 40
 	goto_if_eq VAR_RESULT, 0, RockTunnel_B2F_EventScript_GetClawParty
@@ -54,3 +58,9 @@ RockTunnel_B2F_EventScript_SetGotClaw::
 RockTunnel_B2F_Text_ObtainedAnClaw::
     .string "{PLAYER} obtained an ANORITH!$"
 
+RockTunnel_B2F_Text_ObtainedAnFossil::
+	.string "{PLAYER} obtained an CLAW FOSSIL!$"
+
+RockTunnel_B2F_Text_However::
+	.string "However, the CLAW FOSSIL\n"
+	.string "got magically revived in your hands!$"

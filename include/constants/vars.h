@@ -252,9 +252,9 @@
 #define VAR_MANSION1                 0x40C8
 #define VAR_MANSION2                 0x40C9
 #define VAR_MANSION3                 0x40CA
-#define VAR_0x40CB                 0x40CB
-#define VAR_0x40CC                 0x40CC
-#define VAR_0x40CD                 0x40CD
+#define VAR_CERULEAN                0x40CB
+#define VAR_MANSIONB1F             0x40CC
+#define VAR_VERMILION                0x40CD
 #define VAR_0x40CE                 0x40CE
 #define VAR_FRONTIER_FACILITY      0x40CF
 #define VAR_0x40D0                 0x40D0

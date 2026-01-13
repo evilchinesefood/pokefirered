@@ -1,6 +1,6 @@
 raw `
 
-set LOCALID_GIRL, 11
+.set LOCALID_GIRL, 11
 Route10_MapScripts::
 	.byte 0
 
@@ -29,17 +29,27 @@ Route10_EventScript_GirlSurpised::
 	end
 
 Route10_EventScript_Rock::
-	goto_if_unset FLAG_SYS_CAN_LINK_WITH_RS, Route10_EventScript_Interact
+	goto_if_set FLAG_JIRACHI, Route10_EventScript_End
+	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, Route10_EventScript_Interact
 	msgbox Route10_Text_Rock, MSGBOX_SIGN
+	release
 	end
 
 Route10_EventScript_Interact::
 	msgbox Route10_Text_WeirdRock, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Route10_EventScript_End
+	goto_if_eq VAR_RESULT, NO, Route10_EventScript_No
 	msgbox Route10_Text_Appeared
-	goto Route10_EventScript_Jirachi
+	call Route10_EventScript_Jirachi
+	release
+	end
+
+Route10_EventScript_No::
+	msgbox Route10_Text_No, MSGBOX_NPC
+	release
+	end
 
 Route10_EventScript_End::
+	msgbox Route10_Text_CrackedRock, MSGBOX_SIGN
 	release
 	end
 
@@ -50,7 +60,8 @@ Route10_EventScript_Jirachi::
 	faceplayer
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
 	applymovement LOCALID_GIRL, Common_Movement_ExclamationMark
-	playse
+	applymovement LOCALID_GIRL, Common_Movement_FaceRight
+	playse SE_PIN
 	waitse
 	setwildbattle SPECIES_JIRACHI, 50
 	waitse
@@ -70,20 +81,32 @@ Route10_EventScript_Jirachi::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route10_EventScript_RanFromJirachi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route10_EventScript_RanFromJirachi
 	setflag FLAG_JIRACHI
+	msgbox Route10_Text_Wish
+	goto Route10_EventScript_HoennWish
 	release
 	end
 
 Route10_EventScript_DefeatedJirachi::
-	setflag FLAG_JIRACHI
-	msgbox Route10_Text_Wish
-	call Route10_EventScript_HoennWish
-	goto EventScript_RemoveStaticMon
+	setvar VAR_0x8004, SPECIES_JIRACHI
+    fadescreen FADE_TO_BLACK
+    fadescreen FADE_FROM_BLACK
+    bufferspeciesname STR_VAR_1, VAR_0x8004
+	msgbox Route10_Text_WentBack
+	release
 	end
 
 Route10_EventScript_RanFromJirachi::
 	setvar VAR_0x8004, SPECIES_JIRACHI
-	goto EventScript_MonFlewAway
+    fadescreen FADE_TO_BLACK
+    fadescreen FADE_FROM_BLACK
+    bufferspeciesname STR_VAR_1, VAR_0x8004
+	msgbox Route10_Text_WentBack
+	release
 	end
+
+Route10_Text_CrackedRock::
+	.string "The rock is cracked.\p"
+	.string "It looks like something was inside$"
 
 Route10_Text_Girl::
 	.string "I kinda get weird vibes\n"
@@ -92,7 +115,10 @@ Route10_Text_Girl::
 	.string "make wishes or something.$"
 
 Route10_Text_Rock::
-	.string "The weird rock is shaking a bit.\p"
+	.string "The weird rock is shaking a bit.$"
+
+Route10_Text_No::
+	.string "Guess Not.$"
 
 Route10_Text_WeirdRock::
 	.string "The weird rock is shaking a lot.\p"
@@ -102,10 +128,17 @@ Route10_Text_Appeared::
 	.string "Huh, something appeared?\n$"
 
 Route10_Text_Wish::
-	.string "A Wish was made subconsciously...$"
+	.string "A Wish was made subconsciously...\p"
+	.string "New POKEMON might be lurking\n"
+	.string "around the KANTO region.$"
 
-Route10_Text_GirlSurprisedJirachi, MSGBOX_NPC
-	.string "W-Was that a JIRACHI I saw?$"
+Route10_Text_GirlSurprisedJirachi::
+	.string "W-Was that a JIRACHI I saw?\p"
+	.string "I heard it can grant wishes!$"
+
+Route10_Text_WentBack::
+	.string "JIRACHI went back to\n"
+	.string "the rock it was sleeping in.$"
 
 Route10_EventScript_HoennWish::
 	setvar VAR_ROUTE1, 1
@@ -121,6 +154,7 @@ Route10_EventScript_HoennWish::
 	setvar VAR_ROUTE11, 1
 	setvar VAR_ROUTE12, 1
 	setvar VAR_ROUTE13, 1
+	setvar VAR_ROUTE14, 1
 	setvar VAR_ROUTE15, 1
 	setvar VAR_ROUTE16, 1
 	setvar VAR_ROUTE17, 1
@@ -135,6 +169,7 @@ Route10_EventScript_HoennWish::
 	setvar VAR_MANSION1, 1
 	setvar VAR_MANSION2, 1
 	setvar VAR_MANSION3, 1
+	setvar VAR_MANSIONB1F, 1
 	setvar VAR_POWERPLANT, 1
 	setvar VAR_DIGLETTCAVE, 1
 	setvar VAR_SAFARIZONE, 1
@@ -148,7 +183,10 @@ Route10_EventScript_HoennWish::
 	setvar VAR_TOWER5, 1
 	setvar VAR_TOWER6, 1
 	setvar VAR_TOWER7, 1
+	setvar VAR_CERULEAN, 1
+	setvar VAR_VERMILION, 1
 	clearflag FLAG_GOT_CLAW
 	clearflag FLAG_GOT_ROOT
-	return
+	release
+	end
 `

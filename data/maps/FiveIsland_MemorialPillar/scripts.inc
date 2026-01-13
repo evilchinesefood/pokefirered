@@ -697,15 +697,15 @@ FiveIsland_MemorialPillar_Text_CelebiQuest2::
 # 349 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
 FiveIsland_MemorialPillar_Text_CelebiQuest3::
 # 350 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
-    .string "What was that green thing?$"
+    .string "What was that green thing?\p"
 # 351 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
-
+    .string "It seemed like something?\n"
 # 352 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
-FiveIsland_MemorialPillar_Movement_Celebi::
+    .string "Out of Berry Forest1$"
 # 353 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
-	walk_down
+
 # 354 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
-	walk_down
+FiveIsland_MemorialPillar_Movement_Celebi::
 # 355 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
 	walk_down
 # 356 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
@@ -713,4 +713,8 @@ FiveIsland_MemorialPillar_Movement_Celebi::
 # 357 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
 	walk_down
 # 358 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
+	walk_down
+# 359 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
+	walk_down
+# 360 "data/maps/FiveIsland_MemorialPillar/scripts.pory"
 	step_end

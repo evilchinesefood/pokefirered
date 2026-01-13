@@ -268,6 +268,11 @@ static u16 GetCurrentMapWildMonHeaderId(void)
             {
                 i += VarGet(VAR_ROUTE13);
             }
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE14) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE14))
+            {
+                i += VarGet(VAR_ROUTE14);
+            }
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE15) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE15))
             {
@@ -432,6 +437,21 @@ static u16 GetCurrentMapWildMonHeaderId(void)
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(POKEMON_MANSION_3F))
             {
                 i += VarGet(VAR_MANSION3);
+            }
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(POKEMON_MANSION_B1F) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(POKEMON_MANSION_B1F))
+            {
+                i += VarGet(VAR_MANSIONB1F);
+            }
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(CERULEAN_CITY) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(CERULEAN_CITY))
+            {
+                i += VarGet(VAR_CERULEAN);
+            }
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(VERMILION_CITY) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(VERMILION_CITY))
+            {
+                i += VarGet(VAR_VERMILION);
             }
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SIX_ISLAND_ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(SIX_ISLAND_ALTERING_CAVE))

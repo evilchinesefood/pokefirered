@@ -61,6 +61,10 @@ MtMoonSquare_EventScript_Nidorino::
 MtMoonSquare_EventScript_ClawBall::
 	lock
 	faceplayer
+	message MtMoonSquare_Text_ObtainedAnFossil
+	waitmessage
+	message MtMoonSquare_Text_However
+	waitmessage
 	setvar VAR_TEMP_1, SPECIES_LILEEP
 	givemon SPECIES_LILEEP, 40
 	goto_if_eq VAR_RESULT, 0, MtMoonSquare_EventScript_GetClawParty
@@ -108,4 +112,11 @@ MtMoonSquare_EventScript_SetGotClaw::
 
 MtMoonSquare_Text_ObtainedAnClaw::
     .string "{PLAYER} obtained an LILEEP!$"
+
+MtMoonSquare_Text_ObtainedAnFossil::
+	.string "{PLAYER} obtained an ROOT FOSSIL!$"
+
+MtMoonSquare_Text_However::
+	.string "However, the ROOT FOSSIL\n"
+	.string "got magically revived in your hands!$"
 `

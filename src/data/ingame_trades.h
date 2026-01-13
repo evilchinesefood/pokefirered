@@ -178,54 +178,6 @@ static const struct InGameTrade sInGameTrades[] = {
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_HOUNDOOM
-    },
-    [INGAME_TRADE_MUDKIP] = 
-    {
-        .nickname = _("BUBBLES"),
-        .species = SPECIES_MUDKIP,
-        .ivs = {24, 30, 22, 30, 23, 22},
-        .abilityNum = 0,
-        .otId = 9853,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x151943d7,
-        .heldItem = ITEM_NONE,
-        .mailNum = 255,
-        .otName = _("CHARILE"),
-        .otGender = MALE,
-        .sheen = 10,
-        .requestedSpecies = SPECIES_SQUIRTLE
-    },
-    [INGAME_TRADE_TORCHIC] = 
-    {
-        .nickname = _("CHICKY"),
-        .species = SPECIES_TORCHIC,
-        .ivs = {24, 30, 22, 30, 23, 22},
-        .abilityNum = 0,
-        .otId = 9853,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x151943d7,
-        .heldItem = ITEM_NONE,
-        .mailNum = 255,
-        .otName = _("HARRISON"),
-        .otGender = MALE,
-        .sheen = 10,
-        .requestedSpecies = SPECIES_CHARMANDER
-    },
-    [INGAME_TRADE_TREECKO] = 
-    {
-        .nickname = _("LEAFY"),
-        .species = SPECIES_TREECKO,
-        .ivs = {24, 30, 22, 30, 23, 22},
-        .abilityNum = 0,
-        .otId = 9853,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x151943d7,
-        .heldItem = ITEM_NONE,
-        .mailNum = 255,
-        .otName = _("OMAR"),
-        .otGender = MALE,
-        .sheen = 10,
-        .requestedSpecies = SPECIES_BULBASAUR
     }
 };
 

@@ -5306,6 +5306,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 if (gEvolutionTable[species][i].param <= beauty)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_FRIENDSHIP_BABY:
+                if (friendship >= 150)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
             }
         }
         break;
@@ -6130,6 +6134,8 @@ static u16 GetBattleBGM(void)
         case TRAINER_CLASS_JOHTO_LEADER:
         case TRAINER_CLASS_SEVII_CHAMPION:
             return MUS_VS_GYM_LEADER;
+        case TRAINER_CLASS_MIRAGE_TRAINER:
+            return MUS_RS_VS_GYM_LEADER;
         case TRAINER_CLASS_BOSS:
         case TRAINER_CLASS_TEAM_ROCKET:
             return MUS_VS_TEAM_ROCKET;
