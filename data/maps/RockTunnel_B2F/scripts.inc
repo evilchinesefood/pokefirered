@@ -9,7 +9,7 @@ RockTunnel_B2F_EventScript_ClawBall::
 	message RockTunnel_B2F_Text_ObtainedAnFossil
 	waitmessage
 	message RockTunnel_B2F_Text_However
-	waitmessage
+	waitmessage 
 	setvar VAR_TEMP_1, SPECIES_ANORITH
 	givemon SPECIES_ANORITH, 40
 	goto_if_eq VAR_RESULT, 0, RockTunnel_B2F_EventScript_GetClawParty

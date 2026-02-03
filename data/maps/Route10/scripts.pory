@@ -187,6 +187,8 @@ Route10_EventScript_HoennWish::
 	setvar VAR_VERMILION, 1
 	clearflag FLAG_GOT_CLAW
 	clearflag FLAG_GOT_ROOT
+	clearflag FLAG_JIRACHI_WISH
+	setflag FLAG_JIRACHI_WISH_GOT
 	release
 	end
 `

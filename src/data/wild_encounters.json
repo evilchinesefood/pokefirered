@@ -21035,7 +21035,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_CASTFORM"
+                "species": "SPECIES_SPINDA"
               },
               {
                 "min_level": 20,
@@ -21045,7 +21045,7 @@
               {
                 "min_level": 21,
                 "max_level": 21,
-                "species": "SPECIES_CASTFORM"
+                "species": "SPECIES_SPINDA"
               }
             ]
           },
@@ -21343,7 +21343,7 @@
               {
                 "min_level": 19,
                 "max_level": 19,
-                "species": "SPECIES_SPINDA"
+                "species": "SPECIES_SANDSHREW"
               },
               {
                 "min_level": 19,
@@ -21353,7 +21353,7 @@
               {
                 "min_level": 20,
                 "max_level": 20,
-                "species": "SPECIES_SPINDA"
+                "species": "SPECIES_SANDSHREW"
               }
             ]
           },

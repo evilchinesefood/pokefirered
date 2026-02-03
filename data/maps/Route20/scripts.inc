@@ -72,3 +72,71 @@ Route20_EventScript_Slowbro::
 	msgbox Route20_Text_Slowbro, MSGBOX_SIGN
 # 37 "data/maps/Route20/scripts.pory"
 	end
+# 38 "data/maps/Route20/scripts.pory"
+
+# 39 "data/maps/Route20/scripts.pory"
+Route20_Mart_EventScript_Clerk::
+# 40 "data/maps/Route20/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 41 "data/maps/Route20/scripts.pory"
+	lock
+# 42 "data/maps/Route20/scripts.pory"
+	faceplayer
+# 43 "data/maps/Route20/scripts.pory"
+	goto_if_set FLAG_WAILORD_SHOWN, Route20_Mart_EventScript_Shop
+# 44 "data/maps/Route20/scripts.pory"
+	message Text_MayIHelpYou
+# 45 "data/maps/Route20/scripts.pory"
+	waitmessage
+# 46 "data/maps/Route20/scripts.pory"
+	setvar VAR_0x8005, 1
+# 47 "data/maps/Route20/scripts.pory"
+	special IsWailordInParty
+# 48 "data/maps/Route20/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, SeafoamIslands_B3F_EventScript_NoEligiblePkmn
+# 49 "data/maps/Route20/scripts.pory"
+	setflag FLAG_WAILORD_SHOWN
+# 50 "data/maps/Route20/scripts.pory"
+	goto Route20_Mart_EventScript_Shop
+# 51 "data/maps/Route20/scripts.pory"
+	release
+# 52 "data/maps/Route20/scripts.pory"
+	end
+# 53 "data/maps/Route20/scripts.pory"
+
+# 54 "data/maps/Route20/scripts.pory"
+Route20_Mart_EventScript_Shop::
+# 55 "data/maps/Route20/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 56 "data/maps/Route20/scripts.pory"
+	lock
+# 57 "data/maps/Route20/scripts.pory"
+	faceplayer
+# 58 "data/maps/Route20/scripts.pory"
+	message Text_MayIHelpYou
+# 59 "data/maps/Route20/scripts.pory"
+	waitmessage
+# 60 "data/maps/Route20/scripts.pory"
+	pokemart Route20_Mart_Items
+# 61 "data/maps/Route20/scripts.pory"
+	msgbox Text_PleaseComeAgain
+# 62 "data/maps/Route20/scripts.pory"
+	release
+# 63 "data/maps/Route20/scripts.pory"
+	end
+# 64 "data/maps/Route20/scripts.pory"
+
+# 65 "data/maps/Route20/scripts.pory"
+	.align 2
+# 66 "data/maps/Route20/scripts.pory"
+Route20_Mart_Items::
+# 67 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_DEEP_SEA_SCALE
+# 68 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_DEEP_SEA_TOOTH
+# 69 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_NONE
+# 70 "data/maps/Route20/scripts.pory"
+	release
+# 71 "data/maps/Route20/scripts.pory"
+	end

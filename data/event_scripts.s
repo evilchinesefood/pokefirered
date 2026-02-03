@@ -1023,6 +1023,9 @@ Text_MoveCanOnlyBeLearnedOnce::
 	.string "once for free. Is that okay?$"
 
 EventScript_ResetAllMapFlags::
+	setflag FLAG_GOT_ROOT
+	setflag FLAG_GOT_CLAW
+	setflag FLAG_JIRACHI_WISH
 	setflag FLAG_HIDE_OAK_IN_HIS_LAB
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
@@ -1093,8 +1096,9 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_R23_GUYS
 	setflag FLAG_SEVEN_SEVII
 	setflag FLAG_CELEBI_EVENT
+	setflag FLAG_SHOW_ELITE_FOUR
 	setflag FLAG_MOM_CHAMP
-	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
+	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 250
 	end
 
 	.include "data/scripts/hall_of_fame.inc"

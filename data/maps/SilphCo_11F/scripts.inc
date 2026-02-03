@@ -265,38 +265,270 @@ SilphCo_11F_Movement_PlayerFaceGiovanni::
 # 133 "data/maps/SilphCo_11F/scripts.pory"
 
 # 134 "data/maps/SilphCo_11F/scripts.pory"
-@ Unused
+SilphCo_11F_EventScript_OrbingCheck::
 # 135 "data/maps/SilphCo_11F/scripts.pory"
-SilphCo_11F_EventScript_Monitor::
+	goto_if_set FLAG_CAUGHT_REGISTEEL, SilphCo_11F_EventScript_End
 # 136 "data/maps/SilphCo_11F/scripts.pory"
-	msgbox SilphCo_11F_Text_MonitorHasMonsOnIt, MSGBOX_SIGN
+	goto_if_set FLAG_REGISTEEL_CHECKED, SilphCo_11F_EventScript_Orbing
 # 137 "data/maps/SilphCo_11F/scripts.pory"
-	end
+	msgbox SilphCo_11F_Text_RegiceCheck
 # 138 "data/maps/SilphCo_11F/scripts.pory"
-
+	closemessage
 # 139 "data/maps/SilphCo_11F/scripts.pory"
-SilphCo_11F_EventScript_FloorSign::
+	setvar VAR_0x8005, 1
 # 140 "data/maps/SilphCo_11F/scripts.pory"
-	msgbox SilphCo_11F_Text_FloorSign, MSGBOX_SIGN
+	special IsDodrioInParty
 # 141 "data/maps/SilphCo_11F/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, 0, SilphCo_11F_EventScript_NoEligiblePkmn
 # 142 "data/maps/SilphCo_11F/scripts.pory"
-
+	setvar 0x8004, FAMECHECKER_LORELEI
 # 143 "data/maps/SilphCo_11F/scripts.pory"
-SilphCo_11F_EventScript_Grunt1::
+	callnative CheckFilledFameCheckerFor0x8004
 # 144 "data/maps/SilphCo_11F/scripts.pory"
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_40, SilphCo_11F_Text_Grunt1Intro, SilphCo_11F_Text_Grunt1Defeat
+	compare VAR_RESULT, TRUE
 # 145 "data/maps/SilphCo_11F/scripts.pory"
-	msgbox SilphCo_11F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+	goto_if_eq SilphCo_11F_EventScript_Flag
 # 146 "data/maps/SilphCo_11F/scripts.pory"
-	end
+	release
 # 147 "data/maps/SilphCo_11F/scripts.pory"
-
+	end
 # 148 "data/maps/SilphCo_11F/scripts.pory"
-SilphCo_11F_EventScript_Grunt2::
+
 # 149 "data/maps/SilphCo_11F/scripts.pory"
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_41, SilphCo_11F_Text_Grunt2Intro, SilphCo_11F_Text_Grunt2Defeat
+SilphCo_11F_EventScript_NoEligiblePkmn::
 # 150 "data/maps/SilphCo_11F/scripts.pory"
-	msgbox SilphCo_11F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
+	msgbox SilphCo_11F_Text_NoEligiblePkmn
 # 151 "data/maps/SilphCo_11F/scripts.pory"
+	release
+# 152 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 153 "data/maps/SilphCo_11F/scripts.pory"
+
+# 154 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_Flag::
+# 155 "data/maps/SilphCo_11F/scripts.pory"
+	setflag FLAG_REGISTEEL_CHECKED
+# 156 "data/maps/SilphCo_11F/scripts.pory"
+	goto SilphCo_11F_EventScript_Orbing
+# 157 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 158 "data/maps/SilphCo_11F/scripts.pory"
+
+# 159 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_Orbing::
+# 160 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_Whitney, MSGBOX_YESNO
+# 161 "data/maps/SilphCo_11F/scripts.pory"
+	closemessage
+# 162 "data/maps/SilphCo_11F/scripts.pory"
+	delay 40
+# 163 "data/maps/SilphCo_11F/scripts.pory"
+	goto_if_eq VAR_RESULT, NO, SilphCo_11F_EventScript_NoWhitney
+# 164 "data/maps/SilphCo_11F/scripts.pory"
+	trainerbattle_single TRAINER_RS_COOLTRAINER_M, SilphCo_11F_Text_YesWhitney, SilphCo_11F_Text_PostWhitney, SilphCo_11F_EventScript_PostWhitney, NO_MUSIC
+# 165 "data/maps/SilphCo_11F/scripts.pory"
+	release
+# 166 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 167 "data/maps/SilphCo_11F/scripts.pory"
+
+# 168 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_PostWhitney::
+# 169 "data/maps/SilphCo_11F/scripts.pory"
+	special HealPlayerParty
+# 170 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_WhitneyPostBattle
+# 171 "data/maps/SilphCo_11F/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 172 "data/maps/SilphCo_11F/scripts.pory"
+	special QuestLog_CutRecording
+# 173 "data/maps/SilphCo_11F/scripts.pory"
+	lock
+# 174 "data/maps/SilphCo_11F/scripts.pory"
+	faceplayer
+# 175 "data/maps/SilphCo_11F/scripts.pory"
+	setwildbattle SPECIES_REGISTEEL, 70
+# 176 "data/maps/SilphCo_11F/scripts.pory"
+	waitse
+# 177 "data/maps/SilphCo_11F/scripts.pory"
+	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
+# 178 "data/maps/SilphCo_11F/scripts.pory"
+	message Text_Gyaoo
+# 179 "data/maps/SilphCo_11F/scripts.pory"
+	waitmessage
+# 180 "data/maps/SilphCo_11F/scripts.pory"
+	waitmoncry
+# 181 "data/maps/SilphCo_11F/scripts.pory"
+	delay 10
+# 182 "data/maps/SilphCo_11F/scripts.pory"
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+# 183 "data/maps/SilphCo_11F/scripts.pory"
+	waitbuttonpress
+# 184 "data/maps/SilphCo_11F/scripts.pory"
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+# 185 "data/maps/SilphCo_11F/scripts.pory"
+	special StartLegendaryBattle
+# 186 "data/maps/SilphCo_11F/scripts.pory"
+	waitstate
+# 187 "data/maps/SilphCo_11F/scripts.pory"
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+# 188 "data/maps/SilphCo_11F/scripts.pory"
+	specialvar VAR_RESULT, GetBattleOutcome
+# 189 "data/maps/SilphCo_11F/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SilphCo_11F_EventScript_DefeatedCelebi
+# 190 "data/maps/SilphCo_11F/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SilphCo_11F_EventScript_RanFromCelebi
+# 191 "data/maps/SilphCo_11F/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SilphCo_11F_EventScript_RanFromCelebi
+# 192 "data/maps/SilphCo_11F/scripts.pory"
+	setflag FLAG_CAUGHT_REGISTEEL
+# 193 "data/maps/SilphCo_11F/scripts.pory"
+
+# 194 "data/maps/SilphCo_11F/scripts.pory"
+	release
+# 195 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 196 "data/maps/SilphCo_11F/scripts.pory"
+
+# 197 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_DefeatedCelebi::
+# 198 "data/maps/SilphCo_11F/scripts.pory"
+	setflag FLAG_CAUGHT_REGISTEEL
+# 199 "data/maps/SilphCo_11F/scripts.pory"
+	goto EventScript_RemoveStaticMon
+# 200 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 201 "data/maps/SilphCo_11F/scripts.pory"
+
+# 202 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_RanFromCelebi::
+# 203 "data/maps/SilphCo_11F/scripts.pory"
+	setvar VAR_0x8004, SPECIES_CELEBI
+# 204 "data/maps/SilphCo_11F/scripts.pory"
+	goto EventScript_MonFlewAway
+# 205 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 206 "data/maps/SilphCo_11F/scripts.pory"
+
+# 207 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_NoWhitney::
+# 208 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_NoWhitney
+# 209 "data/maps/SilphCo_11F/scripts.pory"
+	release
+# 210 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 211 "data/maps/SilphCo_11F/scripts.pory"
+
+# 212 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_End::
+# 213 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_EndWhitney
+# 214 "data/maps/SilphCo_11F/scripts.pory"
+	release
+# 215 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 216 "data/maps/SilphCo_11F/scripts.pory"
+
+# 217 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_NoEligiblePkmn::
+# 218 "data/maps/SilphCo_11F/scripts.pory"
+	.string "You have not meet the requirements.\p"
+# 219 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Come back when you do.$"
+# 220 "data/maps/SilphCo_11F/scripts.pory"
+
+# 221 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_RegiceCheck::
+# 222 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Hello there {PLAYER}.\n"
+# 223 "data/maps/SilphCo_11F/scripts.pory"
+	.string "I am the Frozen Mirage Trainer.\l"
+# 224 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Beat me and you shall face a\l"
+# 225 "data/maps/SilphCo_11F/scripts.pory"
+	.string "special POKEMON.\l"
+# 226 "data/maps/SilphCo_11F/scripts.pory"
+	.string "But first, I want to see a\l"
+# 227 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Three Headed Mascot,\l"
+# 228 "data/maps/SilphCo_11F/scripts.pory"
+	.string "and knowledge on the Ice queen.$"
+# 229 "data/maps/SilphCo_11F/scripts.pory"
+
+# 230 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_Whitney::
+# 231 "data/maps/SilphCo_11F/scripts.pory"
+	.string "So, you wish to face me?$"
+# 232 "data/maps/SilphCo_11F/scripts.pory"
+
+# 233 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_YesWhitney::
+# 234 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Very well! Prepare yourself!$"
+# 235 "data/maps/SilphCo_11F/scripts.pory"
+
+# 236 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_PostWhitney::
+# 237 "data/maps/SilphCo_11F/scripts.pory"
+	.string "So you are worthy...$"
+# 238 "data/maps/SilphCo_11F/scripts.pory"
+
+# 239 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_WhitneyPostBattle::
+# 240 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Alright, you have bested me./p"
+# 241 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Be prepared to face REGISTEEL!$"
+# 242 "data/maps/SilphCo_11F/scripts.pory"
+
+# 243 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_EndWhitney::
+# 244 "data/maps/SilphCo_11F/scripts.pory"
+	.string "You had one chance,\n"
+# 245 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Goodbye.$"
+# 246 "data/maps/SilphCo_11F/scripts.pory"
+
+# 247 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_Text_NoWhitney::
+# 248 "data/maps/SilphCo_11F/scripts.pory"
+	.string "Alright, take your time.$"
+# 249 "data/maps/SilphCo_11F/scripts.pory"
+
+# 250 "data/maps/SilphCo_11F/scripts.pory"
+@ Unused
+# 251 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_Monitor::
+# 252 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_MonitorHasMonsOnIt, MSGBOX_SIGN
+# 253 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 254 "data/maps/SilphCo_11F/scripts.pory"
+
+# 255 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_FloorSign::
+# 256 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_FloorSign, MSGBOX_SIGN
+# 257 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 258 "data/maps/SilphCo_11F/scripts.pory"
+
+# 259 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_Grunt1::
+# 260 "data/maps/SilphCo_11F/scripts.pory"
+	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_40, SilphCo_11F_Text_Grunt1Intro, SilphCo_11F_Text_Grunt1Defeat
+# 261 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+# 262 "data/maps/SilphCo_11F/scripts.pory"
+	end
+# 263 "data/maps/SilphCo_11F/scripts.pory"
+
+# 264 "data/maps/SilphCo_11F/scripts.pory"
+SilphCo_11F_EventScript_Grunt2::
+# 265 "data/maps/SilphCo_11F/scripts.pory"
+	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_41, SilphCo_11F_Text_Grunt2Intro, SilphCo_11F_Text_Grunt2Defeat
+# 266 "data/maps/SilphCo_11F/scripts.pory"
+	msgbox SilphCo_11F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
+# 267 "data/maps/SilphCo_11F/scripts.pory"
 	end

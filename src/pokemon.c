@@ -1630,6 +1630,7 @@ static const s8 sFriendshipEventDeltas[][3] =
     [FRIENDSHIP_EVENT_FAINT_SMALL]          = {-1, -1, -1 },
     [FRIENDSHIP_EVENT_FAINT_OUTSIDE_BATTLE] = {-5, -5, -10 },
     [FRIENDSHIP_EVENT_FAINT_LARGE]          = {-5, -5, -10 },
+    [FRIENDSHIP_EVENT_MAX_MASSAGE]          = {160,  120, 80}
 };
 
 #define HM_MOVES_END 0xFFFF
@@ -5307,7 +5308,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_FRIENDSHIP_BABY:
-                if (friendship >= 150)
+                if (friendship >= 180)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }

@@ -262,7 +262,7 @@ static const struct TrainerMon sParty_Interviewer[] = {
 static const struct TrainerMon sParty_RSTuberF[] = {
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .lvl = 6,
+        .lvl = 5,
         .species = SPECIES_PIKACHU,
         .moves = {MOVE_CHARM, MOVE_THUNDER_SHOCK, MOVE_SURF, MOVE_TAIL_WHIP},
     },    
@@ -565,7 +565,7 @@ static const struct TrainerMon sParty_RSBlackBelt[] =
 {
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .lvl = 100,
+        .lvl = 75,
         .species = SPECIES_VENUSAUR,
         .heldItem = ITEM_LEFTOVERS,
         .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
@@ -575,7 +575,7 @@ static const struct TrainerMon sParty_RSBlackBelt[] =
     },
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .lvl = 100,
+        .lvl = 75,
         .species = SPECIES_CHARIZARD,
         .heldItem = ITEM_CHARCOAL,
         .nature = TRAINER_PARTY_NATURE(NATURE_SERIOUS),
@@ -585,7 +585,7 @@ static const struct TrainerMon sParty_RSBlackBelt[] =
     },
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .lvl = 100,
+        .lvl = 75,
         .species = SPECIES_BLASTOISE,
         .heldItem = ITEM_LEFTOVERS,
         .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),

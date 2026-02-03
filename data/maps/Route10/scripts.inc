@@ -377,6 +377,8 @@ Route10_EventScript_HoennWish::
 # 189 "data/maps/Route10/scripts.pory"
 	clearflag FLAG_GOT_ROOT
 # 190 "data/maps/Route10/scripts.pory"
-	release
+	clearflag FLAG_JIRACHI_WISH
 # 191 "data/maps/Route10/scripts.pory"
+	release
+# 192 "data/maps/Route10/scripts.pory"
 	end

@@ -5,4 +5,50 @@ CeladonCity_Condominiums_Roof_MapScripts::
 CeladonCity_Condominiums_Roof_EventScript_Sign::
 	msgbox CeladonCity_Condominiums_Roof_Text_IKnowEverything, MSGBOX_SIGN
 	end
+
+CeladonCity_Condominiums_Roof_EventScript_Whitney::
+	lock
+	faceplayer
+	goto_if_set TRAINER_RS_POKEMANIAC, CeladonCity_Condominiums_Roof_EventScript_PostWhitney
+	goto_if_set FLAG_PIKER_DEFEATED, CeladonCity_Condominiums_Roof_EventScript_EndWhitney
+	msgbox CeladonCity_Condominiums_Roof_Text_Whitney, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeladonCity_Condominiums_Roof_EventScript_NoWhitney
+	trainerbattle_single TRAINER_RS_POKEMANIAC, CeladonCity_Condominiums_Roof_Text_YesWhitney, CeladonCity_Condominiums_Roof_Text_WhitneyDefeat, CeladonCity_Condominiums_Roof_EventScript_PostWhitney, NO_MUSIC
+	release
+	end
+
+CeladonCity_Condominiums_Roof_EventScript_PostWhitney::
+	msgbox CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle
+	setflag FLAG_PIKER_DEFEATED
+	msgbox CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew
+	release
+	end
+
+CeladonCity_Condominiums_Roof_EventScript_EndWhitney::
+	msgbox CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew
+	release
+	end
+
+
+CeladonCity_Condominiums_Roof_EventScript_NoWhitney::
+	msgbox CeladonCity_Condominiums_Roof_Text_NoWhitney
+	release
+	end
+
+CeladonCity_Condominiums_Roof_Text_Whitney::
+	.string "Placeholder$"
+
+CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew::
+	.string "Placeholder$"
+
+CeladonCity_Condominiums_Roof_Text_NoWhitney::
+	.string "Placeholder$"
+
+CeladonCity_Condominiums_Roof_Text_YesWhitney::
+	.string "Placeholder$"
+CeladonCity_Condominiums_Roof_Text_WhitneyDefeat::
+	.string "Placeholder$"
+CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle::
+	.string "Placeholder$"
 `
+

@@ -95,8 +95,8 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special RockCheck
+	def_special TmCheck
 	def_special GetDeoxys
 	def_special CheckGotAllItems
 	def_special CheckBeatJohto
@@ -270,7 +270,7 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special DaisyMassageServicesMax
 	def_special CreatePCMenu
 	def_special HallOfFamePCBeginFade
 	def_special ShowDiploma
@@ -310,7 +310,7 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special PlayerHasGrassPokemonInParty
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special CheckFilledFameCheckerFor0x8006
 	def_special IsStarterFirstStageInParty
 	def_special NullFieldSpecial
 	def_special IsThereRoomInAnyBoxForMorePokemon
@@ -334,7 +334,7 @@ gSpecials::
 	def_special SetEReaderTrainerGfxId
 	def_special StartSouthernIslandBattle
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special IsWailordInParty
 	def_special BattleTrophy
 	def_special GetPartyMonSpecies
 	def_special IsSelectedMonEgg
