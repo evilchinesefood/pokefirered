@@ -107,33 +107,33 @@ FuchsiaCity_Gym_EventScript_NoRoomForTM06::
 # 54 "data/maps/FuchsiaCity_Gym/scripts.pory"
 FuchsiaCity_Gym_EventScript_RematchKoga::
 # 55 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_RematchKoga, MSGBOX_YESNO
+	setvar VAR_0x8004, FAMECHECKER_KOGA
 # 56 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, FuchsiaCity_Gym_EventScript_NoRematchKoga
+	callnative CheckFilledFameCheckerFor0x8004
 # 57 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_LEADER_KOGA2, FuchsiaCity_Gym_Text_RematchYesKoga, FuchsiaCity_Gym_Text_RematchKogaDefeat, FuchsiaCity_Gym_EventScript_PostRematchKoga, NO_MUSIC
+	goto_if_eq VAR_RESULT, TRUE, FuchsiaCity_Gym_EventScript_RematchKoga2
 # 58 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	release
+	msgbox FuchsiaCity_Gym_Text_KogaNoNoRematchBattle
 # 59 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	end
-# 60 "data/maps/FuchsiaCity_Gym/scripts.pory"
-
-# 61 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_PostRematchKoga::
-# 62 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_KogaPostRematchBattle
-# 63 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	cleartrainerflag TRAINER_LEADER_KOGA2   
-# 64 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	release
-# 65 "data/maps/FuchsiaCity_Gym/scripts.pory"
+# 60 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	end
-# 66 "data/maps/FuchsiaCity_Gym/scripts.pory"
+# 61 "data/maps/FuchsiaCity_Gym/scripts.pory"
 
+# 62 "data/maps/FuchsiaCity_Gym/scripts.pory"
+FuchsiaCity_Gym_Text_KogaNoNoRematchBattle::
+# 63 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	.string "FAME CHECKER$"
+# 64 "data/maps/FuchsiaCity_Gym/scripts.pory"
+
+# 65 "data/maps/FuchsiaCity_Gym/scripts.pory"
+FuchsiaCity_Gym_EventScript_RematchKoga2::
+# 66 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	msgbox FuchsiaCity_Gym_Text_RematchKoga, MSGBOX_YESNO
 # 67 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_NoRematchKoga::
+	goto_if_eq VAR_RESULT, NO, FuchsiaCity_Gym_EventScript_NoRematchKoga
 # 68 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_KogaNoRematchBattle
+	trainerbattle_single TRAINER_LEADER_KOGA2, FuchsiaCity_Gym_Text_RematchYesKoga, FuchsiaCity_Gym_Text_RematchKogaDefeat, FuchsiaCity_Gym_EventScript_PostRematchKoga, NO_MUSIC
 # 69 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	release
 # 70 "data/maps/FuchsiaCity_Gym/scripts.pory"
@@ -141,112 +141,134 @@ FuchsiaCity_Gym_EventScript_NoRematchKoga::
 # 71 "data/maps/FuchsiaCity_Gym/scripts.pory"
 
 # 72 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_Phil::
+FuchsiaCity_Gym_EventScript_PostRematchKoga::
 # 73 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_TAMER_PHIL, FuchsiaCity_Gym_Text_PhilIntro, FuchsiaCity_Gym_Text_PhilDefeat
+	msgbox FuchsiaCity_Gym_Text_KogaPostRematchBattle
 # 74 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_PhilPostBattle, MSGBOX_AUTOCLOSE
+	cleartrainerflag TRAINER_LEADER_KOGA2   
 # 75 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	end
+	release
 # 76 "data/maps/FuchsiaCity_Gym/scripts.pory"
-
-# 77 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_Edgar::
-# 78 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_TAMER_EDGAR, FuchsiaCity_Gym_Text_EdgarIntro, FuchsiaCity_Gym_Text_EdgarDefeat
-# 79 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
-# 80 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	end
-# 81 "data/maps/FuchsiaCity_Gym/scripts.pory"
+# 77 "data/maps/FuchsiaCity_Gym/scripts.pory"
 
+# 78 "data/maps/FuchsiaCity_Gym/scripts.pory"
+FuchsiaCity_Gym_EventScript_NoRematchKoga::
+# 79 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	msgbox FuchsiaCity_Gym_Text_KogaNoRematchBattle
+# 80 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	release
+# 81 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	end
 # 82 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_Kirk::
+
 # 83 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_JUGGLER_KIRK, FuchsiaCity_Gym_Text_KirkIntro, FuchsiaCity_Gym_Text_KirkDefeat
+FuchsiaCity_Gym_EventScript_Phil::
 # 84 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	famechecker FAMECHECKER_KOGA, 2
+	trainerbattle_single TRAINER_TAMER_PHIL, FuchsiaCity_Gym_Text_PhilIntro, FuchsiaCity_Gym_Text_PhilDefeat
 # 85 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_KirkPostBattle, MSGBOX_AUTOCLOSE
+	msgbox FuchsiaCity_Gym_Text_PhilPostBattle, MSGBOX_AUTOCLOSE
 # 86 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	end
 # 87 "data/maps/FuchsiaCity_Gym/scripts.pory"
 
 # 88 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_Shawn::
+FuchsiaCity_Gym_EventScript_Edgar::
 # 89 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_JUGGLER_SHAWN, FuchsiaCity_Gym_Text_ShawnIntro, FuchsiaCity_Gym_Text_ShawnDefeat
+	trainerbattle_single TRAINER_TAMER_EDGAR, FuchsiaCity_Gym_Text_EdgarIntro, FuchsiaCity_Gym_Text_EdgarDefeat
 # 90 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_ShawnPostBattle, MSGBOX_AUTOCLOSE
+	msgbox FuchsiaCity_Gym_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
 # 91 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	end
 # 92 "data/maps/FuchsiaCity_Gym/scripts.pory"
 
 # 93 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_Kayden::
+FuchsiaCity_Gym_EventScript_Kirk::
 # 94 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_JUGGLER_KAYDEN, FuchsiaCity_Gym_Text_KaydenIntro, FuchsiaCity_Gym_Text_KaydenDefeat
+	trainerbattle_single TRAINER_JUGGLER_KIRK, FuchsiaCity_Gym_Text_KirkIntro, FuchsiaCity_Gym_Text_KirkDefeat
 # 95 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_KaydenPostBattle, MSGBOX_AUTOCLOSE
+	famechecker FAMECHECKER_KOGA, 2
 # 96 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	end
+	msgbox FuchsiaCity_Gym_Text_KirkPostBattle, MSGBOX_AUTOCLOSE
 # 97 "data/maps/FuchsiaCity_Gym/scripts.pory"
-
+	end
 # 98 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_Nate::
+
 # 99 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_JUGGLER_NATE, FuchsiaCity_Gym_Text_NateIntro, FuchsiaCity_Gym_Text_NateDefeat
+FuchsiaCity_Gym_EventScript_Shawn::
 # 100 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_NatePostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_JUGGLER_SHAWN, FuchsiaCity_Gym_Text_ShawnIntro, FuchsiaCity_Gym_Text_ShawnDefeat
 # 101 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	end
+	msgbox FuchsiaCity_Gym_Text_ShawnPostBattle, MSGBOX_AUTOCLOSE
 # 102 "data/maps/FuchsiaCity_Gym/scripts.pory"
-
+	end
 # 103 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_GymGuy::
+
 # 104 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	lock
+FuchsiaCity_Gym_EventScript_Kayden::
 # 105 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	faceplayer
+	trainerbattle_single TRAINER_JUGGLER_KAYDEN, FuchsiaCity_Gym_Text_KaydenIntro, FuchsiaCity_Gym_Text_KaydenDefeat
 # 106 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_KOGA, FuchsiaCity_Gym_EventScript_GymGuyPostVictory
+	msgbox FuchsiaCity_Gym_Text_KaydenPostBattle, MSGBOX_AUTOCLOSE
 # 107 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_GymGuyAdvice
+	end
 # 108 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	release
+
 # 109 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	end
+FuchsiaCity_Gym_EventScript_Nate::
 # 110 "data/maps/FuchsiaCity_Gym/scripts.pory"
-
+	trainerbattle_single TRAINER_JUGGLER_NATE, FuchsiaCity_Gym_Text_NateIntro, FuchsiaCity_Gym_Text_NateDefeat
 # 111 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_GymGuyPostVictory::
+	msgbox FuchsiaCity_Gym_Text_NatePostBattle, MSGBOX_AUTOCLOSE
 # 112 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_GymGuyPostVictory
+	end
 # 113 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	release
+
 # 114 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	end
+FuchsiaCity_Gym_EventScript_GymGuy::
 # 115 "data/maps/FuchsiaCity_Gym/scripts.pory"
-
+	lock
 # 116 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_GymStatue::
+	faceplayer
 # 117 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	lockall
+	goto_if_set FLAG_DEFEATED_KOGA, FuchsiaCity_Gym_EventScript_GymGuyPostVictory
 # 118 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	goto_if_set FLAG_BADGE05_GET, FuchsiaCity_Gym_EventScript_GymStatuePostVictory
+	msgbox FuchsiaCity_Gym_Text_GymGuyAdvice
 # 119 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_GymStatue
+	release
 # 120 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	releaseall
-# 121 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	end
-# 122 "data/maps/FuchsiaCity_Gym/scripts.pory"
+# 121 "data/maps/FuchsiaCity_Gym/scripts.pory"
 
+# 122 "data/maps/FuchsiaCity_Gym/scripts.pory"
+FuchsiaCity_Gym_EventScript_GymGuyPostVictory::
 # 123 "data/maps/FuchsiaCity_Gym/scripts.pory"
-FuchsiaCity_Gym_EventScript_GymStatuePostVictory::
+	msgbox FuchsiaCity_Gym_Text_GymGuyPostVictory
 # 124 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	msgbox FuchsiaCity_Gym_Text_GymStatuePlayerWon
+	release
 # 125 "data/maps/FuchsiaCity_Gym/scripts.pory"
-	releaseall
+	end
 # 126 "data/maps/FuchsiaCity_Gym/scripts.pory"
+
+# 127 "data/maps/FuchsiaCity_Gym/scripts.pory"
+FuchsiaCity_Gym_EventScript_GymStatue::
+# 128 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	lockall
+# 129 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	goto_if_set FLAG_BADGE05_GET, FuchsiaCity_Gym_EventScript_GymStatuePostVictory
+# 130 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	msgbox FuchsiaCity_Gym_Text_GymStatue
+# 131 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	releaseall
+# 132 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	end
+# 133 "data/maps/FuchsiaCity_Gym/scripts.pory"
+
+# 134 "data/maps/FuchsiaCity_Gym/scripts.pory"
+FuchsiaCity_Gym_EventScript_GymStatuePostVictory::
+# 135 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	msgbox FuchsiaCity_Gym_Text_GymStatuePlayerWon
+# 136 "data/maps/FuchsiaCity_Gym/scripts.pory"
+	releaseall
+# 137 "data/maps/FuchsiaCity_Gym/scripts.pory"
 	end

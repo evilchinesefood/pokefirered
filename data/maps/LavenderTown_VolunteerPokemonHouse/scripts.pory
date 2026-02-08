@@ -36,6 +36,13 @@ LavenderTown_VolunteerPokemonHouse_EventScript_SoulDewGiven::
 LavenderTown_VolunteerPokemonHouse_Text_FameCheckerNotEnough::
 	.string "PLACEHOLDER.$"
 
+LavenderTown_VolunteerPokemonHouse_Text_GotDew::
+	.string "You received the SOUL DEW.$"
+
+LavenderTown_VolunteerPokemonHouse_Text_ThankYouForHelping::
+	.string "Thank you for helping me with my work.\n"
+	.string "I hope you enjoy the SOUL DEW.$"
+
 LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_HasPokeFluteHelpedYou
 	release

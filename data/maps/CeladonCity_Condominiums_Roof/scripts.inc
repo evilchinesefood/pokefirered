@@ -41,68 +41,64 @@ CeladonCity_Condominiums_Roof_EventScript_PostWhitney::
 # 21 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	msgbox CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle
 # 22 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	giveitem ITEM_SOUL_DEW
-# 23 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, Route12_FishingHouse_EventScript_NoRoomForNetBall
-# 24 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	setflag FLAG_PIKER_DEFEATED
+# 23 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	msgbox CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew
+# 24 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	release
 # 25 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	msgbox CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew
+	end
 # 26 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	release
+
 # 27 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	end
-# 28 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
-# 29 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_EventScript_EndWhitney::
-# 30 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 28 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	msgbox CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew
+# 29 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	release
+# 30 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	end
 # 31 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	release
+
 # 32 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	end
+
 # 33 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
-# 34 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
-# 35 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_EventScript_NoWhitney::
-# 36 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 34 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	msgbox CeladonCity_Condominiums_Roof_Text_NoWhitney
-# 37 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 35 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	release
-# 38 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 36 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	end
-# 39 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 37 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 
-# 40 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 38 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_Text_Whitney::
+# 39 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Placeholder$"
+# 40 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+
 # 41 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
-# 42 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
-# 43 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew::
+# 42 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Placeholder$"
+# 43 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+
 # 44 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
-# 45 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
-# 46 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_Text_NoWhitney::
-# 47 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 45 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	.string "Placeholder$"
-# 48 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 46 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 
-# 49 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 47 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_Text_YesWhitney::
+# 48 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Placeholder$"
+# 49 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+CeladonCity_Condominiums_Roof_Text_WhitneyDefeat::
 # 50 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	.string "Placeholder$"
 # 51 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-CeladonCity_Condominiums_Roof_Text_WhitneyDefeat::
-# 52 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
-# 53 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle::
-# 54 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+# 52 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 	.string "Placeholder$"

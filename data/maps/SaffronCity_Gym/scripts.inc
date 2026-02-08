@@ -99,33 +99,33 @@ SaffronCity_Gym_EventScript_NoRoomForTM04::
 # 50 "data/maps/SaffronCity_Gym/scripts.pory"
 SaffronCity_Gym_EventScript_RematchSabrina::
 # 51 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_RematchSabrina, MSGBOX_YESNO
+	setvar VAR_0x8004, FAMECHECKER_SABRINA
 # 52 "data/maps/SaffronCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, SaffronCity_Gym_EventScript_NoRematchSabrina
+	callnative CheckFilledFameCheckerFor0x8004
 # 53 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_LEADER_SABRINA2, SaffronCity_Gym_Text_RematchYesSabrina, SaffronCity_Gym_Text_RematchSabrinaDefeat, SaffronCity_Gym_EventScript_PostRematchSabrina, NO_MUSIC
+	goto_if_eq VAR_RESULT, TRUE, SaffronCity_Gym_EventScript_RematchSabrina2
 # 54 "data/maps/SaffronCity_Gym/scripts.pory"
-	release
+	msgbox SaffronCity_Gym_Text_SabrinaNoNoRematchBattle
 # 55 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
-# 56 "data/maps/SaffronCity_Gym/scripts.pory"
-
-# 57 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_PostRematchSabrina::
-# 58 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_SabrinaPostRematchBattle
-# 59 "data/maps/SaffronCity_Gym/scripts.pory"
-	cleartrainerflag TRAINER_LEADER_SABRINA2
-# 60 "data/maps/SaffronCity_Gym/scripts.pory"
 	release
-# 61 "data/maps/SaffronCity_Gym/scripts.pory"
+# 56 "data/maps/SaffronCity_Gym/scripts.pory"
 	end
-# 62 "data/maps/SaffronCity_Gym/scripts.pory"
+# 57 "data/maps/SaffronCity_Gym/scripts.pory"
 
+# 58 "data/maps/SaffronCity_Gym/scripts.pory"
+SaffronCity_Gym_Text_SabrinaNoNoRematchBattle::
+# 59 "data/maps/SaffronCity_Gym/scripts.pory"
+	.string "FAME CHECKER$"
+# 60 "data/maps/SaffronCity_Gym/scripts.pory"
+
+# 61 "data/maps/SaffronCity_Gym/scripts.pory"
+SaffronCity_Gym_EventScript_RematchSabrina2::
+# 62 "data/maps/SaffronCity_Gym/scripts.pory"
+	msgbox SaffronCity_Gym_Text_RematchSabrina, MSGBOX_YESNO
 # 63 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_NoRematchSabrina::
+	goto_if_eq VAR_RESULT, NO, SaffronCity_Gym_EventScript_NoRematchSabrina
 # 64 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_SabrinaNoRematchBattle
+	trainerbattle_single TRAINER_LEADER_SABRINA2, SaffronCity_Gym_Text_RematchYesSabrina, SaffronCity_Gym_Text_RematchSabrinaDefeat, SaffronCity_Gym_EventScript_PostRematchSabrina, NO_MUSIC
 # 65 "data/maps/SaffronCity_Gym/scripts.pory"
 	release
 # 66 "data/maps/SaffronCity_Gym/scripts.pory"
@@ -133,122 +133,144 @@ SaffronCity_Gym_EventScript_NoRematchSabrina::
 # 67 "data/maps/SaffronCity_Gym/scripts.pory"
 
 # 68 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Johan::
+SaffronCity_Gym_EventScript_PostRematchSabrina::
 # 69 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_PSYCHIC_JOHAN, SaffronCity_Gym_Text_JohanIntro, SaffronCity_Gym_Text_JohanDefeat
+	msgbox SaffronCity_Gym_Text_SabrinaPostRematchBattle
 # 70 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_JohanPostBattle, MSGBOX_AUTOCLOSE
+	cleartrainerflag TRAINER_LEADER_SABRINA2
 # 71 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+	release
 # 72 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	end
 # 73 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Tyron::
+
 # 74 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_PSYCHIC_TYRON, SaffronCity_Gym_Text_TyronIntro, SaffronCity_Gym_Text_TyronDefeat
+SaffronCity_Gym_EventScript_NoRematchSabrina::
 # 75 "data/maps/SaffronCity_Gym/scripts.pory"
-	famechecker FAMECHECKER_SABRINA, 5
+	msgbox SaffronCity_Gym_Text_SabrinaNoRematchBattle
 # 76 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_TyronPostBattle, MSGBOX_AUTOCLOSE
+	release
 # 77 "data/maps/SaffronCity_Gym/scripts.pory"
 	end
 # 78 "data/maps/SaffronCity_Gym/scripts.pory"
 
 # 79 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Cameron::
+SaffronCity_Gym_EventScript_Johan::
 # 80 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_PSYCHIC_CAMERON, SaffronCity_Gym_Text_CameronIntro, SaffronCity_Gym_Text_CameronDefeat
+	trainerbattle_single TRAINER_PSYCHIC_JOHAN, SaffronCity_Gym_Text_JohanIntro, SaffronCity_Gym_Text_JohanDefeat
 # 81 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_CameronPostBattle, MSGBOX_AUTOCLOSE
+	msgbox SaffronCity_Gym_Text_JohanPostBattle, MSGBOX_AUTOCLOSE
 # 82 "data/maps/SaffronCity_Gym/scripts.pory"
 	end
 # 83 "data/maps/SaffronCity_Gym/scripts.pory"
 
 # 84 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Preston::
+SaffronCity_Gym_EventScript_Tyron::
 # 85 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_PSYCHIC_PRESTON, SaffronCity_Gym_Text_PrestonIntro, SaffronCity_Gym_Text_PrestonDefeat
+	trainerbattle_single TRAINER_PSYCHIC_TYRON, SaffronCity_Gym_Text_TyronIntro, SaffronCity_Gym_Text_TyronDefeat
 # 86 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_PrestonPostBattle, MSGBOX_AUTOCLOSE
+	famechecker FAMECHECKER_SABRINA, 5
 # 87 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+	msgbox SaffronCity_Gym_Text_TyronPostBattle, MSGBOX_AUTOCLOSE
 # 88 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	end
 # 89 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Amanda::
+
 # 90 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_CHANNELER_AMANDA, SaffronCity_Gym_Text_AmandaIntro, SaffronCity_Gym_Text_AmandaDefeat
+SaffronCity_Gym_EventScript_Cameron::
 # 91 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_AmandaPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PSYCHIC_CAMERON, SaffronCity_Gym_Text_CameronIntro, SaffronCity_Gym_Text_CameronDefeat
 # 92 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+	msgbox SaffronCity_Gym_Text_CameronPostBattle, MSGBOX_AUTOCLOSE
 # 93 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	end
 # 94 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Stacy::
+
 # 95 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_CHANNELER_STACY, SaffronCity_Gym_Text_StacyIntro, SaffronCity_Gym_Text_StacyDefeat
+SaffronCity_Gym_EventScript_Preston::
 # 96 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_StacyPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PSYCHIC_PRESTON, SaffronCity_Gym_Text_PrestonIntro, SaffronCity_Gym_Text_PrestonDefeat
 # 97 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+	msgbox SaffronCity_Gym_Text_PrestonPostBattle, MSGBOX_AUTOCLOSE
 # 98 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	end
 # 99 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_Tasha::
+
 # 100 "data/maps/SaffronCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_CHANNELER_TASHA, SaffronCity_Gym_Text_TashaIntro, SaffronCity_Gym_Text_TashaDefeat
+SaffronCity_Gym_EventScript_Amanda::
 # 101 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_TashaPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_CHANNELER_AMANDA, SaffronCity_Gym_Text_AmandaIntro, SaffronCity_Gym_Text_AmandaDefeat
 # 102 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+	msgbox SaffronCity_Gym_Text_AmandaPostBattle, MSGBOX_AUTOCLOSE
 # 103 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	end
 # 104 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_GymGuy::
+
 # 105 "data/maps/SaffronCity_Gym/scripts.pory"
-	lock
+SaffronCity_Gym_EventScript_Stacy::
 # 106 "data/maps/SaffronCity_Gym/scripts.pory"
-	faceplayer
+	trainerbattle_single TRAINER_CHANNELER_STACY, SaffronCity_Gym_Text_StacyIntro, SaffronCity_Gym_Text_StacyDefeat
 # 107 "data/maps/SaffronCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_SABRINA, SaffronCity_Gym_EventScript_GymGuyPostVictory
+	msgbox SaffronCity_Gym_Text_StacyPostBattle, MSGBOX_AUTOCLOSE
 # 108 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_GymGuyAdvice
+	end
 # 109 "data/maps/SaffronCity_Gym/scripts.pory"
-	release
+
 # 110 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+SaffronCity_Gym_EventScript_Tasha::
 # 111 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	trainerbattle_single TRAINER_CHANNELER_TASHA, SaffronCity_Gym_Text_TashaIntro, SaffronCity_Gym_Text_TashaDefeat
 # 112 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_GymGuyPostVictory::
+	msgbox SaffronCity_Gym_Text_TashaPostBattle, MSGBOX_AUTOCLOSE
 # 113 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_GymGuyPostVictory
+	end
 # 114 "data/maps/SaffronCity_Gym/scripts.pory"
-	release
+
 # 115 "data/maps/SaffronCity_Gym/scripts.pory"
-	end
+SaffronCity_Gym_EventScript_GymGuy::
 # 116 "data/maps/SaffronCity_Gym/scripts.pory"
-
+	lock
 # 117 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_GymStatue::
+	faceplayer
 # 118 "data/maps/SaffronCity_Gym/scripts.pory"
-	lockall
+	goto_if_set FLAG_DEFEATED_SABRINA, SaffronCity_Gym_EventScript_GymGuyPostVictory
 # 119 "data/maps/SaffronCity_Gym/scripts.pory"
-	goto_if_set FLAG_BADGE06_GET, SaffronCity_Gym_EventScript_GymStatuePostVictory
+	msgbox SaffronCity_Gym_Text_GymGuyAdvice
 # 120 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_GymStatue
+	release
 # 121 "data/maps/SaffronCity_Gym/scripts.pory"
-	releaseall
-# 122 "data/maps/SaffronCity_Gym/scripts.pory"
 	end
-# 123 "data/maps/SaffronCity_Gym/scripts.pory"
+# 122 "data/maps/SaffronCity_Gym/scripts.pory"
 
+# 123 "data/maps/SaffronCity_Gym/scripts.pory"
+SaffronCity_Gym_EventScript_GymGuyPostVictory::
 # 124 "data/maps/SaffronCity_Gym/scripts.pory"
-SaffronCity_Gym_EventScript_GymStatuePostVictory::
+	msgbox SaffronCity_Gym_Text_GymGuyPostVictory
 # 125 "data/maps/SaffronCity_Gym/scripts.pory"
-	msgbox SaffronCity_Gym_Text_GymStatuePlayerWon
+	release
 # 126 "data/maps/SaffronCity_Gym/scripts.pory"
-	releaseall
+	end
 # 127 "data/maps/SaffronCity_Gym/scripts.pory"
+
+# 128 "data/maps/SaffronCity_Gym/scripts.pory"
+SaffronCity_Gym_EventScript_GymStatue::
+# 129 "data/maps/SaffronCity_Gym/scripts.pory"
+	lockall
+# 130 "data/maps/SaffronCity_Gym/scripts.pory"
+	goto_if_set FLAG_BADGE06_GET, SaffronCity_Gym_EventScript_GymStatuePostVictory
+# 131 "data/maps/SaffronCity_Gym/scripts.pory"
+	msgbox SaffronCity_Gym_Text_GymStatue
+# 132 "data/maps/SaffronCity_Gym/scripts.pory"
+	releaseall
+# 133 "data/maps/SaffronCity_Gym/scripts.pory"
+	end
+# 134 "data/maps/SaffronCity_Gym/scripts.pory"
+
+# 135 "data/maps/SaffronCity_Gym/scripts.pory"
+SaffronCity_Gym_EventScript_GymStatuePostVictory::
+# 136 "data/maps/SaffronCity_Gym/scripts.pory"
+	msgbox SaffronCity_Gym_Text_GymStatuePlayerWon
+# 137 "data/maps/SaffronCity_Gym/scripts.pory"
+	releaseall
+# 138 "data/maps/SaffronCity_Gym/scripts.pory"
 	end

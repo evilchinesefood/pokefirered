@@ -79,33 +79,33 @@ PewterCity_Gym_EventScript_NoRoomForTM39::
 # 40 "data/maps/PewterCity_Gym/scripts.pory"
 PewterCity_Gym_EventScript_RematchBrock::
 # 41 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_RematchBrock, MSGBOX_YESNO
+	setvar VAR_0x8004, FAMECHECKER_BROCK
 # 42 "data/maps/PewterCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_NoRematchBrock
+	callnative CheckFilledFameCheckerFor0x8004
 # 43 "data/maps/PewterCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_BROCK2, PewterCity_Gym_Text_RematchYesBrock, PewterCity_Gym_Text_RematchBrockDefeat, PewterCity_Gym_EventScript_PostRematchBrock, NO_MUSIC
+	goto_if_eq VAR_RESULT, TRUE, PewterCity_Gym_EventScript_RematchBrock2
 # 44 "data/maps/PewterCity_Gym/scripts.pory"
-	release
+	msgbox PewterCity_Gym_Text_BrockNoNoRematchBattle
 # 45 "data/maps/PewterCity_Gym/scripts.pory"
-	end
-# 46 "data/maps/PewterCity_Gym/scripts.pory"
-
-# 47 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_PostRematchBrock::
-# 48 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_BrockPostRematchBattle
-# 49 "data/maps/PewterCity_Gym/scripts.pory"
-	cleartrainerflag TRAINER_BROCK2
-# 50 "data/maps/PewterCity_Gym/scripts.pory"
 	release
-# 51 "data/maps/PewterCity_Gym/scripts.pory"
+# 46 "data/maps/PewterCity_Gym/scripts.pory"
 	end
-# 52 "data/maps/PewterCity_Gym/scripts.pory"
+# 47 "data/maps/PewterCity_Gym/scripts.pory"
 
+# 48 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_Text_BrockNoNoRematchBattle::
+# 49 "data/maps/PewterCity_Gym/scripts.pory"
+	.string "FAME CHECKER$"
+# 50 "data/maps/PewterCity_Gym/scripts.pory"
+
+# 51 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_EventScript_RematchBrock2::
+# 52 "data/maps/PewterCity_Gym/scripts.pory"
+	msgbox PewterCity_Gym_Text_RematchBrock, MSGBOX_YESNO
 # 53 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_NoRematchBrock::
+	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_NoRematchBrock
 # 54 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_BrockNoRematchBattle
+	trainerbattle_single TRAINER_BROCK2, PewterCity_Gym_Text_RematchYesBrock, PewterCity_Gym_Text_RematchBrockDefeat, PewterCity_Gym_EventScript_PostRematchBrock, NO_MUSIC
 # 55 "data/maps/PewterCity_Gym/scripts.pory"
 	release
 # 56 "data/maps/PewterCity_Gym/scripts.pory"
@@ -113,92 +113,114 @@ PewterCity_Gym_EventScript_NoRematchBrock::
 # 57 "data/maps/PewterCity_Gym/scripts.pory"
 
 # 58 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_Liam::
+PewterCity_Gym_EventScript_PostRematchBrock::
 # 59 "data/maps/PewterCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_CAMPER_LIAM, PewterCity_Gym_Text_LiamIntro, PewterCity_Gym_Text_LiamDefeat
+	msgbox PewterCity_Gym_Text_BrockPostRematchBattle
 # 60 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_LiamPostBattle, MSGBOX_AUTOCLOSE
+	cleartrainerflag TRAINER_BROCK2
 # 61 "data/maps/PewterCity_Gym/scripts.pory"
-	end
+	release
 # 62 "data/maps/PewterCity_Gym/scripts.pory"
-
+	end
 # 63 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymGuy::
+
 # 64 "data/maps/PewterCity_Gym/scripts.pory"
-	lock
+PewterCity_Gym_EventScript_NoRematchBrock::
 # 65 "data/maps/PewterCity_Gym/scripts.pory"
-	faceplayer
+	msgbox PewterCity_Gym_Text_BrockNoRematchBattle
 # 66 "data/maps/PewterCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_BROCK, PewterCity_Gym_EventScript_GymGuyPostVictory
+	release
 # 67 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_LetMeTakeYouToTheTop, MSGBOX_YESNO
+	end
 # 68 "data/maps/PewterCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, YES, PewterCity_Gym_EventScript_GymGuyTakeMeToTop
+
 # 69 "data/maps/PewterCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_GymGuyDontTakeMeToTop
+PewterCity_Gym_EventScript_Liam::
 # 70 "data/maps/PewterCity_Gym/scripts.pory"
-	end
+	trainerbattle_single TRAINER_CAMPER_LIAM, PewterCity_Gym_Text_LiamIntro, PewterCity_Gym_Text_LiamDefeat
 # 71 "data/maps/PewterCity_Gym/scripts.pory"
-
+	msgbox PewterCity_Gym_Text_LiamPostBattle, MSGBOX_AUTOCLOSE
 # 72 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymGuyPostVictory::
+	end
 # 73 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_YoureChampMaterial
+
 # 74 "data/maps/PewterCity_Gym/scripts.pory"
-	release
+PewterCity_Gym_EventScript_GymGuy::
 # 75 "data/maps/PewterCity_Gym/scripts.pory"
-	end
+	lock
 # 76 "data/maps/PewterCity_Gym/scripts.pory"
-
+	faceplayer
 # 77 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymGuyTakeMeToTop::
+	goto_if_set FLAG_DEFEATED_BROCK, PewterCity_Gym_EventScript_GymGuyPostVictory
 # 78 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_LetsGetHappening
+	msgbox PewterCity_Gym_Text_LetMeTakeYouToTheTop, MSGBOX_YESNO
 # 79 "data/maps/PewterCity_Gym/scripts.pory"
-	goto PewterCity_Gym_EventScript_GymGuyAdvice
+	goto_if_eq VAR_RESULT, YES, PewterCity_Gym_EventScript_GymGuyTakeMeToTop
 # 80 "data/maps/PewterCity_Gym/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_GymGuyDontTakeMeToTop
 # 81 "data/maps/PewterCity_Gym/scripts.pory"
-
+	end
 # 82 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymGuyDontTakeMeToTop::
+
 # 83 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_ItsFreeLetsGetHappening
+PewterCity_Gym_EventScript_GymGuyPostVictory::
 # 84 "data/maps/PewterCity_Gym/scripts.pory"
-	goto PewterCity_Gym_EventScript_GymGuyAdvice
+	msgbox PewterCity_Gym_Text_YoureChampMaterial
 # 85 "data/maps/PewterCity_Gym/scripts.pory"
-	end
-# 86 "data/maps/PewterCity_Gym/scripts.pory"
-
-# 87 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymGuyAdvice::
-# 88 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_TryDifferentPartyOrders
-# 89 "data/maps/PewterCity_Gym/scripts.pory"
 	release
+# 86 "data/maps/PewterCity_Gym/scripts.pory"
+	end
+# 87 "data/maps/PewterCity_Gym/scripts.pory"
+
+# 88 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_EventScript_GymGuyTakeMeToTop::
+# 89 "data/maps/PewterCity_Gym/scripts.pory"
+	msgbox PewterCity_Gym_Text_LetsGetHappening
 # 90 "data/maps/PewterCity_Gym/scripts.pory"
-	end
+	goto PewterCity_Gym_EventScript_GymGuyAdvice
 # 91 "data/maps/PewterCity_Gym/scripts.pory"
-
-# 92 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymStatue::
-# 93 "data/maps/PewterCity_Gym/scripts.pory"
-	lockall
-# 94 "data/maps/PewterCity_Gym/scripts.pory"
-	goto_if_set FLAG_BADGE01_GET, PewterCity_Gym_EventScript_GymStatuePostVictory
-# 95 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_GymStatue
-# 96 "data/maps/PewterCity_Gym/scripts.pory"
-	releaseall
-# 97 "data/maps/PewterCity_Gym/scripts.pory"
 	end
-# 98 "data/maps/PewterCity_Gym/scripts.pory"
+# 92 "data/maps/PewterCity_Gym/scripts.pory"
 
+# 93 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_EventScript_GymGuyDontTakeMeToTop::
+# 94 "data/maps/PewterCity_Gym/scripts.pory"
+	msgbox PewterCity_Gym_Text_ItsFreeLetsGetHappening
+# 95 "data/maps/PewterCity_Gym/scripts.pory"
+	goto PewterCity_Gym_EventScript_GymGuyAdvice
+# 96 "data/maps/PewterCity_Gym/scripts.pory"
+	end
+# 97 "data/maps/PewterCity_Gym/scripts.pory"
+
+# 98 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_EventScript_GymGuyAdvice::
 # 99 "data/maps/PewterCity_Gym/scripts.pory"
-PewterCity_Gym_EventScript_GymStatuePostVictory::
+	msgbox PewterCity_Gym_Text_TryDifferentPartyOrders
 # 100 "data/maps/PewterCity_Gym/scripts.pory"
-	msgbox PewterCity_Gym_Text_GymStatuePlayerWon
+	release
 # 101 "data/maps/PewterCity_Gym/scripts.pory"
-	releaseall
+	end
 # 102 "data/maps/PewterCity_Gym/scripts.pory"
+
+# 103 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_EventScript_GymStatue::
+# 104 "data/maps/PewterCity_Gym/scripts.pory"
+	lockall
+# 105 "data/maps/PewterCity_Gym/scripts.pory"
+	goto_if_set FLAG_BADGE01_GET, PewterCity_Gym_EventScript_GymStatuePostVictory
+# 106 "data/maps/PewterCity_Gym/scripts.pory"
+	msgbox PewterCity_Gym_Text_GymStatue
+# 107 "data/maps/PewterCity_Gym/scripts.pory"
+	releaseall
+# 108 "data/maps/PewterCity_Gym/scripts.pory"
+	end
+# 109 "data/maps/PewterCity_Gym/scripts.pory"
+
+# 110 "data/maps/PewterCity_Gym/scripts.pory"
+PewterCity_Gym_EventScript_GymStatuePostVictory::
+# 111 "data/maps/PewterCity_Gym/scripts.pory"
+	msgbox PewterCity_Gym_Text_GymStatuePlayerWon
+# 112 "data/maps/PewterCity_Gym/scripts.pory"
+	releaseall
+# 113 "data/maps/PewterCity_Gym/scripts.pory"
 	end

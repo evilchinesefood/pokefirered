@@ -529,33 +529,33 @@ VermilionCity_Gym_EventScript_NoRoomForTM34::
 # 265 "data/maps/VermilionCity_Gym/scripts.pory"
 VermilionCity_Gym_EventScript_RematchSurge::
 # 266 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_RematchSurge, MSGBOX_YESNO
+	setvar VAR_0x8004, FAMECHECKER_LTSURGE
 # 267 "data/maps/VermilionCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, VermilionCity_Gym_EventScript_NoRematchSurge
+	callnative CheckFilledFameCheckerFor0x8004
 # 268 "data/maps/VermilionCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_SURGE2, VermilionCity_Gym_Text_RematchYesSurge, VermilionCity_Gym_Text_RematchSurgeDefeat, VermilionCity_Gym_EventScript_PostRematchSurge, NO_MUSIC
+	goto_if_eq VAR_RESULT, TRUE, VermilionCity_Gym_EventScript_RematchSurge2
 # 269 "data/maps/VermilionCity_Gym/scripts.pory"
-	release
+	msgbox VermilionCity_Gym_Text_SurgeNoNoRematchBattle
 # 270 "data/maps/VermilionCity_Gym/scripts.pory"
-	end
-# 271 "data/maps/VermilionCity_Gym/scripts.pory"
-
-# 272 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_PostRematchSurge::
-# 273 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_SurgePostRematchBattle
-# 274 "data/maps/VermilionCity_Gym/scripts.pory"
-	cleartrainerflag TRAINER_SURGE2
-# 275 "data/maps/VermilionCity_Gym/scripts.pory"
 	release
-# 276 "data/maps/VermilionCity_Gym/scripts.pory"
+# 271 "data/maps/VermilionCity_Gym/scripts.pory"
 	end
-# 277 "data/maps/VermilionCity_Gym/scripts.pory"
+# 272 "data/maps/VermilionCity_Gym/scripts.pory"
 
+# 273 "data/maps/VermilionCity_Gym/scripts.pory"
+VermilionCity_Gym_Text_SurgeNoNoRematchBattle::
+# 274 "data/maps/VermilionCity_Gym/scripts.pory"
+	.string "FAME CHECKER$"
+# 275 "data/maps/VermilionCity_Gym/scripts.pory"
+
+# 276 "data/maps/VermilionCity_Gym/scripts.pory"
+VermilionCity_Gym_EventScript_RematchSurge2::
+# 277 "data/maps/VermilionCity_Gym/scripts.pory"
+	msgbox VermilionCity_Gym_Text_RematchSurge, MSGBOX_YESNO
 # 278 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_NoRematchSurge::
+	goto_if_eq VAR_RESULT, NO, VermilionCity_Gym_EventScript_NoRematchSurge
 # 279 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_SurgeNoRematchBattle
+	trainerbattle_single TRAINER_SURGE2, VermilionCity_Gym_Text_RematchYesSurge, VermilionCity_Gym_Text_RematchSurgeDefeat, VermilionCity_Gym_EventScript_PostRematchSurge, NO_MUSIC
 # 280 "data/maps/VermilionCity_Gym/scripts.pory"
 	release
 # 281 "data/maps/VermilionCity_Gym/scripts.pory"
@@ -563,94 +563,116 @@ VermilionCity_Gym_EventScript_NoRematchSurge::
 # 282 "data/maps/VermilionCity_Gym/scripts.pory"
 
 # 283 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_Dwayne::
+VermilionCity_Gym_EventScript_PostRematchSurge::
 # 284 "data/maps/VermilionCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_SAILOR_DWAYNE, VermilionCity_Gym_Text_DwayneIntro, VermilionCity_Gym_Text_DwayneDefeat
+	msgbox VermilionCity_Gym_Text_SurgePostRematchBattle
 # 285 "data/maps/VermilionCity_Gym/scripts.pory"
-	famechecker FAMECHECKER_LTSURGE, 4
+	cleartrainerflag TRAINER_SURGE2
 # 286 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_DwaynePostBattle, MSGBOX_AUTOCLOSE
+	release
 # 287 "data/maps/VermilionCity_Gym/scripts.pory"
 	end
 # 288 "data/maps/VermilionCity_Gym/scripts.pory"
 
 # 289 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_Baily::
+VermilionCity_Gym_EventScript_NoRematchSurge::
 # 290 "data/maps/VermilionCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_ENGINEER_BAILY, VermilionCity_Gym_Text_BailyIntro, VermilionCity_Gym_Text_BailyDefeat
+	msgbox VermilionCity_Gym_Text_SurgeNoRematchBattle
 # 291 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_BailyPostBattle, MSGBOX_AUTOCLOSE
+	release
 # 292 "data/maps/VermilionCity_Gym/scripts.pory"
 	end
 # 293 "data/maps/VermilionCity_Gym/scripts.pory"
 
 # 294 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_Tucker::
+VermilionCity_Gym_EventScript_Dwayne::
 # 295 "data/maps/VermilionCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_GENTLEMAN_TUCKER, VermilionCity_Gym_Text_TuckerIntro, VermilionCity_Gym_Text_TuckerDefeat, VermilionCity_Gym_EventScript_DefeatedTucker
+	trainerbattle_single TRAINER_SAILOR_DWAYNE, VermilionCity_Gym_Text_DwayneIntro, VermilionCity_Gym_Text_DwayneDefeat
 # 296 "data/maps/VermilionCity_Gym/scripts.pory"
-	famechecker FAMECHECKER_LTSURGE, 3
+	famechecker FAMECHECKER_LTSURGE, 4
 # 297 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_TuckerPostBattle, MSGBOX_AUTOCLOSE
+	msgbox VermilionCity_Gym_Text_DwaynePostBattle, MSGBOX_AUTOCLOSE
 # 298 "data/maps/VermilionCity_Gym/scripts.pory"
 	end
 # 299 "data/maps/VermilionCity_Gym/scripts.pory"
 
 # 300 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_DefeatedTucker::
+VermilionCity_Gym_EventScript_Baily::
 # 301 "data/maps/VermilionCity_Gym/scripts.pory"
-	famechecker FAMECHECKER_LTSURGE, 2
+	trainerbattle_single TRAINER_ENGINEER_BAILY, VermilionCity_Gym_Text_BailyIntro, VermilionCity_Gym_Text_BailyDefeat
 # 302 "data/maps/VermilionCity_Gym/scripts.pory"
-	release
+	msgbox VermilionCity_Gym_Text_BailyPostBattle, MSGBOX_AUTOCLOSE
 # 303 "data/maps/VermilionCity_Gym/scripts.pory"
 	end
 # 304 "data/maps/VermilionCity_Gym/scripts.pory"
 
 # 305 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_GymGuy::
+VermilionCity_Gym_EventScript_Tucker::
 # 306 "data/maps/VermilionCity_Gym/scripts.pory"
-	lock
+	trainerbattle_single TRAINER_GENTLEMAN_TUCKER, VermilionCity_Gym_Text_TuckerIntro, VermilionCity_Gym_Text_TuckerDefeat, VermilionCity_Gym_EventScript_DefeatedTucker
 # 307 "data/maps/VermilionCity_Gym/scripts.pory"
-	faceplayer
+	famechecker FAMECHECKER_LTSURGE, 3
 # 308 "data/maps/VermilionCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_LT_SURGE, VermilionCity_Gym_EventScript_GymGuyPostVictory
+	msgbox VermilionCity_Gym_Text_TuckerPostBattle, MSGBOX_AUTOCLOSE
 # 309 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_GymGuyAdvice
+	end
 # 310 "data/maps/VermilionCity_Gym/scripts.pory"
-	release
+
 # 311 "data/maps/VermilionCity_Gym/scripts.pory"
-	end
+VermilionCity_Gym_EventScript_DefeatedTucker::
 # 312 "data/maps/VermilionCity_Gym/scripts.pory"
-
+	famechecker FAMECHECKER_LTSURGE, 2
 # 313 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_GymGuyPostVictory::
-# 314 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_GymGuyPostVictory
-# 315 "data/maps/VermilionCity_Gym/scripts.pory"
 	release
+# 314 "data/maps/VermilionCity_Gym/scripts.pory"
+	end
+# 315 "data/maps/VermilionCity_Gym/scripts.pory"
+
 # 316 "data/maps/VermilionCity_Gym/scripts.pory"
-	end
+VermilionCity_Gym_EventScript_GymGuy::
 # 317 "data/maps/VermilionCity_Gym/scripts.pory"
-
+	lock
 # 318 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_GymStatue::
+	faceplayer
 # 319 "data/maps/VermilionCity_Gym/scripts.pory"
-	lockall
+	goto_if_set FLAG_DEFEATED_LT_SURGE, VermilionCity_Gym_EventScript_GymGuyPostVictory
 # 320 "data/maps/VermilionCity_Gym/scripts.pory"
-	goto_if_set FLAG_BADGE03_GET, VermilionCity_Gym_EventScript_GymStatuePostVictory
+	msgbox VermilionCity_Gym_Text_GymGuyAdvice
 # 321 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_GymStatue
+	release
 # 322 "data/maps/VermilionCity_Gym/scripts.pory"
-	releaseall
-# 323 "data/maps/VermilionCity_Gym/scripts.pory"
 	end
-# 324 "data/maps/VermilionCity_Gym/scripts.pory"
+# 323 "data/maps/VermilionCity_Gym/scripts.pory"
 
+# 324 "data/maps/VermilionCity_Gym/scripts.pory"
+VermilionCity_Gym_EventScript_GymGuyPostVictory::
 # 325 "data/maps/VermilionCity_Gym/scripts.pory"
-VermilionCity_Gym_EventScript_GymStatuePostVictory::
+	msgbox VermilionCity_Gym_Text_GymGuyPostVictory
 # 326 "data/maps/VermilionCity_Gym/scripts.pory"
-	msgbox VermilionCity_Gym_Text_GymStatuePlayerWon
+	release
 # 327 "data/maps/VermilionCity_Gym/scripts.pory"
-	releaseall
+	end
 # 328 "data/maps/VermilionCity_Gym/scripts.pory"
+
+# 329 "data/maps/VermilionCity_Gym/scripts.pory"
+VermilionCity_Gym_EventScript_GymStatue::
+# 330 "data/maps/VermilionCity_Gym/scripts.pory"
+	lockall
+# 331 "data/maps/VermilionCity_Gym/scripts.pory"
+	goto_if_set FLAG_BADGE03_GET, VermilionCity_Gym_EventScript_GymStatuePostVictory
+# 332 "data/maps/VermilionCity_Gym/scripts.pory"
+	msgbox VermilionCity_Gym_Text_GymStatue
+# 333 "data/maps/VermilionCity_Gym/scripts.pory"
+	releaseall
+# 334 "data/maps/VermilionCity_Gym/scripts.pory"
+	end
+# 335 "data/maps/VermilionCity_Gym/scripts.pory"
+
+# 336 "data/maps/VermilionCity_Gym/scripts.pory"
+VermilionCity_Gym_EventScript_GymStatuePostVictory::
+# 337 "data/maps/VermilionCity_Gym/scripts.pory"
+	msgbox VermilionCity_Gym_Text_GymStatuePlayerWon
+# 338 "data/maps/VermilionCity_Gym/scripts.pory"
+	releaseall
+# 339 "data/maps/VermilionCity_Gym/scripts.pory"
 	end

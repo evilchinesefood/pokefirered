@@ -253,350 +253,454 @@ Route25_SeaCottage_EventScript_NoRoomForSSTicket::
 # 127 "data/maps/Route25_SeaCottage/scripts.pory"
 Route25_SeaCottage_EventScript_BillGoLookAtPC::
 # 128 "data/maps/Route25_SeaCottage/scripts.pory"
-	msgbox Route25_SeaCottage_Text_CheckOutRareMonsOnPC
+	setvar VAR_0x8004, FAMECHECKER_BILL
 # 129 "data/maps/Route25_SeaCottage/scripts.pory"
-	release
+	callnative CheckFilledFameCheckerFor0x8004
 # 130 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, TRUE, Route25_SeaCottage_EventScript_BillCastform
 # 131 "data/maps/Route25_SeaCottage/scripts.pory"
-
+	msgbox Route25_SeaCottage_Text_CheckOutRareMonsOnPC
 # 132 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_BillWalkToTeleporter::
+	release
 # 133 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
+	end
 # 134 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
+
 # 135 "data/maps/Route25_SeaCottage/scripts.pory"
-	step_end
+Route25_SeaCottage_EventScript_BillCastform::
 # 136 "data/maps/Route25_SeaCottage/scripts.pory"
-
+	lock
 # 137 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_BillWalkToTeleporterSouth::
+	faceplayer
 # 138 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
+	setvar VAR_TEMP_1, SPECIES_CASTFORM
 # 139 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
+	givemon SPECIES_CASTFORM, 25
 # 140 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
+	goto_if_eq VAR_RESULT, 0, Route25_SeaCottage_EventScript_GetEeveeParty
 # 141 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_left
+	goto_if_eq VAR_RESULT, 1, Route25_SeaCottage_EventScript_GetEeveePC
 # 142 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_in_place_faster_up
+	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
 # 143 "data/maps/Route25_SeaCottage/scripts.pory"
-	step_end
+	release
 # 144 "data/maps/Route25_SeaCottage/scripts.pory"
-
+	end
 # 145 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_BillEnterTeleporter::
+
 # 146 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
+Route25_SeaCottage_EventScript_GetEeveeParty::
 # 147 "data/maps/Route25_SeaCottage/scripts.pory"
-	step_end
-# 148 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 149 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_Computer::
-# 150 "data/maps/Route25_SeaCottage/scripts.pory"
-	lockall
-# 151 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto_if_set RETURN_AFTER_SS_TICKET, Route25_SeaCottage_EventScript_OpenBillsMonList
-# 152 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto_if_set BILL_IN_TELEPORTER, Route25_SeaCottage_EventScript_RunCellSeparator
-# 153 "data/maps/Route25_SeaCottage/scripts.pory"
-	msgbox Route25_SeaCottage_Text_TeleporterIsDisplayed
-# 154 "data/maps/Route25_SeaCottage/scripts.pory"
-	releaseall
-# 155 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
-# 156 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 157 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_RunCellSeparator::
-# 158 "data/maps/Route25_SeaCottage/scripts.pory"
-	fadeoutbgm 0
-# 159 "data/maps/Route25_SeaCottage/scripts.pory"
-	msgbox Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator
-# 160 "data/maps/Route25_SeaCottage/scripts.pory"
-	closemessage
-# 161 "data/maps/Route25_SeaCottage/scripts.pory"
-	clearflag BILL_IN_TELEPORTER
-# 162 "data/maps/Route25_SeaCottage/scripts.pory"
-	setflag FLAG_HELPED_BILL_IN_SEA_COTTAGE
-# 163 "data/maps/Route25_SeaCottage/scripts.pory"
-	special SpawnCameraObject
-# 164 "data/maps/Route25_SeaCottage/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Route25_SeaCottage_Movement_CameraPanToTeleporters
-# 165 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitmovement 0
-# 166 "data/maps/Route25_SeaCottage/scripts.pory"
-	delay 35
-# 167 "data/maps/Route25_SeaCottage/scripts.pory"
-	playse SE_PIN
-# 168 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitse
-# 169 "data/maps/Route25_SeaCottage/scripts.pory"
-	setvar VAR_0x8004, 0
-# 170 "data/maps/Route25_SeaCottage/scripts.pory"
-	special AnimateTeleporterHousing
-# 171 "data/maps/Route25_SeaCottage/scripts.pory"
-	delay 10
-# 172 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 173 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 174 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 175 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 176 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 177 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 178 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 179 "data/maps/Route25_SeaCottage/scripts.pory"
-	setvar VAR_0x8004, 1
-# 180 "data/maps/Route25_SeaCottage/scripts.pory"
-	special AnimateTeleporterHousing
-# 181 "data/maps/Route25_SeaCottage/scripts.pory"
-	playse SE_WARP_IN
-# 182 "data/maps/Route25_SeaCottage/scripts.pory"
-	special AnimateTeleporterCable
-# 183 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitse
-# 184 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 185 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 186 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 187 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 188 "data/maps/Route25_SeaCottage/scripts.pory"
-	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
-# 189 "data/maps/Route25_SeaCottage/scripts.pory"
-	opendoor 3, 3
-# 190 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitdooranim
-# 191 "data/maps/Route25_SeaCottage/scripts.pory"
-	fadeinbgm 0
-# 192 "data/maps/Route25_SeaCottage/scripts.pory"
-	addobject LOCALID_BILL_HUMAN
-# 193 "data/maps/Route25_SeaCottage/scripts.pory"
-	clearflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
-# 194 "data/maps/Route25_SeaCottage/scripts.pory"
-	delay 50
-# 195 "data/maps/Route25_SeaCottage/scripts.pory"
 	playfanfare MUS_LEVEL_UP
-# 196 "data/maps/Route25_SeaCottage/scripts.pory"
-	applymovement LOCALID_BILL_HUMAN, Route25_SeaCottage_Movement_BillExitTeleporter
-# 197 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitmovement 0
-# 198 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitfanfare
-# 199 "data/maps/Route25_SeaCottage/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, Route25_SeaCottage_Movement_CameraPanBackFromTeleporters
-# 200 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitmovement 0
-# 201 "data/maps/Route25_SeaCottage/scripts.pory"
-	playse SE_CONTEST_CURTAIN_FALL
-# 202 "data/maps/Route25_SeaCottage/scripts.pory"
-	closedoor 3, 3
-# 203 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitdooranim
-# 204 "data/maps/Route25_SeaCottage/scripts.pory"
-	applymovement LOCALID_BILL_HUMAN, Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom
-# 205 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitmovement 0
-# 206 "data/maps/Route25_SeaCottage/scripts.pory"
-	special RemoveCameraObject
-# 207 "data/maps/Route25_SeaCottage/scripts.pory"
-	releaseall
-# 208 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
-# 209 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 210 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_PlayTeleporterBeepSE::
-# 211 "data/maps/Route25_SeaCottage/scripts.pory"
-	playse SE_BALL
-# 212 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitse
-# 213 "data/maps/Route25_SeaCottage/scripts.pory"
-	delay 20
-# 214 "data/maps/Route25_SeaCottage/scripts.pory"
-	return
-# 215 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 216 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_CameraPanToTeleporters::
-# 217 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
-# 218 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_up
-# 219 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
-# 220 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
-# 221 "data/maps/Route25_SeaCottage/scripts.pory"
-	step_end
-# 222 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 223 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_CameraPanBackFromTeleporters::
-# 224 "data/maps/Route25_SeaCottage/scripts.pory"
-	delay_16
-# 225 "data/maps/Route25_SeaCottage/scripts.pory"
-	delay_16
-# 226 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_down
-# 227 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_down
-# 228 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_left
-# 229 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_left
-# 230 "data/maps/Route25_SeaCottage/scripts.pory"
-	step_end
-# 231 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 232 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_OpenBillsMonList::
-# 233 "data/maps/Route25_SeaCottage/scripts.pory"
-	msgbox Route25_SeaCottage_Text_BillsFavoriteMonList
-# 234 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto Route25_SeaCottage_EventScript_BillsMonList
-# 235 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
-# 236 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 237 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_BillsMonList::
-# 238 "data/maps/Route25_SeaCottage/scripts.pory"
-	message Route25_SeaCottage_Text_SeeWhichMon
-# 239 "data/maps/Route25_SeaCottage/scripts.pory"
+# 148 "data/maps/Route25_SeaCottage/scripts.pory"
+	message Route25_SeaCottage_Text_ObtainedAnEevee
+# 149 "data/maps/Route25_SeaCottage/scripts.pory"
 	waitmessage
+# 150 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitfanfare
+# 151 "data/maps/Route25_SeaCottage/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_CASTFORM
+# 152 "data/maps/Route25_SeaCottage/scripts.pory"
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+# 153 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto_if_eq VAR_RESULT, NO, Route25_SeaCottage_EventScript_SetGotEevee
+# 154 "data/maps/Route25_SeaCottage/scripts.pory"
+	call EventScript_GetGiftMonPartySlot
+# 155 "data/maps/Route25_SeaCottage/scripts.pory"
+	call EventScript_ChangePokemonNickname
+# 156 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_SetGotEevee
+# 157 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 158 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 159 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_GetEeveePC::
+# 160 "data/maps/Route25_SeaCottage/scripts.pory"
+	playfanfare MUS_LEVEL_UP
+# 161 "data/maps/Route25_SeaCottage/scripts.pory"
+	message Route25_SeaCottage_Text_ObtainedAnEevee
+# 162 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitmessage
+# 163 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitfanfare
+# 164 "data/maps/Route25_SeaCottage/scripts.pory"
+	bufferspeciesname STR_VAR_1, SPECIES_CASTFORM
+# 165 "data/maps/Route25_SeaCottage/scripts.pory"
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+# 166 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto_if_eq VAR_RESULT, NO, Route25_SeaCottage_EventScript_TransferEeveeToPC
+# 167 "data/maps/Route25_SeaCottage/scripts.pory"
+	call EventScript_NameReceivedBoxMon
+# 168 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_TransferEeveeToPC
+# 169 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 170 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 171 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_TransferEeveeToPC::
+# 172 "data/maps/Route25_SeaCottage/scripts.pory"
+	call EventScript_TransferredToPC
+# 173 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_SetGotEevee
+# 174 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 175 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 176 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Text_ObtainedAnEevee::
+# 177 "data/maps/Route25_SeaCottage/scripts.pory"
+	.string "Obtained an Eevee!$"
+# 178 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 179 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_SetGotEevee::
+# 180 "data/maps/Route25_SeaCottage/scripts.pory"
+	setflag FLAG_GOT_CASTFORM
+# 181 "data/maps/Route25_SeaCottage/scripts.pory"
+	release
+# 182 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 183 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 184 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Movement_BillWalkToTeleporter::
+# 185 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_up
+# 186 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_up
+# 187 "data/maps/Route25_SeaCottage/scripts.pory"
+	step_end
+# 188 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 189 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Movement_BillWalkToTeleporterSouth::
+# 190 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_right
+# 191 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_up
+# 192 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_up
+# 193 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_left
+# 194 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_in_place_faster_up
+# 195 "data/maps/Route25_SeaCottage/scripts.pory"
+	step_end
+# 196 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 197 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Movement_BillEnterTeleporter::
+# 198 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_up
+# 199 "data/maps/Route25_SeaCottage/scripts.pory"
+	step_end
+# 200 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 201 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_Computer::
+# 202 "data/maps/Route25_SeaCottage/scripts.pory"
+	lockall
+# 203 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto_if_set RETURN_AFTER_SS_TICKET, Route25_SeaCottage_EventScript_OpenBillsMonList
+# 204 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto_if_set BILL_IN_TELEPORTER, Route25_SeaCottage_EventScript_RunCellSeparator
+# 205 "data/maps/Route25_SeaCottage/scripts.pory"
+	msgbox Route25_SeaCottage_Text_TeleporterIsDisplayed
+# 206 "data/maps/Route25_SeaCottage/scripts.pory"
+	releaseall
+# 207 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 208 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 209 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_RunCellSeparator::
+# 210 "data/maps/Route25_SeaCottage/scripts.pory"
+	fadeoutbgm 0
+# 211 "data/maps/Route25_SeaCottage/scripts.pory"
+	msgbox Route25_SeaCottage_Text_InitiatedTeleportersCellSeparator
+# 212 "data/maps/Route25_SeaCottage/scripts.pory"
+	closemessage
+# 213 "data/maps/Route25_SeaCottage/scripts.pory"
+	clearflag BILL_IN_TELEPORTER
+# 214 "data/maps/Route25_SeaCottage/scripts.pory"
+	setflag FLAG_HELPED_BILL_IN_SEA_COTTAGE
+# 215 "data/maps/Route25_SeaCottage/scripts.pory"
+	special SpawnCameraObject
+# 216 "data/maps/Route25_SeaCottage/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, Route25_SeaCottage_Movement_CameraPanToTeleporters
+# 217 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitmovement 0
+# 218 "data/maps/Route25_SeaCottage/scripts.pory"
+	delay 35
+# 219 "data/maps/Route25_SeaCottage/scripts.pory"
+	playse SE_PIN
+# 220 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitse
+# 221 "data/maps/Route25_SeaCottage/scripts.pory"
+	setvar VAR_0x8004, 0
+# 222 "data/maps/Route25_SeaCottage/scripts.pory"
+	special AnimateTeleporterHousing
+# 223 "data/maps/Route25_SeaCottage/scripts.pory"
+	delay 10
+# 224 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 225 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 226 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 227 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 228 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 229 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 230 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 231 "data/maps/Route25_SeaCottage/scripts.pory"
+	setvar VAR_0x8004, 1
+# 232 "data/maps/Route25_SeaCottage/scripts.pory"
+	special AnimateTeleporterHousing
+# 233 "data/maps/Route25_SeaCottage/scripts.pory"
+	playse SE_WARP_IN
+# 234 "data/maps/Route25_SeaCottage/scripts.pory"
+	special AnimateTeleporterCable
+# 235 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitse
+# 236 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 237 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 238 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
+# 239 "data/maps/Route25_SeaCottage/scripts.pory"
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
 # 240 "data/maps/Route25_SeaCottage/scripts.pory"
-	multichoice 0, 0, MULTICHOICE_EEVEELUTIONS, FALSE
+	call Route25_SeaCottage_EventScript_PlayTeleporterBeepSE
 # 241 "data/maps/Route25_SeaCottage/scripts.pory"
-	switch VAR_RESULT
+	opendoor 3, 3
 # 242 "data/maps/Route25_SeaCottage/scripts.pory"
-	case 0, Route25_SeaCottage_EventScript_ViewEevee
+	waitdooranim
 # 243 "data/maps/Route25_SeaCottage/scripts.pory"
-	case 1, Route25_SeaCottage_EventScript_ViewFlareon
+	fadeinbgm 0
 # 244 "data/maps/Route25_SeaCottage/scripts.pory"
-	case 2, Route25_SeaCottage_EventScript_ViewJolteon
+	addobject LOCALID_BILL_HUMAN
 # 245 "data/maps/Route25_SeaCottage/scripts.pory"
-	case 3, Route25_SeaCottage_EventScript_ViewVaporeon
+	clearflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
 # 246 "data/maps/Route25_SeaCottage/scripts.pory"
-	case 4, Route25_SeaCottage_EventScript_ExitBillsMonList
+	delay 50
 # 247 "data/maps/Route25_SeaCottage/scripts.pory"
-	case 127, Route25_SeaCottage_EventScript_ExitBillsMonList
+	playfanfare MUS_LEVEL_UP
 # 248 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
+	applymovement LOCALID_BILL_HUMAN, Route25_SeaCottage_Movement_BillExitTeleporter
 # 249 "data/maps/Route25_SeaCottage/scripts.pory"
-
+	waitmovement 0
 # 250 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_ViewEevee::
+	waitfanfare
 # 251 "data/maps/Route25_SeaCottage/scripts.pory"
-	showmonpic SPECIES_EEVEE, 10, 3
+	applymovement OBJ_EVENT_ID_CAMERA, Route25_SeaCottage_Movement_CameraPanBackFromTeleporters
 # 252 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitbuttonpress
+	waitmovement 0
 # 253 "data/maps/Route25_SeaCottage/scripts.pory"
-	hidemonpic
+	playse SE_CONTEST_CURTAIN_FALL
 # 254 "data/maps/Route25_SeaCottage/scripts.pory"
-	setvar VAR_0x8004, SPECIES_EEVEE
+	closedoor 3, 3
 # 255 "data/maps/Route25_SeaCottage/scripts.pory"
-	special SetSeenMon
+	waitdooranim
 # 256 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto Route25_SeaCottage_EventScript_BillsMonList
+	applymovement LOCALID_BILL_HUMAN, Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom
 # 257 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
+	waitmovement 0
 # 258 "data/maps/Route25_SeaCottage/scripts.pory"
-
+	special RemoveCameraObject
 # 259 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_ViewFlareon::
+	releaseall
 # 260 "data/maps/Route25_SeaCottage/scripts.pory"
-	showmonpic SPECIES_FLAREON, 10, 3
-# 261 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitbuttonpress
-# 262 "data/maps/Route25_SeaCottage/scripts.pory"
-	hidemonpic
-# 263 "data/maps/Route25_SeaCottage/scripts.pory"
-	setvar VAR_0x8004, SPECIES_FLAREON
-# 264 "data/maps/Route25_SeaCottage/scripts.pory"
-	special SetSeenMon
-# 265 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto Route25_SeaCottage_EventScript_BillsMonList
-# 266 "data/maps/Route25_SeaCottage/scripts.pory"
 	end
+# 261 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 262 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_PlayTeleporterBeepSE::
+# 263 "data/maps/Route25_SeaCottage/scripts.pory"
+	playse SE_BALL
+# 264 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitse
+# 265 "data/maps/Route25_SeaCottage/scripts.pory"
+	delay 20
+# 266 "data/maps/Route25_SeaCottage/scripts.pory"
+	return
 # 267 "data/maps/Route25_SeaCottage/scripts.pory"
 
 # 268 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_ViewJolteon::
+Route25_SeaCottage_Movement_CameraPanToTeleporters::
 # 269 "data/maps/Route25_SeaCottage/scripts.pory"
-	showmonpic SPECIES_JOLTEON, 10, 3
+	walk_up
 # 270 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitbuttonpress
+	walk_up
 # 271 "data/maps/Route25_SeaCottage/scripts.pory"
-	hidemonpic
+	walk_right
 # 272 "data/maps/Route25_SeaCottage/scripts.pory"
-	setvar VAR_0x8004, SPECIES_JOLTEON
+	walk_right
 # 273 "data/maps/Route25_SeaCottage/scripts.pory"
-	special SetSeenMon
-# 274 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto Route25_SeaCottage_EventScript_BillsMonList
-# 275 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
-# 276 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 277 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_ViewVaporeon::
-# 278 "data/maps/Route25_SeaCottage/scripts.pory"
-	showmonpic SPECIES_VAPOREON, 10, 3
-# 279 "data/maps/Route25_SeaCottage/scripts.pory"
-	waitbuttonpress
-# 280 "data/maps/Route25_SeaCottage/scripts.pory"
-	hidemonpic
-# 281 "data/maps/Route25_SeaCottage/scripts.pory"
-	setvar VAR_0x8004, SPECIES_VAPOREON
-# 282 "data/maps/Route25_SeaCottage/scripts.pory"
-	special SetSeenMon
-# 283 "data/maps/Route25_SeaCottage/scripts.pory"
-	goto Route25_SeaCottage_EventScript_BillsMonList
-# 284 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
-# 285 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 286 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_EventScript_ExitBillsMonList::
-# 287 "data/maps/Route25_SeaCottage/scripts.pory"
-	releaseall
-# 288 "data/maps/Route25_SeaCottage/scripts.pory"
-	end
-# 289 "data/maps/Route25_SeaCottage/scripts.pory"
-
-# 290 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom::
-# 291 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
-# 292 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
-# 293 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
-# 294 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_right
-# 295 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_down
-# 296 "data/maps/Route25_SeaCottage/scripts.pory"
-	walk_down
-# 297 "data/maps/Route25_SeaCottage/scripts.pory"
 	step_end
-# 298 "data/maps/Route25_SeaCottage/scripts.pory"
+# 274 "data/maps/Route25_SeaCottage/scripts.pory"
 
-# 299 "data/maps/Route25_SeaCottage/scripts.pory"
-Route25_SeaCottage_Movement_BillExitTeleporter::
-# 300 "data/maps/Route25_SeaCottage/scripts.pory"
+# 275 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Movement_CameraPanBackFromTeleporters::
+# 276 "data/maps/Route25_SeaCottage/scripts.pory"
+	delay_16
+# 277 "data/maps/Route25_SeaCottage/scripts.pory"
+	delay_16
+# 278 "data/maps/Route25_SeaCottage/scripts.pory"
 	walk_down
+# 279 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_down
+# 280 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_left
+# 281 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_left
+# 282 "data/maps/Route25_SeaCottage/scripts.pory"
+	step_end
+# 283 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 284 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_OpenBillsMonList::
+# 285 "data/maps/Route25_SeaCottage/scripts.pory"
+	msgbox Route25_SeaCottage_Text_BillsFavoriteMonList
+# 286 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_BillsMonList
+# 287 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 288 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 289 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_BillsMonList::
+# 290 "data/maps/Route25_SeaCottage/scripts.pory"
+	message Route25_SeaCottage_Text_SeeWhichMon
+# 291 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitmessage
+# 292 "data/maps/Route25_SeaCottage/scripts.pory"
+	multichoice 0, 0, MULTICHOICE_EEVEELUTIONS, FALSE
+# 293 "data/maps/Route25_SeaCottage/scripts.pory"
+	switch VAR_RESULT
+# 294 "data/maps/Route25_SeaCottage/scripts.pory"
+	case 0, Route25_SeaCottage_EventScript_ViewEevee
+# 295 "data/maps/Route25_SeaCottage/scripts.pory"
+	case 1, Route25_SeaCottage_EventScript_ViewFlareon
+# 296 "data/maps/Route25_SeaCottage/scripts.pory"
+	case 2, Route25_SeaCottage_EventScript_ViewJolteon
+# 297 "data/maps/Route25_SeaCottage/scripts.pory"
+	case 3, Route25_SeaCottage_EventScript_ViewVaporeon
+# 298 "data/maps/Route25_SeaCottage/scripts.pory"
+	case 4, Route25_SeaCottage_EventScript_ExitBillsMonList
+# 299 "data/maps/Route25_SeaCottage/scripts.pory"
+	case 127, Route25_SeaCottage_EventScript_ExitBillsMonList
+# 300 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
 # 301 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 302 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_ViewEevee::
+# 303 "data/maps/Route25_SeaCottage/scripts.pory"
+	showmonpic SPECIES_EEVEE, 10, 3
+# 304 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitbuttonpress
+# 305 "data/maps/Route25_SeaCottage/scripts.pory"
+	hidemonpic
+# 306 "data/maps/Route25_SeaCottage/scripts.pory"
+	setvar VAR_0x8004, SPECIES_EEVEE
+# 307 "data/maps/Route25_SeaCottage/scripts.pory"
+	special SetSeenMon
+# 308 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_BillsMonList
+# 309 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 310 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 311 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_ViewFlareon::
+# 312 "data/maps/Route25_SeaCottage/scripts.pory"
+	showmonpic SPECIES_FLAREON, 10, 3
+# 313 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitbuttonpress
+# 314 "data/maps/Route25_SeaCottage/scripts.pory"
+	hidemonpic
+# 315 "data/maps/Route25_SeaCottage/scripts.pory"
+	setvar VAR_0x8004, SPECIES_FLAREON
+# 316 "data/maps/Route25_SeaCottage/scripts.pory"
+	special SetSeenMon
+# 317 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_BillsMonList
+# 318 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 319 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 320 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_ViewJolteon::
+# 321 "data/maps/Route25_SeaCottage/scripts.pory"
+	showmonpic SPECIES_JOLTEON, 10, 3
+# 322 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitbuttonpress
+# 323 "data/maps/Route25_SeaCottage/scripts.pory"
+	hidemonpic
+# 324 "data/maps/Route25_SeaCottage/scripts.pory"
+	setvar VAR_0x8004, SPECIES_JOLTEON
+# 325 "data/maps/Route25_SeaCottage/scripts.pory"
+	special SetSeenMon
+# 326 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_BillsMonList
+# 327 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 328 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 329 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_ViewVaporeon::
+# 330 "data/maps/Route25_SeaCottage/scripts.pory"
+	showmonpic SPECIES_VAPOREON, 10, 3
+# 331 "data/maps/Route25_SeaCottage/scripts.pory"
+	waitbuttonpress
+# 332 "data/maps/Route25_SeaCottage/scripts.pory"
+	hidemonpic
+# 333 "data/maps/Route25_SeaCottage/scripts.pory"
+	setvar VAR_0x8004, SPECIES_VAPOREON
+# 334 "data/maps/Route25_SeaCottage/scripts.pory"
+	special SetSeenMon
+# 335 "data/maps/Route25_SeaCottage/scripts.pory"
+	goto Route25_SeaCottage_EventScript_BillsMonList
+# 336 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 337 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 338 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_EventScript_ExitBillsMonList::
+# 339 "data/maps/Route25_SeaCottage/scripts.pory"
+	releaseall
+# 340 "data/maps/Route25_SeaCottage/scripts.pory"
+	end
+# 341 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 342 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Movement_BillWalkToMiddleOfRoom::
+# 343 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_right
+# 344 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_right
+# 345 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_right
+# 346 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_right
+# 347 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_down
+# 348 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_down
+# 349 "data/maps/Route25_SeaCottage/scripts.pory"
+	step_end
+# 350 "data/maps/Route25_SeaCottage/scripts.pory"
+
+# 351 "data/maps/Route25_SeaCottage/scripts.pory"
+Route25_SeaCottage_Movement_BillExitTeleporter::
+# 352 "data/maps/Route25_SeaCottage/scripts.pory"
+	walk_down
+# 353 "data/maps/Route25_SeaCottage/scripts.pory"
 	step_end

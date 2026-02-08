@@ -291,214 +291,274 @@ SaffronCity_EventScript_OrbingCheck::
 # 146 "data/maps/SaffronCity/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, SaffronCity_EventScript_NoEligiblePkmn
 # 147 "data/maps/SaffronCity/scripts.pory"
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_OAK
 # 148 "data/maps/SaffronCity/scripts.pory"
 	callnative CheckFilledFameCheckerFor0x8004
 # 149 "data/maps/SaffronCity/scripts.pory"
-	compare VAR_RESULT, TRUE
+	goto_if_eq VAR_RESULT, TRUE, SaffronCity_EventScript_Flag
 # 150 "data/maps/SaffronCity/scripts.pory"
-	goto_if_eq SaffronCity_EventScript_Flag
+	release
 # 151 "data/maps/SaffronCity/scripts.pory"
-	release
+	end
 # 152 "data/maps/SaffronCity/scripts.pory"
-	end
+
 # 153 "data/maps/SaffronCity/scripts.pory"
-
-# 154 "data/maps/SaffronCity/scripts.pory"
 SaffronCity_EventScript_NoEligiblePkmn::
-# 155 "data/maps/SaffronCity/scripts.pory"
+# 154 "data/maps/SaffronCity/scripts.pory"
 	msgbox SaffronCity_Text_NoEligiblePkmn
+# 155 "data/maps/SaffronCity/scripts.pory"
+	release
 # 156 "data/maps/SaffronCity/scripts.pory"
-	release
+	end
 # 157 "data/maps/SaffronCity/scripts.pory"
-	end
+
 # 158 "data/maps/SaffronCity/scripts.pory"
-
-# 159 "data/maps/SaffronCity/scripts.pory"
 SaffronCity_EventScript_Flag::
+# 159 "data/maps/SaffronCity/scripts.pory"
+	setvar 0x8004, FAMECHECKER_DAISY
 # 160 "data/maps/SaffronCity/scripts.pory"
-	setflag FLAG_LATIOS_CHECKED
+	callnative CheckFilledFameCheckerFor0x8004
 # 161 "data/maps/SaffronCity/scripts.pory"
-	goto SaffronCity_EventScript_Orbing
+	goto_if_eq VAR_RESULT, FALSE, SaffronCity_EventScript_NoEligiblePkmn
 # 162 "data/maps/SaffronCity/scripts.pory"
-	end
+	setflag FLAG_LATIOS_CHECKED
 # 163 "data/maps/SaffronCity/scripts.pory"
-
+	goto SaffronCity_EventScript_Orbing
 # 164 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_EventScript_Orbing::
+	end
 # 165 "data/maps/SaffronCity/scripts.pory"
-	msgbox SaffronCity_Text_Whitney, MSGBOX_YESNO
+
 # 166 "data/maps/SaffronCity/scripts.pory"
-	closemessage
+SaffronCity_EventScript_Orbing::
 # 167 "data/maps/SaffronCity/scripts.pory"
-	delay 40
+	msgbox SaffronCity_Text_Whitney, MSGBOX_YESNO
 # 168 "data/maps/SaffronCity/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, SaffronCity_EventScript_NoWhitney
+	closemessage
 # 169 "data/maps/SaffronCity/scripts.pory"
-	trainerbattle_single TRAINER_AQUA_LEADER, SaffronCity_Text_YesWhitney, SaffronCity_Text_PostWhitney, SaffronCity_EventScript_PostWhitney, NO_MUSIC
+	delay 40
 # 170 "data/maps/SaffronCity/scripts.pory"
-	release
+	goto_if_eq VAR_RESULT, NO, SaffronCity_EventScript_NoWhitney
 # 171 "data/maps/SaffronCity/scripts.pory"
-	end
+	trainerbattle_single TRAINER_AQUA_LEADER, SaffronCity_Text_YesWhitney, SaffronCity_Text_PostWhitney, SaffronCity_EventScript_PostWhitney, NO_MUSIC
 # 172 "data/maps/SaffronCity/scripts.pory"
-
+	release
 # 173 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_EventScript_PostWhitney::
+	end
 # 174 "data/maps/SaffronCity/scripts.pory"
-	special HealPlayerParty
+
 # 175 "data/maps/SaffronCity/scripts.pory"
-	msgbox SaffronCity_Text_WhitneyPostBattle
+SaffronCity_EventScript_PostWhitney::
 # 176 "data/maps/SaffronCity/scripts.pory"
-	goto_if_questlog EventScript_ReleaseEnd
+	special HealPlayerParty
 # 177 "data/maps/SaffronCity/scripts.pory"
-	special QuestLog_CutRecording
+	msgbox SaffronCity_Text_WhitneyPostBattle
 # 178 "data/maps/SaffronCity/scripts.pory"
-	lock
+	goto_if_questlog EventScript_ReleaseEnd
 # 179 "data/maps/SaffronCity/scripts.pory"
-	faceplayer
+	special QuestLog_CutRecording
 # 180 "data/maps/SaffronCity/scripts.pory"
-	setwildbattle SPECIES_LATIOS, 70
+	lock
 # 181 "data/maps/SaffronCity/scripts.pory"
-	waitse
+	faceplayer
 # 182 "data/maps/SaffronCity/scripts.pory"
-	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
+	setwildbattle SPECIES_LATIOS, 70
 # 183 "data/maps/SaffronCity/scripts.pory"
-	message Text_Gyaoo
+	waitse
 # 184 "data/maps/SaffronCity/scripts.pory"
-	waitmessage
+	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
 # 185 "data/maps/SaffronCity/scripts.pory"
-	waitmoncry
+	message Text_Gyaoo
 # 186 "data/maps/SaffronCity/scripts.pory"
-	delay 10
+	waitmessage
 # 187 "data/maps/SaffronCity/scripts.pory"
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitmoncry
 # 188 "data/maps/SaffronCity/scripts.pory"
-	waitbuttonpress
+	delay 10
 # 189 "data/maps/SaffronCity/scripts.pory"
-	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 # 190 "data/maps/SaffronCity/scripts.pory"
-	special StartLegendaryBattle
+	waitbuttonpress
 # 191 "data/maps/SaffronCity/scripts.pory"
-	waitstate
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 # 192 "data/maps/SaffronCity/scripts.pory"
-	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
 # 193 "data/maps/SaffronCity/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
+	waitstate
 # 194 "data/maps/SaffronCity/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SaffronCity_EventScript_DefeatedCelebi
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 # 195 "data/maps/SaffronCity/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SaffronCity_EventScript_RanFromCelebi
+	specialvar VAR_RESULT, GetBattleOutcome
 # 196 "data/maps/SaffronCity/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SaffronCity_EventScript_RanFromCelebi
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SaffronCity_EventScript_DefeatedCelebi
 # 197 "data/maps/SaffronCity/scripts.pory"
-	setflag FLAG_CAUGHT_LATIOS
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SaffronCity_EventScript_RanFromCelebi
 # 198 "data/maps/SaffronCity/scripts.pory"
-	release
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SaffronCity_EventScript_RanFromCelebi
 # 199 "data/maps/SaffronCity/scripts.pory"
-	end
-# 200 "data/maps/SaffronCity/scripts.pory"
-
-# 201 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_EventScript_DefeatedCelebi::
-# 202 "data/maps/SaffronCity/scripts.pory"
 	setflag FLAG_CAUGHT_LATIOS
+# 200 "data/maps/SaffronCity/scripts.pory"
+	release
+# 201 "data/maps/SaffronCity/scripts.pory"
+	end
+# 202 "data/maps/SaffronCity/scripts.pory"
+
 # 203 "data/maps/SaffronCity/scripts.pory"
-	goto EventScript_RemoveStaticMon
+SaffronCity_EventScript_PostWhitneyLatias::
 # 204 "data/maps/SaffronCity/scripts.pory"
-	end
+	special HealPlayerParty
 # 205 "data/maps/SaffronCity/scripts.pory"
-
+	msgbox SaffronCity_Text_WhitneyPostBattle
 # 206 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_EventScript_RanFromCelebi::
+	goto_if_questlog EventScript_ReleaseEnd
 # 207 "data/maps/SaffronCity/scripts.pory"
-	setvar VAR_0x8004, SPECIES_CELEBI
+	special QuestLog_CutRecording
 # 208 "data/maps/SaffronCity/scripts.pory"
-	goto EventScript_MonFlewAway
+	lock
 # 209 "data/maps/SaffronCity/scripts.pory"
-	end
+	faceplayer
 # 210 "data/maps/SaffronCity/scripts.pory"
-
+	setwildbattle SPECIES_LATIAS, 70
 # 211 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_EventScript_NoWhitney::
+	waitse
 # 212 "data/maps/SaffronCity/scripts.pory"
-	msgbox SaffronCity_Text_NoWhitney
+	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
 # 213 "data/maps/SaffronCity/scripts.pory"
-	release
+	message Text_Gyaoo
 # 214 "data/maps/SaffronCity/scripts.pory"
-	end
+	waitmessage
 # 215 "data/maps/SaffronCity/scripts.pory"
-
+	waitmoncry
 # 216 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_EventScript_End::
+	delay 10
 # 217 "data/maps/SaffronCity/scripts.pory"
-	msgbox SaffronCity_Text_EndWhitney
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 # 218 "data/maps/SaffronCity/scripts.pory"
-	release
+	waitbuttonpress
 # 219 "data/maps/SaffronCity/scripts.pory"
-	end
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 # 220 "data/maps/SaffronCity/scripts.pory"
-
+	special StartLegendaryBattle
 # 221 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_NoEligiblePkmn::
+	waitstate
 # 222 "data/maps/SaffronCity/scripts.pory"
-	.string "You have not meet the requirements.\p"
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 # 223 "data/maps/SaffronCity/scripts.pory"
-	.string "Come back when you do.$"
+	specialvar VAR_RESULT, GetBattleOutcome
 # 224 "data/maps/SaffronCity/scripts.pory"
-
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SaffronCity_EventScript_DefeatedCelebi
 # 225 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_RegiceCheck::
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SaffronCity_EventScript_RanFromCelebi
 # 226 "data/maps/SaffronCity/scripts.pory"
-	.string "Hello there {PLAYER}.\n"
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SaffronCity_EventScript_RanFromCelebi
 # 227 "data/maps/SaffronCity/scripts.pory"
-	.string "I am the Frozen Mirage Trainer.\l"
+	setflag FLAG_CAUGHT_LATIOS
 # 228 "data/maps/SaffronCity/scripts.pory"
-	.string "Beat me and you shall face a\l"
+	release
 # 229 "data/maps/SaffronCity/scripts.pory"
-	.string "special POKEMON.\l"
+	end
 # 230 "data/maps/SaffronCity/scripts.pory"
-	.string "But first, I want to see a\l"
+
 # 231 "data/maps/SaffronCity/scripts.pory"
-	.string "Three Headed Mascot,\l"
+SaffronCity_EventScript_DefeatedCelebi::
 # 232 "data/maps/SaffronCity/scripts.pory"
-	.string "and knowledge on the Ice queen.$"
+	setflag FLAG_CAUGHT_LATIOS
 # 233 "data/maps/SaffronCity/scripts.pory"
-
+	goto EventScript_RemoveStaticMon
 # 234 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_Whitney::
+	end
 # 235 "data/maps/SaffronCity/scripts.pory"
-	.string "So, you wish to face me?$"
+
 # 236 "data/maps/SaffronCity/scripts.pory"
-
+SaffronCity_EventScript_RanFromCelebi::
 # 237 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_YesWhitney::
+	setvar VAR_0x8004, SPECIES_CELEBI
 # 238 "data/maps/SaffronCity/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+	goto EventScript_MonFlewAway
 # 239 "data/maps/SaffronCity/scripts.pory"
-
+	end
 # 240 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_PostWhitney::
+
 # 241 "data/maps/SaffronCity/scripts.pory"
-	.string "So you are worthy...$"
+SaffronCity_EventScript_NoWhitney::
 # 242 "data/maps/SaffronCity/scripts.pory"
-
+	msgbox SaffronCity_Text_NoWhitney
 # 243 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_WhitneyPostBattle::
+	release
 # 244 "data/maps/SaffronCity/scripts.pory"
-	.string "Alright, you have bested me./p"
+	end
 # 245 "data/maps/SaffronCity/scripts.pory"
-	.string "Be prepared to face LATIOS!$"
-# 246 "data/maps/SaffronCity/scripts.pory"
 
+# 246 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_EventScript_End::
 # 247 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_EndWhitney::
+	msgbox SaffronCity_Text_EndWhitney
 # 248 "data/maps/SaffronCity/scripts.pory"
-	.string "You had one chance,\n"
+	release
 # 249 "data/maps/SaffronCity/scripts.pory"
-	.string "Goodbye.$"
+	end
 # 250 "data/maps/SaffronCity/scripts.pory"
 
 # 251 "data/maps/SaffronCity/scripts.pory"
-SaffronCity_Text_NoWhitney::
+SaffronCity_Text_NoEligiblePkmn::
 # 252 "data/maps/SaffronCity/scripts.pory"
+	.string "You have not meet the requirements.\p"
+# 253 "data/maps/SaffronCity/scripts.pory"
+	.string "Come back when you do.$"
+# 254 "data/maps/SaffronCity/scripts.pory"
+
+# 255 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_RegiceCheck::
+# 256 "data/maps/SaffronCity/scripts.pory"
+	.string "Hello there {PLAYER}.\n"
+# 257 "data/maps/SaffronCity/scripts.pory"
+	.string "I am the Frozen Mirage Trainer.\l"
+# 258 "data/maps/SaffronCity/scripts.pory"
+	.string "Beat me and you shall face a\l"
+# 259 "data/maps/SaffronCity/scripts.pory"
+	.string "special POKEMON.\l"
+# 260 "data/maps/SaffronCity/scripts.pory"
+	.string "But first, I want to see a\l"
+# 261 "data/maps/SaffronCity/scripts.pory"
+	.string "Three Headed Mascot,\l"
+# 262 "data/maps/SaffronCity/scripts.pory"
+	.string "and knowledge on the Ice queen.$"
+# 263 "data/maps/SaffronCity/scripts.pory"
+
+# 264 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_Whitney::
+# 265 "data/maps/SaffronCity/scripts.pory"
+	.string "So, you wish to face me?$"
+# 266 "data/maps/SaffronCity/scripts.pory"
+
+# 267 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_YesWhitney::
+# 268 "data/maps/SaffronCity/scripts.pory"
+	.string "Very well! Prepare yourself!$"
+# 269 "data/maps/SaffronCity/scripts.pory"
+
+# 270 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_PostWhitney::
+# 271 "data/maps/SaffronCity/scripts.pory"
+	.string "So you are worthy...$"
+# 272 "data/maps/SaffronCity/scripts.pory"
+
+# 273 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_WhitneyPostBattle::
+# 274 "data/maps/SaffronCity/scripts.pory"
+	.string "Alright, you have bested me./p"
+# 275 "data/maps/SaffronCity/scripts.pory"
+	.string "Be prepared to face LATIOS!$"
+# 276 "data/maps/SaffronCity/scripts.pory"
+
+# 277 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_EndWhitney::
+# 278 "data/maps/SaffronCity/scripts.pory"
+	.string "You had one chance,\n"
+# 279 "data/maps/SaffronCity/scripts.pory"
+	.string "Goodbye.$"
+# 280 "data/maps/SaffronCity/scripts.pory"
+
+# 281 "data/maps/SaffronCity/scripts.pory"
+SaffronCity_Text_NoWhitney::
+# 282 "data/maps/SaffronCity/scripts.pory"
 	.string "Alright, take your time.$"

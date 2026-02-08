@@ -260,9 +260,9 @@
 #define FLAG_WAILORD_SHOWN               0x0F1
 #define FLAG_LATIOS_CHECKED               0x0F2
 #define FLAG_SHOW_ELITE_FOUR               0x0F3
-#define FLAG_GOT_SOUL_DEW               0x0F4
+#define FLAG_UNUSEDFLAG4               0x0F4
 #define FLAG_JIRACHI_WISH_GOT               0x0F5
-#define FLAG_0x0F6               0x0F6
+#define FLAG_GOT_CASTFORM               0x0F6
 #define FLAG_0x0F7               0x0F7
 #define FLAG_0x0F8               0x0F8
 #define FLAG_0x0F9               0x0F9

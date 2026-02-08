@@ -383,9 +383,9 @@ IndigoPlateau_Exterior_Movement_OakExitBuilding::
 # 192 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 IndigoPlateau_Exterior_EventScript_OrbingCheck::
 # 193 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	goto_if_set FLAG_CAUGHT_REGISTEEL, IndigoPlateau_Exterior_EventScript_End
+	goto_if_set FLAG_CAUGHT_RAYQUAZA, IndigoPlateau_Exterior_EventScript_End
 # 194 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	goto_if_set FLAG_REGISTEEL_CHECKED, IndigoPlateau_Exterior_EventScript_Orbing
+	goto_if_set FLAG_RAYQUAZA_CHECKED, IndigoPlateau_Exterior_EventScript_Orbing
 # 195 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	msgbox IndigoPlateau_Exterior_Text_RegiceCheck
 # 196 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -397,7 +397,7 @@ IndigoPlateau_Exterior_EventScript_OrbingCheck::
 # 199 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, IndigoPlateau_Exterior_EventScript_NoEligiblePkmn
 # 200 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_LANCE
 # 201 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	callnative CheckFilledFameCheckerFor0x8004
 # 202 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -423,7 +423,7 @@ IndigoPlateau_Exterior_EventScript_NoEligiblePkmn::
 # 212 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 IndigoPlateau_Exterior_EventScript_Flag::
 # 213 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	setflag FLAG_REGISTEEL_CHECKED
+	setflag FLAG_RAYQUAZA_CHECKED
 # 214 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	goto IndigoPlateau_Exterior_EventScript_Orbing
 # 215 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -463,11 +463,11 @@ IndigoPlateau_Exterior_EventScript_PostWhitney::
 # 232 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	faceplayer
 # 233 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	setwildbattle SPECIES_REGISTEEL, 70
+	setwildbattle SPECIES_RAYQUAZA, 70
 # 234 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	waitse
 # 235 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
+	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
 # 236 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	message Text_Gyaoo
 # 237 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -497,7 +497,7 @@ IndigoPlateau_Exterior_EventScript_PostWhitney::
 # 249 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, IndigoPlateau_Exterior_EventScript_RanFromCelebi
 # 250 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	setflag FLAG_CAUGHT_REGISTEEL
+	setflag FLAG_CAUGHT_RAYQUAZA
 # 251 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 
 # 252 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -509,7 +509,7 @@ IndigoPlateau_Exterior_EventScript_PostWhitney::
 # 255 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 IndigoPlateau_Exterior_EventScript_DefeatedCelebi::
 # 256 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	setflag FLAG_CAUGHT_REGISTEEL
+	setflag FLAG_CAUGHT_RAYQUAZA
 # 257 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	goto EventScript_RemoveStaticMon
 # 258 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -519,7 +519,7 @@ IndigoPlateau_Exterior_EventScript_DefeatedCelebi::
 # 260 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 IndigoPlateau_Exterior_EventScript_RanFromCelebi::
 # 261 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	setvar VAR_0x8004, SPECIES_CELEBI
+	setvar VAR_0x8004, SPECIES_RAYQUAZA
 # 262 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	goto EventScript_MonFlewAway
 # 263 "data/maps/IndigoPlateau_Exterior/scripts.pory"
@@ -595,7 +595,7 @@ IndigoPlateau_Exterior_Text_WhitneyPostBattle::
 # 298 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 	.string "Alright, you have bested me./p"
 # 299 "data/maps/IndigoPlateau_Exterior/scripts.pory"
-	.string "Be prepared to face REGISTEEL!$"
+	.string "Be prepared to face RAYQUAZA!$"
 # 300 "data/maps/IndigoPlateau_Exterior/scripts.pory"
 
 # 301 "data/maps/IndigoPlateau_Exterior/scripts.pory"

@@ -281,7 +281,7 @@ SilphCo_11F_EventScript_OrbingCheck::
 # 141 "data/maps/SilphCo_11F/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, SilphCo_11F_EventScript_NoEligiblePkmn
 # 142 "data/maps/SilphCo_11F/scripts.pory"
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_AGATHA
 # 143 "data/maps/SilphCo_11F/scripts.pory"
 	callnative CheckFilledFameCheckerFor0x8004
 # 144 "data/maps/SilphCo_11F/scripts.pory"

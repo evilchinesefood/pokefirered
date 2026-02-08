@@ -103,7 +103,7 @@ RockTunnel_B1F_EventScript_OrbingCheck::
 # 52 "data/maps/RockTunnel_B1F/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, RockTunnel_B1F_EventScript_NoEligiblePkmn
 # 53 "data/maps/RockTunnel_B1F/scripts.pory"
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_BRUNO
 # 54 "data/maps/RockTunnel_B1F/scripts.pory"
 	callnative CheckFilledFameCheckerFor0x8004
 # 55 "data/maps/RockTunnel_B1F/scripts.pory"

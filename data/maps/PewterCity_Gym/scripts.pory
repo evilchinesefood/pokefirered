@@ -38,6 +38,17 @@ PewterCity_Gym_EventScript_NoRoomForTM39::
 	end
 
 PewterCity_Gym_EventScript_RematchBrock::
+	setvar VAR_0x8004, FAMECHECKER_BROCK
+	callnative CheckFilledFameCheckerFor0x8004
+	goto_if_eq VAR_RESULT, TRUE, PewterCity_Gym_EventScript_RematchBrock2
+	msgbox PewterCity_Gym_Text_BrockNoNoRematchBattle
+	release
+	end
+
+PewterCity_Gym_Text_BrockNoNoRematchBattle::
+	.string "FAME CHECKER$"
+
+PewterCity_Gym_EventScript_RematchBrock2::
 	msgbox PewterCity_Gym_Text_RematchBrock, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_NoRematchBrock
 	trainerbattle_single TRAINER_BROCK2, PewterCity_Gym_Text_RematchYesBrock, PewterCity_Gym_Text_RematchBrockDefeat, PewterCity_Gym_EventScript_PostRematchBrock, NO_MUSIC

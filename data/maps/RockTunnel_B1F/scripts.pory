@@ -50,7 +50,7 @@ RockTunnel_B1F_EventScript_OrbingCheck::
 	setvar VAR_0x8005, 1
 	special IsDodrioInParty
 	goto_if_eq VAR_RESULT, 0, RockTunnel_B1F_EventScript_NoEligiblePkmn
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_BRUNO
 	callnative CheckFilledFameCheckerFor0x8004
 	compare VAR_RESULT, TRUE
 	goto_if_eq RockTunnel_B1F_EventScript_Flag

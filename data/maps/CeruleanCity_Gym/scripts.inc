@@ -77,33 +77,33 @@ CeruleanCity_Gym_EventScript_NoRoomForTM03::
 # 39 "data/maps/CeruleanCity_Gym/scripts.pory"
 CeruleanCity_Gym_EventScript_RematchMisty::
 # 40 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_RematchMisty, MSGBOX_YESNO
+	setvar VAR_0x8004, FAMECHECKER_MISTY
 # 41 "data/maps/CeruleanCity_Gym/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, CeruleanCity_Gym_EventScript_NoRematchMisty
+	callnative CheckFilledFameCheckerFor0x8004
 # 42 "data/maps/CeruleanCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_MISTY2, CeruleanCity_Gym_Text_RematchYesMisty, CeruleanCity_Gym_Text_RematchMistyDefeat, CeruleanCity_Gym_EventScript_PostRematchMisty, NO_MUSIC
+	goto_if_eq VAR_RESULT, TRUE, CeruleanCity_Gym_EventScript_RematchMisty2
 # 43 "data/maps/CeruleanCity_Gym/scripts.pory"
-	release
+	msgbox CeruleanCity_Gym_Text_MistyNoNoRematchBattle
 # 44 "data/maps/CeruleanCity_Gym/scripts.pory"
-	end
-# 45 "data/maps/CeruleanCity_Gym/scripts.pory"
-
-# 46 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_PostRematchMisty::
-# 47 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_MistyPostRematchBattle
-# 48 "data/maps/CeruleanCity_Gym/scripts.pory"
-	cleartrainerflag TRAINER_MISTY2
-# 49 "data/maps/CeruleanCity_Gym/scripts.pory"
 	release
-# 50 "data/maps/CeruleanCity_Gym/scripts.pory"
+# 45 "data/maps/CeruleanCity_Gym/scripts.pory"
 	end
-# 51 "data/maps/CeruleanCity_Gym/scripts.pory"
+# 46 "data/maps/CeruleanCity_Gym/scripts.pory"
 
+# 47 "data/maps/CeruleanCity_Gym/scripts.pory"
+CeruleanCity_Gym_Text_MistyNoNoRematchBattle::
+# 48 "data/maps/CeruleanCity_Gym/scripts.pory"
+	.string "FAME CHECKER$"
+# 49 "data/maps/CeruleanCity_Gym/scripts.pory"
+
+# 50 "data/maps/CeruleanCity_Gym/scripts.pory"
+CeruleanCity_Gym_EventScript_RematchMisty2::
+# 51 "data/maps/CeruleanCity_Gym/scripts.pory"
+	msgbox CeruleanCity_Gym_Text_RematchMisty, MSGBOX_YESNO
 # 52 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_NoRematchMisty::
+	goto_if_eq VAR_RESULT, NO, CeruleanCity_Gym_EventScript_NoRematchMisty
 # 53 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_MistyNoRematchBattle
+	trainerbattle_single TRAINER_MISTY2, CeruleanCity_Gym_Text_RematchYesMisty, CeruleanCity_Gym_Text_RematchMistyDefeat, CeruleanCity_Gym_EventScript_PostRematchMisty, NO_MUSIC
 # 54 "data/maps/CeruleanCity_Gym/scripts.pory"
 	release
 # 55 "data/maps/CeruleanCity_Gym/scripts.pory"
@@ -111,72 +111,94 @@ CeruleanCity_Gym_EventScript_NoRematchMisty::
 # 56 "data/maps/CeruleanCity_Gym/scripts.pory"
 
 # 57 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_Diana::
+CeruleanCity_Gym_EventScript_PostRematchMisty::
 # 58 "data/maps/CeruleanCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat
+	msgbox CeruleanCity_Gym_Text_MistyPostRematchBattle
 # 59 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_DianaPostBattle, MSGBOX_AUTOCLOSE
+	cleartrainerflag TRAINER_MISTY2
 # 60 "data/maps/CeruleanCity_Gym/scripts.pory"
-	end
+	release
 # 61 "data/maps/CeruleanCity_Gym/scripts.pory"
-
+	end
 # 62 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_Luis::
+
 # 63 "data/maps/CeruleanCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat
+CeruleanCity_Gym_EventScript_NoRematchMisty::
 # 64 "data/maps/CeruleanCity_Gym/scripts.pory"
-	famechecker FAMECHECKER_MISTY, 2
+	msgbox CeruleanCity_Gym_Text_MistyNoRematchBattle
 # 65 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_LuisPostBattle, MSGBOX_AUTOCLOSE
+	release
 # 66 "data/maps/CeruleanCity_Gym/scripts.pory"
 	end
 # 67 "data/maps/CeruleanCity_Gym/scripts.pory"
 
 # 68 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_GymGuy::
+CeruleanCity_Gym_EventScript_Diana::
 # 69 "data/maps/CeruleanCity_Gym/scripts.pory"
-	lock
+	trainerbattle_single TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat
 # 70 "data/maps/CeruleanCity_Gym/scripts.pory"
-	faceplayer
+	msgbox CeruleanCity_Gym_Text_DianaPostBattle, MSGBOX_AUTOCLOSE
 # 71 "data/maps/CeruleanCity_Gym/scripts.pory"
-	goto_if_set FLAG_DEFEATED_MISTY, CeruleanCity_Gym_EventScript_GymGuyPostVictory
+	end
 # 72 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_GymGuyAdvice
+
 # 73 "data/maps/CeruleanCity_Gym/scripts.pory"
-	release
+CeruleanCity_Gym_EventScript_Luis::
 # 74 "data/maps/CeruleanCity_Gym/scripts.pory"
-	end
+	trainerbattle_single TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat
 # 75 "data/maps/CeruleanCity_Gym/scripts.pory"
-
+	famechecker FAMECHECKER_MISTY, 2
 # 76 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_GymGuyPostVictory::
+	msgbox CeruleanCity_Gym_Text_LuisPostBattle, MSGBOX_AUTOCLOSE
 # 77 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_WeMakePrettyGoodTeam
+	end
 # 78 "data/maps/CeruleanCity_Gym/scripts.pory"
-	release
+
 # 79 "data/maps/CeruleanCity_Gym/scripts.pory"
-	end
+CeruleanCity_Gym_EventScript_GymGuy::
 # 80 "data/maps/CeruleanCity_Gym/scripts.pory"
-
+	lock
 # 81 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_GymStatue::
+	faceplayer
 # 82 "data/maps/CeruleanCity_Gym/scripts.pory"
-	lockall
+	goto_if_set FLAG_DEFEATED_MISTY, CeruleanCity_Gym_EventScript_GymGuyPostVictory
 # 83 "data/maps/CeruleanCity_Gym/scripts.pory"
-	goto_if_set FLAG_BADGE02_GET, CeruleanCity_Gym_EventScript_GymStatuePostVictory
+	msgbox CeruleanCity_Gym_Text_GymGuyAdvice
 # 84 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_GymStatue
+	release
 # 85 "data/maps/CeruleanCity_Gym/scripts.pory"
-	releaseall
-# 86 "data/maps/CeruleanCity_Gym/scripts.pory"
 	end
-# 87 "data/maps/CeruleanCity_Gym/scripts.pory"
+# 86 "data/maps/CeruleanCity_Gym/scripts.pory"
 
+# 87 "data/maps/CeruleanCity_Gym/scripts.pory"
+CeruleanCity_Gym_EventScript_GymGuyPostVictory::
 # 88 "data/maps/CeruleanCity_Gym/scripts.pory"
-CeruleanCity_Gym_EventScript_GymStatuePostVictory::
+	msgbox CeruleanCity_Gym_Text_WeMakePrettyGoodTeam
 # 89 "data/maps/CeruleanCity_Gym/scripts.pory"
-	msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon
+	release
 # 90 "data/maps/CeruleanCity_Gym/scripts.pory"
-	releaseall
+	end
 # 91 "data/maps/CeruleanCity_Gym/scripts.pory"
+
+# 92 "data/maps/CeruleanCity_Gym/scripts.pory"
+CeruleanCity_Gym_EventScript_GymStatue::
+# 93 "data/maps/CeruleanCity_Gym/scripts.pory"
+	lockall
+# 94 "data/maps/CeruleanCity_Gym/scripts.pory"
+	goto_if_set FLAG_BADGE02_GET, CeruleanCity_Gym_EventScript_GymStatuePostVictory
+# 95 "data/maps/CeruleanCity_Gym/scripts.pory"
+	msgbox CeruleanCity_Gym_Text_GymStatue
+# 96 "data/maps/CeruleanCity_Gym/scripts.pory"
+	releaseall
+# 97 "data/maps/CeruleanCity_Gym/scripts.pory"
+	end
+# 98 "data/maps/CeruleanCity_Gym/scripts.pory"
+
+# 99 "data/maps/CeruleanCity_Gym/scripts.pory"
+CeruleanCity_Gym_EventScript_GymStatuePostVictory::
+# 100 "data/maps/CeruleanCity_Gym/scripts.pory"
+	msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon
+# 101 "data/maps/CeruleanCity_Gym/scripts.pory"
+	releaseall
+# 102 "data/maps/CeruleanCity_Gym/scripts.pory"
 	end

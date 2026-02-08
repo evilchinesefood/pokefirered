@@ -190,14 +190,14 @@ IndigoPlateau_Exterior_Movement_OakExitBuilding::
 	step_end
 
 IndigoPlateau_Exterior_EventScript_OrbingCheck::
-	goto_if_set FLAG_CAUGHT_REGISTEEL, IndigoPlateau_Exterior_EventScript_End
-	goto_if_set FLAG_REGISTEEL_CHECKED, IndigoPlateau_Exterior_EventScript_Orbing
+	goto_if_set FLAG_CAUGHT_RAYQUAZA, IndigoPlateau_Exterior_EventScript_End
+	goto_if_set FLAG_RAYQUAZA_CHECKED, IndigoPlateau_Exterior_EventScript_Orbing
 	msgbox IndigoPlateau_Exterior_Text_RegiceCheck
 	closemessage
 	setvar VAR_0x8005, 1
 	special IsDodrioInParty
 	goto_if_eq VAR_RESULT, 0, IndigoPlateau_Exterior_EventScript_NoEligiblePkmn
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_LANCE
 	callnative CheckFilledFameCheckerFor0x8004
 	compare VAR_RESULT, TRUE
 	goto_if_eq IndigoPlateau_Exterior_EventScript_Flag
@@ -210,7 +210,7 @@ IndigoPlateau_Exterior_EventScript_NoEligiblePkmn::
 	end
 
 IndigoPlateau_Exterior_EventScript_Flag::
-	setflag FLAG_REGISTEEL_CHECKED
+	setflag FLAG_RAYQUAZA_CHECKED
 	goto IndigoPlateau_Exterior_EventScript_Orbing
 	end
 
@@ -230,9 +230,9 @@ IndigoPlateau_Exterior_EventScript_PostWhitney::
 	special QuestLog_CutRecording
 	lock
 	faceplayer
-	setwildbattle SPECIES_REGISTEEL, 70
+	setwildbattle SPECIES_RAYQUAZA, 70
 	waitse
-	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
+	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
 	message Text_Gyaoo
 	waitmessage
 	waitmoncry
@@ -247,18 +247,18 @@ IndigoPlateau_Exterior_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, IndigoPlateau_Exterior_EventScript_DefeatedCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, IndigoPlateau_Exterior_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, IndigoPlateau_Exterior_EventScript_RanFromCelebi
-	setflag FLAG_CAUGHT_REGISTEEL
+	setflag FLAG_CAUGHT_RAYQUAZA
 
 	release
 	end
 
 IndigoPlateau_Exterior_EventScript_DefeatedCelebi::
-	setflag FLAG_CAUGHT_REGISTEEL
+	setflag FLAG_CAUGHT_RAYQUAZA
 	goto EventScript_RemoveStaticMon
 	end
 
 IndigoPlateau_Exterior_EventScript_RanFromCelebi::
-	setvar VAR_0x8004, SPECIES_CELEBI
+	setvar VAR_0x8004, SPECIES_RAYQUAZA
 	goto EventScript_MonFlewAway
 	end
 
@@ -296,7 +296,7 @@ IndigoPlateau_Exterior_Text_PostWhitney::
 
 IndigoPlateau_Exterior_Text_WhitneyPostBattle::
 	.string "Alright, you have bested me./p"
-	.string "Be prepared to face REGISTEEL!$"
+	.string "Be prepared to face RAYQUAZA!$"
 
 IndigoPlateau_Exterior_Text_EndWhitney::
 	.string "You had one chance,\n"

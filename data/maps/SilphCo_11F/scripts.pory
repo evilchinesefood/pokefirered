@@ -139,7 +139,7 @@ SilphCo_11F_EventScript_OrbingCheck::
 	setvar VAR_0x8005, 1
 	special IsDodrioInParty
 	goto_if_eq VAR_RESULT, 0, SilphCo_11F_EventScript_NoEligiblePkmn
-	setvar 0x8004, FAMECHECKER_LORELEI
+	setvar 0x8004, FAMECHECKER_AGATHA
 	callnative CheckFilledFameCheckerFor0x8004
 	compare VAR_RESULT, TRUE
 	goto_if_eq SilphCo_11F_EventScript_Flag
