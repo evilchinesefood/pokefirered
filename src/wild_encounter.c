@@ -338,11 +338,6 @@ static u16 GetCurrentMapWildMonHeaderId(void)
             {
                 i += VarGet(VAR_DIGLETTCAVE);
             }
-            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(DIGLETTS_CAVE_B1F) &&
-                gSaveBlock1Ptr->location.mapNum == MAP_NUM(DIGLETTS_CAVE_B1F))
-            {
-                i += VarGet(VAR_DIGLETTCAVE);
-            }
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SAFARI_ZONE_CENTER) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_CENTER))
             {

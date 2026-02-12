@@ -1,4 +1,5 @@
 raw `
+.set LOCALID_MIRAGE, 1
 DiglettsCave_B1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DiglettsCave_B1F_OnTransition
 	.byte 0
@@ -43,6 +44,9 @@ DiglettsCave_B1F_EventScript_PostRematchFreddy::
 	end
 
 DiglettsCave_B1F_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	goto_if_unset FLAG_ORBING, DiglettsCave_B1F_EventScript_NeedOrb
 	goto_if_set FLAG_CAUGHT_GROUDON, DiglettsCave_B1F_EventScript_End
 	goto_if_set FLAG_GROUNDON_CHECKED, DiglettsCave_B1F_EventScript_Orbing
 	msgbox DiglettsCave_B1F_Text_RegiceCheck
@@ -54,6 +58,14 @@ DiglettsCave_B1F_EventScript_OrbingCheck::
 	goto_if_eq DiglettsCave_B1F_EventScript_Flag
 	release
 	end
+
+DiglettsCave_B1F_EventScript_NeedOrb::
+	msgbox DiglettsCave_B1F_Text_NeedOrb
+	release
+	end
+
+DiglettsCave_B1F_Text_NeedOrb::
+	.string "You need the ORBING to face me.$"
 
 DiglettsCave_B1F_EventScript_NoEligiblePkmn::
 	msgbox DiglettsCave_B1F_Text_NoEligiblePkmn
@@ -99,17 +111,25 @@ DiglettsCave_B1F_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, DiglettsCave_B1F_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, DiglettsCave_B1F_EventScript_RanFromCelebi
 	setflag FLAG_CAUGHT_GROUDON
-
+	clearflag FLAG_GROUND_TRAINER
+	msgbox DiglettsCave_B1F_Text_EndWhitney
+	waitmessage
 	release
 	end
 
 DiglettsCave_B1F_EventScript_DefeatedCelebi::
+	clearflag FLAG_GROUND_TRAINER
 	setflag FLAG_CAUGHT_GROUDON
+	msgbox DiglettsCave_B1F_Text_EndWhitney
+	waitmessage
 	goto EventScript_RemoveStaticMon
 	end
 
 DiglettsCave_B1F_EventScript_RanFromCelebi::
 	setvar VAR_0x8004, SPECIES_GROUDON
+	clearflag FLAG_GROUND_TRAINER
+	msgbox DiglettsCave_B1F_Text_EndWhitney
+	waitmessage
 	goto EventScript_MonFlewAway
 	end
 
@@ -119,7 +139,12 @@ DiglettsCave_B1F_EventScript_NoWhitney::
 	end
 
 DiglettsCave_B1F_EventScript_End::
+	clearflag FLAG_GROUND_TRAINER
 	msgbox DiglettsCave_B1F_Text_EndWhitney
+	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 
@@ -146,7 +171,7 @@ DiglettsCave_B1F_Text_PostWhitney::
 	.string "So you are worthy...$"
 
 DiglettsCave_B1F_Text_WhitneyPostBattle::
-	.string "Alright, you have bested me./p"
+	.string "Alright, you have bested me.\p"
 	.string "Be prepared to face REGICE!$"
 
 DiglettsCave_B1F_Text_EndWhitney::

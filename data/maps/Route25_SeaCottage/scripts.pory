@@ -135,6 +135,8 @@ Route25_SeaCottage_EventScript_BillGoLookAtPC::
 Route25_SeaCottage_EventScript_BillCastform::
 	lock
 	faceplayer
+	msgbox Route25_SeaCottage_Text_WhatsThisMonOnPC
+	waitmessage
 	setvar VAR_TEMP_1, SPECIES_CASTFORM
 	givemon SPECIES_CASTFORM, 25
 	goto_if_eq VAR_RESULT, 0, Route25_SeaCottage_EventScript_GetEeveeParty
@@ -175,6 +177,9 @@ Route25_SeaCottage_EventScript_TransferEeveeToPC::
 
 Route25_SeaCottage_Text_ObtainedAnEevee::
 	.string "Obtained an Eevee!$"
+
+Route25_SeaCottage_Text_WhatsThisMonOnPC::
+	.string "What's this Pokémon on your PC? It looks like a Castform...$"
 
 Route25_SeaCottage_EventScript_SetGotEevee::
 	setflag FLAG_GOT_CASTFORM

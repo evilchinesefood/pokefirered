@@ -1,4 +1,5 @@
 raw `
+.set LOCALID_MIRAGE, 27
 RockTunnel_B1F_MapScripts::
 	.byte 0
 
@@ -43,12 +44,14 @@ RockTunnel_B1F_EventScript_Winston::
 	end
 
 RockTunnel_B1F_EventScript_OrbingCheck::
+	lock
+	faceplayer
 	goto_if_set FLAG_CAUGHT_REGIROCK, RockTunnel_B1F_EventScript_End
 	goto_if_set FLAG_REGIROCK_CHECKED, RockTunnel_B1F_EventScript_Orbing
 	msgbox RockTunnel_B1F_Text_RegiceCheck
 	closemessage
 	setvar VAR_0x8005, 1
-	special IsDodrioInParty
+	special IsRelicanthInParty
 	goto_if_eq VAR_RESULT, 0, RockTunnel_B1F_EventScript_NoEligiblePkmn
 	setvar 0x8004, FAMECHECKER_BRUNO
 	callnative CheckFilledFameCheckerFor0x8004
@@ -101,17 +104,25 @@ RockTunnel_B1F_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, RockTunnel_B1F_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, RockTunnel_B1F_EventScript_RanFromCelebi
 	setflag FLAG_CAUGHT_REGIROCK
-
+	clearflag FLAG_ROCK_TRAINER
+	msgbox RockTunnel_B1F_Text_EndWhitney
+	waitmessage
 	release
 	end
 
 RockTunnel_B1F_EventScript_DefeatedCelebi::
 	setflag FLAG_CAUGHT_REGIROCK
+	clearflag FLAG_ROCK_TRAINER
+	msgbox RockTunnel_B1F_Text_EndWhitney
+	waitmessage
 	goto EventScript_RemoveStaticMon
 	end
 
 RockTunnel_B1F_EventScript_RanFromCelebi::
-	setvar VAR_0x8004, SPECIES_CELEBI
+	setvar VAR_0x8004, SPECIES_REGIROCK
+	clearflag FLAG_ROCK_TRAINER
+	msgbox RockTunnel_B1F_Text_EndWhitney
+	waitmessage
 	goto EventScript_MonFlewAway
 	end
 
@@ -121,7 +132,12 @@ RockTunnel_B1F_EventScript_NoWhitney::
 	end
 
 RockTunnel_B1F_EventScript_End::
+	clearflag FLAG_ROCK_TRAINER
 	msgbox RockTunnel_B1F_Text_EndWhitney
+	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 
@@ -148,7 +164,7 @@ RockTunnel_B1F_Text_PostWhitney::
 	.string "So you are worthy...$"
 
 RockTunnel_B1F_Text_WhitneyPostBattle::
-	.string "Alright, you have bested me./p"
+	.string "Alright, you have bested me.\p"
 	.string "Be prepared to face REGIROCK!$"
 
 RockTunnel_B1F_Text_EndWhitney::

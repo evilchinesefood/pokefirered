@@ -1,5 +1,6 @@
 raw `
 .equ NUM_BOULDERS_PRESENT, VAR_TEMP_2
+.set LOCALID_MIRAGE, 8
 
 SeafoamIslands_B3F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B3F_OnTransition
@@ -96,6 +97,8 @@ SeafoamIslands_B3F_Movement_RideCurrentClose::
 	step_end
 
 SeafoamIslands_B3F_EventScript_OrbingCheck::
+	lock
+	faceplayer
 	goto_if_set FLAG_CAUGHT_REGICE, SeafoamIslands_B3F_EventScript_End
 	goto_if_set FLAG_REGICE_CHECKED, SeafoamIslands_B3F_EventScript_Orbing
 	msgbox SeafoamIslands_B3F_Text_RegiceCheck
@@ -132,6 +135,10 @@ SeafoamIslands_B3F_EventScript_Orbing::
 SeafoamIslands_B3F_EventScript_PostWhitney::
 	special HealPlayerParty
 	msgbox SeafoamIslands_B3F_Text_WhitneyPostBattle
+	waitmessage
+	goto SeafoamIslands_B3F_EventScript_Regice
+
+SeafoamIslands_B3F_EventScript_Regice::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lock
@@ -154,17 +161,24 @@ SeafoamIslands_B3F_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SeafoamIslands_B3F_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SeafoamIslands_B3F_EventScript_RanFromCelebi
 	setflag FLAG_CAUGHT_REGICE
-
+	clearflag FLAG_ICE_TRAINER
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
+	waitmessage
 	release
 	end
 
 SeafoamIslands_B3F_EventScript_DefeatedCelebi::
 	setflag FLAG_CAUGHT_REGICE
+	clearflag FLAG_ICE_TRAINER
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
+	waitmessage
 	goto EventScript_RemoveStaticMon
 	end
 
 SeafoamIslands_B3F_EventScript_RanFromCelebi::
-	setvar VAR_0x8004, SPECIES_CELEBI
+	setvar VAR_0x8004, SPECIES_REGICE
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
+	waitmessage
 	goto EventScript_MonFlewAway
 	end
 
@@ -175,6 +189,11 @@ SeafoamIslands_B3F_EventScript_NoWhitney::
 
 SeafoamIslands_B3F_EventScript_End::
 	msgbox SeafoamIslands_B3F_Text_EndWhitney
+	waitmessage
+	clearflag FLAG_ICE_TRAINER
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 
@@ -193,6 +212,8 @@ SeafoamIslands_B3F_Text_RegiceCheck::
 
 SeafoamIslands_B3F_Text_Whitney::
 	.string "So, you wish to face me?$"
+	.string "Better Save First,\l$"
+	.string "One chance at REGICE.$"
 
 SeafoamIslands_B3F_Text_YesWhitney::
 	.string "Very well! Prepare yourself!$"
@@ -201,11 +222,10 @@ SeafoamIslands_B3F_Text_PostWhitney::
 	.string "So you are worthy...$"
 
 SeafoamIslands_B3F_Text_WhitneyPostBattle::
-	.string "Alright, you have bested me./p"
+	.string "Alright, you have bested me.\p"
 	.string "Be prepared to face REGICE!$"
 
 SeafoamIslands_B3F_Text_EndWhitney::
-	.string "You had one chance,\n"
 	.string "Goodbye.$"
 
 SeafoamIslands_B3F_Text_NoWhitney::

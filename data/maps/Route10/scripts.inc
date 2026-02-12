@@ -379,8 +379,24 @@ Route10_EventScript_HoennWish::
 # 190 "data/maps/Route10/scripts.pory"
 	clearflag FLAG_JIRACHI_WISH
 # 191 "data/maps/Route10/scripts.pory"
-	setflag FLAG_JIRACHI_WISH_GOT
+	clearflag FLAG_GROUND_TRAINER
 # 192 "data/maps/Route10/scripts.pory"
-	release
+	clearflag FLAG_WATER_TRAINER              
 # 193 "data/maps/Route10/scripts.pory"
+	clearflag FLAG_ICE_TRAINER         
+# 194 "data/maps/Route10/scripts.pory"
+	clearflag FLAG_STEEL_TRAINER               
+# 195 "data/maps/Route10/scripts.pory"
+	clearflag FLAG_BRO_TRAINER              
+# 196 "data/maps/Route10/scripts.pory"
+	clearflag FLAG_SIS_TRAINER            
+# 197 "data/maps/Route10/scripts.pory"
+	clearflag FLAG_ROCK_TRAINER              
+# 198 "data/maps/Route10/scripts.pory"
+	clearflag FLAG_DRAGON_TRAINER  
+# 199 "data/maps/Route10/scripts.pory"
+	setflag FLAG_JIRACHI_WISH_GOT
+# 200 "data/maps/Route10/scripts.pory"
+	release
+# 201 "data/maps/Route10/scripts.pory"
 	end

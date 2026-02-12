@@ -2938,6 +2938,21 @@ void IsWailordInParty(void)
     gSpecialVar_Result = FALSE;
 }
 
+void IsRelicanthInParty(void)
+{
+    int i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES)
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_RELICANTH)
+        {
+            gSpecialVar_Result = TRUE;
+            return;
+        }
+    }
+
+    gSpecialVar_Result = FALSE;
+}
 #define NUM_RECORD_TYPES 3
 
 void ShowDodrioBerryPickingRecords(void)

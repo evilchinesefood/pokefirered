@@ -34,7 +34,7 @@ void StartDodrioBerryPicking(u16 partyId, MainCallback exitCallback);
 void ShowDodrioBerryPickingRecords(void);
 void IsDodrioInParty(void);
 void IsWailordInParty(void);
-
+void IsRelicanthInParty(void);
 
 // dodrio_berry_picking_comm.c
 void SendPacket_ReadyToStart(bool32 ready);

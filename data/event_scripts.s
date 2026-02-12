@@ -1098,6 +1098,14 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_CELEBI_EVENT
 	setflag FLAG_SHOW_ELITE_FOUR
 	setflag FLAG_MOM_CHAMP
+	setflag FLAG_GROUND_TRAINER
+	setflag FLAG_WATER_TRAINER              
+	setflag FLAG_ICE_TRAINER         
+	setflag FLAG_STEEL_TRAINER               
+	setflag FLAG_BRO_TRAINER              
+	setflag FLAG_SIS_TRAINER            
+	setflag FLAG_ROCK_TRAINER              
+	setflag FLAG_DRAGON_TRAINER  
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 250
 	end
 

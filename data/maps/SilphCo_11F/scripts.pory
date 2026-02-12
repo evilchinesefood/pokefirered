@@ -3,6 +3,7 @@ raw `
 .set LOCALID_GRUNT1,   4
 .set LOCALID_GRUNT2,   6
 .set LOCALID_GUY,      7
+.set LOCALID_MIRAGE,      8
 
 SilphCo_11F_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, SilphCo_11F_OnLoad
@@ -132,12 +133,14 @@ SilphCo_11F_Movement_PlayerFaceGiovanni::
 	step_end
 
 SilphCo_11F_EventScript_OrbingCheck::
+	lock
+	faceplayer
 	goto_if_set FLAG_CAUGHT_REGISTEEL, SilphCo_11F_EventScript_End
 	goto_if_set FLAG_REGISTEEL_CHECKED, SilphCo_11F_EventScript_Orbing
 	msgbox SilphCo_11F_Text_RegiceCheck
 	closemessage
 	setvar VAR_0x8005, 1
-	special IsDodrioInParty
+	special IsWailordInParty
 	goto_if_eq VAR_RESULT, 0, SilphCo_11F_EventScript_NoEligiblePkmn
 	setvar 0x8004, FAMECHECKER_AGATHA
 	callnative CheckFilledFameCheckerFor0x8004
@@ -190,17 +193,25 @@ SilphCo_11F_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SilphCo_11F_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SilphCo_11F_EventScript_RanFromCelebi
 	setflag FLAG_CAUGHT_REGISTEEL
-
+	clearflag FLAG_STEEL_TRAINER
+	msgbox SilphCo_11F_Text_EndWhitney
+	waitmessage
 	release
 	end
 
 SilphCo_11F_EventScript_DefeatedCelebi::
 	setflag FLAG_CAUGHT_REGISTEEL
 	goto EventScript_RemoveStaticMon
+	clearflag FLAG_STEEL_TRAINER
+	msgbox SilphCo_11F_Text_EndWhitney
+	waitmessage
 	end
 
 SilphCo_11F_EventScript_RanFromCelebi::
-	setvar VAR_0x8004, SPECIES_CELEBI
+	setvar VAR_0x8004, SPECIES_REGISTEEL
+	clearflag FLAG_STEEL_TRAINER
+	msgbox SilphCo_11F_Text_EndWhitney
+	waitmessage
 	goto EventScript_MonFlewAway
 	end
 
@@ -210,7 +221,12 @@ SilphCo_11F_EventScript_NoWhitney::
 	end
 
 SilphCo_11F_EventScript_End::
+	clearflag FLAG_STEEL_TRAINER
 	msgbox SilphCo_11F_Text_EndWhitney
+	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	release
 	end
 
@@ -237,7 +253,7 @@ SilphCo_11F_Text_PostWhitney::
 	.string "So you are worthy...$"
 
 SilphCo_11F_Text_WhitneyPostBattle::
-	.string "Alright, you have bested me./p"
+	.string "Alright, you have bested me.\p"
 	.string "Be prepared to face REGISTEEL!$"
 
 SilphCo_11F_Text_EndWhitney::

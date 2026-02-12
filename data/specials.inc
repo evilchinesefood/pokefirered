@@ -312,7 +312,7 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special CheckFilledFameCheckerFor0x8006
 	def_special IsStarterFirstStageInParty
-	def_special NullFieldSpecial
+	def_special IsRelicanthInParty
 	def_special IsThereRoomInAnyBoxForMorePokemon
 	def_special NullFieldSpecial
 	def_special DrawElevatorCurrentFloorWindow

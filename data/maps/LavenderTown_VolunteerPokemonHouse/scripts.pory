@@ -22,6 +22,7 @@ LavenderTown_VolunteerPokemonHouse_EventScript_SoulDewCheck::
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, LavenderTown_VolunteerPokemonHouse_EventScript_SoulDewGiven
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_FameCheckerNotEnough
+	release
 	end
 
 LavenderTown_VolunteerPokemonHouse_EventScript_SoulDewGiven::
@@ -31,6 +32,8 @@ LavenderTown_VolunteerPokemonHouse_EventScript_SoulDewGiven::
 	goto_if_eq VAR_RESULT, FALSE, CeladonCity_Restaurant_EventScript_NoRoomForCoinCase
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_GotDew
 	setflag FLAG_GOT_SOUL_DEW
+	clearflag FLAG_SECOND_SOUL_DEW
+	release
 	end
 
 LavenderTown_VolunteerPokemonHouse_Text_FameCheckerNotEnough::

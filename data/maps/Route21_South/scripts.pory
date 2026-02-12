@@ -1,8 +1,12 @@
 raw `
+.set LOCALID_MIRAGE, 6
 Route21_South_MapScripts::
 	.byte 0
 
 Route21_South_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	goto_if_unset FLAG_ORBING, Route21_South_EventScript_NeedOrb
 	goto_if_set FLAG_CAUGHT_KYOGRE, Route21_South_EventScript_End
 	goto_if_set FLAG_KYOGRE_CHECKED, Route21_South_EventScript_Orbing
 	msgbox Route21_South_Text_RegiceCheck
@@ -12,6 +16,11 @@ Route21_South_EventScript_OrbingCheck::
 	callnative CheckFilledFameCheckerFor0x8004
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route21_South_EventScript_Flag
+	release
+	end
+
+Route21_South_EventScript_NeedOrb::
+	msgbox Route21_South_Text_NeedOrb
 	release
 	end
 
@@ -59,17 +68,25 @@ Route21_South_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route21_South_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route21_South_EventScript_RanFromCelebi
 	setflag FLAG_CAUGHT_KYOGRE
-
+	clearflag FLAG_WATER_TRAINER
+	msgbox Route21_South_Text_EndWhitney
+	waitmessage
 	release
 	end
 
 Route21_South_EventScript_DefeatedCelebi::
 	setflag FLAG_CAUGHT_KYOGRE
+	clearflag FLAG_WATER_TRAINER
+	msgbox Route21_South_Text_EndWhitney
+	waitmessage
 	goto EventScript_RemoveStaticMon
 	end
 
 Route21_South_EventScript_RanFromCelebi::
 	setvar VAR_0x8004, SPECIES_KYOGRE
+	clearflag FLAG_WATER_TRAINER
+	msgbox Route21_South_Text_EndWhitney
+	waitmessage
 	goto EventScript_MonFlewAway
 	end
 
@@ -79,9 +96,17 @@ Route21_South_EventScript_NoWhitney::
 	end
 
 Route21_South_EventScript_End::
+	clearflag FLAG_WATER_TRAINER
 	msgbox Route21_South_Text_EndWhitney
+	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
+
+Route21_South_Text_NeedOrb::
+	.string "You need the ORBING to face me.$"
 
 Route21_South_Text_NoEligiblePkmn::
 	.string "You have not meet the requirements.\p"
@@ -106,7 +131,7 @@ Route21_South_Text_PostWhitney::
 	.string "So you are worthy...$"
 
 Route21_South_Text_WhitneyPostBattle::
-	.string "Alright, you have bested me./p"
+	.string "Alright, you have bested me.\p"
 	.string "Be prepared to face REGICE!$"
 
 Route21_South_Text_EndWhitney::

@@ -19,6 +19,8 @@ CeladonCity_Condominiums_Roof_EventScript_Whitney::
 
 CeladonCity_Condominiums_Roof_EventScript_PostWhitney::
 	msgbox CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle
+	giveitem ITEM_SOUL_DEW
+	goto_if_eq VAR_RESULT, FALSE, Route12_FishingHouse_EventScript_NoRoomForNetBall
 	setflag FLAG_PIKER_DEFEATED
 	msgbox CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew
 	release

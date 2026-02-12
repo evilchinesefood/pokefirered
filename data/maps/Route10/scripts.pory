@@ -188,6 +188,14 @@ Route10_EventScript_HoennWish::
 	clearflag FLAG_GOT_CLAW
 	clearflag FLAG_GOT_ROOT
 	clearflag FLAG_JIRACHI_WISH
+	clearflag FLAG_GROUND_TRAINER
+	clearflag FLAG_WATER_TRAINER              
+	clearflag FLAG_ICE_TRAINER         
+	clearflag FLAG_STEEL_TRAINER               
+	clearflag FLAG_BRO_TRAINER              
+	clearflag FLAG_SIS_TRAINER            
+	clearflag FLAG_ROCK_TRAINER              
+	clearflag FLAG_DRAGON_TRAINER  
 	setflag FLAG_JIRACHI_WISH_GOT
 	release
 	end

@@ -1,318 +1,350 @@
 # 1 "data/maps/RockTunnel_B1F/scripts.pory"
 
 # 2 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_MapScripts::
+.set LOCALID_MIRAGE, 27
 # 3 "data/maps/RockTunnel_B1F/scripts.pory"
-	.byte 0
+RockTunnel_B1F_MapScripts::
 # 4 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	.byte 0
 # 5 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Sofia::
+
 # 6 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_PICNICKER_SOFIA, RockTunnel_B1F_Text_SofiaIntro, RockTunnel_B1F_Text_SofiaDefeat
+RockTunnel_B1F_EventScript_Sofia::
 # 7 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_SofiaPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PICNICKER_SOFIA, RockTunnel_B1F_Text_SofiaIntro, RockTunnel_B1F_Text_SofiaDefeat
 # 8 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_SofiaPostBattle, MSGBOX_AUTOCLOSE
 # 9 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 10 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Martha::
+
 # 11 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_PICNICKER_MARTHA, RockTunnel_B1F_Text_MarthaIntro, RockTunnel_B1F_Text_MarthaDefeat
+RockTunnel_B1F_EventScript_Martha::
 # 12 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_MarthaPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PICNICKER_MARTHA, RockTunnel_B1F_Text_MarthaIntro, RockTunnel_B1F_Text_MarthaDefeat
 # 13 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_MarthaPostBattle, MSGBOX_AUTOCLOSE
 # 14 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 15 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Dudley::
+
 # 16 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_HIKER_DUDLEY, RockTunnel_B1F_Text_DudleyIntro, RockTunnel_B1F_Text_DudleyDefeat
+RockTunnel_B1F_EventScript_Dudley::
 # 17 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_DudleyPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_HIKER_DUDLEY, RockTunnel_B1F_Text_DudleyIntro, RockTunnel_B1F_Text_DudleyDefeat
 # 18 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_DudleyPostBattle, MSGBOX_AUTOCLOSE
 # 19 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 20 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Allen::
+
 # 21 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_HIKER_ALLEN, RockTunnel_B1F_Text_AllenIntro, RockTunnel_B1F_Text_AllenDefeat
+RockTunnel_B1F_EventScript_Allen::
 # 22 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_AllenPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_HIKER_ALLEN, RockTunnel_B1F_Text_AllenIntro, RockTunnel_B1F_Text_AllenDefeat
 # 23 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_AllenPostBattle, MSGBOX_AUTOCLOSE
 # 24 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 25 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Eric::
+
 # 26 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_HIKER_ERIC, RockTunnel_B1F_Text_EricIntro, RockTunnel_B1F_Text_EricDefeat
+RockTunnel_B1F_EventScript_Eric::
 # 27 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_EricPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_HIKER_ERIC, RockTunnel_B1F_Text_EricIntro, RockTunnel_B1F_Text_EricDefeat
 # 28 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_EricPostBattle, MSGBOX_AUTOCLOSE
 # 29 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 30 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Cooper::
+
 # 31 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_POKEMANIAC_COOPER, RockTunnel_B1F_Text_CooperIntro, RockTunnel_B1F_Text_CooperDefeat
+RockTunnel_B1F_EventScript_Cooper::
 # 32 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_CooperPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_POKEMANIAC_COOPER, RockTunnel_B1F_Text_CooperIntro, RockTunnel_B1F_Text_CooperDefeat
 # 33 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_CooperPostBattle, MSGBOX_AUTOCLOSE
 # 34 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 35 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Steve::
+
 # 36 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_POKEMANIAC_STEVE, RockTunnel_B1F_Text_SteveIntro, RockTunnel_B1F_Text_SteveDefeat
+RockTunnel_B1F_EventScript_Steve::
 # 37 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_StevePostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_POKEMANIAC_STEVE, RockTunnel_B1F_Text_SteveIntro, RockTunnel_B1F_Text_SteveDefeat
 # 38 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_StevePostBattle, MSGBOX_AUTOCLOSE
 # 39 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 40 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Winston::
+
 # 41 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_POKEMANIAC_WINSTON, RockTunnel_B1F_Text_WinstonIntro, RockTunnel_B1F_Text_WinstonDefeat
+RockTunnel_B1F_EventScript_Winston::
 # 42 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_WinstonPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_POKEMANIAC_WINSTON, RockTunnel_B1F_Text_WinstonIntro, RockTunnel_B1F_Text_WinstonDefeat
 # 43 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_WinstonPostBattle, MSGBOX_AUTOCLOSE
 # 44 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 45 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_OrbingCheck::
+
 # 46 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_set FLAG_CAUGHT_REGIROCK, RockTunnel_B1F_EventScript_End
+RockTunnel_B1F_EventScript_OrbingCheck::
 # 47 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_set FLAG_REGIROCK_CHECKED, RockTunnel_B1F_EventScript_Orbing
-# 48 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_RegiceCheck
-# 49 "data/maps/RockTunnel_B1F/scripts.pory"
-	closemessage
-# 50 "data/maps/RockTunnel_B1F/scripts.pory"
-	setvar VAR_0x8005, 1
-# 51 "data/maps/RockTunnel_B1F/scripts.pory"
-	special IsDodrioInParty
-# 52 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_eq VAR_RESULT, 0, RockTunnel_B1F_EventScript_NoEligiblePkmn
-# 53 "data/maps/RockTunnel_B1F/scripts.pory"
-	setvar 0x8004, FAMECHECKER_BRUNO
-# 54 "data/maps/RockTunnel_B1F/scripts.pory"
-	callnative CheckFilledFameCheckerFor0x8004
-# 55 "data/maps/RockTunnel_B1F/scripts.pory"
-	compare VAR_RESULT, TRUE
-# 56 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_eq RockTunnel_B1F_EventScript_Flag
-# 57 "data/maps/RockTunnel_B1F/scripts.pory"
-	release
-# 58 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
-# 59 "data/maps/RockTunnel_B1F/scripts.pory"
-
-# 60 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_NoEligiblePkmn::
-# 61 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_NoEligiblePkmn
-# 62 "data/maps/RockTunnel_B1F/scripts.pory"
-	release
-# 63 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
-# 64 "data/maps/RockTunnel_B1F/scripts.pory"
-
-# 65 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Flag::
-# 66 "data/maps/RockTunnel_B1F/scripts.pory"
-	setflag FLAG_REGIROCK_CHECKED
-# 67 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto RockTunnel_B1F_EventScript_Orbing
-# 68 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
-# 69 "data/maps/RockTunnel_B1F/scripts.pory"
-
-# 70 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_Orbing::
-# 71 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_Whitney, MSGBOX_YESNO
-# 72 "data/maps/RockTunnel_B1F/scripts.pory"
-	closemessage
-# 73 "data/maps/RockTunnel_B1F/scripts.pory"
-	delay 40
-# 74 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, RockTunnel_B1F_EventScript_NoWhitney
-# 75 "data/maps/RockTunnel_B1F/scripts.pory"
-	trainerbattle_single TRAINER_RS_TUBER_M, RockTunnel_B1F_Text_YesWhitney, RockTunnel_B1F_Text_PostWhitney, RockTunnel_B1F_EventScript_PostWhitney, NO_MUSIC
-# 76 "data/maps/RockTunnel_B1F/scripts.pory"
-	release
-# 77 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
-# 78 "data/maps/RockTunnel_B1F/scripts.pory"
-
-# 79 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_PostWhitney::
-# 80 "data/maps/RockTunnel_B1F/scripts.pory"
-	special HealPlayerParty
-# 81 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_WhitneyPostBattle
-# 82 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_questlog EventScript_ReleaseEnd
-# 83 "data/maps/RockTunnel_B1F/scripts.pory"
-	special QuestLog_CutRecording
-# 84 "data/maps/RockTunnel_B1F/scripts.pory"
 	lock
-# 85 "data/maps/RockTunnel_B1F/scripts.pory"
+# 48 "data/maps/RockTunnel_B1F/scripts.pory"
 	faceplayer
-# 86 "data/maps/RockTunnel_B1F/scripts.pory"
-	setwildbattle SPECIES_REGIROCK, 70
-# 87 "data/maps/RockTunnel_B1F/scripts.pory"
-	waitse
-# 88 "data/maps/RockTunnel_B1F/scripts.pory"
-	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
-# 89 "data/maps/RockTunnel_B1F/scripts.pory"
-	message Text_Gyaoo
-# 90 "data/maps/RockTunnel_B1F/scripts.pory"
-	waitmessage
-# 91 "data/maps/RockTunnel_B1F/scripts.pory"
-	waitmoncry
-# 92 "data/maps/RockTunnel_B1F/scripts.pory"
-	delay 10
-# 93 "data/maps/RockTunnel_B1F/scripts.pory"
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
-# 94 "data/maps/RockTunnel_B1F/scripts.pory"
-	waitbuttonpress
-# 95 "data/maps/RockTunnel_B1F/scripts.pory"
-	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 96 "data/maps/RockTunnel_B1F/scripts.pory"
-	special StartLegendaryBattle
-# 97 "data/maps/RockTunnel_B1F/scripts.pory"
-	waitstate
-# 98 "data/maps/RockTunnel_B1F/scripts.pory"
-	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 99 "data/maps/RockTunnel_B1F/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
-# 100 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, RockTunnel_B1F_EventScript_DefeatedCelebi
-# 101 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, RockTunnel_B1F_EventScript_RanFromCelebi
-# 102 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, RockTunnel_B1F_EventScript_RanFromCelebi
-# 103 "data/maps/RockTunnel_B1F/scripts.pory"
-	setflag FLAG_CAUGHT_REGIROCK
-# 104 "data/maps/RockTunnel_B1F/scripts.pory"
-
-# 105 "data/maps/RockTunnel_B1F/scripts.pory"
+# 49 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_set FLAG_CAUGHT_REGIROCK, RockTunnel_B1F_EventScript_End
+# 50 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_set FLAG_REGIROCK_CHECKED, RockTunnel_B1F_EventScript_Orbing
+# 51 "data/maps/RockTunnel_B1F/scripts.pory"
+	msgbox RockTunnel_B1F_Text_RegiceCheck
+# 52 "data/maps/RockTunnel_B1F/scripts.pory"
+	closemessage
+# 53 "data/maps/RockTunnel_B1F/scripts.pory"
+	setvar VAR_0x8005, 1
+# 54 "data/maps/RockTunnel_B1F/scripts.pory"
+	special IsRelicanthInParty
+# 55 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_eq VAR_RESULT, 0, RockTunnel_B1F_EventScript_NoEligiblePkmn
+# 56 "data/maps/RockTunnel_B1F/scripts.pory"
+	setvar 0x8004, FAMECHECKER_BRUNO
+# 57 "data/maps/RockTunnel_B1F/scripts.pory"
+	callnative CheckFilledFameCheckerFor0x8004
+# 58 "data/maps/RockTunnel_B1F/scripts.pory"
+	compare VAR_RESULT, TRUE
+# 59 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_eq RockTunnel_B1F_EventScript_Flag
+# 60 "data/maps/RockTunnel_B1F/scripts.pory"
 	release
-# 106 "data/maps/RockTunnel_B1F/scripts.pory"
+# 61 "data/maps/RockTunnel_B1F/scripts.pory"
 	end
-# 107 "data/maps/RockTunnel_B1F/scripts.pory"
+# 62 "data/maps/RockTunnel_B1F/scripts.pory"
 
-# 108 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_DefeatedCelebi::
-# 109 "data/maps/RockTunnel_B1F/scripts.pory"
+# 63 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_EventScript_NoEligiblePkmn::
+# 64 "data/maps/RockTunnel_B1F/scripts.pory"
+	msgbox RockTunnel_B1F_Text_NoEligiblePkmn
+# 65 "data/maps/RockTunnel_B1F/scripts.pory"
+	release
+# 66 "data/maps/RockTunnel_B1F/scripts.pory"
+	end
+# 67 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 68 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_EventScript_Flag::
+# 69 "data/maps/RockTunnel_B1F/scripts.pory"
+	setflag FLAG_REGIROCK_CHECKED
+# 70 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto RockTunnel_B1F_EventScript_Orbing
+# 71 "data/maps/RockTunnel_B1F/scripts.pory"
+	end
+# 72 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 73 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_EventScript_Orbing::
+# 74 "data/maps/RockTunnel_B1F/scripts.pory"
+	msgbox RockTunnel_B1F_Text_Whitney, MSGBOX_YESNO
+# 75 "data/maps/RockTunnel_B1F/scripts.pory"
+	closemessage
+# 76 "data/maps/RockTunnel_B1F/scripts.pory"
+	delay 40
+# 77 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_eq VAR_RESULT, NO, RockTunnel_B1F_EventScript_NoWhitney
+# 78 "data/maps/RockTunnel_B1F/scripts.pory"
+	trainerbattle_single TRAINER_RS_TUBER_M, RockTunnel_B1F_Text_YesWhitney, RockTunnel_B1F_Text_PostWhitney, RockTunnel_B1F_EventScript_PostWhitney, NO_MUSIC
+# 79 "data/maps/RockTunnel_B1F/scripts.pory"
+	release
+# 80 "data/maps/RockTunnel_B1F/scripts.pory"
+	end
+# 81 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 82 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_EventScript_PostWhitney::
+# 83 "data/maps/RockTunnel_B1F/scripts.pory"
+	special HealPlayerParty
+# 84 "data/maps/RockTunnel_B1F/scripts.pory"
+	msgbox RockTunnel_B1F_Text_WhitneyPostBattle
+# 85 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 86 "data/maps/RockTunnel_B1F/scripts.pory"
+	special QuestLog_CutRecording
+# 87 "data/maps/RockTunnel_B1F/scripts.pory"
+	lock
+# 88 "data/maps/RockTunnel_B1F/scripts.pory"
+	faceplayer
+# 89 "data/maps/RockTunnel_B1F/scripts.pory"
+	setwildbattle SPECIES_REGIROCK, 70
+# 90 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitse
+# 91 "data/maps/RockTunnel_B1F/scripts.pory"
+	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
+# 92 "data/maps/RockTunnel_B1F/scripts.pory"
+	message Text_Gyaoo
+# 93 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitmessage
+# 94 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitmoncry
+# 95 "data/maps/RockTunnel_B1F/scripts.pory"
+	delay 10
+# 96 "data/maps/RockTunnel_B1F/scripts.pory"
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+# 97 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitbuttonpress
+# 98 "data/maps/RockTunnel_B1F/scripts.pory"
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+# 99 "data/maps/RockTunnel_B1F/scripts.pory"
+	special StartLegendaryBattle
+# 100 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitstate
+# 101 "data/maps/RockTunnel_B1F/scripts.pory"
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+# 102 "data/maps/RockTunnel_B1F/scripts.pory"
+	specialvar VAR_RESULT, GetBattleOutcome
+# 103 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, RockTunnel_B1F_EventScript_DefeatedCelebi
+# 104 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, RockTunnel_B1F_EventScript_RanFromCelebi
+# 105 "data/maps/RockTunnel_B1F/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, RockTunnel_B1F_EventScript_RanFromCelebi
+# 106 "data/maps/RockTunnel_B1F/scripts.pory"
 	setflag FLAG_CAUGHT_REGIROCK
+# 107 "data/maps/RockTunnel_B1F/scripts.pory"
+	clearflag FLAG_ROCK_TRAINER
+# 108 "data/maps/RockTunnel_B1F/scripts.pory"
+	msgbox RockTunnel_B1F_Text_EndWhitney
+# 109 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitmessage
 # 110 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto EventScript_RemoveStaticMon
+	release
 # 111 "data/maps/RockTunnel_B1F/scripts.pory"
 	end
 # 112 "data/maps/RockTunnel_B1F/scripts.pory"
 
 # 113 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_RanFromCelebi::
+RockTunnel_B1F_EventScript_DefeatedCelebi::
 # 114 "data/maps/RockTunnel_B1F/scripts.pory"
-	setvar VAR_0x8004, SPECIES_CELEBI
+	setflag FLAG_CAUGHT_REGIROCK
 # 115 "data/maps/RockTunnel_B1F/scripts.pory"
-	goto EventScript_MonFlewAway
+	clearflag FLAG_ROCK_TRAINER
 # 116 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	msgbox RockTunnel_B1F_Text_EndWhitney
 # 117 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	waitmessage
 # 118 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_NoWhitney::
+	goto EventScript_RemoveStaticMon
 # 119 "data/maps/RockTunnel_B1F/scripts.pory"
-	msgbox RockTunnel_B1F_Text_NoWhitney
-# 120 "data/maps/RockTunnel_B1F/scripts.pory"
-	release
-# 121 "data/maps/RockTunnel_B1F/scripts.pory"
 	end
-# 122 "data/maps/RockTunnel_B1F/scripts.pory"
+# 120 "data/maps/RockTunnel_B1F/scripts.pory"
 
+# 121 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_EventScript_RanFromCelebi::
+# 122 "data/maps/RockTunnel_B1F/scripts.pory"
+	setvar VAR_0x8004, SPECIES_REGIROCK
 # 123 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_EventScript_End::
+	clearflag FLAG_ROCK_TRAINER
 # 124 "data/maps/RockTunnel_B1F/scripts.pory"
 	msgbox RockTunnel_B1F_Text_EndWhitney
 # 125 "data/maps/RockTunnel_B1F/scripts.pory"
-	release
+	waitmessage
 # 126 "data/maps/RockTunnel_B1F/scripts.pory"
-	end
+	goto EventScript_MonFlewAway
 # 127 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	end
 # 128 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_NoEligiblePkmn::
+
 # 129 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "You have not meet the requirements.\p"
+RockTunnel_B1F_EventScript_NoWhitney::
 # 130 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Come back when you do.$"
+	msgbox RockTunnel_B1F_Text_NoWhitney
 # 131 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	release
 # 132 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_RegiceCheck::
+	end
 # 133 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Hello there {PLAYER}.\n"
-# 134 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "I am the Frozen Mirage Trainer.\l"
-# 135 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Beat me and you shall face a\l"
-# 136 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "special POKEMON.\l"
-# 137 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "But first, I want to see a\l"
-# 138 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Three Headed Mascot,\l"
-# 139 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "and knowledge on the Ice queen.$"
-# 140 "data/maps/RockTunnel_B1F/scripts.pory"
 
+# 134 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_EventScript_End::
+# 135 "data/maps/RockTunnel_B1F/scripts.pory"
+	clearflag FLAG_ROCK_TRAINER
+# 136 "data/maps/RockTunnel_B1F/scripts.pory"
+	msgbox RockTunnel_B1F_Text_EndWhitney
+# 137 "data/maps/RockTunnel_B1F/scripts.pory"
+	waitmessage
+# 138 "data/maps/RockTunnel_B1F/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 139 "data/maps/RockTunnel_B1F/scripts.pory"
+	removeobject LOCALID_MIRAGE
+# 140 "data/maps/RockTunnel_B1F/scripts.pory"
+	fadescreen FADE_FROM_BLACK	
 # 141 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_Whitney::
+	release
 # 142 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "So, you wish to face me?$"
+	end
 # 143 "data/maps/RockTunnel_B1F/scripts.pory"
 
 # 144 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_YesWhitney::
+RockTunnel_B1F_Text_NoEligiblePkmn::
 # 145 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+	.string "You have not meet the requirements.\p"
 # 146 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	.string "Come back when you do.$"
 # 147 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_PostWhitney::
+
 # 148 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "So you are worthy...$"
+RockTunnel_B1F_Text_RegiceCheck::
 # 149 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	.string "Hello there {PLAYER}.\n"
 # 150 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_WhitneyPostBattle::
+	.string "I am the Frozen Mirage Trainer.\l"
 # 151 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Alright, you have bested me./p"
+	.string "Beat me and you shall face a\l"
 # 152 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Be prepared to face REGIROCK!$"
+	.string "special POKEMON.\l"
 # 153 "data/maps/RockTunnel_B1F/scripts.pory"
-
+	.string "But first, I want to see a\l"
 # 154 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_EndWhitney::
+	.string "Three Headed Mascot,\l"
 # 155 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "You had one chance,\n"
+	.string "and knowledge on the Ice queen.$"
 # 156 "data/maps/RockTunnel_B1F/scripts.pory"
-	.string "Goodbye.$"
-# 157 "data/maps/RockTunnel_B1F/scripts.pory"
 
+# 157 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_Text_Whitney::
 # 158 "data/maps/RockTunnel_B1F/scripts.pory"
-RockTunnel_B1F_Text_NoWhitney::
+	.string "So, you wish to face me?$"
 # 159 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 160 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_Text_YesWhitney::
+# 161 "data/maps/RockTunnel_B1F/scripts.pory"
+	.string "Very well! Prepare yourself!$"
+# 162 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 163 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_Text_PostWhitney::
+# 164 "data/maps/RockTunnel_B1F/scripts.pory"
+	.string "So you are worthy...$"
+# 165 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 166 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_Text_WhitneyPostBattle::
+# 167 "data/maps/RockTunnel_B1F/scripts.pory"
+	.string "Alright, you have bested me.\p"
+# 168 "data/maps/RockTunnel_B1F/scripts.pory"
+	.string "Be prepared to face REGIROCK!$"
+# 169 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 170 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_Text_EndWhitney::
+# 171 "data/maps/RockTunnel_B1F/scripts.pory"
+	.string "You had one chance,\n"
+# 172 "data/maps/RockTunnel_B1F/scripts.pory"
+	.string "Goodbye.$"
+# 173 "data/maps/RockTunnel_B1F/scripts.pory"
+
+# 174 "data/maps/RockTunnel_B1F/scripts.pory"
+RockTunnel_B1F_Text_NoWhitney::
+# 175 "data/maps/RockTunnel_B1F/scripts.pory"
 	.string "Alright, take your time.$"

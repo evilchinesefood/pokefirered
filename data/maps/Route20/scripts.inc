@@ -85,7 +85,7 @@ Route20_Mart_EventScript_Clerk::
 # 43 "data/maps/Route20/scripts.pory"
 	goto_if_set FLAG_WAILORD_SHOWN, Route20_Mart_EventScript_Shop
 # 44 "data/maps/Route20/scripts.pory"
-	message Text_MayIHelpYou
+	msgbox Route20_Text_MayIHelpYou
 # 45 "data/maps/Route20/scripts.pory"
 	waitmessage
 # 46 "data/maps/Route20/scripts.pory"
@@ -131,12 +131,20 @@ Route20_Mart_EventScript_Shop::
 # 66 "data/maps/Route20/scripts.pory"
 Route20_Mart_Items::
 # 67 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_DEEP_SEA_SCALE
+	.2byte ITEM_PRISM_SCALE
 # 68 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_DEEP_SEA_TOOTH
+	.2byte ITEM_DEEP_SEA_SCALE
 # 69 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_NONE
+	.2byte ITEM_DEEP_SEA_TOOTH
 # 70 "data/maps/Route20/scripts.pory"
-	release
+	.2byte ITEM_NONE
 # 71 "data/maps/Route20/scripts.pory"
+	release
+# 72 "data/maps/Route20/scripts.pory"
 	end
+# 73 "data/maps/Route20/scripts.pory"
+
+# 74 "data/maps/Route20/scripts.pory"
+Route20_Text_MayIHelpYou::
+# 75 "data/maps/Route20/scripts.pory"
+	.string "Show me a Wailord?$"
