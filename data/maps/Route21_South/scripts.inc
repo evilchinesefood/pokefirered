@@ -229,56 +229,64 @@ Route21_South_Text_NoEligiblePkmn::
 # 115 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_RegiceCheck::
 # 116 "data/maps/Route21_South/scripts.pory"
-	.string "Hello there {PLAYER}.\n"
+	.string "Hello there {PLAYER}.\p"
 # 117 "data/maps/Route21_South/scripts.pory"
-	.string "I am the Frozen Mirage Trainer.\l"
+	.string "I am the Sea Mirage Trainer.\n"
 # 118 "data/maps/Route21_South/scripts.pory"
 	.string "Beat me and you shall face a\l"
 # 119 "data/maps/Route21_South/scripts.pory"
-	.string "special POKEMON.\l"
+	.string "special POKEMON.\p"
 # 120 "data/maps/Route21_South/scripts.pory"
-	.string "But first, I want to see a\l"
+	.string "But first, I want to see a\n"
 # 121 "data/maps/Route21_South/scripts.pory"
-	.string "Three Headed Mascot,\l"
+	.string "BLUE ORB, which is on a SAFFRON\l"
 # 122 "data/maps/Route21_South/scripts.pory"
-	.string "and knowledge on the Ice queen.$"
+	.string "fan club member.\p"
 # 123 "data/maps/Route21_South/scripts.pory"
-
+	.string "He is trying to find someone,\n"
 # 124 "data/maps/Route21_South/scripts.pory"
-Route21_South_Text_Whitney::
+	.string "that has battled the,\l"
 # 125 "data/maps/Route21_South/scripts.pory"
-	.string "So, you wish to face me?$"
+	.string "Many Strong Trainers around"
 # 126 "data/maps/Route21_South/scripts.pory"
-
+	.string "the KANTO REGION.$"
 # 127 "data/maps/Route21_South/scripts.pory"
-Route21_South_Text_YesWhitney::
+	
 # 128 "data/maps/Route21_South/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+Route21_South_Text_Whitney::
 # 129 "data/maps/Route21_South/scripts.pory"
-
+	.string "So, you wish to face me?$"
 # 130 "data/maps/Route21_South/scripts.pory"
-Route21_South_Text_PostWhitney::
-# 131 "data/maps/Route21_South/scripts.pory"
-	.string "So you are worthy...$"
-# 132 "data/maps/Route21_South/scripts.pory"
 
+# 131 "data/maps/Route21_South/scripts.pory"
+Route21_South_Text_YesWhitney::
+# 132 "data/maps/Route21_South/scripts.pory"
+	.string "Very well! Prepare yourself!$"
 # 133 "data/maps/Route21_South/scripts.pory"
-Route21_South_Text_WhitneyPostBattle::
+
 # 134 "data/maps/Route21_South/scripts.pory"
-	.string "Alright, you have bested me.\p"
+Route21_South_Text_PostWhitney::
 # 135 "data/maps/Route21_South/scripts.pory"
-	.string "Be prepared to face REGICE!$"
+	.string "So you are worthy...$"
 # 136 "data/maps/Route21_South/scripts.pory"
 
 # 137 "data/maps/Route21_South/scripts.pory"
-Route21_South_Text_EndWhitney::
+Route21_South_Text_WhitneyPostBattle::
 # 138 "data/maps/Route21_South/scripts.pory"
-	.string "You had one chance,\n"
+	.string "Alright, you have bested me.\p"
 # 139 "data/maps/Route21_South/scripts.pory"
-	.string "Goodbye.$"
+	.string "Be prepared to face REGICE!$"
 # 140 "data/maps/Route21_South/scripts.pory"
 
 # 141 "data/maps/Route21_South/scripts.pory"
-Route21_South_Text_NoWhitney::
+Route21_South_Text_EndWhitney::
 # 142 "data/maps/Route21_South/scripts.pory"
+	.string "You had one chance,\n"
+# 143 "data/maps/Route21_South/scripts.pory"
+	.string "Goodbye.$"
+# 144 "data/maps/Route21_South/scripts.pory"
+
+# 145 "data/maps/Route21_South/scripts.pory"
+Route21_South_Text_NoWhitney::
+# 146 "data/maps/Route21_South/scripts.pory"
 	.string "Alright, take your time.$"

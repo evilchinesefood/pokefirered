@@ -269,7 +269,7 @@ TwoIsland_Text_Casey::
 	.string "her double battles,\l"
 	.string "while also using cute POKéMON\l"
 	.string "in a interesting way.\p"
-	.string "Perhaps I should work on.\p"
+	.string "Perhaps I should work on\n"
 	.string "my Double Battle Skills.$"
 
 `

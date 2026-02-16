@@ -202,11 +202,11 @@ SeafoamIslands_B3F_Text_NoEligiblePkmn::
 	.string "Come back when you do.$"
 
 SeafoamIslands_B3F_Text_RegiceCheck::
-	.string "Hello there {PLAYER}.\n"
-	.string "I am the Frozen Mirage Trainer.\l"
-	.string "Beat me and you shall face a\l"
-	.string "special POKEMON.\l"
-	.string "But first, I want to see a\l"
+	.string "Hello there {PLAYER}.\p"
+	.string "I am the Frozen Mirage Trainer.\p"
+	.string "Beat me and you shall face a\n"
+	.string "special POKEMON.\p"
+	.string "But first, I want to see a\n"
 	.string "Three Headed Mascot,\l"
 	.string "and knowledge on the Ice queen.$"
 

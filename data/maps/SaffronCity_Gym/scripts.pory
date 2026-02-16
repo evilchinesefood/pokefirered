@@ -56,7 +56,14 @@ SaffronCity_Gym_EventScript_RematchSabrina::
 	end
 
 SaffronCity_Gym_Text_SabrinaNoNoRematchBattle::
-	.string "FAME CHECKER$"
+	.string "My psychic power feels your might.\p"
+	.string "Since our last battle,\n"
+	.string "I've grown stronger!\p"
+	.string "But I'm not ready yet.\p"
+	.string "In the mean time, filling\n"
+	.string "out my entry in your FAMECHECKER\l"
+	.string "could help you adapt to my\l"
+	.string "strengthened psychic powers!$"
 
 SaffronCity_Gym_EventScript_RematchSabrina2::
 	msgbox SaffronCity_Gym_Text_RematchSabrina, MSGBOX_YESNO

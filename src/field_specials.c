@@ -2768,6 +2768,21 @@ void RockCheck(void)
     }
 }
 
+void LatiosRequirements(void)
+{
+    if (FlagGet(FLAG_CAUGHT_REGICE) &&
+        FlagGet(FLAG_CAUGHT_REGISTEEL) &&
+        FlagGet(FLAG_CAUGHT_REGIROCK) &&
+        FlagGet(FLAG_FOUGHT_DEOXYS))
+    {
+        gSpecialVar_Result = TRUE;
+        return;
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
 void BattleTrophy(void)
 {
     if (FlagGet(TRAINER_ARMSTRONG) &&

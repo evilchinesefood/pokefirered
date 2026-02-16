@@ -309,56 +309,58 @@ DiglettsCave_B1F_Text_NoEligiblePkmn::
 # 155 "data/maps/DiglettsCave_B1F/scripts.pory"
 DiglettsCave_B1F_Text_RegiceCheck::
 # 156 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Hello there {PLAYER}.\n"
+	.string "Hello there {PLAYER}.\p"
 # 157 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "I am the Frozen Mirage Trainer.\l"
+	.string "I am the Land Mirage Trainer.\p"
 # 158 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Beat me and you shall face a\l"
+	.string "Beat me and you shall face a\n"
 # 159 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "special POKEMON.\l"
+	.string "special POKEMON.\p"
 # 160 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "But first, I want to see a\l"
+	.string "But first, I want to see a\n"
 # 161 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Three Headed Mascot,\l"
+	.string "RED ORB, which I think is related\l"
 # 162 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "and knowledge on the Ice queen.$"
+	.string "to the BLUE ORB.\p"
 # 163 "data/maps/DiglettsCave_B1F/scripts.pory"
-
+	.string "Ask the Sea Mirage Trainer.$"
 # 164 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_Whitney::
+
 # 165 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "So, you wish to face me?$"
+DiglettsCave_B1F_Text_Whitney::
 # 166 "data/maps/DiglettsCave_B1F/scripts.pory"
-
+	.string "So, you wish to face me?$"
 # 167 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_YesWhitney::
+
 # 168 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+DiglettsCave_B1F_Text_YesWhitney::
 # 169 "data/maps/DiglettsCave_B1F/scripts.pory"
-
+	.string "Very well! Prepare yourself!$"
 # 170 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_PostWhitney::
+
 # 171 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "So you are worthy...$"
+DiglettsCave_B1F_Text_PostWhitney::
 # 172 "data/maps/DiglettsCave_B1F/scripts.pory"
-
+	.string "So you are worthy...$"
 # 173 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_WhitneyPostBattle::
+
 # 174 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Alright, you have bested me.\p"
+DiglettsCave_B1F_Text_WhitneyPostBattle::
 # 175 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Be prepared to face REGICE!$"
+	.string "Alright, you have bested me.\p"
 # 176 "data/maps/DiglettsCave_B1F/scripts.pory"
-
+	.string "Be prepared to face GROUDON!$"
 # 177 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_EndWhitney::
-# 178 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "You had one chance,\n"
-# 179 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "Goodbye.$"
-# 180 "data/maps/DiglettsCave_B1F/scripts.pory"
 
+# 178 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_EndWhitney::
+# 179 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "You had one chance,\n"
+# 180 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Goodbye.$"
 # 181 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_NoWhitney::
+
 # 182 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_NoWhitney::
+# 183 "data/maps/DiglettsCave_B1F/scripts.pory"
 	.string "Alright, take your time.$"

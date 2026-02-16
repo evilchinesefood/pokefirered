@@ -325,7 +325,7 @@ gSpecials::
 	def_special StartRegiBattle
 	def_special SetUpTrainerMovement
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special LatiosRequirements
 	def_special StartDroughtWeatherBlend
 	def_special DoDiveWarp
 	def_special DoFallWarp

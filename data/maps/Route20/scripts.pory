@@ -47,6 +47,7 @@ Route20_Mart_EventScript_Clerk::
 	special IsWailordInParty
 	goto_if_eq VAR_RESULT, 0, SeafoamIslands_B3F_EventScript_NoEligiblePkmn
 	setflag FLAG_WAILORD_SHOWN
+	msgbox Route20_Text_ThankYouForShowingWailord
 	goto Route20_Mart_EventScript_Shop
 	release
 	end
@@ -71,6 +72,18 @@ Route20_Mart_Items::
 	release
 	end
 
+Route20_Text_ThankYouForShowingWailord::
+	.string "Oh wow, you are a true FIsher!\n"
+	.string "Help yourself on these items!$"
+
 Route20_Text_MayIHelpYou::
-	.string "Show me a Wailord?$"
+	.string "It has never been so surreal\n"
+	.string "to see the seas see new POKEMON.\p"
+	.string "However some of these POKEMON\n"
+	.string "need foreign Items from HOENN\l"
+	.string "to evolve them. However,\l"
+	.string "I'm selling them, but I\l"
+	.string "want to see a great FISHER.\p"
+	.string "Show me a Wailord and I'll\n"
+	.string "like you buy them!$"
 `

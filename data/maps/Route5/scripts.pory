@@ -30,6 +30,7 @@ Route5_EventScript_OrbingCheck::
 	setvar 0x8004, FAMECHECKER_OAK
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, Route5_EventScript_Flag
+	goto Route5_EventScript_NoEligiblePkmn
 	release
 	end
 
@@ -41,6 +42,8 @@ Route5_EventScript_NoEligiblePkmn::
 Route5_EventScript_Flag::
 	setvar 0x8004, FAMECHECKER_DAISY
 	callnative CheckFilledFameCheckerFor0x8004
+	goto_if_eq VAR_RESULT, FALSE, Route5_EventScript_NoEligiblePkmn
+	special LatiosRequirements
 	goto_if_eq VAR_RESULT, FALSE, Route5_EventScript_NoEligiblePkmn
 	setflag FLAG_LATIOS_CHECKED
 	goto Route5_EventScript_Orbing
@@ -164,16 +167,18 @@ Route5_Text_NoEligiblePkmn::
 	.string "Come back when you do.$"
 
 Route5_Text_RegiceCheck::
-	.string "Hello there {PLAYER}.\n"
-	.string "I am the Frozen Mirage Trainer.\l"
-	.string "Beat me and you shall face a\l"
+	.string "Hello there {PLAYER}.\p"
+	.string "We are the JET TWINS.\p"
+	.string "Beat us and you shall face two\n"
 	.string "special POKEMON.\l"
-	.string "But first, I want to see a\l"
-	.string "Three Headed Mascot,\l"
-	.string "and knowledge on the Ice queen.$"
+	.string "But first, I want to see a\n"
+	.string "Knowledge on the DAISY flower,\l"
+	.string "and the OAK tree.\p"
+	.string "As well as the REGIS\n"
+	.string "and the ALIEN.$"
 
 Route5_Text_Whitney::
-	.string "So, you wish to face me?$"
+	.string "So, you wish to face us?$"
 
 Route5_Text_YesWhitney::
 	.string "Very well! Prepare yourself!$"
@@ -183,7 +188,7 @@ Route5_Text_PostWhitney::
 
 Route5_Text_WhitneyPostBattle::
 	.string "Alright, you have bested me.\p"
-	.string "Be prepared to face LATIOS!$"
+	.string "Be prepared to face IT!$"
 
 Route5_Text_EndWhitney::
 	.string "You had one chance,\n"

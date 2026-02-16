@@ -79,30 +79,54 @@ CeladonCity_Condominiums_Roof_EventScript_NoWhitney::
 # 40 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 CeladonCity_Condominiums_Roof_Text_Whitney::
 # 41 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
+	.string "Hey! What are you doing here!\n"
 # 42 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
+	.string "I may be rich but I like\l"
 # 43 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew::
+	.string "to sit here on the roof\l"
 # 44 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
+	.string "and do nothing!\p"
 # 45 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-
+	.string "It is not of your buisness!\n"
 # 46 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-CeladonCity_Condominiums_Roof_Text_NoWhitney::
+	.string "Or are you look for my SOUL DEW?$"
 # 47 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
-# 48 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
 
+# 48 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew::
 # 49 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-CeladonCity_Condominiums_Roof_Text_YesWhitney::
+	.string "{PLAYER} received the SOUL DEW!$"
 # 50 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
+
 # 51 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-CeladonCity_Condominiums_Roof_Text_WhitneyDefeat::
+CeladonCity_Condominiums_Roof_Text_NoWhitney::
 # 52 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
+	.string "Ok, go away.$"
 # 53 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle::
+
 # 54 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
-	.string "Placeholder$"
+CeladonCity_Condominiums_Roof_Text_YesWhitney::
+# 55 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Well you are not going to get it!\n"
+# 56 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "At least not without a fight!$"
+# 57 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	
+# 58 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+CeladonCity_Condominiums_Roof_Text_WhitneyDefeat::
+# 59 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Welp.$"
+# 60 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+
+# 61 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle::
+# 62 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Welp I got a lot of money\n"
+# 63 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "to buy some more SOUL DEWS.\p"
+# 64 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "I don't even have a LATIOS\n"
+# 65 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "or LATIAS to use it on.\p"
+# 66 "data/maps/CeladonCity_Condominiums_Roof/scripts.pory"
+	.string "Now, LEAVE ME ALONE!$"

@@ -38,19 +38,31 @@ CeladonCity_Condominiums_Roof_EventScript_NoWhitney::
 	end
 
 CeladonCity_Condominiums_Roof_Text_Whitney::
-	.string "Placeholder$"
+	.string "Hey! What are you doing here!\n"
+	.string "I may be rich but I like\l"
+	.string "to sit here on the roof\l"
+	.string "and do nothing!\p"
+	.string "It is not of your buisness!\n"
+	.string "Or are you look for my SOUL DEW?$"
 
 CeladonCity_Condominiums_Roof_Text_ReceivedSoulDew::
-	.string "Placeholder$"
+	.string "{PLAYER} received the SOUL DEW!$"
 
 CeladonCity_Condominiums_Roof_Text_NoWhitney::
-	.string "Placeholder$"
+	.string "Ok, go away.$"
 
 CeladonCity_Condominiums_Roof_Text_YesWhitney::
-	.string "Placeholder$"
+	.string "Well you are not going to get it!\n"
+	.string "At least not without a fight!$"
+	
 CeladonCity_Condominiums_Roof_Text_WhitneyDefeat::
-	.string "Placeholder$"
+	.string "Welp.$"
+
 CeladonCity_Condominiums_Roof_Text_WhitneyPostBattle::
-	.string "Placeholder$"
+	.string "Welp I got a lot of money\n"
+	.string "to buy some more SOUL DEWS.\p"
+	.string "I don't even have a LATIOS\n"
+	.string "or LATIAS to use it on.\p"
+	.string "Now, LEAVE ME ALONE!$"
 `
 

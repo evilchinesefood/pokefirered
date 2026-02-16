@@ -271,7 +271,13 @@ VermilionCity_Gym_EventScript_RematchSurge::
 	end
 
 VermilionCity_Gym_Text_SurgeNoNoRematchBattle::
-	.string "FAME CHECKER$"
+	.string "Hey Kid, I heard the news!\n"
+	.string "Guess that surge in your heart\l"
+	.string "made all the difference!\p"
+	.string "I want to have a electric rematch,\n"
+	.string "but I'm not ready yet.\p"
+	.string "In the meantime, shock the\n"
+	.string "FAMECHECKER all my info!$"
 
 VermilionCity_Gym_EventScript_RematchSurge2::
 	msgbox VermilionCity_Gym_Text_RematchSurge, MSGBOX_YESNO

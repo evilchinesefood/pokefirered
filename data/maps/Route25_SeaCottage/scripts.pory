@@ -176,13 +176,30 @@ Route25_SeaCottage_EventScript_TransferEeveeToPC::
 	end
 
 Route25_SeaCottage_Text_ObtainedAnEevee::
-	.string "Obtained an Eevee!$"
+	.string "{PLAYER} obtained CASTFORM!$"
 
 Route25_SeaCottage_Text_WhatsThisMonOnPC::
-	.string "What's this Pokémon on your PC? It looks like a Castform...$"
+	.string "Oh hey there {PLAYER}, I sense you\n"
+	.string "completed my FAME CHECKER!\p"
+	.string "Guess you really like me!\p"
+	.string "Well I actually got a gift\n"
+	.string "for you for what you did!\p"
+	.string "It's a POKEMON from the Hoenn\n"
+	.string "Region which LANETTE gifted me.\p"
+	.string "I actually got a few of them,\n"
+	.string "and I'm giving you one of them!$"
+
+Route25_SeaCottage_Text_WhatsThisMonOnPC2::
+	.string "It's the weather POKEMON CASTFORM!\p"
+	.string "I hope you enjoy it!\p"
+	.string "And thanks for helping my friend\n"
+	.string "CELIO with his Linking Machine.\p"
+	.string "It meant a lot to him and\n"
+	.string "I thank you for that.$"
 
 Route25_SeaCottage_EventScript_SetGotEevee::
 	setflag FLAG_GOT_CASTFORM
+	msgbox Route25_SeaCottage_Text_WhatsThisMonOnPC2
 	release
 	end
 

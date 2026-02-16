@@ -60,7 +60,14 @@ FuchsiaCity_Gym_EventScript_RematchKoga::
 	end
 
 FuchsiaCity_Gym_Text_KogaNoNoRematchBattle::
-	.string "FAME CHECKER$"
+	.string "Fwahahaha! CHAMPION, huh?\p"
+	.string "I commend your strength,\n"
+	.string "but I'm doing Ninja duties\l"
+	.string "at the moment.\p"
+	.string "In the meantime, you should\n"
+	.string "get to know fill out my\l"
+	.string "entry on the FAMECHECKER.\p"
+	.string "Get to know how a Ninja works.$"
 
 FuchsiaCity_Gym_EventScript_RematchKoga2::
 	msgbox FuchsiaCity_Gym_Text_RematchKoga, MSGBOX_YESNO

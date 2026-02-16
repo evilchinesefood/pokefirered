@@ -63,324 +63,334 @@ Route5_EventScript_OrbingCheck::
 # 32 "data/maps/Route5/scripts.pory"
 	goto_if_eq VAR_RESULT, TRUE, Route5_EventScript_Flag
 # 33 "data/maps/Route5/scripts.pory"
-	release
+	goto Route5_EventScript_NoEligiblePkmn
 # 34 "data/maps/Route5/scripts.pory"
-	end
+	release
 # 35 "data/maps/Route5/scripts.pory"
-
+	end
 # 36 "data/maps/Route5/scripts.pory"
-Route5_EventScript_NoEligiblePkmn::
+
 # 37 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_NoEligiblePkmn
+Route5_EventScript_NoEligiblePkmn::
 # 38 "data/maps/Route5/scripts.pory"
-	release
+	msgbox Route5_Text_NoEligiblePkmn
 # 39 "data/maps/Route5/scripts.pory"
-	end
+	release
 # 40 "data/maps/Route5/scripts.pory"
-
+	end
 # 41 "data/maps/Route5/scripts.pory"
-Route5_EventScript_Flag::
+
 # 42 "data/maps/Route5/scripts.pory"
-	setvar 0x8004, FAMECHECKER_DAISY
+Route5_EventScript_Flag::
 # 43 "data/maps/Route5/scripts.pory"
-	callnative CheckFilledFameCheckerFor0x8004
+	setvar 0x8004, FAMECHECKER_DAISY
 # 44 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, Route5_EventScript_NoEligiblePkmn
+	callnative CheckFilledFameCheckerFor0x8004
 # 45 "data/maps/Route5/scripts.pory"
-	setflag FLAG_LATIOS_CHECKED
+	goto_if_eq VAR_RESULT, FALSE, Route5_EventScript_NoEligiblePkmn
 # 46 "data/maps/Route5/scripts.pory"
-	goto Route5_EventScript_Orbing
+	special LatiosRequirements
 # 47 "data/maps/Route5/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, FALSE, Route5_EventScript_NoEligiblePkmn
 # 48 "data/maps/Route5/scripts.pory"
-
+	setflag FLAG_LATIOS_CHECKED
 # 49 "data/maps/Route5/scripts.pory"
-Route5_EventScript_Orbing::
+	goto Route5_EventScript_Orbing
 # 50 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_Whitney, MSGBOX_YESNO
+	end
 # 51 "data/maps/Route5/scripts.pory"
-	closemessage
+
 # 52 "data/maps/Route5/scripts.pory"
-	delay 40
+Route5_EventScript_Orbing::
 # 53 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, Route5_EventScript_NoWhitney
+	msgbox Route5_Text_Whitney, MSGBOX_YESNO
 # 54 "data/maps/Route5/scripts.pory"
-	trainerbattle_single TRAINER_AQUA_LEADER, Route5_Text_YesWhitney, Route5_Text_PostWhitney, Route5_EventScript_PostWhitney, NO_MUSIC
+	closemessage
 # 55 "data/maps/Route5/scripts.pory"
-	release
+	delay 40
 # 56 "data/maps/Route5/scripts.pory"
-	end
+	goto_if_eq VAR_RESULT, NO, Route5_EventScript_NoWhitney
 # 57 "data/maps/Route5/scripts.pory"
-
+	trainerbattle_single TRAINER_AQUA_LEADER, Route5_Text_YesWhitney, Route5_Text_PostWhitney, Route5_EventScript_PostWhitney, NO_MUSIC
 # 58 "data/maps/Route5/scripts.pory"
-Route5_EventScript_PostWhitney::
+	release
 # 59 "data/maps/Route5/scripts.pory"
-	special HealPlayerParty
+	end
 # 60 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_WhitneyPostBattle
+
 # 61 "data/maps/Route5/scripts.pory"
-	goto_if_questlog EventScript_ReleaseEnd
+Route5_EventScript_PostWhitney::
 # 62 "data/maps/Route5/scripts.pory"
-	special QuestLog_CutRecording
-# 63 "data/maps/Route5/scripts.pory"
-	lock
-# 64 "data/maps/Route5/scripts.pory"
-	faceplayer
-# 65 "data/maps/Route5/scripts.pory"
-	setwildbattle SPECIES_LATIOS, 70
-# 66 "data/maps/Route5/scripts.pory"
-	waitse
-# 67 "data/maps/Route5/scripts.pory"
-	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
-# 68 "data/maps/Route5/scripts.pory"
-	message Text_Gyaoo
-# 69 "data/maps/Route5/scripts.pory"
-	waitmessage
-# 70 "data/maps/Route5/scripts.pory"
-	waitmoncry
-# 71 "data/maps/Route5/scripts.pory"
-	delay 10
-# 72 "data/maps/Route5/scripts.pory"
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
-# 73 "data/maps/Route5/scripts.pory"
-	waitbuttonpress
-# 74 "data/maps/Route5/scripts.pory"
-	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 75 "data/maps/Route5/scripts.pory"
-	special StartLegendaryBattle
-# 76 "data/maps/Route5/scripts.pory"
-	waitstate
-# 77 "data/maps/Route5/scripts.pory"
-	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 78 "data/maps/Route5/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
-# 79 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route5_EventScript_DefeatedCelebi
-# 80 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route5_EventScript_RanFromCelebi
-# 81 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route5_EventScript_RanFromCelebi
-# 82 "data/maps/Route5/scripts.pory"
-	setflag FLAG_CAUGHT_LATIOS
-# 83 "data/maps/Route5/scripts.pory"
-	clearflag FLAG_BRO_TRAINER
-# 84 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_EndWhitney
-# 85 "data/maps/Route5/scripts.pory"
-	waitmessage
-# 86 "data/maps/Route5/scripts.pory"
-	release
-# 87 "data/maps/Route5/scripts.pory"
-	end
-# 88 "data/maps/Route5/scripts.pory"
-
-# 89 "data/maps/Route5/scripts.pory"
-Route5_EventScript_PostWhitneyLatias::
-# 90 "data/maps/Route5/scripts.pory"
 	special HealPlayerParty
-# 91 "data/maps/Route5/scripts.pory"
+# 63 "data/maps/Route5/scripts.pory"
 	msgbox Route5_Text_WhitneyPostBattle
-# 92 "data/maps/Route5/scripts.pory"
+# 64 "data/maps/Route5/scripts.pory"
 	goto_if_questlog EventScript_ReleaseEnd
-# 93 "data/maps/Route5/scripts.pory"
+# 65 "data/maps/Route5/scripts.pory"
 	special QuestLog_CutRecording
-# 94 "data/maps/Route5/scripts.pory"
+# 66 "data/maps/Route5/scripts.pory"
 	lock
-# 95 "data/maps/Route5/scripts.pory"
+# 67 "data/maps/Route5/scripts.pory"
 	faceplayer
-# 96 "data/maps/Route5/scripts.pory"
-	setwildbattle SPECIES_LATIAS, 70
-# 97 "data/maps/Route5/scripts.pory"
+# 68 "data/maps/Route5/scripts.pory"
+	setwildbattle SPECIES_LATIOS, 70
+# 69 "data/maps/Route5/scripts.pory"
 	waitse
-# 98 "data/maps/Route5/scripts.pory"
-	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
-# 99 "data/maps/Route5/scripts.pory"
+# 70 "data/maps/Route5/scripts.pory"
+	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
+# 71 "data/maps/Route5/scripts.pory"
 	message Text_Gyaoo
-# 100 "data/maps/Route5/scripts.pory"
+# 72 "data/maps/Route5/scripts.pory"
 	waitmessage
-# 101 "data/maps/Route5/scripts.pory"
+# 73 "data/maps/Route5/scripts.pory"
 	waitmoncry
-# 102 "data/maps/Route5/scripts.pory"
+# 74 "data/maps/Route5/scripts.pory"
 	delay 10
-# 103 "data/maps/Route5/scripts.pory"
+# 75 "data/maps/Route5/scripts.pory"
 	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
-# 104 "data/maps/Route5/scripts.pory"
+# 76 "data/maps/Route5/scripts.pory"
 	waitbuttonpress
-# 105 "data/maps/Route5/scripts.pory"
+# 77 "data/maps/Route5/scripts.pory"
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 106 "data/maps/Route5/scripts.pory"
+# 78 "data/maps/Route5/scripts.pory"
 	special StartLegendaryBattle
-# 107 "data/maps/Route5/scripts.pory"
+# 79 "data/maps/Route5/scripts.pory"
 	waitstate
-# 108 "data/maps/Route5/scripts.pory"
+# 80 "data/maps/Route5/scripts.pory"
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 109 "data/maps/Route5/scripts.pory"
+# 81 "data/maps/Route5/scripts.pory"
 	specialvar VAR_RESULT, GetBattleOutcome
-# 110 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route5_EventScript_DefeatedLatias
-# 111 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route5_EventScript_RanFromLatias
-# 112 "data/maps/Route5/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route5_EventScript_RanFromLatias
-# 113 "data/maps/Route5/scripts.pory"
-	setflag FLAG_CAUGHT_LATIAS
-# 114 "data/maps/Route5/scripts.pory"
-	clearflag FLAG_SIS_TRAINER
-# 115 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_EndWhitney
-# 116 "data/maps/Route5/scripts.pory"
-	waitmessage
-# 117 "data/maps/Route5/scripts.pory"
-	release
-# 118 "data/maps/Route5/scripts.pory"
-	end
-# 119 "data/maps/Route5/scripts.pory"
-
-# 120 "data/maps/Route5/scripts.pory"
-Route5_EventScript_DefeatedCelebi::
-# 121 "data/maps/Route5/scripts.pory"
+# 82 "data/maps/Route5/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route5_EventScript_DefeatedCelebi
+# 83 "data/maps/Route5/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route5_EventScript_RanFromCelebi
+# 84 "data/maps/Route5/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route5_EventScript_RanFromCelebi
+# 85 "data/maps/Route5/scripts.pory"
 	setflag FLAG_CAUGHT_LATIOS
-# 122 "data/maps/Route5/scripts.pory"
+# 86 "data/maps/Route5/scripts.pory"
 	clearflag FLAG_BRO_TRAINER
-# 123 "data/maps/Route5/scripts.pory"
+# 87 "data/maps/Route5/scripts.pory"
 	msgbox Route5_Text_EndWhitney
-# 124 "data/maps/Route5/scripts.pory"
+# 88 "data/maps/Route5/scripts.pory"
 	waitmessage
-# 125 "data/maps/Route5/scripts.pory"
-	goto EventScript_RemoveStaticMon
-# 126 "data/maps/Route5/scripts.pory"
+# 89 "data/maps/Route5/scripts.pory"
+	release
+# 90 "data/maps/Route5/scripts.pory"
 	end
-# 127 "data/maps/Route5/scripts.pory"
+# 91 "data/maps/Route5/scripts.pory"
 
-# 128 "data/maps/Route5/scripts.pory"
-Route5_EventScript_RanFromCelebi::
-# 129 "data/maps/Route5/scripts.pory"
-	setvar VAR_0x8004, SPECIES_LATIOS
-# 130 "data/maps/Route5/scripts.pory"
-	clearflag FLAG_BRO_TRAINER
-# 131 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_EndWhitney
-# 132 "data/maps/Route5/scripts.pory"
+# 92 "data/maps/Route5/scripts.pory"
+Route5_EventScript_PostWhitneyLatias::
+# 93 "data/maps/Route5/scripts.pory"
+	special HealPlayerParty
+# 94 "data/maps/Route5/scripts.pory"
+	msgbox Route5_Text_WhitneyPostBattle
+# 95 "data/maps/Route5/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 96 "data/maps/Route5/scripts.pory"
+	special QuestLog_CutRecording
+# 97 "data/maps/Route5/scripts.pory"
+	lock
+# 98 "data/maps/Route5/scripts.pory"
+	faceplayer
+# 99 "data/maps/Route5/scripts.pory"
+	setwildbattle SPECIES_LATIAS, 70
+# 100 "data/maps/Route5/scripts.pory"
+	waitse
+# 101 "data/maps/Route5/scripts.pory"
+	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
+# 102 "data/maps/Route5/scripts.pory"
+	message Text_Gyaoo
+# 103 "data/maps/Route5/scripts.pory"
 	waitmessage
-# 133 "data/maps/Route5/scripts.pory"
-	goto EventScript_MonFlewAway
-# 134 "data/maps/Route5/scripts.pory"
-	end
-# 135 "data/maps/Route5/scripts.pory"
-
-# 136 "data/maps/Route5/scripts.pory"
-Route5_EventScript_DefeatedLatias::
-# 137 "data/maps/Route5/scripts.pory"
+# 104 "data/maps/Route5/scripts.pory"
+	waitmoncry
+# 105 "data/maps/Route5/scripts.pory"
+	delay 10
+# 106 "data/maps/Route5/scripts.pory"
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+# 107 "data/maps/Route5/scripts.pory"
+	waitbuttonpress
+# 108 "data/maps/Route5/scripts.pory"
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+# 109 "data/maps/Route5/scripts.pory"
+	special StartLegendaryBattle
+# 110 "data/maps/Route5/scripts.pory"
+	waitstate
+# 111 "data/maps/Route5/scripts.pory"
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+# 112 "data/maps/Route5/scripts.pory"
+	specialvar VAR_RESULT, GetBattleOutcome
+# 113 "data/maps/Route5/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route5_EventScript_DefeatedLatias
+# 114 "data/maps/Route5/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route5_EventScript_RanFromLatias
+# 115 "data/maps/Route5/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route5_EventScript_RanFromLatias
+# 116 "data/maps/Route5/scripts.pory"
 	setflag FLAG_CAUGHT_LATIAS
-# 138 "data/maps/Route5/scripts.pory"
+# 117 "data/maps/Route5/scripts.pory"
 	clearflag FLAG_SIS_TRAINER
-# 139 "data/maps/Route5/scripts.pory"
+# 118 "data/maps/Route5/scripts.pory"
 	msgbox Route5_Text_EndWhitney
-# 140 "data/maps/Route5/scripts.pory"
+# 119 "data/maps/Route5/scripts.pory"
 	waitmessage
-# 141 "data/maps/Route5/scripts.pory"
+# 120 "data/maps/Route5/scripts.pory"
+	release
+# 121 "data/maps/Route5/scripts.pory"
+	end
+# 122 "data/maps/Route5/scripts.pory"
+
+# 123 "data/maps/Route5/scripts.pory"
+Route5_EventScript_DefeatedCelebi::
+# 124 "data/maps/Route5/scripts.pory"
+	setflag FLAG_CAUGHT_LATIOS
+# 125 "data/maps/Route5/scripts.pory"
+	clearflag FLAG_BRO_TRAINER
+# 126 "data/maps/Route5/scripts.pory"
+	msgbox Route5_Text_EndWhitney
+# 127 "data/maps/Route5/scripts.pory"
+	waitmessage
+# 128 "data/maps/Route5/scripts.pory"
 	goto EventScript_RemoveStaticMon
-# 142 "data/maps/Route5/scripts.pory"
+# 129 "data/maps/Route5/scripts.pory"
 	end
-# 143 "data/maps/Route5/scripts.pory"
+# 130 "data/maps/Route5/scripts.pory"
 
-# 144 "data/maps/Route5/scripts.pory"
-Route5_EventScript_RanFromLatias::
-# 145 "data/maps/Route5/scripts.pory"
-	setvar VAR_0x8004, SPECIES_LATIAS
-# 146 "data/maps/Route5/scripts.pory"
-	clearflag FLAG_SIS_TRAINER
-# 147 "data/maps/Route5/scripts.pory"
+# 131 "data/maps/Route5/scripts.pory"
+Route5_EventScript_RanFromCelebi::
+# 132 "data/maps/Route5/scripts.pory"
+	setvar VAR_0x8004, SPECIES_LATIOS
+# 133 "data/maps/Route5/scripts.pory"
+	clearflag FLAG_BRO_TRAINER
+# 134 "data/maps/Route5/scripts.pory"
 	msgbox Route5_Text_EndWhitney
-# 148 "data/maps/Route5/scripts.pory"
+# 135 "data/maps/Route5/scripts.pory"
 	waitmessage
-# 149 "data/maps/Route5/scripts.pory"
+# 136 "data/maps/Route5/scripts.pory"
 	goto EventScript_MonFlewAway
-# 150 "data/maps/Route5/scripts.pory"
+# 137 "data/maps/Route5/scripts.pory"
 	end
-# 151 "data/maps/Route5/scripts.pory"
+# 138 "data/maps/Route5/scripts.pory"
 
-# 152 "data/maps/Route5/scripts.pory"
-Route5_EventScript_NoWhitney::
-# 153 "data/maps/Route5/scripts.pory"
-	msgbox Route5_Text_NoWhitney
-# 154 "data/maps/Route5/scripts.pory"
-	release
-# 155 "data/maps/Route5/scripts.pory"
-	end
-# 156 "data/maps/Route5/scripts.pory"
-
-# 157 "data/maps/Route5/scripts.pory"
-Route5_EventScript_End::
-# 158 "data/maps/Route5/scripts.pory"
+# 139 "data/maps/Route5/scripts.pory"
+Route5_EventScript_DefeatedLatias::
+# 140 "data/maps/Route5/scripts.pory"
+	setflag FLAG_CAUGHT_LATIAS
+# 141 "data/maps/Route5/scripts.pory"
+	clearflag FLAG_SIS_TRAINER
+# 142 "data/maps/Route5/scripts.pory"
 	msgbox Route5_Text_EndWhitney
-# 159 "data/maps/Route5/scripts.pory"
-	release
-# 160 "data/maps/Route5/scripts.pory"
+# 143 "data/maps/Route5/scripts.pory"
+	waitmessage
+# 144 "data/maps/Route5/scripts.pory"
+	goto EventScript_RemoveStaticMon
+# 145 "data/maps/Route5/scripts.pory"
 	end
+# 146 "data/maps/Route5/scripts.pory"
+
+# 147 "data/maps/Route5/scripts.pory"
+Route5_EventScript_RanFromLatias::
+# 148 "data/maps/Route5/scripts.pory"
+	setvar VAR_0x8004, SPECIES_LATIAS
+# 149 "data/maps/Route5/scripts.pory"
+	clearflag FLAG_SIS_TRAINER
+# 150 "data/maps/Route5/scripts.pory"
+	msgbox Route5_Text_EndWhitney
+# 151 "data/maps/Route5/scripts.pory"
+	waitmessage
+# 152 "data/maps/Route5/scripts.pory"
+	goto EventScript_MonFlewAway
+# 153 "data/maps/Route5/scripts.pory"
+	end
+# 154 "data/maps/Route5/scripts.pory"
+
+# 155 "data/maps/Route5/scripts.pory"
+Route5_EventScript_NoWhitney::
+# 156 "data/maps/Route5/scripts.pory"
+	msgbox Route5_Text_NoWhitney
+# 157 "data/maps/Route5/scripts.pory"
+	release
+# 158 "data/maps/Route5/scripts.pory"
+	end
+# 159 "data/maps/Route5/scripts.pory"
+
+# 160 "data/maps/Route5/scripts.pory"
+Route5_EventScript_End::
 # 161 "data/maps/Route5/scripts.pory"
-
+	msgbox Route5_Text_EndWhitney
 # 162 "data/maps/Route5/scripts.pory"
-Route5_Text_NoEligiblePkmn::
+	release
 # 163 "data/maps/Route5/scripts.pory"
-	.string "You have not meet the requirements.\p"
+	end
 # 164 "data/maps/Route5/scripts.pory"
-	.string "Come back when you do.$"
+
 # 165 "data/maps/Route5/scripts.pory"
-
+Route5_Text_NoEligiblePkmn::
 # 166 "data/maps/Route5/scripts.pory"
-Route5_Text_RegiceCheck::
+	.string "You have not meet the requirements.\p"
 # 167 "data/maps/Route5/scripts.pory"
-	.string "Hello there {PLAYER}.\n"
+	.string "Come back when you do.$"
 # 168 "data/maps/Route5/scripts.pory"
-	.string "I am the Frozen Mirage Trainer.\l"
+
 # 169 "data/maps/Route5/scripts.pory"
-	.string "Beat me and you shall face a\l"
+Route5_Text_RegiceCheck::
 # 170 "data/maps/Route5/scripts.pory"
-	.string "special POKEMON.\l"
+	.string "Hello there {PLAYER}.\p"
 # 171 "data/maps/Route5/scripts.pory"
-	.string "But first, I want to see a\l"
+	.string "We are the JET TWINS.\p"
 # 172 "data/maps/Route5/scripts.pory"
-	.string "Three Headed Mascot,\l"
+	.string "Beat us and you shall face two\n"
 # 173 "data/maps/Route5/scripts.pory"
-	.string "and knowledge on the Ice queen.$"
+	.string "special POKEMON.\l"
 # 174 "data/maps/Route5/scripts.pory"
-
+	.string "But first, I want to see a\n"
 # 175 "data/maps/Route5/scripts.pory"
-Route5_Text_Whitney::
+	.string "Knowledge on the DAISY flower,\l"
 # 176 "data/maps/Route5/scripts.pory"
-	.string "So, you wish to face me?$"
+	.string "and the OAK tree.\p"
 # 177 "data/maps/Route5/scripts.pory"
-
+	.string "As well as the REGIS\n"
 # 178 "data/maps/Route5/scripts.pory"
-Route5_Text_YesWhitney::
+	.string "and the ALIEN.$"
 # 179 "data/maps/Route5/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+
 # 180 "data/maps/Route5/scripts.pory"
-
+Route5_Text_Whitney::
 # 181 "data/maps/Route5/scripts.pory"
-Route5_Text_PostWhitney::
+	.string "So, you wish to face us?$"
 # 182 "data/maps/Route5/scripts.pory"
-	.string "So you are worthy...$"
+
 # 183 "data/maps/Route5/scripts.pory"
-
+Route5_Text_YesWhitney::
 # 184 "data/maps/Route5/scripts.pory"
-Route5_Text_WhitneyPostBattle::
+	.string "Very well! Prepare yourself!$"
 # 185 "data/maps/Route5/scripts.pory"
-	.string "Alright, you have bested me.\p"
+
 # 186 "data/maps/Route5/scripts.pory"
-	.string "Be prepared to face LATIOS!$"
+Route5_Text_PostWhitney::
 # 187 "data/maps/Route5/scripts.pory"
-
+	.string "So you are worthy...$"
 # 188 "data/maps/Route5/scripts.pory"
-Route5_Text_EndWhitney::
-# 189 "data/maps/Route5/scripts.pory"
-	.string "You had one chance,\n"
-# 190 "data/maps/Route5/scripts.pory"
-	.string "Goodbye.$"
-# 191 "data/maps/Route5/scripts.pory"
 
+# 189 "data/maps/Route5/scripts.pory"
+Route5_Text_WhitneyPostBattle::
+# 190 "data/maps/Route5/scripts.pory"
+	.string "Alright, you have bested me.\p"
+# 191 "data/maps/Route5/scripts.pory"
+	.string "Be prepared to face IT!$"
 # 192 "data/maps/Route5/scripts.pory"
-Route5_Text_NoWhitney::
+
 # 193 "data/maps/Route5/scripts.pory"
+Route5_Text_EndWhitney::
+# 194 "data/maps/Route5/scripts.pory"
+	.string "You had one chance,\n"
+# 195 "data/maps/Route5/scripts.pory"
+	.string "Goodbye.$"
+# 196 "data/maps/Route5/scripts.pory"
+
+# 197 "data/maps/Route5/scripts.pory"
+Route5_Text_NoWhitney::
+# 198 "data/maps/Route5/scripts.pory"
 	.string "Alright, take your time.$"

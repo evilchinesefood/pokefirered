@@ -70,7 +70,14 @@ CeladonCity_Gym_EventScript_RematchErika::
 	end
 
 CeladonCity_Gym_Text_ErikaNoNoRematchBattle::
-	.string "FAME CHECKER$"
+	.string "I hear you've grown much stronger.\p"
+	.string "It's truly inspiring!\p"
+	.string "But I'm doozing Off...\p"
+	.string "In the mean time, try and\n"
+	.string "fill out my entry on\l"
+	.string "the FAMECHECKER.\p"
+	.string "I would love for you to\n"
+	.string "know me better!$"
 
 CeladonCity_Gym_EventScript_RematchErika2::
 	msgbox CeladonCity_Gym_Text_RematchErika, MSGBOX_YESNO

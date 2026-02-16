@@ -113,14 +113,18 @@ Route21_South_Text_NoEligiblePkmn::
 	.string "Come back when you do.$"
 
 Route21_South_Text_RegiceCheck::
-	.string "Hello there {PLAYER}.\n"
-	.string "I am the Frozen Mirage Trainer.\l"
+	.string "Hello there {PLAYER}.\p"
+	.string "I am the Sea Mirage Trainer.\n"
 	.string "Beat me and you shall face a\l"
-	.string "special POKEMON.\l"
-	.string "But first, I want to see a\l"
-	.string "Three Headed Mascot,\l"
-	.string "and knowledge on the Ice queen.$"
-
+	.string "special POKEMON.\p"
+	.string "But first, I want to see a\n"
+	.string "BLUE ORB, which is on a SAFFRON\l"
+	.string "fan club member.\p"
+	.string "He is trying to find someone,\n"
+	.string "that has battled the,\l"
+	.string "Many Strong Trainers around"
+	.string "the KANTO REGION.$"
+	
 Route21_South_Text_Whitney::
 	.string "So, you wish to face me?$"
 
