@@ -541,6 +541,26 @@ TwoIsland_Text_Casey::
 # 271 "data/maps/TwoIsland/scripts.pory"
 	.string "in a interesting way.\p"
 # 272 "data/maps/TwoIsland/scripts.pory"
-	.string "Perhaps I should work on.\p"
+	.string "Perhaps I should work on\n"
 # 273 "data/maps/TwoIsland/scripts.pory"
 	.string "my Double Battle Skills.$"
+# 274 "data/maps/TwoIsland/scripts.pory"
+
+# 275 "data/maps/TwoIsland/scripts.pory"
+TwoIsland_EventScript_CaveSign::
+# 276 "data/maps/TwoIsland/scripts.pory"
+	msgbox TwoIsland_Text_CaveSign, MSGBOX_SIGN
+# 277 "data/maps/TwoIsland/scripts.pory"
+	end
+# 278 "data/maps/TwoIsland/scripts.pory"
+
+# 279 "data/maps/TwoIsland/scripts.pory"
+TwoIsland_Text_CaveSign::
+# 280 "data/maps/TwoIsland/scripts.pory"
+	.string "WARNING: Dangerous Path\n"
+# 281 "data/maps/TwoIsland/scripts.pory"
+	.string "South of here.\p"
+# 282 "data/maps/TwoIsland/scripts.pory"
+	.string "Beware of Dark Caves and\n"
+# 283 "data/maps/TwoIsland/scripts.pory"
+	.string "High Currents!$"

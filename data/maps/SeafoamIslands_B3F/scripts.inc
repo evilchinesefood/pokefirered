@@ -295,170 +295,174 @@ SeafoamIslands_B3F_EventScript_Regice::
 # 148 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER
 # 149 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	message Text_Gyaoo
+	waitmessage
 # 150 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	waitmessage
-# 151 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	waitmoncry
-# 152 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 151 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	delay 10
-# 153 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 152 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
-# 154 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 153 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	waitbuttonpress
-# 155 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 154 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 156 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 155 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	special StartLegendaryBattle
-# 157 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 156 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	waitstate
-# 158 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 157 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 159 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 158 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	specialvar VAR_RESULT, GetBattleOutcome
-# 160 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 159 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SeafoamIslands_B3F_EventScript_DefeatedCelebi
-# 161 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 160 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SeafoamIslands_B3F_EventScript_RanFromCelebi
-# 162 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 161 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SeafoamIslands_B3F_EventScript_RanFromCelebi
+# 162 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	setflag FLAG_CAUGHT_REGICE
 # 163 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	setflag FLAG_CAUGHT_REGICE
+	clearflag FLAG_ICE_TRAINER
 # 164 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	clearflag FLAG_ICE_TRAINER
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
 # 165 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	msgbox SeafoamIslands_B3F_Text_EndWhitney
+	waitmessage
 # 166 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	waitmessage
-# 167 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	release
-# 168 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	end
-# 169 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
-# 170 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_EventScript_DefeatedCelebi::
-# 171 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	setflag FLAG_CAUGHT_REGICE
-# 172 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	clearflag FLAG_ICE_TRAINER
-# 173 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	msgbox SeafoamIslands_B3F_Text_EndWhitney
-# 174 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	waitmessage
-# 175 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	goto EventScript_RemoveStaticMon
-# 176 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	end
-# 177 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
-# 178 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_EventScript_RanFromCelebi::
-# 179 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	setvar VAR_0x8004, SPECIES_REGICE
-# 180 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	msgbox SeafoamIslands_B3F_Text_EndWhitney
-# 181 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	waitmessage
-# 182 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	goto EventScript_MonFlewAway
-# 183 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	end
-# 184 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
-# 185 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_EventScript_NoWhitney::
-# 186 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	msgbox SeafoamIslands_B3F_Text_NoWhitney
-# 187 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	release
-# 188 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	end
-# 189 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
-# 190 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_EventScript_End::
-# 191 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	msgbox SeafoamIslands_B3F_Text_EndWhitney
-# 192 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	waitmessage
-# 193 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	clearflag FLAG_ICE_TRAINER
-# 194 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 195 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 167 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	removeobject LOCALID_MIRAGE
-# 196 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 168 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	fadescreen FADE_FROM_BLACK	
-# 197 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 169 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	release
-# 198 "data/maps/SeafoamIslands_B3F/scripts.pory"
+# 170 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	end
+# 171 "data/maps/SeafoamIslands_B3F/scripts.pory"
+
+# 172 "data/maps/SeafoamIslands_B3F/scripts.pory"
+SeafoamIslands_B3F_EventScript_DefeatedCelebi::
+# 173 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	setflag FLAG_CAUGHT_REGICE
+# 174 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	clearflag FLAG_ICE_TRAINER
+# 175 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
+# 176 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	waitmessage
+# 177 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	goto EventScript_RemoveStaticMon
+# 178 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	end
+# 179 "data/maps/SeafoamIslands_B3F/scripts.pory"
+
+# 180 "data/maps/SeafoamIslands_B3F/scripts.pory"
+SeafoamIslands_B3F_EventScript_RanFromCelebi::
+# 181 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	setvar VAR_0x8004, SPECIES_REGICE
+# 182 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
+# 183 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	waitmessage
+# 184 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	goto EventScript_MonFlewAway
+# 185 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	end
+# 186 "data/maps/SeafoamIslands_B3F/scripts.pory"
+
+# 187 "data/maps/SeafoamIslands_B3F/scripts.pory"
+SeafoamIslands_B3F_EventScript_NoWhitney::
+# 188 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	msgbox SeafoamIslands_B3F_Text_NoWhitney
+# 189 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	release
+# 190 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	end
+# 191 "data/maps/SeafoamIslands_B3F/scripts.pory"
+
+# 192 "data/maps/SeafoamIslands_B3F/scripts.pory"
+SeafoamIslands_B3F_EventScript_End::
+# 193 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	msgbox SeafoamIslands_B3F_Text_EndWhitney
+# 194 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	waitmessage
+# 195 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	clearflag FLAG_ICE_TRAINER
+# 196 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 197 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	removeobject LOCALID_MIRAGE
+# 198 "data/maps/SeafoamIslands_B3F/scripts.pory"
+	fadescreen FADE_FROM_BLACK	
 # 199 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+	release
 # 200 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_NoEligiblePkmn::
+	end
 # 201 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "You have not meet the requirements.\p"
+
 # 202 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Come back when you do.$"
+SeafoamIslands_B3F_Text_NoEligiblePkmn::
 # 203 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+	.string "You have not meet the requirements.\p"
 # 204 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_RegiceCheck::
+	.string "Come back when you do.$"
 # 205 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Hello there {PLAYER}.\p"
+
 # 206 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "I am the Frozen Mirage Trainer.\p"
+SeafoamIslands_B3F_Text_RegiceCheck::
 # 207 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Beat me and you shall face a\n"
+	.string "Hello there {PLAYER}.\p"
 # 208 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "special POKEMON.\p"
+	.string "I am the Frozen Mirage Trainer.\p"
 # 209 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "But first, I want to see a\n"
+	.string "Beat me and you shall face a\n"
 # 210 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Three Headed Mascot,\l"
+	.string "special POKEMON.\p"
 # 211 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "and knowledge on the Ice queen.$"
+	.string "But first, I want to see a\n"
 # 212 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+	.string "Three Headed Mascot,\l"
 # 213 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_Whitney::
+	.string "and knowledge on the Ice queen.$"
 # 214 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "So, you wish to face me?$"
+
 # 215 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Better Save First,\l$"
+SeafoamIslands_B3F_Text_Whitney::
 # 216 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "One chance at REGICE.$"
+	.string "So, you wish to face me?$"
 # 217 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+	.string "Better Save First,\l$"
 # 218 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_YesWhitney::
+	.string "One chance at REGICE.$"
 # 219 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+
 # 220 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+SeafoamIslands_B3F_Text_YesWhitney::
 # 221 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_PostWhitney::
+	.string "Very well! Prepare yourself!$"
 # 222 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "So you are worthy...$"
+
 # 223 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+SeafoamIslands_B3F_Text_PostWhitney::
 # 224 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_WhitneyPostBattle::
+	.string "So you are worthy...$"
 # 225 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Alright, you have bested me.\p"
+
 # 226 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Be prepared to face REGICE!$"
+SeafoamIslands_B3F_Text_WhitneyPostBattle::
 # 227 "data/maps/SeafoamIslands_B3F/scripts.pory"
-
+	.string "Alright, you have bested me.\p"
 # 228 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_EndWhitney::
+	.string "Be prepared to face REGICE!$"
 # 229 "data/maps/SeafoamIslands_B3F/scripts.pory"
-	.string "Goodbye.$"
-# 230 "data/maps/SeafoamIslands_B3F/scripts.pory"
 
+# 230 "data/maps/SeafoamIslands_B3F/scripts.pory"
+SeafoamIslands_B3F_Text_EndWhitney::
 # 231 "data/maps/SeafoamIslands_B3F/scripts.pory"
-SeafoamIslands_B3F_Text_NoWhitney::
+	.string "Goodbye.$"
 # 232 "data/maps/SeafoamIslands_B3F/scripts.pory"
+
+# 233 "data/maps/SeafoamIslands_B3F/scripts.pory"
+SeafoamIslands_B3F_Text_NoWhitney::
+# 234 "data/maps/SeafoamIslands_B3F/scripts.pory"
 	.string "Alright, take your time.$"

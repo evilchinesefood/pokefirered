@@ -135,6 +135,7 @@ Route25_SeaCottage_EventScript_BillGoLookAtPC::
 Route25_SeaCottage_EventScript_BillCastform::
 	lock
 	faceplayer
+	goto_if_set FLAG_GOT_CASTFORM, Route25_SeaCottage_EventScript_SetGotEevee
 	msgbox Route25_SeaCottage_Text_WhatsThisMonOnPC
 	waitmessage
 	setvar VAR_TEMP_1, SPECIES_CASTFORM

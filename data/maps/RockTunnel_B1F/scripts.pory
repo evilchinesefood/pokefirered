@@ -89,7 +89,6 @@ RockTunnel_B1F_EventScript_PostWhitney::
 	setwildbattle SPECIES_REGIROCK, 70
 	waitse
 	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -107,6 +106,9 @@ RockTunnel_B1F_EventScript_PostWhitney::
 	clearflag FLAG_ROCK_TRAINER
 	msgbox RockTunnel_B1F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	release
 	end
 
@@ -115,6 +117,9 @@ RockTunnel_B1F_EventScript_DefeatedCelebi::
 	clearflag FLAG_ROCK_TRAINER
 	msgbox RockTunnel_B1F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	goto EventScript_RemoveStaticMon
 	end
 
@@ -123,6 +128,9 @@ RockTunnel_B1F_EventScript_RanFromCelebi::
 	clearflag FLAG_ROCK_TRAINER
 	msgbox RockTunnel_B1F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	goto EventScript_MonFlewAway
 	end
 
@@ -168,7 +176,6 @@ RockTunnel_B1F_Text_WhitneyPostBattle::
 	.string "Be prepared to face REGIROCK!$"
 
 RockTunnel_B1F_Text_EndWhitney::
-	.string "You had one chance,\n"
 	.string "Goodbye.$"
 
 RockTunnel_B1F_Text_NoWhitney::

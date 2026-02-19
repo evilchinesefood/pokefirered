@@ -178,7 +178,6 @@ SilphCo_11F_EventScript_PostWhitney::
 	setwildbattle SPECIES_REGISTEEL, 70
 	waitse
 	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -196,6 +195,9 @@ SilphCo_11F_EventScript_PostWhitney::
 	clearflag FLAG_STEEL_TRAINER
 	msgbox SilphCo_11F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	release
 	end
 
@@ -205,6 +207,9 @@ SilphCo_11F_EventScript_DefeatedCelebi::
 	clearflag FLAG_STEEL_TRAINER
 	msgbox SilphCo_11F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	end
 
 SilphCo_11F_EventScript_RanFromCelebi::
@@ -212,6 +217,9 @@ SilphCo_11F_EventScript_RanFromCelebi::
 	clearflag FLAG_STEEL_TRAINER
 	msgbox SilphCo_11F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK
 	goto EventScript_MonFlewAway
 	end
 
@@ -257,7 +265,6 @@ SilphCo_11F_Text_WhitneyPostBattle::
 	.string "Be prepared to face REGISTEEL!$"
 
 SilphCo_11F_Text_EndWhitney::
-	.string "You had one chance,\n"
 	.string "Goodbye.$"
 
 SilphCo_11F_Text_NoWhitney::

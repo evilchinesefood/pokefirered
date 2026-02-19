@@ -63,198 +63,194 @@ LavenderTown_VolunteerPokemonHouse_EventScript_SoulDewGiven::
 # 32 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, CeladonCity_Restaurant_EventScript_NoRoomForCoinCase
 # 33 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	msgbox LavenderTown_VolunteerPokemonHouse_Text_GotDew
-# 34 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	waitmessage
-# 35 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	setflag FLAG_GOT_SOUL_DEW
-# 36 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 34 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	clearflag FLAG_SECOND_SOUL_DEW
-# 37 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 35 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_ThankYouForHelping2
+# 36 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
+# 37 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
 # 38 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 39 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 40 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 41 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_Text_FameCheckerNotEnough::
-# 42 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 40 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "PLACEHOLDER.$"
-# 43 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 41 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 
-# 44 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 42 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_Text_GotDew::
-# 45 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 43 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "{PLAYER} received the SOUL DEW!$"
-# 46 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 44 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 
-# 47 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 45 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_Text_ThankYouForHelping::
-# 48 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 46 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "Woah, I saw that you completed\n"
-# 49 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 47 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "my entry on the FAMECHECKER.\p"
-# 50 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 48 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "I appreciate your enthusiasm,\n"
-# 51 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 49 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "and hope you are more willing\l"
-# 52 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 50 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "to treat POKEMON much more better\l"
-# 53 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 51 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "than before!\p"
-# 54 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 52 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "Well, for you enthusiasm, I found\n"
-# 55 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 53 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "a special POKEMON Item\l"
-# 56 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 54 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "in my research!$"
-# 57 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 55 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 
-# 58 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 56 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_Text_ThankYouForHelping2::
-# 59 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 57 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "It's belongs to the\n"
-# 60 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 58 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "Legendary POKEMONS,\l"
-# 61 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 59 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "LATIOS and LATIAS.\p"
-# 62 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 60 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "They left it behind and I\n"
-# 63 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 61 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "couldn't give it back,\l"
-# 64 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 62 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	.string "So I'll let you return it to them!$"
-# 65 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 63 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 
-# 66 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 64 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute::
-# 67 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 65 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_HasPokeFluteHelpedYou
+# 66 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
+# 67 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
 # 68 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 69 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 70 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 71 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute::
-# 72 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 70 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis
+# 71 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
+# 72 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
 # 73 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 74 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 75 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 76 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl::
+# 75 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	lock
+# 76 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	faceplayer
 # 77 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	lock
-# 78 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	faceplayer
-# 79 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	famechecker FAMECHECKER_MRFUJI, 0
-# 80 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 78 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MrFujiLooksAfterOrphanedMons
+# 79 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
+# 80 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
 # 81 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 82 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 83 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 84 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_LittleBoy::
-# 85 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 83 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MonsNiceToHug, MSGBOX_NPC
+# 84 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
+# 85 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+
 # 86 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 87 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 88 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_Youngster::
+# 87 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	lock
+# 88 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	faceplayer
 # 89 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	lock
-# 90 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	faceplayer
-# 91 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	goto_if_set FLAG_RESCUED_MR_FUJI, LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack
-# 92 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 90 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_WhereDidMrFujiGo
+# 91 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
+# 92 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
 # 93 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 94 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 95 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 96 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack::
-# 97 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 95 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MrFujiWasPrayingForCubonesMother
+# 96 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
+# 97 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
 # 98 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 99 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 100 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 101 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_Nidorino::
+# 100 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	lock
+# 101 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	faceplayer
 # 102 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	lock
+	waitse
 # 103 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	faceplayer
-# 104 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	waitse
-# 105 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	playmoncry SPECIES_NIDORINO, CRY_MODE_NORMAL
-# 106 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 104 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_Nidorino
+# 105 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	waitmoncry
+# 106 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	release
 # 107 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	waitmoncry
+	end
 # 108 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	release
+
 # 109 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 110 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 111 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_Psyduck::
-# 112 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 110 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	lock
-# 113 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 111 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	faceplayer
-# 114 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 112 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	waitse
-# 115 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 113 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	playmoncry SPECIES_PSYDUCK, CRY_MODE_NORMAL
-# 116 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 114 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_Psyduck
-# 117 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 115 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	waitmoncry
-# 118 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 116 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	release
+# 117 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+	end
+# 118 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+
 # 119 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-	end
-# 120 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
-
-# 121 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_PokemonFanMagazine::
-# 122 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 120 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	lockall
-# 123 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 121 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	famechecker FAMECHECKER_MRFUJI, 2
-# 124 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 122 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_GrandPrizeDrawingClipped
-# 125 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 123 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	releaseall
-# 126 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 124 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	end
-# 127 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 125 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 
-# 128 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 126 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf::
-# 129 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 127 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_PokemonMagazinesLineShelf, MSGBOX_SIGN
-# 130 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
+# 128 "data/maps/LavenderTown_VolunteerPokemonHouse/scripts.pory"
 	end

@@ -97,54 +97,108 @@ Route20_Mart_EventScript_Clerk::
 # 49 "data/maps/Route20/scripts.pory"
 	setflag FLAG_WAILORD_SHOWN
 # 50 "data/maps/Route20/scripts.pory"
-	goto Route20_Mart_EventScript_Shop
+	msgbox Route20_Text_ThankYouForShowingWailord
 # 51 "data/maps/Route20/scripts.pory"
-	release
+	goto Route20_Mart_EventScript_Shop
 # 52 "data/maps/Route20/scripts.pory"
-	end
+	release
 # 53 "data/maps/Route20/scripts.pory"
-
+	end
 # 54 "data/maps/Route20/scripts.pory"
-Route20_Mart_EventScript_Shop::
+
 # 55 "data/maps/Route20/scripts.pory"
-	goto_if_questlog EventScript_ReleaseEnd
+Route20_Mart_EventScript_Shop::
 # 56 "data/maps/Route20/scripts.pory"
-	lock
+	goto_if_questlog EventScript_ReleaseEnd
 # 57 "data/maps/Route20/scripts.pory"
-	faceplayer
+	lock
 # 58 "data/maps/Route20/scripts.pory"
-	message Text_MayIHelpYou
+	faceplayer
 # 59 "data/maps/Route20/scripts.pory"
-	waitmessage
+	message Text_MayIHelpYou
 # 60 "data/maps/Route20/scripts.pory"
-	pokemart Route20_Mart_Items
+	waitmessage
 # 61 "data/maps/Route20/scripts.pory"
-	msgbox Text_PleaseComeAgain
+	pokemart Route20_Mart_Items
 # 62 "data/maps/Route20/scripts.pory"
-	release
+	msgbox Text_PleaseComeAgain
 # 63 "data/maps/Route20/scripts.pory"
-	end
-# 64 "data/maps/Route20/scripts.pory"
-
-# 65 "data/maps/Route20/scripts.pory"
-	.align 2
-# 66 "data/maps/Route20/scripts.pory"
-Route20_Mart_Items::
-# 67 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_PRISM_SCALE
-# 68 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_DEEP_SEA_SCALE
-# 69 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_DEEP_SEA_TOOTH
-# 70 "data/maps/Route20/scripts.pory"
-	.2byte ITEM_NONE
-# 71 "data/maps/Route20/scripts.pory"
 	release
-# 72 "data/maps/Route20/scripts.pory"
+# 64 "data/maps/Route20/scripts.pory"
 	end
-# 73 "data/maps/Route20/scripts.pory"
+# 65 "data/maps/Route20/scripts.pory"
 
+# 66 "data/maps/Route20/scripts.pory"
+	.align 2
+# 67 "data/maps/Route20/scripts.pory"
+Route20_Mart_Items::
+# 68 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_PRISM_SCALE
+# 69 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_DEEP_SEA_SCALE
+# 70 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_DEEP_SEA_TOOTH
+# 71 "data/maps/Route20/scripts.pory"
+	.2byte ITEM_NONE
+# 72 "data/maps/Route20/scripts.pory"
+	release
+# 73 "data/maps/Route20/scripts.pory"
+	end
 # 74 "data/maps/Route20/scripts.pory"
-Route20_Text_MayIHelpYou::
+
 # 75 "data/maps/Route20/scripts.pory"
-	.string "Show me a Wailord?$"
+Route20_Text_ThankYouForShowingWailord::
+# 76 "data/maps/Route20/scripts.pory"
+	.string "Oh wow, you are a true FIsher!\n"
+# 77 "data/maps/Route20/scripts.pory"
+	.string "Help yourself on these items!$"
+# 78 "data/maps/Route20/scripts.pory"
+
+# 79 "data/maps/Route20/scripts.pory"
+Route20_Text_MayIHelpYou::
+# 80 "data/maps/Route20/scripts.pory"
+	.string "It has never been so surreal\n"
+# 81 "data/maps/Route20/scripts.pory"
+	.string "to see the seas see new POKEMON.\p"
+# 82 "data/maps/Route20/scripts.pory"
+	.string "However some of these POKEMON\n"
+# 83 "data/maps/Route20/scripts.pory"
+	.string "need foreign Items from HOENN\l"
+# 84 "data/maps/Route20/scripts.pory"
+	.string "to evolve them. However,\l"
+# 85 "data/maps/Route20/scripts.pory"
+	.string "I'm selling them, but I\l"
+# 86 "data/maps/Route20/scripts.pory"
+	.string "want to see a great FISHER.\p"
+# 87 "data/maps/Route20/scripts.pory"
+	.string "Show me a Wailord and I'll\n"
+# 88 "data/maps/Route20/scripts.pory"
+	.string "like you buy them!$"
+# 89 "data/maps/Route20/scripts.pory"
+
+# 90 "data/maps/Route20/scripts.pory"
+Route20_EventScript_Relicanth::
+# 91 "data/maps/Route20/scripts.pory"
+	msgbox Route20_Text_Relicanth, MSGBOX_NPC
+# 92 "data/maps/Route20/scripts.pory"
+	end
+# 93 "data/maps/Route20/scripts.pory"
+
+# 94 "data/maps/Route20/scripts.pory"
+
+# 95 "data/maps/Route20/scripts.pory"
+Route20_Text_Relicanth::
+# 96 "data/maps/Route20/scripts.pory"
+	.string "I don't know why,\n"
+# 97 "data/maps/Route20/scripts.pory"
+	.string "but I saw a RELICANTH in\l"
+# 98 "data/maps/Route20/scripts.pory"
+	.string "the waters.\p"
+# 99 "data/maps/Route20/scripts.pory"
+	.string "They are normally not\n"
+# 100 "data/maps/Route20/scripts.pory"
+	.string "native in the KANTO region and\l"
+# 101 "data/maps/Route20/scripts.pory"
+	.string "were actually thought to\l"
+# 102 "data/maps/Route20/scripts.pory"
+	.string "be extinct until recently.$"

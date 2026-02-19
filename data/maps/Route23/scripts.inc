@@ -379,165 +379,165 @@ Route23_EventScript_NeedOrb::
 # 190 "data/maps/Route23/scripts.pory"
 Route23_Text_NeedOrb::
 # 191 "data/maps/Route23/scripts.pory"
-	.string "You need to have caught both GROUDON and KYOGRE to face RAYQUAZA.$"
+	.string "You need to have caught\n"
 # 192 "data/maps/Route23/scripts.pory"
-
+	.string "both GROUDON and KYOGRE\l" 
 # 193 "data/maps/Route23/scripts.pory"
-Route23_EventScript_NoEligiblePkmn::
+	.string "to face RAYQUAZA.$"
 # 194 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_NoEligiblePkmn
+
 # 195 "data/maps/Route23/scripts.pory"
-	release
+Route23_EventScript_NoEligiblePkmn::
 # 196 "data/maps/Route23/scripts.pory"
-	end
+	msgbox Route23_Text_NoEligiblePkmn
 # 197 "data/maps/Route23/scripts.pory"
-
+	release
 # 198 "data/maps/Route23/scripts.pory"
-Route23_EventScript_Flag::
+	end
 # 199 "data/maps/Route23/scripts.pory"
-	setflag FLAG_RAYQUAZA_CHECKED
+
 # 200 "data/maps/Route23/scripts.pory"
-	goto Route23_EventScript_Orbing
+Route23_EventScript_Flag::
 # 201 "data/maps/Route23/scripts.pory"
-	end
+	setflag FLAG_RAYQUAZA_CHECKED
 # 202 "data/maps/Route23/scripts.pory"
-
+	goto Route23_EventScript_Orbing
 # 203 "data/maps/Route23/scripts.pory"
-Route23_EventScript_Orbing::
+	end
 # 204 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_Whitney, MSGBOX_YESNO
+
 # 205 "data/maps/Route23/scripts.pory"
-	closemessage
+Route23_EventScript_Orbing::
 # 206 "data/maps/Route23/scripts.pory"
-	delay 40
+	msgbox Route23_Text_Whitney, MSGBOX_YESNO
 # 207 "data/maps/Route23/scripts.pory"
-	goto_if_eq VAR_RESULT, NO, Route23_EventScript_NoWhitney
+	closemessage
 # 208 "data/maps/Route23/scripts.pory"
-	trainerbattle_single TRAINER_AQUA_LEADER, Route23_Text_YesWhitney, Route23_Text_PostWhitney, Route23_EventScript_PostWhitney, NO_MUSIC
+	delay 40
 # 209 "data/maps/Route23/scripts.pory"
-	release
+	goto_if_eq VAR_RESULT, NO, Route23_EventScript_NoWhitney
 # 210 "data/maps/Route23/scripts.pory"
-	end
+	trainerbattle_single TRAINER_AQUA_LEADER, Route23_Text_YesWhitney, Route23_Text_PostWhitney, Route23_EventScript_PostWhitney, NO_MUSIC
 # 211 "data/maps/Route23/scripts.pory"
-
+	release
 # 212 "data/maps/Route23/scripts.pory"
-Route23_EventScript_PostWhitney::
+	end
 # 213 "data/maps/Route23/scripts.pory"
-	special HealPlayerParty
+
 # 214 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_WhitneyPostBattle
+Route23_EventScript_PostWhitney::
 # 215 "data/maps/Route23/scripts.pory"
-	goto_if_questlog EventScript_ReleaseEnd
+	special HealPlayerParty
 # 216 "data/maps/Route23/scripts.pory"
-	special QuestLog_CutRecording
+	msgbox Route23_Text_WhitneyPostBattle
 # 217 "data/maps/Route23/scripts.pory"
-	lock
+	goto_if_questlog EventScript_ReleaseEnd
 # 218 "data/maps/Route23/scripts.pory"
-	faceplayer
+	special QuestLog_CutRecording
 # 219 "data/maps/Route23/scripts.pory"
-	setwildbattle SPECIES_RAYQUAZA, 70
+	lock
 # 220 "data/maps/Route23/scripts.pory"
-	waitse
+	faceplayer
 # 221 "data/maps/Route23/scripts.pory"
-	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
+	setwildbattle SPECIES_RAYQUAZA, 70
 # 222 "data/maps/Route23/scripts.pory"
-	message Text_Gyaoo
+	waitse
 # 223 "data/maps/Route23/scripts.pory"
-	waitmessage
+	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
 # 224 "data/maps/Route23/scripts.pory"
-	waitmoncry
+	waitmessage
 # 225 "data/maps/Route23/scripts.pory"
-	delay 10
+	waitmoncry
 # 226 "data/maps/Route23/scripts.pory"
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	delay 10
 # 227 "data/maps/Route23/scripts.pory"
-	waitbuttonpress
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 # 228 "data/maps/Route23/scripts.pory"
-	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	waitbuttonpress
 # 229 "data/maps/Route23/scripts.pory"
-	special StartLegendaryBattle
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 # 230 "data/maps/Route23/scripts.pory"
-	waitstate
+	special StartLegendaryBattle
 # 231 "data/maps/Route23/scripts.pory"
-	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	waitstate
 # 232 "data/maps/Route23/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 # 233 "data/maps/Route23/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route23_EventScript_DefeatedCelebi
+	specialvar VAR_RESULT, GetBattleOutcome
 # 234 "data/maps/Route23/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route23_EventScript_RanFromCelebi
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route23_EventScript_DefeatedCelebi
 # 235 "data/maps/Route23/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route23_EventScript_RanFromCelebi
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route23_EventScript_RanFromCelebi
 # 236 "data/maps/Route23/scripts.pory"
-	setflag FLAG_CAUGHT_RAYQUAZA
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route23_EventScript_RanFromCelebi
 # 237 "data/maps/Route23/scripts.pory"
-	clearflag FLAG_DRAGON_TRAINER
-# 238 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_EndWhitney
-# 239 "data/maps/Route23/scripts.pory"
-	waitmessage
-# 240 "data/maps/Route23/scripts.pory"
-	release
-# 241 "data/maps/Route23/scripts.pory"
-	end
-# 242 "data/maps/Route23/scripts.pory"
-
-# 243 "data/maps/Route23/scripts.pory"
-Route23_EventScript_DefeatedCelebi::
-# 244 "data/maps/Route23/scripts.pory"
 	setflag FLAG_CAUGHT_RAYQUAZA
-# 245 "data/maps/Route23/scripts.pory"
+# 238 "data/maps/Route23/scripts.pory"
 	clearflag FLAG_DRAGON_TRAINER
-# 246 "data/maps/Route23/scripts.pory"
+# 239 "data/maps/Route23/scripts.pory"
 	msgbox Route23_Text_EndWhitney
-# 247 "data/maps/Route23/scripts.pory"
+# 240 "data/maps/Route23/scripts.pory"
 	waitmessage
-# 248 "data/maps/Route23/scripts.pory"
-	goto EventScript_RemoveStaticMon
-# 249 "data/maps/Route23/scripts.pory"
-	end
-# 250 "data/maps/Route23/scripts.pory"
-
-# 251 "data/maps/Route23/scripts.pory"
-Route23_EventScript_RanFromCelebi::
-# 252 "data/maps/Route23/scripts.pory"
-	setvar VAR_0x8004, SPECIES_RAYQUAZA
-# 253 "data/maps/Route23/scripts.pory"
-	clearflag FLAG_DRAGON_TRAINER
-# 254 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_EndWhitney
-# 255 "data/maps/Route23/scripts.pory"
-	waitmessage
-# 256 "data/maps/Route23/scripts.pory"
-	goto EventScript_MonFlewAway
-# 257 "data/maps/Route23/scripts.pory"
-	end
-# 258 "data/maps/Route23/scripts.pory"
-
-# 259 "data/maps/Route23/scripts.pory"
-Route23_EventScript_NoWhitney::
-# 260 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_NoWhitney
-# 261 "data/maps/Route23/scripts.pory"
-	release
-# 262 "data/maps/Route23/scripts.pory"
-	end
-# 263 "data/maps/Route23/scripts.pory"
-
-# 264 "data/maps/Route23/scripts.pory"
-Route23_EventScript_End::
-# 265 "data/maps/Route23/scripts.pory"
-	clearflag FLAG_DRAGON_TRAINER
-# 266 "data/maps/Route23/scripts.pory"
-	msgbox Route23_Text_EndWhitney
-# 267 "data/maps/Route23/scripts.pory"
-	waitmessage
-# 268 "data/maps/Route23/scripts.pory"
+# 241 "data/maps/Route23/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 269 "data/maps/Route23/scripts.pory"
+# 242 "data/maps/Route23/scripts.pory"
 	removeobject LOCALID_MIRAGE
-# 270 "data/maps/Route23/scripts.pory"
+# 243 "data/maps/Route23/scripts.pory"
 	fadescreen FADE_FROM_BLACK	
+# 244 "data/maps/Route23/scripts.pory"
+	release
+# 245 "data/maps/Route23/scripts.pory"
+	end
+# 246 "data/maps/Route23/scripts.pory"
+
+# 247 "data/maps/Route23/scripts.pory"
+Route23_EventScript_DefeatedCelebi::
+# 248 "data/maps/Route23/scripts.pory"
+	setflag FLAG_CAUGHT_RAYQUAZA
+# 249 "data/maps/Route23/scripts.pory"
+	clearflag FLAG_DRAGON_TRAINER
+# 250 "data/maps/Route23/scripts.pory"
+	msgbox Route23_Text_EndWhitney
+# 251 "data/maps/Route23/scripts.pory"
+	waitmessage
+# 252 "data/maps/Route23/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 253 "data/maps/Route23/scripts.pory"
+	removeobject LOCALID_MIRAGE
+# 254 "data/maps/Route23/scripts.pory"
+	fadescreen FADE_FROM_BLACK	
+# 255 "data/maps/Route23/scripts.pory"
+	goto EventScript_RemoveStaticMon
+# 256 "data/maps/Route23/scripts.pory"
+	end
+# 257 "data/maps/Route23/scripts.pory"
+
+# 258 "data/maps/Route23/scripts.pory"
+Route23_EventScript_RanFromCelebi::
+# 259 "data/maps/Route23/scripts.pory"
+	setvar VAR_0x8004, SPECIES_RAYQUAZA
+# 260 "data/maps/Route23/scripts.pory"
+	clearflag FLAG_DRAGON_TRAINER
+# 261 "data/maps/Route23/scripts.pory"
+	msgbox Route23_Text_EndWhitney
+# 262 "data/maps/Route23/scripts.pory"
+	waitmessage
+# 263 "data/maps/Route23/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 264 "data/maps/Route23/scripts.pory"
+	removeobject LOCALID_MIRAGE
+# 265 "data/maps/Route23/scripts.pory"
+	fadescreen FADE_FROM_BLACK	
+# 266 "data/maps/Route23/scripts.pory"
+	goto EventScript_MonFlewAway
+# 267 "data/maps/Route23/scripts.pory"
+	end
+# 268 "data/maps/Route23/scripts.pory"
+
+# 269 "data/maps/Route23/scripts.pory"
+Route23_EventScript_NoWhitney::
+# 270 "data/maps/Route23/scripts.pory"
+	msgbox Route23_Text_NoWhitney
 # 271 "data/maps/Route23/scripts.pory"
 	release
 # 272 "data/maps/Route23/scripts.pory"
@@ -545,66 +545,84 @@ Route23_EventScript_End::
 # 273 "data/maps/Route23/scripts.pory"
 
 # 274 "data/maps/Route23/scripts.pory"
-Route23_Text_NoEligiblePkmn::
+Route23_EventScript_End::
 # 275 "data/maps/Route23/scripts.pory"
-	.string "You have not meet the requirements.\p"
+	clearflag FLAG_DRAGON_TRAINER
 # 276 "data/maps/Route23/scripts.pory"
-	.string "Come back when you do.$"
+	msgbox Route23_Text_EndWhitney
 # 277 "data/maps/Route23/scripts.pory"
-
+	waitmessage
 # 278 "data/maps/Route23/scripts.pory"
-Route23_Text_RegiceCheck::
+	fadescreen FADE_TO_BLACK
 # 279 "data/maps/Route23/scripts.pory"
-	.string "Hello there {PLAYER}.\p"
+	removeobject LOCALID_MIRAGE
 # 280 "data/maps/Route23/scripts.pory"
-	.string "I am the Dragon Mirage Trainer.\p"
+	fadescreen FADE_FROM_BLACK	
 # 281 "data/maps/Route23/scripts.pory"
-	.string "Beat me and you shall face a.\n"
+	release
 # 282 "data/maps/Route23/scripts.pory"
-	.string "special POKEMON.\p"
+	end
 # 283 "data/maps/Route23/scripts.pory"
-	.string "But first, I want to see a\n"
+
 # 284 "data/maps/Route23/scripts.pory"
-	.string "BLUE ORB and RED ORB,\l"
+Route23_Text_NoEligiblePkmn::
 # 285 "data/maps/Route23/scripts.pory"
-	.string "and knowledge on the Master of Dragons.$"
+	.string "You have not meet the requirements.\p"
 # 286 "data/maps/Route23/scripts.pory"
-
+	.string "Come back when you do.$"
 # 287 "data/maps/Route23/scripts.pory"
-Route23_Text_Whitney::
+
 # 288 "data/maps/Route23/scripts.pory"
-	.string "So, you wish to face me?$"
+Route23_Text_RegiceCheck::
 # 289 "data/maps/Route23/scripts.pory"
-
+	.string "Hello there {PLAYER}.\p"
 # 290 "data/maps/Route23/scripts.pory"
-Route23_Text_YesWhitney::
+	.string "I am the Dragon Mirage Trainer.\p"
 # 291 "data/maps/Route23/scripts.pory"
-	.string "Very well! Prepare yourself!$"
+	.string "Beat me and you shall face a.\n"
 # 292 "data/maps/Route23/scripts.pory"
-
+	.string "special POKEMON.\p"
 # 293 "data/maps/Route23/scripts.pory"
-Route23_Text_PostWhitney::
+	.string "But first, I want to see a\n"
 # 294 "data/maps/Route23/scripts.pory"
-	.string "So you are worthy...$"
+	.string "BLUE ORB and RED ORB,\l"
 # 295 "data/maps/Route23/scripts.pory"
-
+	.string "and knowledge on the Master of Dragons.$"
 # 296 "data/maps/Route23/scripts.pory"
-Route23_Text_WhitneyPostBattle::
+
 # 297 "data/maps/Route23/scripts.pory"
-	.string "Alright, you have bested me.\p"
+Route23_Text_Whitney::
 # 298 "data/maps/Route23/scripts.pory"
-	.string "Be prepared to face RAYQUAZA!$"
+	.string "So, you wish to face me?$"
 # 299 "data/maps/Route23/scripts.pory"
 
 # 300 "data/maps/Route23/scripts.pory"
-Route23_Text_EndWhitney::
+Route23_Text_YesWhitney::
 # 301 "data/maps/Route23/scripts.pory"
-	.string "You had one chance,\n"
+	.string "Very well! Prepare yourself!$"
 # 302 "data/maps/Route23/scripts.pory"
-	.string "Goodbye.$"
-# 303 "data/maps/Route23/scripts.pory"
 
+# 303 "data/maps/Route23/scripts.pory"
+Route23_Text_PostWhitney::
 # 304 "data/maps/Route23/scripts.pory"
-Route23_Text_NoWhitney::
+	.string "So you are worthy...$"
 # 305 "data/maps/Route23/scripts.pory"
+
+# 306 "data/maps/Route23/scripts.pory"
+Route23_Text_WhitneyPostBattle::
+# 307 "data/maps/Route23/scripts.pory"
+	.string "Alright, you have bested me.\p"
+# 308 "data/maps/Route23/scripts.pory"
+	.string "Be prepared to face RAYQUAZA!$"
+# 309 "data/maps/Route23/scripts.pory"
+
+# 310 "data/maps/Route23/scripts.pory"
+Route23_Text_EndWhitney::
+# 311 "data/maps/Route23/scripts.pory"
+	.string "Goodbye.$"
+# 312 "data/maps/Route23/scripts.pory"
+
+# 313 "data/maps/Route23/scripts.pory"
+Route23_Text_NoWhitney::
+# 314 "data/maps/Route23/scripts.pory"
 	.string "Alright, take your time.$"

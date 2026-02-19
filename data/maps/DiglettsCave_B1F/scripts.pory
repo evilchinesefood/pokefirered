@@ -51,10 +51,7 @@ DiglettsCave_B1F_EventScript_OrbingCheck::
 	goto_if_set FLAG_GROUNDON_CHECKED, DiglettsCave_B1F_EventScript_Orbing
 	msgbox DiglettsCave_B1F_Text_RegiceCheck
 	closemessage
-	goto_if_unset FLAG_RE_DEFEATED, DiglettsCave_B1F_EventScript_NoEligiblePkmn
-	setvar 0x8004, FAMECHECKER_BLAINE
-	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
+	goto_if_unset FLAG_ORBING, DiglettsCave_B1F_EventScript_NoEligiblePkmn
 	goto_if_eq DiglettsCave_B1F_EventScript_Flag
 	release
 	end
@@ -96,7 +93,6 @@ DiglettsCave_B1F_EventScript_PostWhitney::
 	setwildbattle SPECIES_GROUDON, 70
 	waitse
 	playmoncry SPECIES_GROUDON, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -114,6 +110,9 @@ DiglettsCave_B1F_EventScript_PostWhitney::
 	clearflag FLAG_GROUND_TRAINER
 	msgbox DiglettsCave_B1F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 
@@ -176,7 +175,6 @@ DiglettsCave_B1F_Text_WhitneyPostBattle::
 	.string "Be prepared to face GROUDON!$"
 
 DiglettsCave_B1F_Text_EndWhitney::
-	.string "You had one chance,\n"
 	.string "Goodbye.$"
 
 DiglettsCave_B1F_Text_NoWhitney::

@@ -12,6 +12,7 @@ Route5_EventScript_Bro::
 	lock 
 	faceplayer
 	goto_if_set FLAG_CAUGHT_LATIOS, Route5_EventScript_End
+	goto_if_set FLAG_BEAT_TWINS, Route5_EventScript_PostWhitney
 	goto_if_set FLAG_LATIOS_CHECKED, Route5_EventScript_Orbing
 	goto Route5_EventScript_OrbingCheck
 
@@ -19,6 +20,7 @@ Route5_EventScript_Sis::
 	lock 
 	faceplayer
 	goto_if_set FLAG_CAUGHT_LATIAS, Route5_EventScript_End
+	goto_if_set FLAG_BEAT_TWINS, Route5_EventScript_PostWhitneyLatias
 	goto_if_set FLAG_LATIOS_CHECKED, Route5_EventScript_Orbing
 	goto Route5_EventScript_OrbingCheck
 
@@ -54,13 +56,21 @@ Route5_EventScript_Orbing::
 	closemessage
 	delay 40
 	goto_if_eq VAR_RESULT, NO, Route5_EventScript_NoWhitney
-	trainerbattle_single TRAINER_AQUA_LEADER, Route5_Text_YesWhitney, Route5_Text_PostWhitney, Route5_EventScript_PostWhitney, NO_MUSIC
+	trainerbattle_single TRAINER_RS_RUIN_MANIAC, Route5_Text_YesWhitney, Route5_Text_PostWhitney, Route5_EventScript_PostFlags, NO_MUSIC
+	release
+	end
+
+Route5_EventScript_PostFlags::
+	setflag FLAG_BEAT_TWINS
+	msgbox Route5_Text_YouWon
 	release
 	end
 
 Route5_EventScript_PostWhitney::
 	special HealPlayerParty
-	msgbox Route5_Text_WhitneyPostBattle
+	msgbox Route5_Text_WhitneyPostBattle, MSGBOX_YESNO
+	closemessage
+	goto_if_eq VAR_RESULT, NO, Route5_EventScript_NoWhitney
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lock
@@ -68,7 +78,6 @@ Route5_EventScript_PostWhitney::
 	setwildbattle SPECIES_LATIOS, 70
 	waitse
 	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -83,7 +92,7 @@ Route5_EventScript_PostWhitney::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route5_EventScript_RanFromCelebi
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route5_EventScript_RanFromCelebi
 	setflag FLAG_CAUGHT_LATIOS
-	clearflag FLAG_BRO_TRAINER
+	setflag FLAG_BRO_TRAINER
 	msgbox Route5_Text_EndWhitney
 	waitmessage
 	release
@@ -99,7 +108,6 @@ Route5_EventScript_PostWhitneyLatias::
 	setwildbattle SPECIES_LATIAS, 70
 	waitse
 	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -114,7 +122,7 @@ Route5_EventScript_PostWhitneyLatias::
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route5_EventScript_RanFromLatias
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route5_EventScript_RanFromLatias
 	setflag FLAG_CAUGHT_LATIAS
-	clearflag FLAG_SIS_TRAINER
+	setflag FLAG_SIS_TRAINER
 	msgbox Route5_Text_EndWhitney
 	waitmessage
 	release
@@ -122,7 +130,7 @@ Route5_EventScript_PostWhitneyLatias::
 
 Route5_EventScript_DefeatedCelebi::
 	setflag FLAG_CAUGHT_LATIOS
-	clearflag FLAG_BRO_TRAINER
+	setflag FLAG_BRO_TRAINER
 	msgbox Route5_Text_EndWhitney
 	waitmessage
 	goto EventScript_RemoveStaticMon
@@ -130,7 +138,7 @@ Route5_EventScript_DefeatedCelebi::
 
 Route5_EventScript_RanFromCelebi::
 	setvar VAR_0x8004, SPECIES_LATIOS
-	clearflag FLAG_BRO_TRAINER
+	setflag FLAG_BRO_TRAINER
 	msgbox Route5_Text_EndWhitney
 	waitmessage
 	goto EventScript_MonFlewAway
@@ -138,7 +146,7 @@ Route5_EventScript_RanFromCelebi::
 
 Route5_EventScript_DefeatedLatias::
 	setflag FLAG_CAUGHT_LATIAS
-	clearflag FLAG_SIS_TRAINER
+	setflag FLAG_SIS_TRAINER
 	msgbox Route5_Text_EndWhitney
 	waitmessage
 	goto EventScript_RemoveStaticMon
@@ -146,7 +154,7 @@ Route5_EventScript_DefeatedLatias::
 
 Route5_EventScript_RanFromLatias::
 	setvar VAR_0x8004, SPECIES_LATIAS
-	clearflag FLAG_SIS_TRAINER
+	setflag FLAG_SIS_TRAINER
 	msgbox Route5_Text_EndWhitney
 	waitmessage
 	goto EventScript_MonFlewAway
@@ -170,7 +178,7 @@ Route5_Text_RegiceCheck::
 	.string "Hello there {PLAYER}.\p"
 	.string "We are the JET TWINS.\p"
 	.string "Beat us and you shall face two\n"
-	.string "special POKEMON.\l"
+	.string "special POKEMON.\p"
 	.string "But first, I want to see a\n"
 	.string "Knowledge on the DAISY flower,\l"
 	.string "and the OAK tree.\p"
@@ -185,6 +193,10 @@ Route5_Text_YesWhitney::
 
 Route5_Text_PostWhitney::
 	.string "So you are worthy...$"
+
+Route5_Text_YouWon::
+	.string "Talk to us again to\n"
+	.string "face LATIOS and LATIAS.$"
 
 Route5_Text_WhitneyPostBattle::
 	.string "Alright, you have bested me.\p"

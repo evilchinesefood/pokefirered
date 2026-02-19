@@ -1451,3 +1451,16 @@ Text_TestMsg::
 
 	.include "data/maps/FishermansHouse/scripts.inc"
 	.include "data/maps/FishermansHouse/text.inc"
+
+	.include "data/maps/DownwardBeach/scripts.inc"
+	.include "data/maps/DownwardBeach/text.inc"
+
+	.include "data/maps/DownwardBeachConnection/scripts.inc"
+	.include "data/maps/DownwardBeachConnection/text.inc"
+
+	.include "data/maps/TwoIsland_SouthernCave/scripts.inc"
+	.include "data/maps/TwoIsland_SouthernCave/text.inc"
+
+	.include "data/maps/TwoIsland_SouthSide_Cave_B1F/scripts.inc"
+	.include "data/maps/TwoIsland_SouthSide_Cave_B1F/text.inc"
+

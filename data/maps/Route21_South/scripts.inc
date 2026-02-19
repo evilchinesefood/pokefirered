@@ -25,268 +25,264 @@ Route21_South_EventScript_OrbingCheck::
 # 13 "data/maps/Route21_South/scripts.pory"
 	closemessage
 # 14 "data/maps/Route21_South/scripts.pory"
-	goto_if_unset FLAG_RE_DEFEATED, Route21_South_EventScript_NoEligiblePkmn
+	goto_if_unset FLAG_ORBING, Route21_South_EventScript_NoEligiblePkmn
 # 15 "data/maps/Route21_South/scripts.pory"
-	setvar 0x8004, FAMECHECKER_BLAINE
+	goto Route21_South_EventScript_Flag
 # 16 "data/maps/Route21_South/scripts.pory"
-	callnative CheckFilledFameCheckerFor0x8004
+	release
 # 17 "data/maps/Route21_South/scripts.pory"
-	compare VAR_RESULT, TRUE
+	end
 # 18 "data/maps/Route21_South/scripts.pory"
-	goto_if_eq Route21_South_EventScript_Flag
+
 # 19 "data/maps/Route21_South/scripts.pory"
-	release
-# 20 "data/maps/Route21_South/scripts.pory"
-	end
-# 21 "data/maps/Route21_South/scripts.pory"
-
-# 22 "data/maps/Route21_South/scripts.pory"
 Route21_South_EventScript_NeedOrb::
-# 23 "data/maps/Route21_South/scripts.pory"
+# 20 "data/maps/Route21_South/scripts.pory"
 	msgbox Route21_South_Text_NeedOrb
+# 21 "data/maps/Route21_South/scripts.pory"
+	release
+# 22 "data/maps/Route21_South/scripts.pory"
+	end
+# 23 "data/maps/Route21_South/scripts.pory"
+
 # 24 "data/maps/Route21_South/scripts.pory"
-	release
-# 25 "data/maps/Route21_South/scripts.pory"
-	end
-# 26 "data/maps/Route21_South/scripts.pory"
-
-# 27 "data/maps/Route21_South/scripts.pory"
 Route21_South_EventScript_NoEligiblePkmn::
-# 28 "data/maps/Route21_South/scripts.pory"
+# 25 "data/maps/Route21_South/scripts.pory"
 	msgbox Route21_South_Text_NoEligiblePkmn
+# 26 "data/maps/Route21_South/scripts.pory"
+	release
+# 27 "data/maps/Route21_South/scripts.pory"
+	end
+# 28 "data/maps/Route21_South/scripts.pory"
+
 # 29 "data/maps/Route21_South/scripts.pory"
-	release
-# 30 "data/maps/Route21_South/scripts.pory"
-	end
-# 31 "data/maps/Route21_South/scripts.pory"
-
-# 32 "data/maps/Route21_South/scripts.pory"
 Route21_South_EventScript_Flag::
-# 33 "data/maps/Route21_South/scripts.pory"
+# 30 "data/maps/Route21_South/scripts.pory"
 	setflag FLAG_KYOGRE_CHECKED
-# 34 "data/maps/Route21_South/scripts.pory"
+# 31 "data/maps/Route21_South/scripts.pory"
 	goto Route21_South_EventScript_Orbing
-# 35 "data/maps/Route21_South/scripts.pory"
+# 32 "data/maps/Route21_South/scripts.pory"
 	end
-# 36 "data/maps/Route21_South/scripts.pory"
+# 33 "data/maps/Route21_South/scripts.pory"
 
-# 37 "data/maps/Route21_South/scripts.pory"
+# 34 "data/maps/Route21_South/scripts.pory"
 Route21_South_EventScript_Orbing::
-# 38 "data/maps/Route21_South/scripts.pory"
+# 35 "data/maps/Route21_South/scripts.pory"
 	msgbox Route21_South_Text_Whitney, MSGBOX_YESNO
-# 39 "data/maps/Route21_South/scripts.pory"
+# 36 "data/maps/Route21_South/scripts.pory"
 	closemessage
-# 40 "data/maps/Route21_South/scripts.pory"
+# 37 "data/maps/Route21_South/scripts.pory"
 	delay 40
-# 41 "data/maps/Route21_South/scripts.pory"
+# 38 "data/maps/Route21_South/scripts.pory"
 	goto_if_eq VAR_RESULT, NO, Route21_South_EventScript_NoWhitney
-# 42 "data/maps/Route21_South/scripts.pory"
+# 39 "data/maps/Route21_South/scripts.pory"
 	trainerbattle_single TRAINER_AQUA_GRUNT_M, Route21_South_Text_YesWhitney, Route21_South_Text_PostWhitney, Route21_South_EventScript_PostWhitney, NO_MUSIC
+# 40 "data/maps/Route21_South/scripts.pory"
+	release
+# 41 "data/maps/Route21_South/scripts.pory"
+	end
+# 42 "data/maps/Route21_South/scripts.pory"
+
 # 43 "data/maps/Route21_South/scripts.pory"
-	release
-# 44 "data/maps/Route21_South/scripts.pory"
-	end
-# 45 "data/maps/Route21_South/scripts.pory"
-
-# 46 "data/maps/Route21_South/scripts.pory"
 Route21_South_EventScript_PostWhitney::
-# 47 "data/maps/Route21_South/scripts.pory"
+# 44 "data/maps/Route21_South/scripts.pory"
 	special HealPlayerParty
-# 48 "data/maps/Route21_South/scripts.pory"
+# 45 "data/maps/Route21_South/scripts.pory"
 	msgbox Route21_South_Text_WhitneyPostBattle
-# 49 "data/maps/Route21_South/scripts.pory"
+# 46 "data/maps/Route21_South/scripts.pory"
 	goto_if_questlog EventScript_ReleaseEnd
-# 50 "data/maps/Route21_South/scripts.pory"
+# 47 "data/maps/Route21_South/scripts.pory"
 	special QuestLog_CutRecording
-# 51 "data/maps/Route21_South/scripts.pory"
+# 48 "data/maps/Route21_South/scripts.pory"
 	lock
-# 52 "data/maps/Route21_South/scripts.pory"
+# 49 "data/maps/Route21_South/scripts.pory"
 	faceplayer
-# 53 "data/maps/Route21_South/scripts.pory"
+# 50 "data/maps/Route21_South/scripts.pory"
 	setwildbattle SPECIES_KYOGRE, 70
-# 54 "data/maps/Route21_South/scripts.pory"
+# 51 "data/maps/Route21_South/scripts.pory"
 	waitse
-# 55 "data/maps/Route21_South/scripts.pory"
+# 52 "data/maps/Route21_South/scripts.pory"
 	playmoncry SPECIES_KYOGRE, CRY_MODE_ENCOUNTER
-# 56 "data/maps/Route21_South/scripts.pory"
-	message Text_Gyaoo
-# 57 "data/maps/Route21_South/scripts.pory"
+# 53 "data/maps/Route21_South/scripts.pory"
 	waitmessage
-# 58 "data/maps/Route21_South/scripts.pory"
+# 54 "data/maps/Route21_South/scripts.pory"
 	waitmoncry
-# 59 "data/maps/Route21_South/scripts.pory"
+# 55 "data/maps/Route21_South/scripts.pory"
 	delay 10
-# 60 "data/maps/Route21_South/scripts.pory"
+# 56 "data/maps/Route21_South/scripts.pory"
 	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
-# 61 "data/maps/Route21_South/scripts.pory"
+# 57 "data/maps/Route21_South/scripts.pory"
 	waitbuttonpress
-# 62 "data/maps/Route21_South/scripts.pory"
+# 58 "data/maps/Route21_South/scripts.pory"
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 63 "data/maps/Route21_South/scripts.pory"
+# 59 "data/maps/Route21_South/scripts.pory"
 	special StartLegendaryBattle
-# 64 "data/maps/Route21_South/scripts.pory"
+# 60 "data/maps/Route21_South/scripts.pory"
 	waitstate
-# 65 "data/maps/Route21_South/scripts.pory"
+# 61 "data/maps/Route21_South/scripts.pory"
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-# 66 "data/maps/Route21_South/scripts.pory"
+# 62 "data/maps/Route21_South/scripts.pory"
 	specialvar VAR_RESULT, GetBattleOutcome
-# 67 "data/maps/Route21_South/scripts.pory"
+# 63 "data/maps/Route21_South/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route21_South_EventScript_DefeatedCelebi
-# 68 "data/maps/Route21_South/scripts.pory"
+# 64 "data/maps/Route21_South/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route21_South_EventScript_RanFromCelebi
-# 69 "data/maps/Route21_South/scripts.pory"
+# 65 "data/maps/Route21_South/scripts.pory"
 	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route21_South_EventScript_RanFromCelebi
+# 66 "data/maps/Route21_South/scripts.pory"
+	setflag FLAG_CAUGHT_KYOGRE
+# 67 "data/maps/Route21_South/scripts.pory"
+	clearflag FLAG_WATER_TRAINER
+# 68 "data/maps/Route21_South/scripts.pory"
+	msgbox Route21_South_Text_EndWhitney
+# 69 "data/maps/Route21_South/scripts.pory"
+	waitmessage
 # 70 "data/maps/Route21_South/scripts.pory"
-	setflag FLAG_CAUGHT_KYOGRE
-# 71 "data/maps/Route21_South/scripts.pory"
-	clearflag FLAG_WATER_TRAINER
-# 72 "data/maps/Route21_South/scripts.pory"
-	msgbox Route21_South_Text_EndWhitney
-# 73 "data/maps/Route21_South/scripts.pory"
-	waitmessage
-# 74 "data/maps/Route21_South/scripts.pory"
-	release
-# 75 "data/maps/Route21_South/scripts.pory"
-	end
-# 76 "data/maps/Route21_South/scripts.pory"
-
-# 77 "data/maps/Route21_South/scripts.pory"
-Route21_South_EventScript_DefeatedCelebi::
-# 78 "data/maps/Route21_South/scripts.pory"
-	setflag FLAG_CAUGHT_KYOGRE
-# 79 "data/maps/Route21_South/scripts.pory"
-	clearflag FLAG_WATER_TRAINER
-# 80 "data/maps/Route21_South/scripts.pory"
-	msgbox Route21_South_Text_EndWhitney
-# 81 "data/maps/Route21_South/scripts.pory"
-	waitmessage
-# 82 "data/maps/Route21_South/scripts.pory"
-	goto EventScript_RemoveStaticMon
-# 83 "data/maps/Route21_South/scripts.pory"
-	end
-# 84 "data/maps/Route21_South/scripts.pory"
-
-# 85 "data/maps/Route21_South/scripts.pory"
-Route21_South_EventScript_RanFromCelebi::
-# 86 "data/maps/Route21_South/scripts.pory"
-	setvar VAR_0x8004, SPECIES_KYOGRE
-# 87 "data/maps/Route21_South/scripts.pory"
-	clearflag FLAG_WATER_TRAINER
-# 88 "data/maps/Route21_South/scripts.pory"
-	msgbox Route21_South_Text_EndWhitney
-# 89 "data/maps/Route21_South/scripts.pory"
-	waitmessage
-# 90 "data/maps/Route21_South/scripts.pory"
-	goto EventScript_MonFlewAway
-# 91 "data/maps/Route21_South/scripts.pory"
-	end
-# 92 "data/maps/Route21_South/scripts.pory"
-
-# 93 "data/maps/Route21_South/scripts.pory"
-Route21_South_EventScript_NoWhitney::
-# 94 "data/maps/Route21_South/scripts.pory"
-	msgbox Route21_South_Text_NoWhitney
-# 95 "data/maps/Route21_South/scripts.pory"
-	release
-# 96 "data/maps/Route21_South/scripts.pory"
-	end
-# 97 "data/maps/Route21_South/scripts.pory"
-
-# 98 "data/maps/Route21_South/scripts.pory"
-Route21_South_EventScript_End::
-# 99 "data/maps/Route21_South/scripts.pory"
-	clearflag FLAG_WATER_TRAINER
-# 100 "data/maps/Route21_South/scripts.pory"
-	msgbox Route21_South_Text_EndWhitney
-# 101 "data/maps/Route21_South/scripts.pory"
-	waitmessage
-# 102 "data/maps/Route21_South/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 103 "data/maps/Route21_South/scripts.pory"
+# 71 "data/maps/Route21_South/scripts.pory"
 	removeobject LOCALID_MIRAGE
-# 104 "data/maps/Route21_South/scripts.pory"
+# 72 "data/maps/Route21_South/scripts.pory"
 	fadescreen FADE_FROM_BLACK	
-# 105 "data/maps/Route21_South/scripts.pory"
+# 73 "data/maps/Route21_South/scripts.pory"
 	release
-# 106 "data/maps/Route21_South/scripts.pory"
+# 74 "data/maps/Route21_South/scripts.pory"
 	end
+# 75 "data/maps/Route21_South/scripts.pory"
+
+# 76 "data/maps/Route21_South/scripts.pory"
+Route21_South_EventScript_DefeatedCelebi::
+# 77 "data/maps/Route21_South/scripts.pory"
+	setflag FLAG_CAUGHT_KYOGRE
+# 78 "data/maps/Route21_South/scripts.pory"
+	clearflag FLAG_WATER_TRAINER
+# 79 "data/maps/Route21_South/scripts.pory"
+	msgbox Route21_South_Text_EndWhitney
+# 80 "data/maps/Route21_South/scripts.pory"
+	waitmessage
+# 81 "data/maps/Route21_South/scripts.pory"
+	goto EventScript_RemoveStaticMon
+# 82 "data/maps/Route21_South/scripts.pory"
+	end
+# 83 "data/maps/Route21_South/scripts.pory"
+
+# 84 "data/maps/Route21_South/scripts.pory"
+Route21_South_EventScript_RanFromCelebi::
+# 85 "data/maps/Route21_South/scripts.pory"
+	setvar VAR_0x8004, SPECIES_KYOGRE
+# 86 "data/maps/Route21_South/scripts.pory"
+	clearflag FLAG_WATER_TRAINER
+# 87 "data/maps/Route21_South/scripts.pory"
+	msgbox Route21_South_Text_EndWhitney
+# 88 "data/maps/Route21_South/scripts.pory"
+	waitmessage
+# 89 "data/maps/Route21_South/scripts.pory"
+	goto EventScript_MonFlewAway
+# 90 "data/maps/Route21_South/scripts.pory"
+	end
+# 91 "data/maps/Route21_South/scripts.pory"
+
+# 92 "data/maps/Route21_South/scripts.pory"
+Route21_South_EventScript_NoWhitney::
+# 93 "data/maps/Route21_South/scripts.pory"
+	msgbox Route21_South_Text_NoWhitney
+# 94 "data/maps/Route21_South/scripts.pory"
+	release
+# 95 "data/maps/Route21_South/scripts.pory"
+	end
+# 96 "data/maps/Route21_South/scripts.pory"
+
+# 97 "data/maps/Route21_South/scripts.pory"
+Route21_South_EventScript_End::
+# 98 "data/maps/Route21_South/scripts.pory"
+	clearflag FLAG_WATER_TRAINER
+# 99 "data/maps/Route21_South/scripts.pory"
+	msgbox Route21_South_Text_EndWhitney
+# 100 "data/maps/Route21_South/scripts.pory"
+	waitmessage
+# 101 "data/maps/Route21_South/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 102 "data/maps/Route21_South/scripts.pory"
+	removeobject LOCALID_MIRAGE
+# 103 "data/maps/Route21_South/scripts.pory"
+	fadescreen FADE_FROM_BLACK	
+# 104 "data/maps/Route21_South/scripts.pory"
+	release
+# 105 "data/maps/Route21_South/scripts.pory"
+	end
+# 106 "data/maps/Route21_South/scripts.pory"
+
 # 107 "data/maps/Route21_South/scripts.pory"
-
-# 108 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_NeedOrb::
-# 109 "data/maps/Route21_South/scripts.pory"
+# 108 "data/maps/Route21_South/scripts.pory"
 	.string "You need the ORBING to face me.$"
+# 109 "data/maps/Route21_South/scripts.pory"
+
 # 110 "data/maps/Route21_South/scripts.pory"
-
-# 111 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_NoEligiblePkmn::
-# 112 "data/maps/Route21_South/scripts.pory"
+# 111 "data/maps/Route21_South/scripts.pory"
 	.string "You have not meet the requirements.\p"
-# 113 "data/maps/Route21_South/scripts.pory"
+# 112 "data/maps/Route21_South/scripts.pory"
 	.string "Come back when you do.$"
+# 113 "data/maps/Route21_South/scripts.pory"
+
 # 114 "data/maps/Route21_South/scripts.pory"
-
-# 115 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_RegiceCheck::
-# 116 "data/maps/Route21_South/scripts.pory"
+# 115 "data/maps/Route21_South/scripts.pory"
 	.string "Hello there {PLAYER}.\p"
-# 117 "data/maps/Route21_South/scripts.pory"
+# 116 "data/maps/Route21_South/scripts.pory"
 	.string "I am the Sea Mirage Trainer.\n"
-# 118 "data/maps/Route21_South/scripts.pory"
+# 117 "data/maps/Route21_South/scripts.pory"
 	.string "Beat me and you shall face a\l"
-# 119 "data/maps/Route21_South/scripts.pory"
+# 118 "data/maps/Route21_South/scripts.pory"
 	.string "special POKEMON.\p"
-# 120 "data/maps/Route21_South/scripts.pory"
+# 119 "data/maps/Route21_South/scripts.pory"
 	.string "But first, I want to see a\n"
-# 121 "data/maps/Route21_South/scripts.pory"
+# 120 "data/maps/Route21_South/scripts.pory"
 	.string "BLUE ORB, which is on a SAFFRON\l"
-# 122 "data/maps/Route21_South/scripts.pory"
+# 121 "data/maps/Route21_South/scripts.pory"
 	.string "fan club member.\p"
-# 123 "data/maps/Route21_South/scripts.pory"
+# 122 "data/maps/Route21_South/scripts.pory"
 	.string "He is trying to find someone,\n"
-# 124 "data/maps/Route21_South/scripts.pory"
+# 123 "data/maps/Route21_South/scripts.pory"
 	.string "that has battled the,\l"
+# 124 "data/maps/Route21_South/scripts.pory"
+	.string "Many Strong Trainers around\n"
 # 125 "data/maps/Route21_South/scripts.pory"
-	.string "Many Strong Trainers around"
-# 126 "data/maps/Route21_South/scripts.pory"
 	.string "the KANTO REGION.$"
-# 127 "data/maps/Route21_South/scripts.pory"
+# 126 "data/maps/Route21_South/scripts.pory"
 	
-# 128 "data/maps/Route21_South/scripts.pory"
+# 127 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_Whitney::
-# 129 "data/maps/Route21_South/scripts.pory"
+# 128 "data/maps/Route21_South/scripts.pory"
 	.string "So, you wish to face me?$"
+# 129 "data/maps/Route21_South/scripts.pory"
+
 # 130 "data/maps/Route21_South/scripts.pory"
-
-# 131 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_YesWhitney::
-# 132 "data/maps/Route21_South/scripts.pory"
+# 131 "data/maps/Route21_South/scripts.pory"
 	.string "Very well! Prepare yourself!$"
+# 132 "data/maps/Route21_South/scripts.pory"
+
 # 133 "data/maps/Route21_South/scripts.pory"
-
-# 134 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_PostWhitney::
-# 135 "data/maps/Route21_South/scripts.pory"
+# 134 "data/maps/Route21_South/scripts.pory"
 	.string "So you are worthy...$"
+# 135 "data/maps/Route21_South/scripts.pory"
+
 # 136 "data/maps/Route21_South/scripts.pory"
-
-# 137 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_WhitneyPostBattle::
-# 138 "data/maps/Route21_South/scripts.pory"
+# 137 "data/maps/Route21_South/scripts.pory"
 	.string "Alright, you have bested me.\p"
-# 139 "data/maps/Route21_South/scripts.pory"
+# 138 "data/maps/Route21_South/scripts.pory"
 	.string "Be prepared to face REGICE!$"
+# 139 "data/maps/Route21_South/scripts.pory"
+
 # 140 "data/maps/Route21_South/scripts.pory"
-
-# 141 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_EndWhitney::
-# 142 "data/maps/Route21_South/scripts.pory"
-	.string "You had one chance,\n"
-# 143 "data/maps/Route21_South/scripts.pory"
+# 141 "data/maps/Route21_South/scripts.pory"
 	.string "Goodbye.$"
-# 144 "data/maps/Route21_South/scripts.pory"
+# 142 "data/maps/Route21_South/scripts.pory"
 
-# 145 "data/maps/Route21_South/scripts.pory"
+# 143 "data/maps/Route21_South/scripts.pory"
 Route21_South_Text_NoWhitney::
-# 146 "data/maps/Route21_South/scripts.pory"
+# 144 "data/maps/Route21_South/scripts.pory"
 	.string "Alright, take your time.$"

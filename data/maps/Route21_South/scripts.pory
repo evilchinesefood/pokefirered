@@ -11,11 +11,8 @@ Route21_South_EventScript_OrbingCheck::
 	goto_if_set FLAG_KYOGRE_CHECKED, Route21_South_EventScript_Orbing
 	msgbox Route21_South_Text_RegiceCheck
 	closemessage
-	goto_if_unset FLAG_RE_DEFEATED, Route21_South_EventScript_NoEligiblePkmn
-	setvar 0x8004, FAMECHECKER_BLAINE
-	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq Route21_South_EventScript_Flag
+	goto_if_unset FLAG_ORBING, Route21_South_EventScript_NoEligiblePkmn
+	goto Route21_South_EventScript_Flag
 	release
 	end
 
@@ -53,7 +50,6 @@ Route21_South_EventScript_PostWhitney::
 	setwildbattle SPECIES_KYOGRE, 70
 	waitse
 	playmoncry SPECIES_KYOGRE, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -71,6 +67,9 @@ Route21_South_EventScript_PostWhitney::
 	clearflag FLAG_WATER_TRAINER
 	msgbox Route21_South_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 
@@ -122,7 +121,7 @@ Route21_South_Text_RegiceCheck::
 	.string "fan club member.\p"
 	.string "He is trying to find someone,\n"
 	.string "that has battled the,\l"
-	.string "Many Strong Trainers around"
+	.string "Many Strong Trainers around\n"
 	.string "the KANTO REGION.$"
 	
 Route21_South_Text_Whitney::
@@ -139,7 +138,6 @@ Route21_South_Text_WhitneyPostBattle::
 	.string "Be prepared to face REGICE!$"
 
 Route21_South_Text_EndWhitney::
-	.string "You had one chance,\n"
 	.string "Goodbye.$"
 
 Route21_South_Text_NoWhitney::

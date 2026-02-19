@@ -44,13 +44,13 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 
 //All these gonna be used im lazy to make names
-#define FLAG_0x020               0x020
+#define FLAG_SHINY_STARTER               0x020
 #define FLAG_0x021               0x021
-#define FLAG_0x022               0x022
+#define FLAG_RAIKOU_FLAG               0x022
 #define FLAG_0x023               0x023
-#define FLAG_0x024               0x024
-#define FLAG_0x025               0x025
-#define FLAG_0x026               0x026
+#define FLAG_SEEN_BEAST               0x024
+#define FLAG_ENTEI_FLAG               0x025
+#define FLAG_SUICANE_FLAG               0x026
 #define FLAG_SHINY_DITTO         0x027
 
 // Hide/show flags
@@ -272,8 +272,8 @@
 #define FLAG_ROCK_TRAINER               0x0FD
 #define FLAG_DRAGON_TRAINER              0x0FE
 #define FLAG_SECOND_SOUL_DEW             0x0FF
-#define FLAG_0x100               0x100
-#define FLAG_0x101               0x101
+#define FLAG_BEAT_TWINS               0x100
+#define FLAG_TWO_ISLAND_TREE             0x101
 #define FLAG_0x102               0x102
 #define FLAG_0x103               0x103
 #define FLAG_0x104               0x104
@@ -462,8 +462,8 @@
 #define FLAG_HIDE_FUCHSIA_CITY_WARDENS_HOUSE_RARE_CANDY         0x1B9
 #define FLAG_HIDE_TWO_ISLAND_REVIVE                             0x1BA
 #define FLAG_HIDE_THREE_ISLAND_ZINC                             0x1BB
-#define FLAG_HIDE_METAL_COAT                                             0x1BC
-#define FLAG_0x1BD                                              0x1BD
+#define FLAG_HIDE_METAL_COAT                                    0x1BC
+#define FLAG_HIDE_DOWNSIDE_ROCK_PP_UP                  0x1BD
 #define FLAG_HIDE_VIRIDIAN_FOREST_POTION_2                      0x1BE
 #define FLAG_HIDE_MT_MOON_B2F_REVIVE                            0x1BF
 #define FLAG_HIDE_MT_MOON_B2F_ANTIDOTE                          0x1C0

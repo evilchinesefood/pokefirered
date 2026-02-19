@@ -146,7 +146,6 @@ SeafoamIslands_B3F_EventScript_Regice::
 	setwildbattle SPECIES_REGICE, 70
 	waitse
 	playmoncry SPECIES_REGICE, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -164,6 +163,9 @@ SeafoamIslands_B3F_EventScript_Regice::
 	clearflag FLAG_ICE_TRAINER
 	msgbox SeafoamIslands_B3F_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 

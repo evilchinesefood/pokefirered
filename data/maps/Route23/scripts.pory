@@ -188,7 +188,9 @@ Route23_EventScript_NeedOrb::
 	end
 
 Route23_Text_NeedOrb::
-	.string "You need to have caught both GROUDON and KYOGRE to face RAYQUAZA.$"
+	.string "You need to have caught\n"
+	.string "both GROUDON and KYOGRE\l" 
+	.string "to face RAYQUAZA.$"
 
 Route23_EventScript_NoEligiblePkmn::
 	msgbox Route23_Text_NoEligiblePkmn
@@ -219,7 +221,6 @@ Route23_EventScript_PostWhitney::
 	setwildbattle SPECIES_RAYQUAZA, 70
 	waitse
 	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
 	waitmessage
 	waitmoncry
 	delay 10
@@ -237,6 +238,9 @@ Route23_EventScript_PostWhitney::
 	clearflag FLAG_DRAGON_TRAINER
 	msgbox Route23_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	release
 	end
 
@@ -245,6 +249,9 @@ Route23_EventScript_DefeatedCelebi::
 	clearflag FLAG_DRAGON_TRAINER
 	msgbox Route23_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	goto EventScript_RemoveStaticMon
 	end
 
@@ -253,6 +260,9 @@ Route23_EventScript_RanFromCelebi::
 	clearflag FLAG_DRAGON_TRAINER
 	msgbox Route23_Text_EndWhitney
 	waitmessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_MIRAGE
+	fadescreen FADE_FROM_BLACK	
 	goto EventScript_MonFlewAway
 	end
 
@@ -298,7 +308,6 @@ Route23_Text_WhitneyPostBattle::
 	.string "Be prepared to face RAYQUAZA!$"
 
 Route23_Text_EndWhitney::
-	.string "You had one chance,\n"
 	.string "Goodbye.$"
 
 Route23_Text_NoWhitney::
