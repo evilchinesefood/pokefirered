@@ -29569,12 +29569,12 @@
               {
                 "min_level": 30,
                 "max_level": 50,
-                "species": "SPECIES_TENTACOOL"
+                "species": "SPECIES_PSYDUCK"
               },
               {
                 "min_level": 30,
                 "max_level": 50,
-                "species": "SPECIES_TENTACRUEL"
+                "species": "SPECIES_SLOWPOKE"
               },
               {
                 "min_level": 30,
@@ -29617,9 +29617,9 @@
                 "species": "SPECIES_SEADRA"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_NONE"
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_DRATINI"
               },
               {
                 "min_level": 20,

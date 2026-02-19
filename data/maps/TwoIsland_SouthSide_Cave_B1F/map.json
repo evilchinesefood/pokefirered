@@ -19,15 +19,15 @@
   ],
   "warp_events": [
     {
-      "x": 6,
-      "y": 9,
+      "x": 7,
+      "y": 4,
       "elevation": 0,
       "dest_map": "MAP_TWO_ISLAND_SOUTHERN_CAVE",
       "dest_warp_id": "3"
     },
     {
       "x": 10,
-      "y": 10,
+      "y": 6,
       "elevation": 3,
       "dest_map": "MAP_TWO_ISLAND_SOUTHERN_CAVE",
       "dest_warp_id": "4"

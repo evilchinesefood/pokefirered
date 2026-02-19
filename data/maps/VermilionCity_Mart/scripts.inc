@@ -63,10 +63,8 @@ VermilionCity_Mart_Items::
 # 32 "data/maps/VermilionCity_Mart/scripts.pory"
 	.2byte ITEM_REPEL
 # 33 "data/maps/VermilionCity_Mart/scripts.pory"
-	.2byte ITEM_MASTER_BALL
-# 34 "data/maps/VermilionCity_Mart/scripts.pory"
 	.2byte ITEM_NONE
-# 35 "data/maps/VermilionCity_Mart/scripts.pory"
+# 34 "data/maps/VermilionCity_Mart/scripts.pory"
 	release
-# 36 "data/maps/VermilionCity_Mart/scripts.pory"
+# 35 "data/maps/VermilionCity_Mart/scripts.pory"
 	end
