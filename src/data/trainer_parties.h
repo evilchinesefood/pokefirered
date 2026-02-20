@@ -35,11 +35,11 @@ static const struct TrainerMon sParty_AquaLeader[] = {
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
         .lvl = 73,
-        .species = SPECIES_EXPLOUD,
-        .heldItem = ITEM_MIRACLE_SEED,
-        .nature = TRAINER_PARTY_NATURE(NATURE_SERIOUS),
-        .moves = {MOVE_HYPER_VOICE, MOVE_SURF, MOVE_ICE_BEAM, MOVE_FLAMETHROWER},
-        .ev = TRAINER_PARTY_EVS(0, 252, 0, 252, 252, 0),
+        .species = SPECIES_SNORLAX,
+        .heldItem = ITEM_LEFTOVERS,
+        .nature = TRAINER_PARTY_NATURE(NATURE_ADAMANT),
+        .moves = {MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_CURSE, MOVE_CRUNCH},
+        .ev = TRAINER_PARTY_EVS(252, 252, 0, 0, 0, 0),
     },
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),

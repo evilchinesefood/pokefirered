@@ -29,7 +29,7 @@ DownwardBeach_EventScript_Npc::
 # 15 "data/maps/DownwardBeach/scripts.pory"
 DownwardBeach_Text_Sign::
 # 16 "data/maps/DownwardBeach/scripts.pory"
-	.string "Welcome to Downward Rock\n"
+	.string "Welcome to Southside Rock\n"
 # 17 "data/maps/DownwardBeach/scripts.pory"
 	.string "Training Spot of\l"
 # 18 "data/maps/DownwardBeach/scripts.pory"
