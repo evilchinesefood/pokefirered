@@ -189,7 +189,7 @@ gText_ShinyOdds_512::
     .string "1/512$"
 
 gText_ShinyOdds_64::
-    .string "1/64$"
+    .string "1/16$"
 
 gText_ShinyOdds_32::
     .string "1/32$"

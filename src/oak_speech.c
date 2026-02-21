@@ -1580,17 +1580,17 @@ static void Task_OakSpeech_ShinyOdds(u8 taskId)
 static const u8 *const sShinyOddsOptions[] = {
     gText_ShinyOdds_4096,
     gText_ShinyOdds_512,
-    gText_ShinyOdds_64,
     gText_ShinyOdds_32,
+    gText_ShinyOdds_64,
     gText_ShinyOdds_1,
 };
 
 static const u16 sShinyOddsValues[] = {
-    16,
-    128,
-    1024,
-    2048,
-    65535, // 65535 / 65536 is essentially 100%
+    16,      // 1/4096
+    128,     // 1/512
+    2048,    // 1/32
+    4096,    // 1/16
+    65535,   // 1/1 (Always)
 };
 
 static void Task_OakSpeech_ShinyOddsSelection(u8 taskId)

@@ -108,7 +108,9 @@ void ResetMenuAndMonGlobals(void)
 void NewGameInitData(void)
 {
     bool8 nuzlockePrev = FlagGet(FLAG_NUZLOCKE);
-    bool8 hardPrev = FlagGet(FLAG_HARD);  // A function lower down here clears these, so retain it and reset it at the end
+    bool8 hardPrev = FlagGet(FLAG_HARD);
+    bool8 expSharePrev = FlagGet(FLAG_EXP_SHARE_PARTY);
+    u16 shinyRatePrev = VarGet(VAR_SHINY_RATE);  // A function lower down here clears these, so retain and reset at the end
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
     StringCopy(rivalName, gSaveBlock1Ptr->rivalName);
     gDifferentSaveFile = TRUE;
@@ -154,6 +156,8 @@ void NewGameInitData(void)
     ResetTrainerTowerResults();
     nuzlockePrev ? FlagSet(FLAG_NUZLOCKE) : FlagClear(FLAG_NUZLOCKE);
     hardPrev ? FlagSet(FLAG_HARD) : FlagClear(FLAG_HARD);
+    expSharePrev ? FlagSet(FLAG_EXP_SHARE_PARTY) : FlagClear(FLAG_EXP_SHARE_PARTY);
+    VarSet(VAR_SHINY_RATE, shinyRatePrev);
 }
 
 static void ResetMiniGamesResults(void)
