@@ -822,6 +822,8 @@ static const u8 sBallCatchBonuses[] =
 // unused
 ALIGNED(4) static const u8 sJPText_Turn[] = _("ターン");
 
+static const u8 sText_TheParty[] = _("The party");
+
 static void Cmd_attackcanceler(void)
 {
     s32 i;
@@ -3208,6 +3210,7 @@ static void Cmd_getexp(void)
             gBattleScripting.getexpState++;
             gBattleStruct->expGetterMonId = 0;
             gBattleStruct->sentInPokes = sentIn;
+            gBattleStruct->sharedExpMsgShown = FALSE;
         }
         // fall through
     case 2: // set exp value to the poke in expgetter_id and print message
@@ -3287,13 +3290,26 @@ static void Cmd_getexp(void)
                         gBattleStruct->expGetterBattlerId = 0;
                     }
 
-                    PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
-                    // buffer 'gained' or 'gained a boosted'
-                    PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
-                    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage);
-
-                    PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
                     MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+
+                    // get exp getter battlerId is already set above
+                    if (FlagGet(FLAG_EXP_SHARE_PARTY) && !gBattleStruct->sharedExpMsgShown)
+                    {
+                        // Shared EXP: show one message with "The party" as the name
+                        StringCopy(gBattleTextBuff1, sText_TheParty);
+                        PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_EMPTYSTRING4);
+                        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage);
+                        PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                        gBattleStruct->sharedExpMsgShown = TRUE;
+                    }
+                    else if (!FlagGet(FLAG_EXP_SHARE_PARTY))
+                    {
+                        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
+                        // buffer 'gained' or 'gained a boosted'
+                        PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
+                        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage);
+                        PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                    }
                 }
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState++;
