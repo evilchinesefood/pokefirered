@@ -125,5 +125,4 @@ SaffronCity_EventScript_SilphProductSign::
 SaffronCity_EventScript_TrainerFanClubSign::
 	msgbox SaffronCity_Text_TrainerFanClubSign, MSGBOX_SIGN
 	end
-
 `
