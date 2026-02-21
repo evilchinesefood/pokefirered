@@ -445,6 +445,7 @@ void BoxMonAtToMon(u8 boxId, u8 boxPosition, struct Pokemon * dst);
 void SetBoxMonAt(u8 boxId, u8 boxPosition, struct BoxPokemon * src);
 
 void CB2_ExitPokeStorage(void);
+void SetPokeStorageSkipPcMenu(bool8 skip);
 void FreeBoxSelectionPopupSpriteGfx(void);
 void CreateChooseBoxMenuSprites(u8 curBox);
 void DestroyChooseBoxMenuSprites(void);

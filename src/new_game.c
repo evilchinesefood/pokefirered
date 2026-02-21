@@ -18,6 +18,7 @@
 #include "pokemon_storage_system.h"
 #include "roamer.h"
 #include "item.h"
+#include "constants/items.h"
 #include "player_pc.h"
 #include "berry.h"
 #include "easy_chat.h"
@@ -139,6 +140,7 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->registeredItem = 0;
     ClearBag();
     NewGameInitPCItems();
+    AddBagItem(ITEM_PORTABLE_PC, 1);
     ClearEnigmaBerries();
     InitEasyChatPhrases();
     ResetTrainerFanClub();

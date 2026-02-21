@@ -17,6 +17,7 @@
 
 static EWRAM_DATA u8 sPreviousBoxOption = 0;
 static EWRAM_DATA struct ChooseBoxMenu *sChooseBoxMenu = NULL;
+static EWRAM_DATA bool8 sSkipReturnToPcMenu = FALSE;
 
 static void CreatePCMainMenu(u8 whichMenu, s16 *windowIdPtr);
 static void ChooseBoxMenu_CreateSprites(u8 curBox);
@@ -369,8 +370,15 @@ static void CreatePCMainMenu(u8 whichMenu, s16 *windowIdPtr)
 void CB2_ExitPokeStorage(void)
 {
     sPreviousBoxOption = GetCurrentBoxOption();
-    gFieldCallback = FieldTask_ReturnToPcMenu;
+    if (!sSkipReturnToPcMenu)
+        gFieldCallback = FieldTask_ReturnToPcMenu;
+    sSkipReturnToPcMenu = FALSE;
     SetMainCallback2(CB2_ReturnToField);
+}
+
+void SetPokeStorageSkipPcMenu(bool8 skip)
+{
+    sSkipReturnToPcMenu = skip;
 }
 
 void ResetPokemonStorageSystem(void)

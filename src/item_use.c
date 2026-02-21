@@ -30,6 +30,8 @@
 #include "task.h"
 #include "teachy_tv.h"
 #include "tm_case.h"
+#include "pokemon_storage_system.h"
+#include "pokemon_storage_system_internal.h"
 #include "vs_seeker.h"
 #include "constants/sound.h"
 #include "constants/items.h"
@@ -67,6 +69,8 @@ static void UseTownMapFromBag(void);
 static void Task_UseTownMapFromField(u8 taskId);
 static void UseFameCheckerFromBag(void);
 static void Task_UseFameCheckerFromField(u8 taskId);
+static void UsePortablePcFromBag(void);
+static void Task_UsePortablePcFromField(u8 taskId);
 static void Task_BattleUse_StatBooster_DelayAndPrint(u8 taskId);
 static void Task_BattleUse_StatBooster_WaitButton_ReturnToBattle(u8 taskId);
 
@@ -929,4 +933,37 @@ void ItemUseOutOfBattle_ReduceEV(u8 taskId)
 {
     gItemUseCB = ItemUseCB_ReduceEV;
     DoSetUpItemUseCallback(taskId);
+}
+
+void FieldUseFunc_PortablePc(u8 taskId)
+{
+    if (gTasks[taskId].data[3] == 0)
+    {
+        ItemMenu_SetExitCallback(UsePortablePcFromBag);
+        ItemMenu_StartFadeToExitCallback(taskId);
+    }
+    else
+    {
+        StopPokemonLeagueLightingEffectTask();
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_UsePortablePcFromField;
+    }
+}
+
+static void UsePortablePcFromBag(void)
+{
+    SetPokeStorageSkipPcMenu(TRUE);
+    EnterPokeStorage(0);
+}
+
+static void Task_UsePortablePcFromField(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        SetFieldCallback2ForItemUse();
+        SetPokeStorageSkipPcMenu(TRUE);
+        EnterPokeStorage(0);
+        DestroyTask(taskId);
+    }
 }

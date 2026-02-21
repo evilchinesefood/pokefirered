@@ -379,8 +379,6 @@ const u8 gText_Empty12[] = _("");
 const u8 gText_CancelBattle[] = _("Cancel the battle?");
 const u8 gText_TurnOff[] = _("TURN OFF");
 const u8 gText_Decoration[] = _("もようがえ");
-const u8 gText_MenuPC[] = _("PC");
-const u8 gText_PokemonStorage[] = _("POKéMON STORAGE");
 const u8 gText_ItemStorage[] = _("ITEM STORAGE");
 const u8 gText_Mailbox[] = _("MAILBOX");
 const u8 gText_DepositItem2[] = _("DEPOSIT ITEM");
@@ -915,7 +913,6 @@ const u8 gStartMenuDesc_Bag[] = _("Equipped with pockets for storing items\nyou 
 const u8 gStartMenuDesc_Player[] = _("Check your money and other game data.");
 const u8 gStartMenuDesc_Save[] = _("Save your game with a complete record\nof your progress to take a break.");
 const u8 gStartMenuDesc_Option[] = _("Adjust various game settings such as text\nspeed, game rules, etc.");
-const u8 gStartMenuDesc_PC[] = _("Access your POKéMON and\nitem storage.");
 const u8 gStartMenuDesc_Exit[] = _("Close this MENU window.");
 const u8 gStartMenuDesc_Retire[] = _("Retire from the SAFARI GAME and return to\nthe registration counter.");
 
