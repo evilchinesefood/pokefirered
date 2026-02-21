@@ -181,9 +181,6 @@ gText_Oak_ShinyOdds::
     .string "Select the desired SHINY POKéMON\n"
     .string "encounter rate.$"
 
-gText_Oak_DayNight::
-    .string "Would you like to enable the\n"
-    .string "Day/Night visual cycle?$"
 
 gText_ShinyOdds_4096::
     .string "1/4096 (Modern)$"
