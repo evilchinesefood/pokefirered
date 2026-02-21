@@ -1023,6 +1023,9 @@ Text_MoveCanOnlyBeLearnedOnce::
 	.string "once for free. Is that okay?$"
 
 EventScript_ResetAllMapFlags::
+	setflag FLAG_GOT_ROOT
+	setflag FLAG_GOT_CLAW
+	setflag FLAG_JIRACHI_WISH
 	setflag FLAG_HIDE_OAK_IN_HIS_LAB
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
@@ -1093,8 +1096,17 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_R23_GUYS
 	setflag FLAG_SEVEN_SEVII
 	setflag FLAG_CELEBI_EVENT
+	setflag FLAG_SHOW_ELITE_FOUR
 	setflag FLAG_MOM_CHAMP
-	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
+	setflag FLAG_GROUND_TRAINER
+	setflag FLAG_WATER_TRAINER              
+	setflag FLAG_ICE_TRAINER         
+	setflag FLAG_STEEL_TRAINER               
+	setflag FLAG_BRO_TRAINER              
+	setflag FLAG_SIS_TRAINER            
+	setflag FLAG_ROCK_TRAINER              
+	setflag FLAG_DRAGON_TRAINER  
+	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 250
 	end
 
 	.include "data/scripts/hall_of_fame.inc"
@@ -1294,6 +1306,7 @@ VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman::
 	end
 
 VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker::
+	call_if_unset FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_AmongUs
 	msgbox VermilionCity_PokemonCenter_1F_Text_ExplainVSSeeker
 	release
 	end
@@ -1304,6 +1317,7 @@ VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker::
 VermilionCity_PokemonCenter_1F_EventScript_UpgradeVSSeeker::
 	lock
 	faceplayer
+	call_if_unset FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_AmongUs
 	msgbox VermilionCity_PokemonCenter_1F_Text_Upgrade
 	setflag FLAG_VS_SEEKER_UPGRADE
 	playfanfare MUS_OBTAIN_KEY_ITEM
@@ -1315,6 +1329,14 @@ VermilionCity_PokemonCenter_1F_EventScript_UpgradeVSSeeker::
 	msgbox VermilionCity_PokemonCenter_1F_Text_ExplainUpgrade
 	release
 	end
+
+VermilionCity_PokemonCenter_1F_EventScript_AmongUs::
+	msgbox VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain
+	setflag FLAG_GOT_VS_SEEKER
+	giveitem ITEM_VS_SEEKER
+	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
+	msgbox VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches
+	return
 
 
 Std_PutItemAway::
@@ -1429,3 +1451,16 @@ Text_TestMsg::
 
 	.include "data/maps/FishermansHouse/scripts.inc"
 	.include "data/maps/FishermansHouse/text.inc"
+
+	.include "data/maps/DownwardBeach/scripts.inc"
+	.include "data/maps/DownwardBeach/text.inc"
+
+	.include "data/maps/DownwardBeachConnection/scripts.inc"
+	.include "data/maps/DownwardBeachConnection/text.inc"
+
+	.include "data/maps/TwoIsland_SouthernCave/scripts.inc"
+	.include "data/maps/TwoIsland_SouthernCave/text.inc"
+
+	.include "data/maps/TwoIsland_SouthSide_Cave_B1F/scripts.inc"
+	.include "data/maps/TwoIsland_SouthSide_Cave_B1F/text.inc"
+

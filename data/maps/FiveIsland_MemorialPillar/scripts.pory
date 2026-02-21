@@ -301,11 +301,16 @@ FiveIsland_MemorialPillar_EventScript_CelebiQuest3::
 	release
 	end
 
+FiveIsland_MemorialPillar_EventScript_Frog::
+	msgbox FiveIsland_MemorialPillar_Text_Frog, MSGBOX_NPC
+	release
+	end
+
 FiveIsland_MemorialPillar_Text_CelebiQuest::
 	.string "Once a lonely ONIX pined\n"
     .string "for a friend to join him\l"
     .string "by his side.\p"
-    .string "Then PSYDUCK swam unto his shore\n"
+    .string "Then SQUIRTLE swam unto his shore\n"
     .string "and forged a bond forevermore.\p"
     .string "To the FOREST of BERRIES\n"
     .string "they made their way\l"
@@ -323,7 +328,7 @@ FiveIsland_MemorialPillar_Text_CelebiQuest::
 	.string "of embers…\p"
 	.string "DELIBIRD down the ice cellar…\p"
 	.string "NATU to its puzzled hole…\p"
-	.string "PSYDUCK beneath the fallen waves…\p"
+	.string "SQUIRTLE beneath the fallen waves…\p"
 	.string "And ONIX to its island home,\n"
 	.string "once again left all alone.\p"
 	.string "Flowers, rocks, and One toe marks,\n"
@@ -336,7 +341,9 @@ FiveIsland_MemorialPillar_Text_CelebiQuest2::
     .string "Lululalala!$"
 
 FiveIsland_MemorialPillar_Text_CelebiQuest3::
-    .string "What was that green thing?$"
+    .string "What was that green thing?\p"
+    .string "It seemed like something?\n"
+    .string "Out of Berry Forest1$"
 
 FiveIsland_MemorialPillar_Movement_Celebi::
 	walk_down
