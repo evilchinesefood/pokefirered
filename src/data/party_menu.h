@@ -1092,7 +1092,7 @@ static struct
     [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCB_FieldMove},
 };
 
-static const u8 sPartyMenuAction_SummarySwitchCancel[]   = {CURSOR_OPTION_SUMMARY,  CURSOR_OPTION_RELEARN,   CURSOR_OPTION_SWITCH,    CURSOR_OPTION_CANCEL1};
+static const u8 sPartyMenuAction_SummarySwitchCancel[]   = {CURSOR_OPTION_SUMMARY,  CURSOR_OPTION_SWITCH,    CURSOR_OPTION_CANCEL1};
 static const u8 sPartyMenuAction_ShiftSummaryCancel[]    = {CURSOR_OPTION_SHIFT,    CURSOR_OPTION_SUMMARY,   CURSOR_OPTION_CANCEL1};
 static const u8 sPartyMenuAction_SendOutSummaryCancel[]  = {CURSOR_OPTION_SEND_OUT, CURSOR_OPTION_SUMMARY,   CURSOR_OPTION_CANCEL1};
 static const u8 sPartyMenuAction_SummaryCancel[]         = {CURSOR_OPTION_SUMMARY,  CURSOR_OPTION_CANCEL1};
