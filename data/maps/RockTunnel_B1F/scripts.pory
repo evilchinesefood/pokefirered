@@ -41,4 +41,16 @@ RockTunnel_B1F_EventScript_Winston::
 	trainerbattle_single TRAINER_POKEMANIAC_WINSTON, RockTunnel_B1F_Text_WinstonIntro, RockTunnel_B1F_Text_WinstonDefeat
 	msgbox RockTunnel_B1F_Text_WinstonPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+RockTunnel_B1F_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	msgbox RockTunnel_B1F_Text_OrbingCheck, MSGBOX_DEFAULT
+	release
+	end
+
+RockTunnel_B1F_Text_OrbingCheck:
+	.string "The orbs are glowing with a strange\n"
+	.string "light...$"
+
 `

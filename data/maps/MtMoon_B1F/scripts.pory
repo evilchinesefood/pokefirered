@@ -1,4 +1,16 @@
 raw `
 MtMoon_B1F_MapScripts::
 	.byte 0
+
+MtMoon_B1F_EventScript_Sableye::
+	lock
+	faceplayer
+	msgbox MtMoon_B1F_Text_Sableye, MSGBOX_DEFAULT
+	release
+	end
+
+MtMoon_B1F_Text_Sableye:
+	.string "A strange shadow lurks in\n"
+	.string "the darkness...$"
+
 `

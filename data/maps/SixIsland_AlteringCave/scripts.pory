@@ -47,4 +47,33 @@ SixIsland_AlteringCave_EventScript_PostRematchSpike::
 	cleartrainerflag TRAINER_SPIKE
 	release
 	end
+
+SixIsland_AlteringCave_EventScript_Credits::
+	msgbox SixIsland_AlteringCave_Text_Credits, MSGBOX_SIGN
+	end
+
+SixIsland_AlteringCave_Text_Credits:
+	.string "Credits...$"
+
+SixIsland_AlteringCave_EventScript_Credits2::
+	msgbox SixIsland_AlteringCave_Text_Credits2, MSGBOX_SIGN
+	end
+
+SixIsland_AlteringCave_Text_Credits2:
+	.string "Credits...$"
+
+SixIsland_AlteringCave_EventScript_Credits3::
+	msgbox SixIsland_AlteringCave_Text_Credits3, MSGBOX_SIGN
+	end
+
+SixIsland_AlteringCave_Text_Credits3:
+	.string "Credits...$"
+
+SixIsland_AlteringCave_EventScript_Credits4::
+	msgbox SixIsland_AlteringCave_Text_Credits4, MSGBOX_SIGN
+	end
+
+SixIsland_AlteringCave_Text_Credits4:
+	.string "Credits...$"
+
 `

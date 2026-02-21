@@ -261,4 +261,12 @@ TwoIsland_EventScript_JoyfulGameCornerSign::
 TwoIsland_EventScript_FastCurrentSign::
 	msgbox TwoIsland_Text_DangerFastCurrent, MSGBOX_SIGN
 	end
+
+TwoIsland_EventScript_CaveSign::
+	msgbox TwoIsland_Text_CaveSign, MSGBOX_SIGN
+	end
+
+TwoIsland_Text_CaveSign:
+	.string "CAPE BRINK - Ahead$"
+
 `

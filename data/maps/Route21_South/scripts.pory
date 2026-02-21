@@ -1,4 +1,16 @@
 raw `
 Route21_South_MapScripts::
 	.byte 0
+
+Route21_South_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	msgbox Route21_South_Text_OrbingCheck, MSGBOX_DEFAULT
+	release
+	end
+
+Route21_South_Text_OrbingCheck:
+	.string "The water around here has an\n"
+	.string "unusual glow to it...$"
+
 `

@@ -18,4 +18,16 @@ SevenIsland_EventScript_OldWoman::
 SevenIsland_EventScript_Scientist::
 	msgbox SevenIsland_Text_IslandVirtuallyUntouched, MSGBOX_NPC
 	end
+
+SevenIsland_EventScript_Guy::
+	lock
+	faceplayer
+	msgbox SevenIsland_Text_Guy, MSGBOX_DEFAULT
+	release
+	end
+
+SevenIsland_Text_Guy:
+	.string "I train here every day.\n"
+	.string "The air is so fresh!$"
+
 `

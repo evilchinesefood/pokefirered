@@ -149,4 +149,16 @@ SilphCo_11F_EventScript_Grunt2::
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_41, SilphCo_11F_Text_Grunt2Intro, SilphCo_11F_Text_Grunt2Defeat
 	msgbox SilphCo_11F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SilphCo_11F_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	msgbox SilphCo_11F_Text_OrbingCheck, MSGBOX_DEFAULT
+	release
+	end
+
+SilphCo_11F_Text_OrbingCheck:
+	.string "The orbs are glowing with a strange\n"
+	.string "light...$"
+
 `

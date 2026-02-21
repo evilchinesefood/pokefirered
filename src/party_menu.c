@@ -188,6 +188,7 @@ static void CreateCancelConfirmPokeballSprites(void);
 static void CreateCancelConfirmWindows(bool8 chooseMultiple);
 static void Task_ExitPartyMenu(u8 taskId);
 static void FreePartyPointers(void);
+static void CB2_ShowMoveRelearner(void);
 static void PartyPaletteBufferCopy(u8 offset);
 static void DisplayPartyPokemonDataForMultiBattle(u8 slot);
 static void DisplayPartyPokemonDataForChooseMultiple(u8 slot);
@@ -4310,7 +4311,7 @@ static void CB2_UseItem(void)
     if (ItemId_GetPocket(gSpecialVar_ItemId) == POCKET_TM_CASE && PSA_IsCancelDisabled() == TRUE)
     {
         GiveMoveToMon(&gPlayerParty[gPartyMenu.slotId], ItemIdToBattleMoveId(gSpecialVar_ItemId));
-        AdjustFriendship(&gPlayerParty[gPlayerMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
+        AdjustFriendship(&gPlayerParty[gPartyMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
     else

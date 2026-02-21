@@ -460,4 +460,16 @@ PalletTown_EventScript_SignLadyStartShowSign::
 	call PalletTown_EventScript_SignLadyShowSign
 	release
 	end
+
+PalletTown_EventScript_Science::
+	lock
+	faceplayer
+	msgbox PalletTown_Text_Science, MSGBOX_DEFAULT
+	release
+	end
+
+PalletTown_Text_Science:
+	.string "Science is amazing!\n"
+	.string "POKEMON are truly fascinating.$"
+
 `

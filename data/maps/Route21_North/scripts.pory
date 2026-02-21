@@ -1,4 +1,16 @@
 raw `
 Route21_North_MapScripts::
 	.byte 0
+
+Route21_North_EventScript_Clamperl::
+	lock
+	faceplayer
+	msgbox Route21_North_Text_Clamperl, MSGBOX_DEFAULT
+	release
+	end
+
+Route21_North_Text_Clamperl:
+	.string "I'm trying to catch a CLAMPERL.\n"
+	.string "They're so hard to find!$"
+
 `

@@ -94,4 +94,16 @@ SeafoamIslands_B3F_Movement_RideCurrentClose::
 	walk_fast_down
 	walk_fast_down
 	step_end
+
+SeafoamIslands_B3F_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	msgbox SeafoamIslands_B3F_Text_OrbingCheck, MSGBOX_DEFAULT
+	release
+	end
+
+SeafoamIslands_B3F_Text_OrbingCheck:
+	.string "The orbs are glowing with a strange\n"
+	.string "light...$"
+
 `

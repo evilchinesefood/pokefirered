@@ -5,4 +5,16 @@ CeladonCity_Condominiums_Roof_MapScripts::
 CeladonCity_Condominiums_Roof_EventScript_Sign::
 	msgbox CeladonCity_Condominiums_Roof_Text_IKnowEverything, MSGBOX_SIGN
 	end
+
+CeladonCity_Condominiums_Roof_EventScript_Whitney::
+	lock
+	faceplayer
+	msgbox CeladonCity_Condominiums_Roof_Text_Whitney, MSGBOX_DEFAULT
+	release
+	end
+
+CeladonCity_Condominiums_Roof_Text_Whitney:
+	.string "The view from up here is\n"
+	.string "amazing!$"
+
 `

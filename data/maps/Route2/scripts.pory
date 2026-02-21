@@ -9,4 +9,16 @@ Route2_EventScript_RouteSign::
 Route2_EventScript_DiglettsCaveSign::
 	msgbox Route2_Text_DiglettsCave, MSGBOX_SIGN
 	end
+
+Route2_EventScript_Skitty::
+	lock
+	faceplayer
+	msgbox Route2_Text_Skitty, MSGBOX_DEFAULT
+	release
+	end
+
+Route2_Text_Skitty:
+	.string "My SKITTY is the cutest\n"
+	.string "POKEMON ever!$"
+
 `

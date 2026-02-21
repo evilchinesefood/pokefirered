@@ -346,4 +346,11 @@ FiveIsland_MemorialPillar_Movement_Celebi::
 	walk_down
 	step_end
 
+FiveIsland_MemorialPillar_EventScript_Frog::
+	lock
+	faceplayer
+	msgbox FiveIsland_MemorialPillar_Text_Frog, MSGBOX_DEFAULT
+	release
+	end
+
 `

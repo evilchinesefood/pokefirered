@@ -395,4 +395,16 @@ ThreeIsland_EventScript_IslandSign::
 ThreeIsland_EventScript_Biker6::
 	msgbox ThreeIsland_Text_IslandBelongsToUs, MSGBOX_NPC
 	end
+
+ThreeIsland_EventScript_Cruel::
+	lock
+	faceplayer
+	msgbox ThreeIsland_Text_Cruel, MSGBOX_DEFAULT
+	release
+	end
+
+ThreeIsland_Text_Cruel:
+	.string "Some people can be so cruel\n"
+	.string "to POKEMON...$"
+
 `

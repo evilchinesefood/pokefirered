@@ -274,7 +274,7 @@ SixIsland_DottedHole_SapphireRoom_EventScript_PostWhitney::
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	giveitem ITEM_RED_ORB
-	setflag FLAG_0x020
+	setflag FLAG_SHINY_STARTER
 	waitmessage
 	waitfanfare 
 	msgbox SixIsland_DottedHole_SapphireRoom_Text_Orbing

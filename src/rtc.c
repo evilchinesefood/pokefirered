@@ -7,6 +7,8 @@
 #define SIOCNT_RTC_READ   0x00
 #define SIOCNT_RTC_WRITE  0x40
 
+void RtcGetStatus(void);
+
 void RtcInit(void)
 {
     // Minimal RTC init

@@ -15,6 +15,7 @@
 #include "clear_save_data_screen.h"
 #include "berry_fix_program.h"
 #include "decompress.h"
+#include "menu.h"
 #include "constants/songs.h"
 
 enum TitleScreenScene
@@ -57,6 +58,7 @@ static void LoadMainTitleScreenPalsAndResetBgs(void);
 static void CB2_FadeOutTransitionToSaveClearScreen(void);
 static void CB2_FadeOutTransitionToBerryFix(void);
 static void LoadSpriteGfxAndPals(void);
+static void ApplyTitleScreenPurpleTint(void);
 #if defined(FIRERED)
 static void SpriteCallback_TitleScreenFlame(struct Sprite *sprite);
 static void Task_FlameSpawner(u8 taskId);
@@ -361,23 +363,26 @@ static const struct WindowTemplate sTitleScreenWinTemplates[] = {
     DUMMY_WIN_TEMPLATE
 };
 
+static const u8 sText_Copyright[] = _("2026 DAVE");
+static const u8 sText_DavesVersion[] = _("DAVES VERSION");
+
 static void PrintCustomText(void)
 {
     u8 windowId;
-    u8 color[3] = { 0, 1, 2 }; // White text
-    u8 logoColor[3] = { 0, 14, 15 }; // Matching logo palette hopefully
-    
+    u8 color[3] = { 0, 1, 2 };
+    u8 logoColor[3] = { 0, 14, 15 };
+
     InitWindows(sTitleScreenWinTemplates);
-    
-    windowId = 0; // Copyright
+
+    windowId = 0;
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, color, 0, _("© 2026 DAVE"));
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, color, 0, sText_Copyright);
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, COPYWIN_FULL);
-    
-    windowId = 1; // Dave's Version
+
+    windowId = 1;
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, logoColor, 0, _("DAVE'S VERSION"));
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, logoColor, 0, sText_DavesVersion);
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, COPYWIN_FULL);
 }
@@ -1007,23 +1012,24 @@ static void LoadSpriteGfxAndPals(void)
 {
     s32 i;
     u16 purpleFlames[16];
+    struct SpritePalette purplePal;
 
     for (i = 0; i < NELEMS(sSpriteSheets); i++)
         LoadCompressedSpriteSheet(&sSpriteSheets[i]);
-    
-    // Tint flames to purple
+
     for (i = 0; i < 16; i++)
     {
         u16 color = sFlames_Pal[i];
         u8 r = GET_R(color);
         u8 g = GET_G(color);
         u8 b = GET_B(color);
-        purpleFlames[i] = RGB2(r, 0, b); // Kill green for purple
+        purpleFlames[i] = RGB2(r, 0, b);
     }
-    
-    struct SpritePalette purplePal = { purpleFlames, PAL_TAG_DEFAULT };
+
+    purplePal.data = purpleFlames;
+    purplePal.tag = PAL_TAG_DEFAULT;
     LoadSpritePalette(&purplePal);
-    LoadSpritePalette(&sSpritePals[1]); // Slash pal
+    LoadSpritePalette(&sSpritePals[1]);
 }
 
 #if defined(FIRERED)

@@ -57,7 +57,6 @@ static void Task_BlendPalettesGradually(u8 taskId);
 
 ALIGNED(4) EWRAM_DATA u16 gPlttBufferUnfaded[PLTT_BUFFER_SIZE] = {0};
 ALIGNED(4) EWRAM_DATA u16 gPlttBufferFaded[PLTT_BUFFER_SIZE] = {0};
-ALIGNED(4) EWRAM_DATA u16 gPlttBufferDN[PLTT_BUFFER_SIZE] = {0};
 static EWRAM_DATA u8 sLastDnTime = 0xFF;
 static EWRAM_DATA struct PaletteStruct sPaletteStructs[NUM_PALETTE_STRUCTS] = {0};
 EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
@@ -107,8 +106,7 @@ void TransferPlttBuffer(void)
     {
         if (sPlttBufferTransferPending || currentTime != sLastDnTime)
         {
-            ApplyDayNightTint(gPlttBufferFaded, gPlttBufferDN, PLTT_BUFFER_SIZE);
-            DmaCopy16(3, gPlttBufferDN, (void *)PLTT, PLTT_SIZE);
+            ApplyDayNightTint(gPlttBufferFaded, (u16 *)PLTT, PLTT_BUFFER_SIZE);
             sPlttBufferTransferPending = FALSE;
             sLastDnTime = currentTime;
         }

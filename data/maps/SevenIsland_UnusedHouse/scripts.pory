@@ -1,4 +1,16 @@
 raw `
 SevenIsland_UnusedHouse_MapScripts::
 	.byte 0
+
+TwoIsland_EventScript_Casey::
+	lock
+	faceplayer
+	msgbox TwoIsland_Text_Casey, MSGBOX_DEFAULT
+	release
+	end
+
+TwoIsland_Text_Casey:
+	.string "I love baseball and\n"
+	.string "POKEMON!$"
+
 `

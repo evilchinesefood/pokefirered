@@ -18,4 +18,16 @@ FiveIsland_EventScript_BugCatcher::
 FiveIsland_EventScript_Fisher::
 	msgbox FiveIsland_Text_BeenGettingBusierAroundHere, MSGBOX_NPC
 	end
+
+FiveIsland_EventScript_Omar::
+	lock
+	faceplayer
+	msgbox FiveIsland_Text_Omar, MSGBOX_DEFAULT
+	release
+	end
+
+FiveIsland_Text_Omar:
+	.string "The SEVII ISLANDS are a great\n"
+	.string "place to train!$"
+
 `

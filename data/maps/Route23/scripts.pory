@@ -163,4 +163,15 @@ Route23_Items::
 	.2byte ITEM_NONE
 	release
 	end
+
+Route23_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	msgbox Route23_Text_OrbingCheck, MSGBOX_DEFAULT
+	release
+	end
+
+Route23_Text_OrbingCheck:
+	.string "The orbs are glowing with a strange\n"
+	.string "light...$"
 `

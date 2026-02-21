@@ -35,4 +35,27 @@ Route20_EventScript_SeafoamIslandsSign::
 Route20_EventScript_Slowbro::
 	msgbox Route20_Text_Slowbro, MSGBOX_SIGN
 	end
+
+Route20_Mart_EventScript_Clerk::
+	lock
+	faceplayer
+	msgbox Route20_Text_Clerk, MSGBOX_DEFAULT
+	release
+	end
+
+Route20_Text_Clerk:
+	.string "The fish around here are\n"
+	.string "amazing!$"
+
+Route20_EventScript_Relicanth::
+	lock
+	faceplayer
+	msgbox Route20_Text_Relicanth, MSGBOX_DEFAULT
+	release
+	end
+
+Route20_Text_Relicanth:
+	.string "I saw a RELICANTH while diving\n"
+	.string "near SEAFOAM ISLANDS!$"
+
 `

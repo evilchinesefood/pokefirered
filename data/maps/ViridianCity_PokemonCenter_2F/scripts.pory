@@ -32,4 +32,16 @@ ViridianCity_PokemonCenter_2F_EventScript_TradeCenter::
 ViridianCity_PokemonCenter_2F_EventScript_RecordCorner::
 	call CableClub_EventScript_RecordCorner
 	end
+
+ViridianCity_PokemonCenter_2F_EventScript_Pichu::
+	lock
+	faceplayer
+	msgbox ViridianCity_PokemonCenter_2F_Text_Pichu, MSGBOX_DEFAULT
+	release
+	end
+
+ViridianCity_PokemonCenter_2F_Text_Pichu:
+	.string "I have a PICHU that I raised\n"
+	.string "from an Egg!$"
+
 `

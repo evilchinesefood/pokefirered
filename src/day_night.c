@@ -30,6 +30,10 @@ u8 GetCurrentTimeOfDay(void)
 
 void ApplyDayNightTint(u16 *src, u16 *dest, u16 size)
 {
+    u8 timeOfDay;
+    const struct DayNightTint *tint;
+    u16 i;
+
     if (!FlagGet(FLAG_DAY_NIGHT_ENABLED))
     {
         if (src != dest)
@@ -37,7 +41,7 @@ void ApplyDayNightTint(u16 *src, u16 *dest, u16 size)
         return;
     }
 
-    u8 timeOfDay = GetCurrentTimeOfDay();
+    timeOfDay = GetCurrentTimeOfDay();
     if (timeOfDay == DN_TIME_DAY)
     {
         if (src != dest)
@@ -45,19 +49,19 @@ void ApplyDayNightTint(u16 *src, u16 *dest, u16 size)
         return;
     }
 
-    const struct DayNightTint *tint = &sDayNightTints[timeOfDay];
-    
-    for (u16 i = 0; i < size; i++)
+    tint = &sDayNightTints[timeOfDay];
+
+    for (i = 0; i < size; i++)
     {
         u16 color = src[i];
         u8 r = GET_R(color);
         u8 g = GET_G(color);
         u8 b = GET_B(color);
-        
+
         r = (r * tint->r) / 255;
         g = (g * tint->g) / 255;
         b = (b * tint->b) / 255;
-        
+
         dest[i] = RGB2(r, g, b);
     }
 }

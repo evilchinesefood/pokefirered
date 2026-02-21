@@ -55,4 +55,16 @@ MtMoonSquare_EventScript_Nidorino::
 	waitmoncry
 	release
 	end
+
+MtMoonSquare_EventScript_ClawBall::
+	lock
+	faceplayer
+	msgbox MtMoonSquare_Text_ClawBall, MSGBOX_DEFAULT
+	release
+	end
+
+MtMoonSquare_Text_ClawBall:
+	.string "A strange ball with claw marks\n"
+	.string "on it...$"
+
 `

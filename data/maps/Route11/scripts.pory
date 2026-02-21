@@ -5,4 +5,16 @@ Route11_MapScripts::
 Route11_EventScript_DiglettsCaveSign::
 	msgbox Route11_Text_DiglettsCave, MSGBOX_SIGN
 	end
+
+Route11_EventScript_Kecleon::
+	lock
+	faceplayer
+	msgbox Route11_Text_Kecleon, MSGBOX_DEFAULT
+	release
+	end
+
+Route11_Text_Kecleon:
+	.string "Have you ever seen a KECLEON?\n"
+	.string "They can turn invisible!$"
+
 `

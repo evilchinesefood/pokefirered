@@ -281,4 +281,16 @@ VermilionCity_EventScript_Psyduck::
 	waitmoncry
 	release
 	end
+
+VermilionCity_EventScript_Scientist::
+	lock
+	faceplayer
+	msgbox VermilionCity_Text_Scientist, MSGBOX_DEFAULT
+	release
+	end
+
+VermilionCity_Text_Scientist:
+	.string "I'm researching the relationship\n"
+	.string "between POKEMON and electricity.$"
+
 `

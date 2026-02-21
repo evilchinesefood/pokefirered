@@ -5,4 +5,27 @@ Route5_MapScripts::
 Route5_EventScript_UndergroundPathSign::
 	msgbox Route5_Text_UndergroundPathSign, MSGBOX_SIGN
 	end
+
+Route5_EventScript_Bro::
+	lock
+	faceplayer
+	msgbox Route5_Text_Bro, MSGBOX_DEFAULT
+	release
+	end
+
+Route5_Text_Bro:
+	.string "My sister and I are training\n"
+	.string "to challenge the ELITE FOUR!$"
+
+Route5_EventScript_Sis::
+	lock
+	faceplayer
+	msgbox Route5_Text_Sis, MSGBOX_DEFAULT
+	release
+	end
+
+Route5_Text_Sis:
+	.string "My brother thinks he is so\n"
+	.string "tough, but I always win!$"
+
 `

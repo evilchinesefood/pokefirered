@@ -31,6 +31,7 @@
 #include "field_specials.h"
 #include "pokedex_screen.h"
 #include "pokemon_storage_system.h"
+#include "pokemon_storage_system_internal.h"
 #include "item_pc.h"
 #include "trainer_card.h"
 #include "option_menu.h"

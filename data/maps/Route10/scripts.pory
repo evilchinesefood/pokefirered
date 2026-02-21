@@ -16,4 +16,24 @@ Route10_EventScript_SouthRockTunnelSign::
 Route10_EventScript_PowerPlantSign::
 	msgbox Route10_Text_PowerPlant, MSGBOX_SIGN
 	end
+
+Route10_EventScript_Girl::
+	lock
+	faceplayer
+	msgbox Route10_Text_Girl, MSGBOX_DEFAULT
+	release
+	end
+
+Route10_Text_Girl:
+	.string "I found a strange rock here.\n"
+	.string "I wonder what it is...$"
+
+Route10_EventScript_Rock::
+	msgbox Route10_Text_Rock, MSGBOX_SIGN
+	end
+
+Route10_Text_Rock:
+	.string "It's a peculiar rock.\n"
+	.string "It seems to be humming...$"
+
 `

@@ -39,4 +39,16 @@ SixIsland_Text_Blue2::
 SixIsland_EventScript_IslandSign::
 	msgbox SixIsland_Text_IslandSign, MSGBOX_SIGN
 	end
+
+SixIsland_EventScript_Speedy::
+	lock
+	faceplayer
+	msgbox SixIsland_Text_Speedy, MSGBOX_DEFAULT
+	release
+	end
+
+SixIsland_Text_Speedy:
+	.string "I like to go for walks around\n"
+	.string "the island at night.$"
+
 `

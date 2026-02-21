@@ -127,4 +127,7 @@ OneIsland_KindleRoad_EmberSpa_Text_Rocket2PostBattle::
 	.string "Our MASTER is a certifed\n"
 	.string "SLUGMA expert!$"
 
+OneIsland_EventScript_Reset::
+	end
+
 `

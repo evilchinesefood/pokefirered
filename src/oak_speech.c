@@ -37,13 +37,11 @@ struct OakSpeechResources
     void *oakSpeechBackgroundTiles;
     void *trainerPicTilemap;
     void *pikachuIntroTilemap;
-    void *unused1;
     u16 hasPlayerBeenNamed;
     u16 currentPage;
     u16 windowIds[NUM_INTRO_WINDOWS];
     u8 textColor[3];
     u8 textSpeed;
-    u8 unused2[0x1800];
     u8 bg2TilemapBuffer[0x400];
     u8 bg1TilemapBuffer[0x800];
 };
@@ -1599,14 +1597,16 @@ static const u16 sShinyOddsValues[] = {
 
 static void Task_OakSpeech_ShinyOddsSelection(u8 taskId)
 {
+    u8 i;
+
     if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
     {
         gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_NAMES]); // Reuse NAMES window for more options
         PutWindowTilemap(gTasks[taskId].tMenuWindowId);
         DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
         FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
-        
-        for (u8 i = 0; i < 5; i++)
+
+        for (i = 0; i < 5; i++)
         {
             AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, i * 16 + 1, sOakSpeechResources->textColor, 0, sShinyOddsOptions[i]);
         }

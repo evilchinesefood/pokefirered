@@ -42,5 +42,15 @@ DiglettsCave_B1F_EventScript_PostRematchFreddy::
 	release
 	end
 
+DiglettsCave_B1F_EventScript_OrbingCheck::
+	lock
+	faceplayer
+	msgbox DiglettsCave_B1F_Text_OrbingCheck, MSGBOX_DEFAULT
+	release
+	end
+
+DiglettsCave_B1F_Text_OrbingCheck:
+	.string "The orbs are glowing with a strange\n"
+	.string "light...$"
 
 `

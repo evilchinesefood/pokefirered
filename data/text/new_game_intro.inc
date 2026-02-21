@@ -242,7 +242,7 @@ gOakSpeech_Text_WelcomeToTheWorld::
     .string "Hello, there!\n"
     .string "Glad to meet you!\p"
     .string "Welcome to the world of POKéMON!\p"
-    .string "My name is DAVID—\n"
+    .string "My name is DAVID-\n"
     .string "…erm, excuse me…\n"
     .string "PROFESSOR OAK.\p"
     .string "People affectionately refer to me\n"

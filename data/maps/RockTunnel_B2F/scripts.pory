@@ -1,1 +1,14 @@
 mapscripts RockTunnel_B2F_MapScripts {}
+
+raw `
+RockTunnel_B2F_EventScript_ClawBall::
+	lock
+	faceplayer
+	msgbox RockTunnel_B2F_Text_ClawBall, MSGBOX_DEFAULT
+	release
+	end
+
+RockTunnel_B2F_Text_ClawBall:
+	.string "A strange ball with claw marks\n"
+	.string "on it...$"
+`
