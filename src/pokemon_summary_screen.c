@@ -3049,6 +3049,7 @@ static void PokeSum_PrintAbilityNameAndDesc(void)
 static void PokeSum_DrawMoveTypeIcons(void)
 {
     u8 i;
+    const u8 *splitText;
 
     FillWindowPixelBuffer(sMonSummaryScreen->windowIds[5], 0);
 
@@ -3058,10 +3059,39 @@ static void PokeSum_DrawMoveTypeIcons(void)
             continue;
 
         BlitMenuInfoIcon(sMonSummaryScreen->windowIds[5], sMonSummaryScreen->moveTypes[i] + 1, 3, GetMoveNamePrinterYpos(i));
+        
+        switch (gBattleMoves[sMonSummaryScreen->moveIds[i]].split)
+        {
+        case SPLIT_PHYSICAL:
+            splitText = gText_Physical;
+            break;
+        case SPLIT_SPECIAL:
+            splitText = gText_Special;
+            break;
+        default:
+            splitText = gText_Status;
+            break;
+        }
+        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[5], FONT_NORMAL, 38, GetMoveNamePrinterYpos(i), sLevelNickTextColors[0], TEXT_SKIP_DRAW, splitText);
     }
 
     if (sMonSummaryScreen->mode == PSS_MODE_SELECT_MOVE)
+    {
         BlitMenuInfoIcon(sMonSummaryScreen->windowIds[5], sMonSummaryScreen->moveTypes[4] + 1, 3, GetMoveNamePrinterYpos(4));
+        switch (gBattleMoves[sMonSummaryScreen->moveIds[4]].split)
+        {
+        case SPLIT_PHYSICAL:
+            splitText = gText_Physical;
+            break;
+        case SPLIT_SPECIAL:
+            splitText = gText_Special;
+            break;
+        default:
+            splitText = gText_Status;
+            break;
+        }
+        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[5], FONT_NORMAL, 38, GetMoveNamePrinterYpos(4), sLevelNickTextColors[0], TEXT_SKIP_DRAW, splitText);
+    }
 }
 
 static void PokeSum_PrintPageHeaderText(u8 curPageIndex)

@@ -1864,7 +1864,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         {
             value = Random32();
             shinyValue = GET_SHINY_VALUE(value, personality);
-        } while (shinyValue < SHINY_ODDS);
+        } while (shinyValue < GetShinyOdds());
     }
     else if (otIdType == OT_ID_PRESET) //Pokemon has a preset OT ID
     {
@@ -1881,9 +1881,11 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         if (FlagGet(FLAG_SHINY_CREATION))
         {
             u8 nature = personality % NUM_NATURES;  // keep current nature
+            u32 odds = GetShinyOdds();
+            if (odds == 0) odds = 1; // avoid div by zero
             do {
                 personality = Random32();
-                personality = ((((Random() % SHINY_ODDS) ^ (HIHALF(value) ^ LOHALF(value))) ^ LOHALF(personality)) << 16) | LOHALF(personality);
+                personality = ((((Random() % odds) ^ (HIHALF(value) ^ LOHALF(value))) ^ LOHALF(personality)) << 16) | LOHALF(personality);
             } while (nature != GetNatureFromPersonality(personality));  
         }
     }
@@ -2598,9 +2600,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if (attackerHoldEffect == sHoldEffectToType[i][0]
             && type == sHoldEffectToType[i][1])
         {
-            if (IS_TYPE_PHYSICAL(type))
+            if (IS_MOVE_PHYSICAL(move))
                 attack = (attack * (attackerHoldEffectParam + 100)) / 100;
-            else
+            else if (IS_MOVE_SPECIAL(move))
                 spAttack = (spAttack * (attackerHoldEffectParam + 100)) / 100;
             break;
         }
@@ -2677,7 +2679,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION)
         defense /= 2;
 
-    if (IS_TYPE_PHYSICAL(type))
+    if (IS_MOVE_PHYSICAL(move))
     {
         if (gCritMultiplier == 2)
         {
@@ -2732,7 +2734,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (type == TYPE_MYSTERY)
         damage = 0; // is ??? type. does 0 damage.
 
-    if (IS_TYPE_SPECIAL(type))
+    if (IS_MOVE_SPECIAL(move))
     {
         if (gCritMultiplier == 2)
         {
@@ -6182,7 +6184,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
 
     if (species >= 65530 && species <= 65533) //Deoxys
     {
-        if(shinyValue < SHINY_ODDS)
+        if(shinyValue < GetShinyOdds())
             return gMonShinyPaletteTable[SPECIES_DEOXYS].data;
         else
             return gMonPaletteTable[SPECIES_DEOXYS].data;
@@ -6191,7 +6193,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     if (species > SPECIES_EGG)
         return gMonPaletteTable[0].data;
 
-    if (shinyValue < SHINY_ODDS)
+    if (shinyValue < GetShinyOdds())
         return gMonShinyPaletteTable[species].data;
     else
         return gMonPaletteTable[species].data;
@@ -6212,12 +6214,12 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (species >= 65530 && species <= 65533) //Deoxys
     {
-        if(shinyValue < SHINY_ODDS)
+        if(shinyValue < GetShinyOdds())
             return &gMonShinyPaletteTable[SPECIES_DEOXYS];
         else
             return &gMonPaletteTable[SPECIES_DEOXYS];
     }
-    if (shinyValue < SHINY_ODDS)
+    if (shinyValue < GetShinyOdds())
         return &gMonShinyPaletteTable[species];
     else
         return &gMonPaletteTable[species];
@@ -6372,11 +6374,19 @@ bool8 IsMonShiny(struct Pokemon *mon)
     return IsShinyOtIdPersonality(otId, personality);
 }
 
+static u32 GetShinyOdds(void)
+{
+    if (VarGet(VAR_SHINY_RATE) == 0)
+        return 16; // Default to 1/4096 if not set
+    
+    return VarGet(VAR_SHINY_RATE);
+}
+
 static bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
 {
     bool8 retVal = FALSE;
     u32 shinyValue = GET_SHINY_VALUE(otId, personality);
-    if (shinyValue < SHINY_ODDS)
+    if (shinyValue < GetShinyOdds())
         retVal = TRUE;
     return retVal;
 }

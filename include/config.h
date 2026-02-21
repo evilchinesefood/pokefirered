@@ -68,4 +68,6 @@
 #endif // UBFIX
 #endif // MODERN
 
+#define PHYSICAL_SPECIAL_SPLIT
+
 #endif // GUARD_CONFIG_H

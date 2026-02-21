@@ -173,6 +173,33 @@ gText_Oak_AreYouSure_Hardcore::
 	.string "Are you sure? Hard mode,\n"
 	.string "but POKéMON can't be revived.$"
 
+gText_Oak_ExpShare::
+    .string "Would you like to enable\n"
+    .string "party-wide EXP Share?$"
+
+gText_Oak_ShinyOdds::
+    .string "Select the desired SHINY POKéMON\n"
+    .string "encounter rate.$"
+
+gText_Oak_DayNight::
+    .string "Would you like to enable the\n"
+    .string "Day/Night visual cycle?$"
+
+gText_ShinyOdds_4096::
+    .string "1/4096 (Modern)$"
+
+gText_ShinyOdds_512::
+    .string "1/512$"
+
+gText_ShinyOdds_64::
+    .string "1/64$"
+
+gText_ShinyOdds_32::
+    .string "1/32$"
+
+gText_ShinyOdds_1::
+    .string "1/1 (Always)$"
+
 gPikachuIntro_Text_Page4::
 	.string "Thank you for Playing FIRERED\n"
 	.string "REIGNITED and LEAFGREEN REGROWN!\n"

@@ -28,7 +28,7 @@ enum TitleScreenScene
 };
 
 #if   defined(FIRERED)
-#define TITLE_SPECIES SPECIES_CHARIZARD
+#define TITLE_SPECIES SPECIES_GENGAR
 #elif defined(LEAFGREEN)
 #define TITLE_SPECIES SPECIES_VENUSAUR
 #endif
@@ -339,6 +339,49 @@ static const u32 *const sUnused_Tilemaps[] = {
     sUnused_Tilemap6,
 };
 
+static const struct WindowTemplate sTitleScreenWinTemplates[] = {
+    {
+        .bg = 2,
+        .tilemapLeft = 0,
+        .tilemapTop = 18,
+        .width = 30,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 0x380
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 8,
+        .tilemapTop = 10,
+        .width = 14,
+        .height = 2,
+        .paletteNum = 0,
+        .baseBlock = 0x380
+    },
+    DUMMY_WIN_TEMPLATE
+};
+
+static void PrintCustomText(void)
+{
+    u8 windowId;
+    u8 color[3] = { 0, 1, 2 }; // White text
+    u8 logoColor[3] = { 0, 14, 15 }; // Matching logo palette hopefully
+    
+    InitWindows(sTitleScreenWinTemplates);
+    
+    windowId = 0; // Copyright
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, color, 0, _("© 2026 DAVE"));
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+    
+    windowId = 1; // Dave's Version
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+    AddTextPrinterParameterized3(windowId, FONT_SMALL, 0, 0, logoColor, 0, _("DAVE'S VERSION"));
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+}
+
 void CB2_InitTitleScreen(void)
 {
     switch (gMain.state)
@@ -376,6 +419,10 @@ void CB2_InitTitleScreen(void)
         LoadPalette(gGraphics_TitleScreen_BackgroundPals, BG_PLTT_ID(14), PLTT_SIZE_4BPP);
         DecompressAndCopyTileDataToVram(3, sBorderBgTiles, 0, 0, 0);
         DecompressAndCopyTileDataToVram(3, sBorderBgMap, 0, 0, 1);
+        
+        ApplyTitleScreenPurpleTint();
+        PrintCustomText();
+        
         LoadSpriteGfxAndPals();
         break;
     case 2:
@@ -896,6 +943,26 @@ static void ScheduleStopScanlineEffect(void)
     SetGpuReg(REG_OFFSET_BLDY, 0);
 }
 
+static void ApplyTitleScreenPurpleTint(void)
+{
+    u16 i;
+    for (i = 0; i < PLTT_SIZE_4BPP / 2; i++)
+    {
+        u16 color = gPlttBufferUnfaded[BG_PLTT_ID(13) + i];
+        u8 r = GET_R(color);
+        u8 g = GET_G(color);
+        u8 b = GET_B(color);
+        
+        // Purple tint: reduce green, boost blue/red
+        r = (r * 200) / 255;
+        g = (g * 100) / 255;
+        b = (b * 255) / 255;
+        
+        gPlttBufferUnfaded[BG_PLTT_ID(13) + i] = RGB2(r, g, b);
+        gPlttBufferFaded[BG_PLTT_ID(13) + i] = RGB2(r, g, b);
+    }
+}
+
 static void LoadMainTitleScreenPalsAndResetBgs(void)
 {
     u8 taskId;
@@ -910,6 +977,9 @@ static void LoadMainTitleScreenPalsAndResetBgs(void)
     LoadPalette(gGraphics_TitleScreen_BoxArtMonPals, BG_PLTT_ID(13), PLTT_SIZE_4BPP);
     LoadPalette(gGraphics_TitleScreen_BackgroundPals, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
     LoadPalette(gGraphics_TitleScreen_BackgroundPals, BG_PLTT_ID(14), PLTT_SIZE_4BPP);
+    
+    ApplyTitleScreenPurpleTint();
+    
     ResetBgPositions();
     ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_WIN1_ON | DISPCNT_OBJWIN_ON);
     ShowBg(1);
@@ -936,10 +1006,24 @@ static void CB2_FadeOutTransitionToBerryFix(void)
 static void LoadSpriteGfxAndPals(void)
 {
     s32 i;
+    u16 purpleFlames[16];
 
     for (i = 0; i < NELEMS(sSpriteSheets); i++)
         LoadCompressedSpriteSheet(&sSpriteSheets[i]);
-    LoadSpritePalettes(sSpritePals);
+    
+    // Tint flames to purple
+    for (i = 0; i < 16; i++)
+    {
+        u16 color = sFlames_Pal[i];
+        u8 r = GET_R(color);
+        u8 g = GET_G(color);
+        u8 b = GET_B(color);
+        purpleFlames[i] = RGB2(r, 0, b); // Kill green for purple
+    }
+    
+    struct SpritePalette purplePal = { purpleFlames, PAL_TAG_DEFAULT };
+    LoadSpritePalette(&purplePal);
+    LoadSpritePalette(&sSpritePals[1]); // Slash pal
 }
 
 #if defined(FIRERED)

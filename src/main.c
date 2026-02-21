@@ -15,6 +15,7 @@
 #include "scanline_effect.h"
 #include "save_failed_screen.h"
 #include "quest_log.h"
+#include "rtc.h"
 
 extern u32 intr_main[];
 
@@ -127,6 +128,7 @@ void AgbMain()
     m4aSoundInit();
     EnableVCountIntrAtLine150();
     InitRFU();
+    RtcInit();
     CheckForFlashMemory();
     InitMainCallbacks();
     InitMapMusic();

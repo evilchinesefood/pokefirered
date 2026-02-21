@@ -839,9 +839,9 @@
 #define FLAG_POSTGAME_TRADES              0x32A
 #define FLAG_FIND_BLUE_LOL             0x32B
 #define FLAG_GROUNDON_CHECKED               0x32C
-#define FLAG_0x32D               0x32D
-#define FLAG_0x32E               0x32E
-#define FLAG_0x32F               0x32F
+#define FLAG_SHINY_LOCK          0x32D
+#define FLAG_EXP_SHARE_PARTY     0x32E
+#define FLAG_DAY_NIGHT_ENABLED   0x32F
 #define FLAG_0x330               0x330
 #define FLAG_0x331               0x331
 #define FLAG_0x332               0x332

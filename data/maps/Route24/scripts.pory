@@ -53,11 +53,10 @@ Route24_EventScript_RocketTrigger::
 
 Route24_EventScript_NuggetRocket::
 	giveitem_msg Route24_Text_ReceivedNuggetFromMysteryTrainer, ITEM_NUGGET
-	call_if_set FLAG_HARD, Route24_EventScript_NuggetRocketFlag
+	setflag FLAG_HARD_NUGGET
 	return
 
 Route24_EventScript_NuggetRocketFlag::
-	setflag FLAG_HARD_NUGGET
 	return
 
 Route24_EventScript_BattleRocket::

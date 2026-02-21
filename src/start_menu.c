@@ -30,6 +30,8 @@
 #include "field_weather.h"
 #include "field_specials.h"
 #include "pokedex_screen.h"
+#include "pokemon_storage_system.h"
+#include "item_pc.h"
 #include "trainer_card.h"
 #include "option_menu.h"
 #include "save_menu_util.h"
@@ -45,6 +47,7 @@ enum StartMenuOption
     STARTMENU_PLAYER,
     STARTMENU_SAVE,
     STARTMENU_OPTION,
+    STARTMENU_PC,
     STARTMENU_EXIT,
     STARTMENU_RETIRE,
     STARTMENU_PLAYER2,
@@ -84,6 +87,7 @@ static bool8 StartMenuBagCallback(void);
 static bool8 StartMenuPlayerCallback(void);
 static bool8 StartMenuSaveCallback(void);
 static bool8 StartMenuOptionCallback(void);
+static bool8 StartMenuPcCallback(void);
 static bool8 StartMenuExitCallback(void);
 static bool8 StartMenuSafariZoneRetireCallback(void);
 static bool8 StartMenuLinkPlayerCallback(void);
@@ -119,6 +123,7 @@ static const struct MenuAction sStartMenuActionTable[] = {
     { gText_MenuPlayer, {.u8_void = StartMenuPlayerCallback} },
     { gText_MenuSave, {.u8_void = StartMenuSaveCallback} },
     { gText_MenuOption, {.u8_void = StartMenuOptionCallback} },
+    { gText_MenuPC, {.u8_void = StartMenuPcCallback} },
     { gText_MenuExit, {.u8_void = StartMenuExitCallback} },
     { gText_MenuRetire, {.u8_void = StartMenuSafariZoneRetireCallback} },
     { gText_MenuPlayer, {.u8_void = StartMenuLinkPlayerCallback} }
@@ -141,6 +146,7 @@ static const u8 *const sStartMenuDescPointers[] = {
     gStartMenuDesc_Player,
     gStartMenuDesc_Save,
     gStartMenuDesc_Option,
+    gStartMenuDesc_PC,
     gStartMenuDesc_Exit,
     gStartMenuDesc_Retire,
     gStartMenuDesc_Player
@@ -178,6 +184,16 @@ static const struct WindowTemplate sSaveStatsWindowTemplate = {
     .height = 9,
     .paletteNum = 13,
     .baseBlock = 0x008
+};
+
+static const struct WindowTemplate sPcSubmenuWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 13,
+    .tilemapTop = 1,
+    .width = 9,
+    .height = 6,
+    .paletteNum = 15,
+    .baseBlock = 0x100
 };
 
 static ALIGNED(2) const u8 sTextColor_StatName[] = { 1, 2, 3 };
@@ -219,6 +235,7 @@ static void SetUpStartMenu_NormalField(void)
     AppendToStartMenuItems(STARTMENU_PLAYER);
     AppendToStartMenuItems(STARTMENU_SAVE);
     AppendToStartMenuItems(STARTMENU_OPTION);
+    AppendToStartMenuItems(STARTMENU_PC);
     AppendToStartMenuItems(STARTMENU_EXIT);
 }
 
@@ -1010,3 +1027,67 @@ void AppendToList(u8 *list, u8 *cursor, u8 newEntry)
     list[*cursor] = newEntry;
     (*cursor)++;
 }
+
+static void Task_StartMenuPcSubmenu(u8 taskId);
+
+static const struct MenuAction sPcSubmenuActions[] = {
+    { gText_PokemonStorage, {.u8_void = NULL} },
+    { gText_ItemStorage, {.u8_void = NULL} },
+    { gFameCheckerText_Cancel, {.u8_void = NULL} }
+};
+
+static bool8 StartMenuPcCallback(void)
+{
+    PlaySE(SE_SELECT);
+    sDrawStartMenuState[0] = 0;
+    sDrawStartMenuState[1] = 0;
+    CreateTask(Task_StartMenuPcSubmenu, 0);
+    return FALSE;
+}
+
+static void Task_StartMenuPcSubmenu(u8 taskId)
+{
+    switch (gTasks[taskId].data[0])
+    {
+    case 0:
+        gTasks[taskId].data[1] = AddWindow(&sPcSubmenuWindowTemplate);
+        LoadStdWindowGfx(gTasks[taskId].data[1], 0x21D, BG_PLTT_ID(13));
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].data[1], FALSE, 0x21D, 13);
+        PrintMenuTable(gTasks[taskId].data[1], FONT_NORMAL, 15, ARRAY_COUNT(sPcSubmenuActions), sPcSubmenuActions);
+        Menu_InitCursor(gTasks[taskId].data[1], FONT_NORMAL, 0, 0, 15, ARRAY_COUNT(sPcSubmenuActions), 0);
+        CopyWindowToVram(gTasks[taskId].data[1], COPYWIN_FULL);
+        gTasks[taskId].data[0]++;
+        break;
+    case 1:
+        switch (Menu_ProcessInputNoWrapAround())
+        {
+        case 0: // POKEMON STORAGE
+            PlaySE(SE_SELECT);
+            CloseStartMenu();
+            EnterPokeStorage(0);
+            DestroyTask(taskId);
+            break;
+        case 1: // ITEM STORAGE
+            PlaySE(SE_SELECT);
+            CloseStartMenu();
+            ItemPc_Init(0, CB2_ReturnToField);
+            DestroyTask(taskId);
+            break;
+        case 2: // CANCEL
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            ClearStdWindowAndFrame(gTasks[taskId].data[1], TRUE);
+            RemoveWindow(gTasks[taskId].data[1]);
+            gTasks[taskId].data[0]++;
+            break;
+        }
+        break;
+    case 2:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            gTasks[taskId].func = Task_StartMenuHandleInput;
+        }
+        break;
+    }
+}
+

@@ -84,6 +84,12 @@ static void Task_OakSpeech_AreYouSure(u8);
 static void Task_OakSpeech_AreYouSureSelection(u8);
 static void Task_OakSpeech_ShowNuzlockeMenu(u8);
 static void Task_OakSpeech_ClearNuzlockeWindow(u8);
+static void Task_OakSpeech_ExpShare(u8);
+static void Task_OakSpeech_ExpShareSelection(u8);
+static void Task_OakSpeech_ShinyOdds(u8);
+static void Task_OakSpeech_ShinyOddsSelection(u8);
+static void Task_OakSpeech_DayNight(u8);
+static void Task_OakSpeech_DayNightSelection(u8);
 static void Task_OakSpeech_LoadPlayerPic(u8);
 static void Task_OakSpeech_YourNameWhatIsIt(u8);
 static void Task_OakSpeech_FadeOutForPlayerNamingScreen(u8);
@@ -132,6 +138,14 @@ extern const u8 gText_Oak_Nuzlocke[];
 extern const u8 gText_Oak_AreYouSure_Normal[];
 extern const u8 gText_Oak_AreYouSure_Hard[];
 extern const u8 gText_Oak_AreYouSure_Hardcore[];
+extern const u8 gText_Oak_ExpShare[];
+extern const u8 gText_Oak_ShinyOdds[];
+extern const u8 gText_Oak_DayNight[];
+extern const u8 gText_ShinyOdds_4096[];
+extern const u8 gText_ShinyOdds_512[];
+extern const u8 gText_ShinyOdds_64[];
+extern const u8 gText_ShinyOdds_32[];
+extern const u8 gText_ShinyOdds_1[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x16;
@@ -1527,8 +1541,122 @@ static void Task_OakSpeech_ClearNuzlockeWindow(u8 taskId)
     CopyBgTilemapBufferToVram(0);
     CreateFadeOutTask(taskId, 2);
     gTasks[taskId].tTimer = 32;
-    gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;
+    gTasks[taskId].func = Task_OakSpeech_ExpShare;
 }
+
+static void Task_OakSpeech_ExpShare(u8 taskId)
+{
+    OakSpeechPrintMessage(gText_Oak_ExpShare, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_ExpShareSelection;
+}
+
+static void Task_OakSpeech_ExpShareSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = (void(*)(u8))Task_OakSpeech_ShinyOdds; // Hacky cast to match expected flow if needed
+    }
+}
+
+static void Task_OakSpeech_ShinyOdds(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_EXP_SHARE_PARTY);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_EXP_SHARE_PARTY);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
+    
+    OakSpeechPrintMessage(gText_Oak_ShinyOdds, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_ShinyOddsSelection;
+}
+
+static const u8 *const sShinyOddsOptions[] = {
+    gText_ShinyOdds_4096,
+    gText_ShinyOdds_512,
+    gText_ShinyOdds_64,
+    gText_ShinyOdds_32,
+    gText_ShinyOdds_1,
+};
+
+static const u16 sShinyOddsValues[] = {
+    16,
+    128,
+    1024,
+    2048,
+    65535, // 65535 / 65536 is essentially 100%
+};
+
+static void Task_OakSpeech_ShinyOddsSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_NAMES]); // Reuse NAMES window for more options
+        PutWindowTilemap(gTasks[taskId].tMenuWindowId);
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+        FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
+        
+        for (u8 i = 0; i < 5; i++)
+        {
+            AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, i * 16 + 1, sOakSpeechResources->textColor, 0, sShinyOddsOptions[i]);
+        }
+        
+        Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 1, 16, 5, 0);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+        gTasks[taskId].func = Task_OakSpeech_DayNight;
+    }
+}
+
+static void Task_OakSpeech_DayNight(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapAround();
+    if (input == MENU_NOTHING_CHOSEN)
+        return;
+    
+    if (input == MENU_B_PRESSED)
+        input = 0; // Default to first option
+    
+    PlaySE(SE_SELECT);
+    VarSet(VAR_SHINY_RATE, sShinyOddsValues[input]);
+    
+    ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
+    RemoveWindow(gTasks[taskId].tMenuWindowId);
+    
+    OakSpeechPrintMessage(gText_Oak_DayNight, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_DayNightSelection;
+}
+
+static void Task_OakSpeech_DayNightSelection(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_DAY_NIGHT_ENABLED);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_DAY_NIGHT_ENABLED);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
+    
+    gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
+}
+
 
 static void Task_OakSpeech_LoadPlayerPic(u8 taskId)
 {

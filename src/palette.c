@@ -3,6 +3,7 @@
 #include "util.h"
 #include "decompress.h"
 #include "task.h"
+#include "day_night.h"
 
 enum
 {
@@ -56,6 +57,8 @@ static void Task_BlendPalettesGradually(u8 taskId);
 
 ALIGNED(4) EWRAM_DATA u16 gPlttBufferUnfaded[PLTT_BUFFER_SIZE] = {0};
 ALIGNED(4) EWRAM_DATA u16 gPlttBufferFaded[PLTT_BUFFER_SIZE] = {0};
+ALIGNED(4) EWRAM_DATA u16 gPlttBufferDN[PLTT_BUFFER_SIZE] = {0};
+static EWRAM_DATA u8 sLastDnTime = 0xFF;
 static EWRAM_DATA struct PaletteStruct sPaletteStructs[NUM_PALETTE_STRUCTS] = {0};
 EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
 static EWRAM_DATA u32 sPlttBufferTransferPending = 0;
@@ -99,12 +102,16 @@ void FillPalette(u16 value, u16 offset, u16 size)
 
 void TransferPlttBuffer(void)
 {
+    u8 currentTime = GetCurrentTimeOfDay();
     if (!gPaletteFade.bufferTransferDisabled)
     {
-        void *src = gPlttBufferFaded;
-        void *dest = (void *)PLTT;
-        DmaCopy16(3, src, dest, PLTT_SIZE);
-        sPlttBufferTransferPending = FALSE;
+        if (sPlttBufferTransferPending || currentTime != sLastDnTime)
+        {
+            ApplyDayNightTint(gPlttBufferFaded, gPlttBufferDN, PLTT_BUFFER_SIZE);
+            DmaCopy16(3, gPlttBufferDN, (void *)PLTT, PLTT_SIZE);
+            sPlttBufferTransferPending = FALSE;
+            sLastDnTime = currentTime;
+        }
         if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
             UpdateBlendRegisters();
     }

@@ -150,6 +150,7 @@ struct LearnMoveGfxResources
     u8 selectedIndex;
     u16 listMenuScrollPos;
     u16 listMenuScrollRow;
+    MainCallback callback;
 };
 
 static EWRAM_DATA struct LearnMoveGfxResources * sMoveRelearner = NULL;
@@ -366,9 +367,19 @@ static void VBlankCB_MoveRelearner(void)
     TransferPlttBuffer();
 }
 
+static EWRAM_DATA MainCallback sMoveRelearnerCallback = NULL;
+
+void InitMoveRelearner(u8 slot, MainCallback callback)
+{
+    gSpecialVar_0x8004 = slot;
+    sMoveRelearnerCallback = callback;
+    SetMainCallback2(CB2_MoveRelearner_Init);
+}
+
 void TeachMoveRelearnerMove(void)
 {
     LockPlayerFieldControls();
+    sMoveRelearnerCallback = CB2_ReturnToField;
     CreateTask(Task_InitMoveRelearnerMenu, 10);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
 }
@@ -413,7 +424,7 @@ static void MoveRelearnerLoadBgGfx(void)
     }
 }
 
-static void CB2_MoveRelearner_Init(void)
+void CB2_MoveRelearner_Init(void)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     ResetSpriteData();
@@ -422,6 +433,7 @@ static void CB2_MoveRelearner_Init(void)
     sMoveRelearner = AllocZeroed(sizeof(struct LearnMoveGfxResources));
     InitMoveRelearnerStateVariables();
     sMoveRelearner->selectedPartyMember = gSpecialVar_0x8004;
+    sMoveRelearner->callback = sMoveRelearnerCallback;
     MoveRelearnerInitListMenuBuffersEtc();
     SetVBlankCallback(VBlankCB_MoveRelearner);
     MoveRelearnerLoadBgGfx();
@@ -621,7 +633,7 @@ static void MoveRelearnerStateMachine(void)
         {
             FreeAllWindowBuffers();
             Free(sMoveRelearner);
-            SetMainCallback2(CB2_ReturnToField);
+            SetMainCallback2(sMoveRelearner->callback);
         }
         break;
     case MENU_STATE_FADE_FROM_SUMMARY_SCREEN:

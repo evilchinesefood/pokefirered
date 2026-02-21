@@ -456,6 +456,16 @@ extern struct BattleStruct *gBattleStruct;
         typeArg = gBattleMoves[move].type;                            \
 }
 
+#ifdef PHYSICAL_SPECIAL_SPLIT
+#define IS_MOVE_PHYSICAL(move)(gBattleMoves[move].split == SPLIT_PHYSICAL)
+#define IS_MOVE_SPECIAL(move)(gBattleMoves[move].split == SPLIT_SPECIAL)
+#define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
+#else
+#define IS_MOVE_PHYSICAL(move)((gBattleMoves[move].type < TYPE_MYSTERY && gBattleMoves[move].type != TYPE_GHOST) || gBattleMoves[move].type == TYPE_DARK)
+#define IS_MOVE_SPECIAL(move)((gBattleMoves[move].type > TYPE_MYSTERY && gBattleMoves[move].type != TYPE_DARK) || gBattleMoves[move].type == TYPE_GHOST)
+#define IS_MOVE_STATUS(move)(gBattleMoves[move].power == 0)
+#endif
+
 #define IS_TYPE_PHYSICAL(moveType)((moveType < TYPE_MYSTERY && moveType != TYPE_GHOST) || moveType == TYPE_DARK) // Doing dark/ghost switch this way to preserve IDs for pkhex/trade functionality
 #define IS_TYPE_SPECIAL(moveType)((moveType > TYPE_MYSTERY && moveType != TYPE_DARK) || moveType == TYPE_GHOST)
 

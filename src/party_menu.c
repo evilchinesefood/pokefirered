@@ -24,6 +24,7 @@
 #include "item.h"
 #include "item_menu.h"
 #include "item_use.h"
+#include "learn_move.h"
 #include "link.h"
 #include "link_rfu.h"
 #include "load_save.h"
@@ -149,6 +150,7 @@ struct PartyMenuBox
 static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);
 static void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);
 static void CursorCB_Summary(u8 taskId);
+static void CursorCB_Relearn(u8 taskId);
 static void CursorCB_Switch(u8 taskId);
 static void CursorCB_Cancel1(u8 taskId);
 static void CursorCB_Item(u8 taskId);
@@ -3111,6 +3113,18 @@ static void CursorCB_Summary(u8 taskId)
     Task_ClosePartyMenu(taskId);
 }
 
+static void CursorCB_Relearn(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    sPartyMenuInternal->exitCallback = CB2_ShowMoveRelearner;
+    Task_ClosePartyMenu(taskId);
+}
+
+static void CB2_ShowMoveRelearner(void)
+{
+    InitMoveRelearner(gPartyMenu.slotId, CB2_ReturnToPartyMenuFromSummaryScreen);
+}
+
 static void CB2_ShowPokemonSummaryScreen(void)
 {
     if (gPartyMenu.menuType == PARTY_MENU_TYPE_IN_BATTLE)
@@ -4296,9 +4310,7 @@ static void CB2_UseItem(void)
     if (ItemId_GetPocket(gSpecialVar_ItemId) == POCKET_TM_CASE && PSA_IsCancelDisabled() == TRUE)
     {
         GiveMoveToMon(&gPlayerParty[gPartyMenu.slotId], ItemIdToBattleMoveId(gSpecialVar_ItemId));
-        AdjustFriendship(&gPlayerParty[gPartyMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (gSpecialVar_ItemId < ITEM_HM01)
-            RemoveBagItem(gSpecialVar_ItemId, 1);
+        AdjustFriendship(&gPlayerParty[gPlayerMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
     else
@@ -4317,8 +4329,6 @@ static void CB2_UseTMHMAfterForgettingMove(void)
         SetMonMoveSlot(mon, ItemIdToBattleMoveId(gSpecialVar_ItemId), moveIdx);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, move);
-        if (gSpecialVar_ItemId < ITEM_HM01)
-            RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
     else
