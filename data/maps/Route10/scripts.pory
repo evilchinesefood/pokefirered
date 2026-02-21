@@ -107,7 +107,7 @@ Route10_EventScript_RanFromJirachi::
 
 Route10_Text_CrackedRock::
 	.string "The rock is cracked.\p"
-	.string "It looks like something was inside$"
+	.string "It looks like something was inside.$"
 
 Route10_Text_Girl::
 	.string "I kinda get weird vibes\n"
