@@ -1588,7 +1588,7 @@ static const u8 *const sShinyOddsOptions[] = {
 static const u16 sShinyOddsValues[] = {
     16,      // 1/4096
     128,     // 1/512
-    2048,    // 1/32
+    1024,    // 1/64
     4096,    // 1/16
     65535,   // 1/1 (Always)
 };
