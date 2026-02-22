@@ -9523,6 +9523,10 @@ static void Cmd_handleballthrow(void)
         else
             catchRate = gSpeciesInfo[gBattleMons[gBattlerTarget].species].catchRate;
 
+        // 25% catch rate boost, capped at 255
+        odds = catchRate * 5 / 4;
+        catchRate = (odds > 255) ? 255 : odds;
+
         if (gLastUsedItem > ITEM_SAFARI_BALL)
         {
             switch (gLastUsedItem)
