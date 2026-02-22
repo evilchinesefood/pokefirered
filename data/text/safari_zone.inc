@@ -14,6 +14,23 @@ SafariZone_Text_OutOfBalls::
 	.string "You are out of SAFARI BALLS!\p"
 	.string "PA: Your SAFARI GAME is over!$"
 
+SafariZone_Text_TimesUpExtend::
+	.string "PA: Ding-dong!\p"
+	.string "Your time is up!\p"
+	.string "Would you like to keep playing\n"
+	.string "for ¥500?$"
+
+SafariZone_Text_ExtendConfirm::
+	.string "PA: Your SAFARI GAME\n"
+	.string "has been extended!\p"
+	.string "Here are 30 SAFARI BALLS.\n"
+	.string "Good luck!$"
+
+SafariZone_Text_NotEnoughMoneyExtend::
+	.string "PA: You don't have enough\n"
+	.string "money.\p"
+	.string "PA: Your SAFARI GAME is over!$"
+
 SafariZone_Text_WelcomeToSafariZone::
 	.string "サファリゾーンへ　ようこそ！\p"
 	.string "ここでは　ホウエンでは　なかなか\n"

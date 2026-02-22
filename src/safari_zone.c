@@ -39,6 +39,12 @@ void ExitSafariMode(void)
     gSafariZoneStepCounter = 0;
 }
 
+void ExtendSafariZone(void)
+{
+    gNumSafariBalls = 30;
+    gSafariZoneStepCounter = 600;
+}
+
 bool8 SafariZoneTakeStep(void)
 {
     if (GetSafariZoneFlag() == FALSE)

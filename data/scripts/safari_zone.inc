@@ -24,6 +24,27 @@ SafariZone_EventScript_Retire::
 SafariZone_EventScript_TimesUp::
 	lockall
 	playse SE_DING_DONG
+	showmoneybox 0, 0
+	msgbox SafariZone_Text_TimesUpExtend, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SafariZone_EventScript_TimesUpExit
+	checkmoney 500
+	goto_if_eq VAR_RESULT, FALSE, SafariZone_EventScript_TimesUpNoMoney
+	removemoney 500
+	updatemoneybox
+	callnative ExtendSafariZone
+	msgbox SafariZone_Text_ExtendConfirm
+	hidemoneybox
+	releaseall
+	end
+
+SafariZone_EventScript_TimesUpNoMoney::
+	msgbox SafariZone_Text_NotEnoughMoneyExtend
+	hidemoneybox
+	goto SafariZone_EventScript_Exit
+	end
+
+SafariZone_EventScript_TimesUpExit::
+	hidemoneybox
 	msgbox SafariZone_Text_TimesUp
 	goto SafariZone_EventScript_Exit
 	end
