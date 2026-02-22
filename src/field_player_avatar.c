@@ -509,15 +509,17 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
     {
-        // Same speed as running
-        if (heldKeys & B_BUTTON)
+        bool8 wantsBoost = ((heldKeys & B_BUTTON) != 0) ^ (gSaveBlock2Ptr->optionsAutoRun != 0);
+        if (wantsBoost)
             PlayerWalkFaster(direction);
         else
             PlayerWalkFast(direction);
         return;
     }
 
-    if ((heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
+    {
+    bool8 wantsToRun = ((heldKeys & B_BUTTON) != 0) ^ (gSaveBlock2Ptr->optionsAutoRun != 0);
+    if (wantsToRun && FlagGet(FLAG_SYS_B_DASH)
         && !IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
     {
         if (PlayerIsMovingOnRockStairs(direction))
@@ -533,6 +535,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
             PlayerWalkSlow(direction);
         else
             PlayerWalkNormal(direction);
+    }
     }
 }
 

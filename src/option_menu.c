@@ -23,6 +23,7 @@ enum
     MENUITEM_BATTLESTYLE,
     MENUITEM_SOUND,
     MENUITEM_BUTTONMODE,
+    MENUITEM_AUTORUN,
     MENUITEM_FRAMETYPE,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
@@ -84,7 +85,7 @@ static const struct WindowTemplate sOptionMenuWinTemplates[] =
         .tilemapLeft = 2,
         .tilemapTop = 7,
         .width = 26,
-        .height = 12,
+        .height = 14,
         .paletteNum = 1,
         .baseBlock = 0x36
     },
@@ -95,7 +96,7 @@ static const struct WindowTemplate sOptionMenuWinTemplates[] =
         .width = 30,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 0x16e
+        .baseBlock = 0x1a2
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -132,7 +133,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {4, 2, 2, 2, 3, 10, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {4, 2, 2, 2, 3, 2, 10, 0};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -141,6 +142,7 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_BATTLESTYLE] = gText_BattleStyle,
     [MENUITEM_SOUND]       = gText_Sound,
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
+    [MENUITEM_AUTORUN]     = gText_AutoRun,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
     [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
 };
@@ -184,6 +186,12 @@ static const u8 *const sButtonTypeOptions[] =
 	gText_ButtonTypeLEqualsA
 };
 
+static const u8 *const sAutoRunOptions[] =
+{
+    gText_BattleSceneOff,
+    gText_BattleSceneOn
+};
+
 static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sOptionMenuTextColor[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_RED};
 
@@ -219,6 +227,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_BATTLESTYLE] = gSaveBlock2Ptr->optionsBattleStyle;
     sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
+    sOptionMenuPtr->option[MENUITEM_AUTORUN] = gSaveBlock2Ptr->optionsAutoRun;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
@@ -345,7 +354,7 @@ static bool8 LoadOptionMenuPalette(void)
     switch (sOptionMenuPtr->loadPaletteState)
     {
     case 0:
-        LoadBgTiles(1, GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
+        LoadBgTiles(1, GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1DE);
         break;
     case 1:
         LoadPalette(GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
@@ -355,7 +364,7 @@ static bool8 LoadOptionMenuPalette(void)
         LoadPalette(GetTextWindowPalette(2), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
         break;
     case 3:
-        LoadStdWindowGfxOnBg(1, 0x1B3, BG_PLTT_ID(3));
+        LoadStdWindowGfxOnBg(1, 0x1E7, BG_PLTT_ID(3));
         break;
     default:
         return TRUE;
@@ -389,7 +398,7 @@ static void Task_OptionMenu(u8 taskId)
             sOptionMenuPtr->loadState++;
             break;
         case 2:
-            LoadBgTiles(1, GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
+            LoadBgTiles(1, GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1DE);
             LoadPalette(GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, BG_PLTT_ID(2), PLTT_SIZE_4BPP);
             BufferOptionMenuString(sOptionMenuPtr->cursorPos);
             break;
@@ -503,6 +512,9 @@ static void BufferOptionMenuString(u8 selection)
     case MENUITEM_BUTTONMODE:
         AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sButtonTypeOptions[sOptionMenuPtr->option[selection]]);
         break;
+    case MENUITEM_AUTORUN:
+        AddTextPrinterParameterized3(1, FONT_NORMAL, x, y, dst, -1, sAutoRunOptions[sOptionMenuPtr->option[selection]]);
+        break;
     case MENUITEM_FRAMETYPE:
         StringCopy(str, gText_FrameType);
         ConvertIntToDecimalStringN(buf, sOptionMenuPtr->option[selection] + 1, 1, 2);
@@ -526,6 +538,7 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     gSaveBlock2Ptr->optionsBattleStyle = sOptionMenuPtr->option[MENUITEM_BATTLESTYLE];
     gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
+    gSaveBlock2Ptr->optionsAutoRun = sOptionMenuPtr->option[MENUITEM_AUTORUN];
     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
@@ -545,22 +558,22 @@ static void DrawOptionMenuBg(void)
     u8 h;
     h = 2;
     
-    FillBgTilemapBufferRect(1, 0x1B3, 1, 2, 1, 1, 3);
-    FillBgTilemapBufferRect(1, 0x1B4, 2, 2, 0x1B, 1, 3);
-    FillBgTilemapBufferRect(1, 0x1B5, 0x1C, 2, 1, 1, 3);
-    FillBgTilemapBufferRect(1, 0x1B6, 1, 3, 1, h, 3);
-    FillBgTilemapBufferRect(1, 0x1B8, 0x1C, 3, 1, h, 3);
-    FillBgTilemapBufferRect(1, 0x1B9, 1, 5, 1, 1, 3);
-    FillBgTilemapBufferRect(1, 0x1BA, 2, 5, 0x1B, 1, 3);
-    FillBgTilemapBufferRect(1, 0x1BB, 0x1C, 5, 1, 1, 3);
-    FillBgTilemapBufferRect(1, 0x1AA, 1, 6, 1, 1, h);
-    FillBgTilemapBufferRect(1, 0x1AB, 2, 6, 0x1A, 1, h);
-    FillBgTilemapBufferRect(1, 0x1AC, 0x1C, 6, 1, 1, h);
-    FillBgTilemapBufferRect(1, 0x1AD, 1, 7, 1, 0x10, h);
-    FillBgTilemapBufferRect(1, 0x1AF, 0x1C, 7, 1, 0x10, h);
-    FillBgTilemapBufferRect(1, 0x1B0, 1, 0x13, 1, 1, h);
-    FillBgTilemapBufferRect(1, 0x1B1, 2, 0x13, 0x1A, 1, h);
-    FillBgTilemapBufferRect(1, 0x1B2, 0x1C, 0x13, 1, 1, h);
+    FillBgTilemapBufferRect(1, 0x1E7, 1, 2, 1, 1, 3);
+    FillBgTilemapBufferRect(1, 0x1E8, 2, 2, 0x1B, 1, 3);
+    FillBgTilemapBufferRect(1, 0x1E9, 0x1C, 2, 1, 1, 3);
+    FillBgTilemapBufferRect(1, 0x1EA, 1, 3, 1, h, 3);
+    FillBgTilemapBufferRect(1, 0x1EC, 0x1C, 3, 1, h, 3);
+    FillBgTilemapBufferRect(1, 0x1ED, 1, 5, 1, 1, 3);
+    FillBgTilemapBufferRect(1, 0x1EE, 2, 5, 0x1B, 1, 3);
+    FillBgTilemapBufferRect(1, 0x1EF, 0x1C, 5, 1, 1, 3);
+    FillBgTilemapBufferRect(1, 0x1DE, 1, 6, 1, 1, h);
+    FillBgTilemapBufferRect(1, 0x1DF, 2, 6, 0x1A, 1, h);
+    FillBgTilemapBufferRect(1, 0x1E0, 0x1C, 6, 1, 1, h);
+    FillBgTilemapBufferRect(1, 0x1E1, 1, 7, 1, 0x10, h);
+    FillBgTilemapBufferRect(1, 0x1E3, 0x1C, 7, 1, 0x10, h);
+    FillBgTilemapBufferRect(1, 0x1E4, 1, 0x13, 1, 1, h);
+    FillBgTilemapBufferRect(1, 0x1E5, 2, 0x13, 0x1A, 1, h);
+    FillBgTilemapBufferRect(1, 0x1E6, 0x1C, 0x13, 1, 1, h);
     CopyBgTilemapBufferToVram(1);
 }
 

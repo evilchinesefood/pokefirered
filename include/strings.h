@@ -947,6 +947,7 @@ extern const u8 gText_TextSpeedFast[];
 extern const u8 gText_TextSpeedInstant[];
 extern const u8 gText_BattleSceneOn[];
 extern const u8 gText_BattleSceneOff[];
+extern const u8 gText_AutoRun[];
 extern const u8 gText_BattleStyleShift[];
 extern const u8 gText_BattleStyleSet[];
 extern const u8 gText_SoundMono[];

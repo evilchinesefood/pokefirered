@@ -886,6 +886,7 @@ const u8 gText_TextSpeedFast[] = _("FAST");
 const u8 gText_TextSpeedInstant[] = _("INSTANT");
 const u8 gText_BattleSceneOn[] = _("ON");
 const u8 gText_BattleSceneOff[] = _("OFF");
+const u8 gText_AutoRun[] = _("AUTO-RUN");
 const u8 gText_BattleStyleShift[] = _("SHIFT");
 const u8 gText_BattleStyleSet[] = _("SET");
 const u8 gText_SoundMono[] = _("MONO");
