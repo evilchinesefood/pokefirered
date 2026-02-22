@@ -97,6 +97,7 @@ static EWRAM_DATA struct WarpData sFixedHoleWarp = {};
 static EWRAM_DATA struct InitialPlayerAvatarState sInitialPlayerAvatarState = {};
 
 EWRAM_DATA bool8 gDisableMapMusicChangeOnMapLoad = MUSIC_DISABLE_OFF;
+EWRAM_DATA bool8 gWildBattleWhiteout = FALSE;
 static EWRAM_DATA u16 sAmbientCrySpecies = SPECIES_NONE;
 static EWRAM_DATA bool8 sIsAmbientCryWaterMon = FALSE;
 
@@ -251,7 +252,10 @@ static void DoWhiteOut(void)
     {
         DoSoftReset();
     }
-    RemoveMoney(&gSaveBlock1Ptr->money, ComputeWhiteOutMoneyLoss());
+    if (gWildBattleWhiteout)
+        gWildBattleWhiteout = FALSE;
+    else
+        RemoveMoney(&gSaveBlock1Ptr->money, ComputeWhiteOutMoneyLoss());
     HealPlayerParty();
     Overworld_ResetStateAfterWhitingOut();
     Overworld_SetWhiteoutRespawnPoint();

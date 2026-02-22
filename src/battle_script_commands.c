@@ -40,6 +40,7 @@
 #include "battle_setup.h"
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
+extern bool8 gWildBattleWhiteout;
 
 #define DEFENDER_IS_PROTECTED ((gProtectStructs[gBattlerTarget].protected) && (gBattleMoves[gCurrentMove].flags & FLAG_PROTECT_AFFECTED))
 
@@ -5383,7 +5384,15 @@ static void Cmd_getmoneyreward(void)
     }
     else
     {
-        moneyReward = ComputeWhiteOutMoneyLoss();
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        {
+            moneyReward = ComputeWhiteOutMoneyLoss();
+        }
+        else
+        {
+            moneyReward = 0;
+            gWildBattleWhiteout = TRUE;
+        }
     }
 
     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, moneyReward);
