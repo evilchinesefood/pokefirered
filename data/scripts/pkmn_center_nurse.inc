@@ -1,29 +1,16 @@
+@ Turbo Nurse Joy: instant heal with chime + brief message
 EventScript_PkmnCenterNurse::
 	goto_if_questlog EventScript_ReleaseEnd
-	goto_if_set FLAG_DONE_POKECENTER_FIRST_USE, Common_EventScript_PkmnCenterNurse_Continue
-	message Text_WelcomeWantToHealPkmn
-	waitmessage
-	multichoice 19, 8, MULTICHOICE_YES_NO, FALSE | (TRUE << 1)
-	switch VAR_RESULT
-	case 0, EventScript_PkmnCenterNurse_HealPkmn
-	case 1 EventScript_PkmnCenterNurse_Goodbye
-	case SCR_MENU_CANCEL, EventScript_PkmnCenterNurse_Goodbye
-	setflag FLAG_DONE_POKECENTER_FIRST_USE
-	case 0, EventScript_PkmnCenterNurse_HealPkmn
-
-Common_EventScript_PkmnCenterNurse_Continue::
-	goto EventScript_PkmnCenterNurse_HealPkmn
-	end
-
-EventScript_PkmnCenterNurse_HealPkmn::
+	special HealPlayerParty
 	incrementgamestat GAME_STAT_USED_POKECENTER
-	message Text_TakeYourPkmnForFewSeconds
-	waitmessage
-	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
 	special SetUsedPkmnCenterQuestLogEvent
 	setflag FLAG_DONE_POKECENTER_FIRST_USE
-	goto EventScript_PkmnCenterNurse_ReturnPkmn
-	end
+	playse SE_USE_ITEM
+	msgbox Text_TurboHeal
+	goto EventScript_PkmnCenterNurse_PlayerTurn
+	return
+
+@ Below labels kept for white_out.inc (after-blackout healing uses full animation)
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterLeft
@@ -36,41 +23,6 @@ EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 	special HealPlayerParty
 	return
 
-EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom::
-	specialvar VAR_RESULT, IsPlayerNotInTrainerTowerLobby
-	goto_if_eq VAR_RESULT, FALSE, EventScript_PkmnCenterNurse_ReturnPkmn
-	specialvar VAR_RESULT, BufferUnionRoomPlayerName
-	copyvar VAR_0x8008, VAR_RESULT
-	goto_if_eq VAR_0x8008, 0, EventScript_PkmnCenterNurse_ReturnPkmn
-	goto_if_eq VAR_0x8008, 1, EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
-	end
-
-EventScript_PkmnCenterNurse_ReturnPkmn::
-	message Text_RestoredPkmnToFullHealth
-	waitmessage
-	applymovement VAR_LAST_TALKED, Movement_Bow
-	waitmovement 0
-	msgbox Text_WeHopeToSeeYouAgain
-	goto EventScript_PkmnCenterNurse_PlayerTurn
-
-	return
-
-EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom::
-	goto_if_set FLAG_SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER, EventScript_PkmnCenterNurse_ReturnPkmn
-	msgbox Text_RestoredPkmnToFullHealth
-	setflag FLAG_SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER
-	message Text_PlayerIsPlayingRightNowGoForIt
-	waitmessage
-	applymovement VAR_LAST_TALKED, Movement_Bow
-	waitmovement 0
-	msgbox Text_WeHopeToSeeYouAgain
-	return
-
-EventScript_PkmnCenterNurse_Goodbye::
-	msgbox Text_WeHopeToSeeYouAgain
-	goto EventScript_PkmnCenterNurse_PlayerTurn
-	return
-
 Movement_Bow::
 	nurse_joy_bow
 	delay_4
@@ -81,3 +33,6 @@ EventScript_PkmnCenterNurse_PlayerTurn::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	return
+
+Text_TurboHeal::
+	.string "Your team was healed!$"
