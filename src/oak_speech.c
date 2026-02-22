@@ -1611,6 +1611,16 @@ static const u16 sExpMultiplierValues[] = {
     200,  // 2x
 };
 
+static const struct WindowTemplate sExpMultiplierWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 2,
+    .tilemapTop = 2,
+    .width = 12,
+    .height = 6,
+    .paletteNum = 15,
+    .baseBlock = 1
+};
+
 static void Task_OakSpeech_ShinyOddsSelection(u8 taskId)
 {
     u8 i;
@@ -1658,7 +1668,7 @@ static void Task_OakSpeech_ExpMultiplierSelection(u8 taskId)
 
     if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
     {
-        gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_HARDMODE]);
+        gTasks[taskId].tMenuWindowId = AddWindow(&sExpMultiplierWindowTemplate);
         PutWindowTilemap(gTasks[taskId].tMenuWindowId);
         DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
         FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
