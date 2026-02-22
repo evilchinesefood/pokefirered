@@ -1,11 +1,16 @@
-@ Turbo Nurse Joy: instant heal with chime + brief message
+@ Turbo Nurse Joy: brief heal animation + instant heal + message
 EventScript_PkmnCenterNurse::
 	goto_if_questlog EventScript_ReleaseEnd
-	special HealPlayerParty
 	incrementgamestat GAME_STAT_USED_POKECENTER
 	special SetUsedPkmnCenterQuestLogEvent
 	setflag FLAG_DONE_POKECENTER_FIRST_USE
-	playse SE_USE_ITEM
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	dofieldeffect FLDEFF_POKECENTER_HEAL
+	special HealPlayerParty
+	delay 60
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
 	msgbox Text_TurboHeal
 	goto EventScript_PkmnCenterNurse_PlayerTurn
 	return
