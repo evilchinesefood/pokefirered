@@ -1861,7 +1861,7 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                                           gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
                                           gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                                           &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                                          B_HEALTHBAR_NUM_TILES, 1 + (u16) (gBattleMons[battlerId].maxHP / 80));
+                                          B_HEALTHBAR_NUM_TILES, 2 * (1 + (u16)(gBattleMons[battlerId].maxHP / 80)));
     }
     else // exp bar
     {
@@ -1872,7 +1872,9 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
 
         if (increment == 0)
             increment = 1;
-        increment = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / increment);
+        increment = 2 * abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / increment);
+        if (increment == 0)
+            increment = 2;
 
         currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
                                           gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
@@ -1988,7 +1990,7 @@ static s32 CalcNewBarValue(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *c
 
     if (maxValue < totalPixels) // handle cases of max var having less pixels than the whole bar
     {
-        s32 incrementInQ = Q_24_8(maxValue) / totalPixels;
+        s32 incrementInQ = 2 * (Q_24_8(maxValue) / totalPixels);
 
         if (receivedValue < 0) // fill bar right
         {
