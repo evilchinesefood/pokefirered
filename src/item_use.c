@@ -26,6 +26,7 @@
 #include "quest_log.h"
 #include "region_map.h"
 #include "script.h"
+#include "event_scripts.h"
 #include "strings.h"
 #include "task.h"
 #include "teachy_tv.h"
@@ -69,8 +70,7 @@ static void UseTownMapFromBag(void);
 static void Task_UseTownMapFromField(u8 taskId);
 static void UseFameCheckerFromBag(void);
 static void Task_UseFameCheckerFromField(u8 taskId);
-static void UsePortablePcFromBag(void);
-static void Task_UsePortablePcFromField(u8 taskId);
+static void ItemUseOnFieldCB_PortablePc(u8 taskId);
 static void Task_BattleUse_StatBooster_DelayAndPrint(u8 taskId);
 static void Task_BattleUse_StatBooster_WaitButton_ReturnToBattle(u8 taskId);
 
@@ -937,33 +937,12 @@ void ItemUseOutOfBattle_ReduceEV(u8 taskId)
 
 void FieldUseFunc_PortablePc(u8 taskId)
 {
-    if (gTasks[taskId].data[3] == 0)
-    {
-        ItemMenu_SetExitCallback(UsePortablePcFromBag);
-        ItemMenu_StartFadeToExitCallback(taskId);
-    }
-    else
-    {
-        StopPokemonLeagueLightingEffectTask();
-        FadeScreen(FADE_TO_BLACK, 0);
-        gTasks[taskId].func = Task_UsePortablePcFromField;
-    }
+    sItemUseOnFieldCB = ItemUseOnFieldCB_PortablePc;
+    SetUpItemUseOnFieldCallback(taskId);
 }
 
-static void UsePortablePcFromBag(void)
+static void ItemUseOnFieldCB_PortablePc(u8 taskId)
 {
-    SetPokeStorageSkipPcMenu(TRUE);
-    EnterPokeStorage(0);
-}
-
-static void Task_UsePortablePcFromField(u8 taskId)
-{
-    if (!gPaletteFade.active)
-    {
-        CleanupOverworldWindowsAndTilemaps();
-        SetFieldCallback2ForItemUse();
-        SetPokeStorageSkipPcMenu(TRUE);
-        EnterPokeStorage(0);
-        DestroyTask(taskId);
-    }
+    ScriptContext_SetupScript(EventScript_PortablePc);
+    DestroyTask(taskId);
 }

@@ -24,6 +24,18 @@ EventScript_PCMan::
 	goto EventScript_PCMainMenu
 	end
 
+EventScript_PortablePc::
+	lockall
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	setvar VAR_0x8004, HELPCONTEXT_PC
+	special Script_SetHelpContext
+	setvar VAR_0x8004, 0
+	playse SE_PC_ON
+	msgbox Text_BootedUpPC
+	setflag FLAG_SELPHY_PC
+	goto EventScript_PCMainMenu
+	end
+
 @ For when the player first arrives on One Island
 EventScript_PCDisabled::
 	msgbox OneIsland_PokemonCenter_1F_Text_UsualPCServicesUnavailable
