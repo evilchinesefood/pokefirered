@@ -3297,7 +3297,8 @@ static void Cmd_getexp(void)
                     {
                         // Shared EXP: show one message with "The party" as the name
                         StringCopy(gBattleTextBuff1, sText_TheParty);
-                        PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_EMPTYSTRING4);
+                        i = STRINGID_EMPTYSTRING4;
+                        PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
                         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 5, gBattleMoveDamage);
                         PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
                         gBattleStruct->sharedExpMsgShown = TRUE;
