@@ -17,9 +17,7 @@ IndigoPlateau_PokemonCenter_1F_OnTransition::
 # 9 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
 	setrespawn SPAWN_INDIGO_PLATEAU
 # 10 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-# 11 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
-	call_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor
+	call_if_set FLAG_IS_CHAMPION, IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor
 # 12 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
 	end
 # 13 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
@@ -41,9 +39,7 @@ IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard::
 # 21 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
 	faceplayer
 # 22 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-# 23 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete
+	goto_if_set FLAG_IS_CHAMPION, IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete
 # 24 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 # 25 "data/maps/IndigoPlateau_PokemonCenter_1F/scripts.pory"

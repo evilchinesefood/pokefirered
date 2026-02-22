@@ -17,13 +17,8 @@ ThreeIsland_DunsparceTunnel_OnTransition::
 # 9 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
 	setworldmapflag FLAG_WORLD_MAP_THREE_ISLAND_DUNSPARCE_TUNNEL
 # 10 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-# 11 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
-	copyvar VAR_0x8008, VAR_RESULT
-# 12 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
-	call_if_eq VAR_0x8008, TRUE, ThreeIsland_DunsparceTunnel_EventScript_SetLayoutDugOut
-# 13 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
-	call_if_eq VAR_0x8008, FALSE, ThreeIsland_DunsparceTunnel_EventScript_MoveProspectorToWall
+	call_if_set FLAG_IS_CHAMPION, ThreeIsland_DunsparceTunnel_EventScript_SetLayoutDugOut
+	call_if_unset FLAG_IS_CHAMPION, ThreeIsland_DunsparceTunnel_EventScript_MoveProspectorToWall
 # 14 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
 	end
 # 15 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
@@ -55,9 +50,7 @@ ThreeIsland_DunsparceTunnel_EventScript_Prospector::
 # 28 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
 	goto_if_set FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL, ThreeIsland_DunsparceTunnel_EventScript_ProspectorAlreadyGaveNugget
 # 29 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-# 30 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, ThreeIsland_DunsparceTunnel_EventScript_ProspectorStruckGold
+	goto_if_set FLAG_IS_CHAMPION, ThreeIsland_DunsparceTunnel_EventScript_ProspectorStruckGold
 # 31 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
 	msgbox ThreeIsland_DunsparceTunnel_Text_ProspectingForGold
 # 32 "data/maps/ThreeIsland_DunsparceTunnel/scripts.pory"
