@@ -197,6 +197,19 @@ gText_ShinyOdds_32::
 gText_ShinyOdds_1::
     .string "1/1 (Always)$"
 
+gText_Oak_ExpMultiplier::
+    .string "Select the EXP multiplier for\n"
+    .string "battles.$"
+
+gText_ExpMult_Half::
+    .string "0.5x$"
+
+gText_ExpMult_Normal::
+    .string "1x (Default)$"
+
+gText_ExpMult_Double::
+    .string "2x$"
+
 gPikachuIntro_Text_Page4::
 	.string "Thank you for Playing FIRERED\n"
 	.string "REIGNITED and LEAFGREEN REGROWN!\n"

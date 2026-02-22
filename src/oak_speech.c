@@ -87,6 +87,8 @@ static void Task_OakSpeech_ExpShareSelection(u8);
 static void Task_OakSpeech_ShinyOdds(u8);
 static void Task_OakSpeech_ShinyOddsSelection(u8);
 static void Task_OakSpeech_ProcessShinyOdds(u8);
+static void Task_OakSpeech_ExpMultiplierSelection(u8);
+static void Task_OakSpeech_ProcessExpMultiplier(u8);
 static void Task_OakSpeech_LoadPlayerPic(u8);
 static void Task_OakSpeech_YourNameWhatIsIt(u8);
 static void Task_OakSpeech_FadeOutForPlayerNamingScreen(u8);
@@ -142,6 +144,10 @@ extern const u8 gText_ShinyOdds_512[];
 extern const u8 gText_ShinyOdds_64[];
 extern const u8 gText_ShinyOdds_32[];
 extern const u8 gText_ShinyOdds_1[];
+extern const u8 gText_Oak_ExpMultiplier[];
+extern const u8 gText_ExpMult_Half[];
+extern const u8 gText_ExpMult_Normal[];
+extern const u8 gText_ExpMult_Double[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x16;
@@ -1593,6 +1599,18 @@ static const u16 sShinyOddsValues[] = {
     65535,   // 1/1 (Always)
 };
 
+static const u8 *const sExpMultiplierOptions[] = {
+    gText_ExpMult_Half,
+    gText_ExpMult_Normal,
+    gText_ExpMult_Double,
+};
+
+static const u16 sExpMultiplierValues[] = {
+    50,   // 0.5x
+    100,  // 1x (default)
+    200,  // 2x
+};
+
 static void Task_OakSpeech_ShinyOddsSelection(u8 taskId)
 {
     u8 i;
@@ -1626,6 +1644,47 @@ static void Task_OakSpeech_ProcessShinyOdds(u8 taskId)
 
     PlaySE(SE_SELECT);
     VarSet(VAR_SHINY_RATE, sShinyOddsValues[input]);
+
+    ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
+    RemoveWindow(gTasks[taskId].tMenuWindowId);
+
+    OakSpeechPrintMessage(gText_Oak_ExpMultiplier, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_ExpMultiplierSelection;
+}
+
+static void Task_OakSpeech_ExpMultiplierSelection(u8 taskId)
+{
+    u8 i;
+
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_HARDMODE]);
+        PutWindowTilemap(gTasks[taskId].tMenuWindowId);
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+        FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
+
+        for (i = 0; i < 3; i++)
+        {
+            AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, i * 16 + 1, sOakSpeechResources->textColor, 0, sExpMultiplierOptions[i]);
+        }
+
+        Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 1, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 3, 3, 1);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+        gTasks[taskId].func = Task_OakSpeech_ProcessExpMultiplier;
+    }
+}
+
+static void Task_OakSpeech_ProcessExpMultiplier(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapAround();
+    if (input == MENU_NOTHING_CHOSEN)
+        return;
+
+    if (input == MENU_B_PRESSED)
+        input = 1; // Default to 1x
+
+    PlaySE(SE_SELECT);
+    VarSet(VAR_EXP_MULTIPLIER, sExpMultiplierValues[input]);
 
     ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
     RemoveWindow(gTasks[taskId].tMenuWindowId);

@@ -3273,6 +3273,14 @@ static void Cmd_getexp(void)
                         i = STRINGID_EMPTYSTRING4;
                     }
 
+                    // EXP multiplier from Key Menu
+                    {
+                        u16 expMult = VarGet(VAR_EXP_MULTIPLIER);
+                        if (expMult == 0)
+                            expMult = 100;
+                        gBattleMoveDamage = (gBattleMoveDamage * expMult) / 100;
+                    }
+
                     // get exp getter battlerId
                     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                     {
