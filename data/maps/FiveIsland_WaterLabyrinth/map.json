@@ -80,7 +80,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "FiveIsland_WaterLabyrinth_EventScript_MoveManiac",
-      "flag": "FLAG_SHOPJOHTO"
+      "flag": "0"
     },
     {
       "type": "object",

@@ -6,15 +6,6 @@ TwoIsland_House_TMGUYScript::
 	goto_if_questlog EventScript_ReleaseEnd
 	lock
 	faceplayer
-	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, TwoIsland_House_Event_Script_TMGUYScript2
-	msgbox TwoIsland_House_Text_TmGuy
-	waitmessage
-	pokemart TwoIsland_TMS
-	msgbox Text_PleaseComeAgain
-	release
-	end
-
-TwoIsland_House_Event_Script_TMGUYScript2::
 	msgbox TwoIsland_House_Text_TmGuy2
 	waitmessage
 	pokemart TwoIsland_TMS2
