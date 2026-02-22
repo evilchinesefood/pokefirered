@@ -121,6 +121,14 @@ void RunTextPrinters(void)
         if (sTextPrinters[i].active)
         {
             u16 renderCmd = RenderFont(&sTextPrinters[i]);
+
+            if (gSaveBlock2Ptr->optionsTextSpeed == OPTIONS_TEXT_SPEED_INSTANT)
+            {
+                while (renderCmd == RENDER_PRINT)
+                    renderCmd = RenderFont(&sTextPrinters[i]);
+                CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+            }
+
             switch (renderCmd)
             {
             case RENDER_PRINT:
