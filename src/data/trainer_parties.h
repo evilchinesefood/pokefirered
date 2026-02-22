@@ -262,9 +262,9 @@ static const struct TrainerMon sParty_Interviewer[] = {
 static const struct TrainerMon sParty_RSTuberF[] = {
     {
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .lvl = 5,
+        .lvl = 10,
         .species = SPECIES_PIKACHU,
-        .moves = {MOVE_CHARM, MOVE_THUNDER_SHOCK, MOVE_SURF, MOVE_TAIL_WHIP},
+        .moves = {MOVE_CHARM, MOVE_THUNDER_SHOCK, MOVE_SURF, MOVE_THUNDER_WAVE},
     },    
 };
 static const struct TrainerMon sParty_RSTuberM[] = {
