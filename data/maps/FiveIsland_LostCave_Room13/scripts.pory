@@ -41,37 +41,37 @@ FiveIsland_LostCave_Room13_EventScript_PostRematchOak::
 	release
 	end
 
-FiveIsland_LostCave_Route11_Text_Oak::
+FiveIsland_LostCave_Room13_Text_Oak::
 	.string "Oh, Hi there {PLAYER}!\n"
 	.string "I might of gotten a little lost...\p"
 	.string "I might not even be myself!\p"
 	.string "But anyways, do you want to rematch\n"
 	.string "my strongest team?$"
 
-FiveIsland_LostCave_Route11_Text_OakDefeat::
+FiveIsland_LostCave_Room13_Text_OakDefeat::
 	.string "As expected, {PLAYER}!$"
 
-FiveIsland_LostCave_Route11_Text_OakPostBattle::
+FiveIsland_LostCave_Room13_Text_OakPostBattle::
 	.string "I'm beginning to feel a\n"
 	.string "little more real after\l"
 	.string "this battle!$"
 
-FiveIsland_LostCave_Route11_Text_NoOak::
+FiveIsland_LostCave_Room13_Text_NoOak::
 	.string "I'll get out of here soon!$"
 
-FiveIsland_LostCave_Route11_Text_YesOak::
+FiveIsland_LostCave_Room13_Text_YesOak::
 	.string "Alright, lets battle!$"
 
-FiveIsland_LostCave_Route11_Text_RematchOak::
+FiveIsland_LostCave_Room13_Text_RematchOak::
 	.string "Want to go at it again?$"
 
-FiveIsland_LostCave_Route11_Text_RematchOakDefeat::
+FiveIsland_LostCave_Room13_Text_RematchOakDefeat::
 	.string "As expected, {PLAYER}!$"
 
-FiveIsland_LostCave_Route11_Text_YesRematchOak::
+FiveIsland_LostCave_Room13_Text_YesRematchOak::
 	.string "Alright, lets battle!$"
 
-FiveIsland_LostCave_Route11_Text_RematchOakPostBattle::
+FiveIsland_LostCave_Room13_Text_RematchOakPostBattle::
 	.string "I'm beginning to feel a\n"
 	.string "little more real after\l"
 	.string "this battle!$"`
