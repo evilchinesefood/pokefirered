@@ -35,7 +35,7 @@
     {
       "english": "ULTRA BALL",
       "itemId": "ITEM_ULTRA_BALL",
-      "price": 1000,
+      "price": 250,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A very high-grade BALL that offers\\na higher POKéMON catch rate than\\na GREAT BALL.",
@@ -51,7 +51,7 @@
     {
       "english": "GREAT BALL",
       "itemId": "ITEM_GREAT_BALL",
-      "price": 500,
+      "price": 125,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A good, quality BALL that offers\\na higher POKéMON catch rate than\\na standard POKé BALL.",
@@ -67,7 +67,7 @@
     {
       "english": "POK\u00e9 BALL",
       "itemId": "ITEM_POKE_BALL",
-      "price": 150,
+      "price": 50,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A BALL thrown to catch a wild\\nPOKéMON. It is designed in a\\ncapsule style.",
@@ -99,7 +99,7 @@
     {
       "english": "NET BALL",
       "itemId": "ITEM_NET_BALL",
-      "price": 1000,
+      "price": 250,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nworks especially well on WATER- and\\nBUG-type POKéMON.",
@@ -115,7 +115,7 @@
     {
       "english": "DIVE BALL",
       "itemId": "ITEM_DIVE_BALL",
-      "price": 6000,
+      "price": 1500,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nworks especially well on POKéMON\\ndeep in the sea.",
@@ -131,7 +131,7 @@
     {
       "english": "NEST BALL",
       "itemId": "ITEM_NEST_BALL",
-      "price": 1000,
+      "price": 250,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nworks especially well on weaker\\nPOKéMON.",
@@ -147,7 +147,7 @@
     {
       "english": "REPEAT BALL",
       "itemId": "ITEM_REPEAT_BALL",
-      "price": 1000,
+      "price": 250,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nworks especially well on POKéMON\\ncaught before.",
@@ -163,7 +163,7 @@
     {
       "english": "TIMER BALL",
       "itemId": "ITEM_TIMER_BALL",
-      "price": 1000,
+      "price": 250,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nbecomes progressively better the\\nmore turns there are in a battle.",
@@ -179,7 +179,7 @@
     {
       "english": "LUXURY BALL",
       "itemId": "ITEM_LUXURY_BALL",
-      "price": 1000,
+      "price": 250,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A comfortable BALL that makes a\\ncaptured wild POKéMON quickly grow\\nfriendly.",
@@ -195,7 +195,7 @@
     {
       "english": "PREMIER BALL",
       "itemId": "ITEM_PREMIER_BALL",
-      "price": 200,
+      "price": 50,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A rare BALL that has been\\nspecially made to commemorate an\\nevent of some sort.",
