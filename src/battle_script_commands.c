@@ -9531,10 +9531,6 @@ static void Cmd_handleballthrow(void)
         else
             catchRate = gSpeciesInfo[gBattleMons[gBattlerTarget].species].catchRate;
 
-        // 25% catch rate boost, capped at 255
-        odds = catchRate * 5 / 4;
-        catchRate = (odds > 255) ? 255 : odds;
-
         if (gLastUsedItem > ITEM_SAFARI_BALL)
         {
             switch (gLastUsedItem)
@@ -9591,6 +9587,20 @@ static void Cmd_handleballthrow(void)
             odds *= 2;
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
             odds = (odds * 15) / 10;
+
+        {
+            u16 catchMult = VarGet(VAR_CATCH_RATE_MULT);
+            if (catchMult == 0)
+                catchMult = 100;
+            if (catchMult == 65535)
+                odds = 255;
+            else
+            {
+                odds = (odds * catchMult) / 100;
+                if (odds > 255)
+                    odds = 255;
+            }
+        }
 
         if (gLastUsedItem != ITEM_SAFARI_BALL)
         {

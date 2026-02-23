@@ -210,6 +210,25 @@ gText_ExpMult_Normal::
 gText_ExpMult_Double::
     .string "2x$"
 
+gText_Oak_CatchRateMultiplier::
+    .string "Select the catch rate\n"
+    .string "multiplier.$"
+
+gText_CatchMult_Half::
+    .string "0.5x$"
+
+gText_CatchMult_Normal::
+    .string "1x (Default)$"
+
+gText_CatchMult_Quarter::
+    .string "1.25x (+25%)$"
+
+gText_CatchMult_OneAndHalf::
+    .string "1.5x$"
+
+gText_CatchMult_Always::
+    .string "100% (Always)$"
+
 gPikachuIntro_Text_Page4::
 	.string "Thank you for Playing FIRERED\n"
 	.string "REIGNITED and LEAFGREEN REGROWN!\n"

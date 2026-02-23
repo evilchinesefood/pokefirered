@@ -93,6 +93,8 @@ static void Task_OakSpeech_ShinyOddsSelection(u8);
 static void Task_OakSpeech_ProcessShinyOdds(u8);
 static void Task_OakSpeech_ExpMultiplierSelection(u8);
 static void Task_OakSpeech_ProcessExpMultiplier(u8);
+static void Task_OakSpeech_CatchRateMultiplierSelection(u8);
+static void Task_OakSpeech_ProcessCatchRateMultiplier(u8);
 static void Task_OakSpeech_LoadPlayerPic(u8);
 static void Task_OakSpeech_YourNameWhatIsIt(u8);
 static void Task_OakSpeech_FadeOutForPlayerNamingScreen(u8);
@@ -152,6 +154,12 @@ extern const u8 gText_Oak_ExpMultiplier[];
 extern const u8 gText_ExpMult_Half[];
 extern const u8 gText_ExpMult_Normal[];
 extern const u8 gText_ExpMult_Double[];
+extern const u8 gText_Oak_CatchRateMultiplier[];
+extern const u8 gText_CatchMult_Half[];
+extern const u8 gText_CatchMult_Normal[];
+extern const u8 gText_CatchMult_Quarter[];
+extern const u8 gText_CatchMult_OneAndHalf[];
+extern const u8 gText_CatchMult_Always[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x16;
@@ -1626,6 +1634,22 @@ static const u16 sExpMultiplierValues[] = {
     200,  // 2x
 };
 
+static const u8 *const sCatchRateMultiplierOptions[] = {
+    gText_CatchMult_Half,
+    gText_CatchMult_Normal,
+    gText_CatchMult_Quarter,
+    gText_CatchMult_OneAndHalf,
+    gText_CatchMult_Always,
+};
+
+static const u16 sCatchRateMultiplierValues[] = {
+    50,     // 0.5x
+    100,    // 1x (default)
+    125,    // 1.25x
+    150,    // 1.5x
+    65535,  // 100% (always catch)
+};
+
 static const struct WindowTemplate sExpMultiplierWindowTemplate = {
     .bg = 0,
     .tilemapLeft = 2,
@@ -1714,9 +1738,49 @@ static void Task_OakSpeech_ProcessExpMultiplier(u8 taskId)
     ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
     RemoveWindow(gTasks[taskId].tMenuWindowId);
 
-    gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;
+    OakSpeechPrintMessage(gText_Oak_CatchRateMultiplier, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_CatchRateMultiplierSelection;
 }
 
+static void Task_OakSpeech_CatchRateMultiplierSelection(u8 taskId)
+{
+    u8 i;
+
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_NAMES]);
+        PutWindowTilemap(gTasks[taskId].tMenuWindowId);
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+        FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
+
+        for (i = 0; i < 5; i++)
+        {
+            AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, i * 16 + 1, sOakSpeechResources->textColor, 0, sCatchRateMultiplierOptions[i]);
+        }
+
+        Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 1, 16, 5, 1);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+        gTasks[taskId].func = Task_OakSpeech_ProcessCatchRateMultiplier;
+    }
+}
+
+static void Task_OakSpeech_ProcessCatchRateMultiplier(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapAround();
+    if (input == MENU_NOTHING_CHOSEN)
+        return;
+
+    if (input == MENU_B_PRESSED)
+        input = 1; // Default to 1x
+
+    PlaySE(SE_SELECT);
+    VarSet(VAR_CATCH_RATE_MULT, sCatchRateMultiplierValues[input]);
+
+    ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
+    RemoveWindow(gTasks[taskId].tMenuWindowId);
+
+    gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;
+}
 
 static void Task_OakSpeech_LoadPlayerPic(u8 taskId)
 {
