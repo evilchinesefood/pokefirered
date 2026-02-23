@@ -1,6 +1,7 @@
 raw `
 SixIsland_PatternBush_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SixIsland_PatternBush_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, SixIsland_PatternBush_OnResume
 	.byte 0
 
 SixIsland_PatternBush_OnTransition::
@@ -8,7 +9,59 @@ SixIsland_PatternBush_OnTransition::
 	getplayerxy VAR_TEMP_1, VAR_TEMP_2
 	call_if_ge VAR_TEMP_1, 50, SixIsland_PatternBush_EventScript_SetEscapeRightExit
 	call_if_le VAR_TEMP_1, 49, SixIsland_PatternBush_EventScript_SetEscapeLeftExit
+	call_if_set FLAG_SYS_GAME_CLEAR, SixIsland_PatternBush_EventScript_TryShowLatias
 	end
+
+SixIsland_PatternBush_EventScript_TryShowLatias::
+	goto_if_set FLAG_CAUGHT_LATIAS, EventScript_Return
+	goto_if_set FLAG_FOUGHT_LATIAS, EventScript_Return
+	clearflag FLAG_HIDE_LEGEND_LATIAS
+	return
+
+SixIsland_PatternBush_OnResume::
+	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, SixIsland_PatternBush_EventScript_TryRemoveLatias
+	end
+
+SixIsland_PatternBush_EventScript_TryRemoveLatias::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_Return
+	removeobject VAR_LAST_TALKED
+	return
+
+SixIsland_PatternBush_EventScript_Latias::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_LATIAS, 50
+	waitse
+	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SixIsland_PatternBush_EventScript_DefeatedLatias
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SixIsland_PatternBush_EventScript_RanFromLatias
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SixIsland_PatternBush_EventScript_RanFromLatias
+	setflag FLAG_CAUGHT_LATIAS
+	release
+	end
+
+SixIsland_PatternBush_EventScript_DefeatedLatias::
+	setflag FLAG_FOUGHT_LATIAS
+	goto EventScript_RemoveStaticMon
+
+SixIsland_PatternBush_EventScript_RanFromLatias::
+	setflag FLAG_FOUGHT_LATIAS
+	setvar VAR_0x8004, SPECIES_LATIAS
+	goto EventScript_MonFlewAway
 
 SixIsland_PatternBush_EventScript_SetEscapeRightExit::
 	setescapewarp MAP_SIX_ISLAND_GREEN_PATH, 255, 64, 10

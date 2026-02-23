@@ -1,11 +1,64 @@
 raw `
 RockTunnel_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RockTunnel_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, RockTunnel_1F_OnResume
 	.byte 0
 
 RockTunnel_1F_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_ROCK_TUNNEL_1F
+	call_if_set FLAG_SYS_GAME_CLEAR, RockTunnel_1F_EventScript_TryShowRegirock
 	end
+
+RockTunnel_1F_EventScript_TryShowRegirock::
+	goto_if_set FLAG_CAUGHT_REGIROCK, EventScript_Return
+	goto_if_set FLAG_FOUGHT_REGIROCK, EventScript_Return
+	clearflag FLAG_HIDE_LEGEND_REGIROCK
+	return
+
+RockTunnel_1F_OnResume::
+	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, RockTunnel_1F_EventScript_TryRemoveRegirock
+	end
+
+RockTunnel_1F_EventScript_TryRemoveRegirock::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_Return
+	removeobject VAR_LAST_TALKED
+	return
+
+RockTunnel_1F_EventScript_Regirock::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_REGIROCK, 50
+	waitse
+	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, RockTunnel_1F_EventScript_DefeatedRegirock
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, RockTunnel_1F_EventScript_RanFromRegirock
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, RockTunnel_1F_EventScript_RanFromRegirock
+	setflag FLAG_CAUGHT_REGIROCK
+	release
+	end
+
+RockTunnel_1F_EventScript_DefeatedRegirock::
+	setflag FLAG_FOUGHT_REGIROCK
+	goto EventScript_RemoveStaticMon
+
+RockTunnel_1F_EventScript_RanFromRegirock::
+	setflag FLAG_FOUGHT_REGIROCK
+	setvar VAR_0x8004, SPECIES_REGIROCK
+	goto EventScript_MonFlewAway
 
 RockTunnel_1F_EventScript_RouteSign::
 	msgbox RockTunnel_1F_Text_RouteSign, MSGBOX_SIGN

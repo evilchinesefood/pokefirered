@@ -1,7 +1,64 @@
 raw `
 
 MtMoonSquare_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtMoonSquare_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MtMoonSquare_OnResume
 	.byte 0
+
+MtMoonSquare_OnTransition::
+	call_if_set FLAG_SYS_GAME_CLEAR, MtMoonSquare_EventScript_TryShowJirachi
+	end
+
+MtMoonSquare_EventScript_TryShowJirachi::
+	goto_if_set FLAG_CAUGHT_JIRACHI, EventScript_Return
+	goto_if_set FLAG_FOUGHT_JIRACHI, EventScript_Return
+	clearflag FLAG_HIDE_LEGEND_JIRACHI
+	return
+
+MtMoonSquare_OnResume::
+	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, MtMoonSquare_EventScript_TryRemoveJirachi
+	end
+
+MtMoonSquare_EventScript_TryRemoveJirachi::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, EventScript_Return
+	removeobject VAR_LAST_TALKED
+	return
+
+MtMoonSquare_EventScript_Jirachi::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_JIRACHI, 40
+	waitse
+	playmoncry SPECIES_JIRACHI, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MtMoonSquare_EventScript_DefeatedJirachi
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MtMoonSquare_EventScript_RanFromJirachi
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MtMoonSquare_EventScript_RanFromJirachi
+	setflag FLAG_CAUGHT_JIRACHI
+	release
+	end
+
+MtMoonSquare_EventScript_DefeatedJirachi::
+	setflag FLAG_FOUGHT_JIRACHI
+	goto EventScript_RemoveStaticMon
+
+MtMoonSquare_EventScript_RanFromJirachi::
+	setflag FLAG_FOUGHT_JIRACHI
+	setvar VAR_0x8004, SPECIES_JIRACHI
+	goto EventScript_MonFlewAway
 
 MtMoonSquare_EventScript_Clefairy::
 	lock

@@ -16,6 +16,15 @@ EventScript_ResetLegendaries::
 	clearflag FLAG_HO_OH_FLEW_AWAY
 	clearflag FLAG_DEOXYS_FLEW_AWAY
 	clearflag FLAG_DEFEATED_SUDOWOODO
+	clearflag FLAG_FOUGHT_JIRACHI
+	clearflag FLAG_FOUGHT_LATIAS
+	clearflag FLAG_FOUGHT_LATIOS
+	clearflag FLAG_FOUGHT_REGIROCK
+	clearflag FLAG_FOUGHT_REGICE
+	clearflag FLAG_FOUGHT_REGISTEEL
+	clearflag FLAG_FOUGHT_GROUDON
+	clearflag FLAG_FOUGHT_KYOGRE
+	clearflag FLAG_FOUGHT_RAYQUAZA
 	special InitRoamer
 	return
 
