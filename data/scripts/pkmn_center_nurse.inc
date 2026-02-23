@@ -1,4 +1,4 @@
-@ Turbo Nurse Joy: instant heal, no ball animation or jingle
+@ Turbo Nurse Joy: quick heal with ball animation, no extra delay
 EventScript_PkmnCenterNurse::
 	goto_if_questlog EventScript_ReleaseEnd
 	incrementgamestat GAME_STAT_USED_POKECENTER
@@ -6,6 +6,9 @@ EventScript_PkmnCenterNurse::
 	setflag FLAG_DONE_POKECENTER_FIRST_USE
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
+	dofieldeffect FLDEFF_POKECENTER_HEAL
+	callnative CableClub_OnResumeFunc
+	waitfieldeffect FLDEFF_POKECENTER_HEAL
 	special HealPlayerParty
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
