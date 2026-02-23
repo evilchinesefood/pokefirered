@@ -7,7 +7,7 @@
 
 // Uncomment to skip Oak's intro (uses default player/rival names)
 // Requires DEBUG_TEST_SETUP to be defined
-#define DEBUG_SKIP_OAKS_INTRO
+// #define DEBUG_SKIP_OAKS_INTRO
 
 // Start location for debug setup (uses SPAWN_* constants from heal_locations.h)
 // Common values: SPAWN_PALLET_TOWN, SPAWN_ONE_ISLAND, SPAWN_TWO_ISLAND,

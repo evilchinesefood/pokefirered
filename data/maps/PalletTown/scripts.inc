@@ -944,3 +944,291 @@ PalletTown_Text_Science:
 	.string "Science is amazing!\n"
 # 473 "data/maps/PalletTown/scripts.pory"
 	.string "POKEMON are truly fascinating.$"
+# 474 "data/maps/PalletTown/scripts.pory"
+
+# 475 "data/maps/PalletTown/scripts.pory"
+@ =============================================
+# 476 "data/maps/PalletTown/scripts.pory"
+@ Sanctuary entrance — Oak intercept triggers
+# 477 "data/maps/PalletTown/scripts.pory"
+@ Entrance is at x=22, y=7/8/9 (gap in tree line)
+# 478 "data/maps/PalletTown/scripts.pory"
+@ =============================================
+# 479 "data/maps/PalletTown/scripts.pory"
+
+# 480 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakTriggerSanctuary_Y7::
+# 481 "data/maps/PalletTown/scripts.pory"
+	lockall
+# 482 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_TEMP_1, 2
+# 483 "data/maps/PalletTown/scripts.pory"
+	goto PalletTown_EventScript_OakTriggerSanctuary
+# 484 "data/maps/PalletTown/scripts.pory"
+	end
+# 485 "data/maps/PalletTown/scripts.pory"
+
+# 486 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakTriggerSanctuary_Y8::
+# 487 "data/maps/PalletTown/scripts.pory"
+	lockall
+# 488 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_TEMP_1, 3
+# 489 "data/maps/PalletTown/scripts.pory"
+	goto PalletTown_EventScript_OakTriggerSanctuary
+# 490 "data/maps/PalletTown/scripts.pory"
+	end
+# 491 "data/maps/PalletTown/scripts.pory"
+
+# 492 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakTriggerSanctuary_Y9::
+# 493 "data/maps/PalletTown/scripts.pory"
+	lockall
+# 494 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_TEMP_1, 4
+# 495 "data/maps/PalletTown/scripts.pory"
+	goto PalletTown_EventScript_OakTriggerSanctuary
+# 496 "data/maps/PalletTown/scripts.pory"
+	end
+# 497 "data/maps/PalletTown/scripts.pory"
+
+# 498 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakTriggerSanctuary::
+# 499 "data/maps/PalletTown/scripts.pory"
+	famechecker FAMECHECKER_OAK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+# 500 "data/maps/PalletTown/scripts.pory"
+	textcolor NPC_TEXT_COLOR_MALE
+# 501 "data/maps/PalletTown/scripts.pory"
+	delay 30
+# 502 "data/maps/PalletTown/scripts.pory"
+	playbgm MUS_OAK, 0
+# 503 "data/maps/PalletTown/scripts.pory"
+	message PalletTown_Text_OakDontGoOut
+# 504 "data/maps/PalletTown/scripts.pory"
+	waitmessage
+# 505 "data/maps/PalletTown/scripts.pory"
+	delay 85
+# 506 "data/maps/PalletTown/scripts.pory"
+	closemessage
+# 507 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+# 508 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 509 "data/maps/PalletTown/scripts.pory"
+	playse SE_PIN
+# 510 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+# 511 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 512 "data/maps/PalletTown/scripts.pory"
+	delay 30
+# 513 "data/maps/PalletTown/scripts.pory"
+	addobject LOCALID_PROF_OAK
+# 514 "data/maps/PalletTown/scripts.pory"
+	@ Oak walks from (10,8) to sanctuary; player aligns to y=8
+# 515 "data/maps/PalletTown/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, PalletTown_EventScript_OakEnterSanctuary_AlignDown
+# 516 "data/maps/PalletTown/scripts.pory"
+	call_if_eq VAR_TEMP_1, 3, PalletTown_EventScript_OakEnterSanctuary_NoAlign
+# 517 "data/maps/PalletTown/scripts.pory"
+	call_if_eq VAR_TEMP_1, 4, PalletTown_EventScript_OakEnterSanctuary_AlignUp
+# 518 "data/maps/PalletTown/scripts.pory"
+	delay 30
+# 519 "data/maps/PalletTown/scripts.pory"
+	msgbox PalletTown_Text_OakGrassUnsafeNeedMon
+# 520 "data/maps/PalletTown/scripts.pory"
+	closemessage
+# 521 "data/maps/PalletTown/scripts.pory"
+	delay 30
+# 522 "data/maps/PalletTown/scripts.pory"
+	@ Both walk to lab (Oak from (21,8), Player from (22,8))
+# 523 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabFromSanctuary
+# 524 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabFromSanctuary
+# 525 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 526 "data/maps/PalletTown/scripts.pory"
+	opendoor 16, 13
+# 527 "data/maps/PalletTown/scripts.pory"
+	waitdooranim
+# 528 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterLab
+# 529 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerEnterLab
+# 530 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 531 "data/maps/PalletTown/scripts.pory"
+	closedoor 16, 13
+# 532 "data/maps/PalletTown/scripts.pory"
+	waitdooranim
+# 533 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1
+# 534 "data/maps/PalletTown/scripts.pory"
+	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+# 535 "data/maps/PalletTown/scripts.pory"
+	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 1
+# 536 "data/maps/PalletTown/scripts.pory"
+	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
+# 537 "data/maps/PalletTown/scripts.pory"
+	setflag FLAG_DONT_TRANSITION_MUSIC
+# 538 "data/maps/PalletTown/scripts.pory"
+	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
+# 539 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 540 "data/maps/PalletTown/scripts.pory"
+	releaseall
+# 541 "data/maps/PalletTown/scripts.pory"
+	end
+# 542 "data/maps/PalletTown/scripts.pory"
+
+# 543 "data/maps/PalletTown/scripts.pory"
+@ Player at y=7: walk down to align to y=8 while Oak enters
+# 544 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakEnterSanctuary_AlignDown::
+# 545 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterSanctuary
+# 546 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_AlignDown
+# 547 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 548 "data/maps/PalletTown/scripts.pory"
+	return
+# 549 "data/maps/PalletTown/scripts.pory"
+
+# 550 "data/maps/PalletTown/scripts.pory"
+@ Player at y=8: no alignment needed
+# 551 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakEnterSanctuary_NoAlign::
+# 552 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterSanctuary
+# 553 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 554 "data/maps/PalletTown/scripts.pory"
+	return
+# 555 "data/maps/PalletTown/scripts.pory"
+
+# 556 "data/maps/PalletTown/scripts.pory"
+@ Player at y=9: walk up to align to y=8 while Oak enters
+# 557 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_OakEnterSanctuary_AlignUp::
+# 558 "data/maps/PalletTown/scripts.pory"
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterSanctuary
+# 559 "data/maps/PalletTown/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_AlignUp
+# 560 "data/maps/PalletTown/scripts.pory"
+	waitmovement 0
+# 561 "data/maps/PalletTown/scripts.pory"
+	return
+# 562 "data/maps/PalletTown/scripts.pory"
+
+# 563 "data/maps/PalletTown/scripts.pory"
+@ Oak walks from spawn (10,8) to sanctuary entrance (21,8)
+# 564 "data/maps/PalletTown/scripts.pory"
+PalletTown_Movement_OakEnterSanctuary::
+# 565 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 566 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 567 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 568 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 569 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 570 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 571 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 572 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 573 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 574 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 575 "data/maps/PalletTown/scripts.pory"
+	walk_right
+# 576 "data/maps/PalletTown/scripts.pory"
+	step_end
+# 577 "data/maps/PalletTown/scripts.pory"
+
+# 578 "data/maps/PalletTown/scripts.pory"
+PalletTown_Movement_AlignDown::
+# 579 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 580 "data/maps/PalletTown/scripts.pory"
+	step_end
+# 581 "data/maps/PalletTown/scripts.pory"
+
+# 582 "data/maps/PalletTown/scripts.pory"
+PalletTown_Movement_AlignUp::
+# 583 "data/maps/PalletTown/scripts.pory"
+	walk_up
+# 584 "data/maps/PalletTown/scripts.pory"
+	step_end
+# 585 "data/maps/PalletTown/scripts.pory"
+
+# 586 "data/maps/PalletTown/scripts.pory"
+@ Oak walks from (21,8) to lab door approach (16,14)
+# 587 "data/maps/PalletTown/scripts.pory"
+PalletTown_Movement_OakWalkToLabFromSanctuary::
+# 588 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 589 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 590 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 591 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 592 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 593 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 594 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 595 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 596 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 597 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 598 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 599 "data/maps/PalletTown/scripts.pory"
+	walk_in_place_faster_up
+# 600 "data/maps/PalletTown/scripts.pory"
+	step_end
+# 601 "data/maps/PalletTown/scripts.pory"
+
+# 602 "data/maps/PalletTown/scripts.pory"
+@ Player walks from (22,8) to lab door approach (15,14)
+# 603 "data/maps/PalletTown/scripts.pory"
+PalletTown_Movement_PlayerWalkToLabFromSanctuary::
+# 604 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 605 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 606 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 607 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 608 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 609 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 610 "data/maps/PalletTown/scripts.pory"
+	walk_left
+# 611 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 612 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 613 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 614 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 615 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 616 "data/maps/PalletTown/scripts.pory"
+	walk_down
+# 617 "data/maps/PalletTown/scripts.pory"
+	step_end
