@@ -35,6 +35,7 @@
 #include "pokemon.h"
 #include "constants/species.h"
 #include "constants/pokemon.h"
+#include "constants/moves.h"
 #include "malloc.h"
 #endif
 
@@ -242,9 +243,25 @@ static void DebugTestSetup(void)
 
     // Pidgeot — high level for Fly testing
     CreateMonWithNature(mon, SPECIES_PIDGEOT, 36, 0, NATURE_JOLLY);
+    SetMonMoveSlot(mon, MOVE_FLY, 0);
     GiveMonToPlayer(mon);
 
     Free(mon);
+
+    // --- Fly Destinations ---
+    FlagSet(FLAG_WORLD_MAP_PALLET_TOWN);
+    FlagSet(FLAG_WORLD_MAP_VIRIDIAN_CITY);
+    FlagSet(FLAG_WORLD_MAP_PEWTER_CITY);
+    FlagSet(FLAG_WORLD_MAP_CERULEAN_CITY);
+    FlagSet(FLAG_WORLD_MAP_LAVENDER_TOWN);
+    FlagSet(FLAG_WORLD_MAP_VERMILION_CITY);
+    FlagSet(FLAG_WORLD_MAP_CELADON_CITY);
+    FlagSet(FLAG_WORLD_MAP_FUCHSIA_CITY);
+    FlagSet(FLAG_WORLD_MAP_CINNABAR_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_INDIGO_PLATEAU_EXTERIOR);
+    FlagSet(FLAG_WORLD_MAP_SAFFRON_CITY);
+    FlagSet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F);
+    FlagSet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F);
 
     // --- Bag Items ---
     AddBagItem(ITEM_POKE_BALL, 25);
