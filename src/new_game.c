@@ -30,9 +30,19 @@
 #include "berry_powder.h"
 #include "pokemon_jump.h"
 #include "event_scripts.h"
+#include "debug.h"
+#ifdef DEBUG_TEST_SETUP
+#include "pokemon.h"
+#include "constants/species.h"
+#include "constants/pokemon.h"
+#include "malloc.h"
+#endif
 
 // this file's functions
 static void ResetMiniGamesResults(void);
+#ifdef DEBUG_TEST_SETUP
+static void DebugTestSetup(void);
+#endif
 
 // EWRAM vars
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
@@ -155,6 +165,10 @@ void NewGameInitData(void)
     SetAllRenewableItemFlags();
     WarpToPlayersRoom();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+#ifdef DEBUG_TEST_SETUP
+    // DEBUG TEST SETUP - REMOVE BEFORE RELEASE
+    DebugTestSetup();
+#endif
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
     nuzlockePrev ? FlagSet(FLAG_NUZLOCKE) : FlagClear(FLAG_NUZLOCKE);
@@ -163,6 +177,88 @@ void NewGameInitData(void)
     VarSet(VAR_SHINY_RATE, shinyRatePrev);
     VarSet(VAR_EXP_MULTIPLIER, expMultPrev);
 }
+
+#ifdef DEBUG_TEST_SETUP
+// DEBUG TEST SETUP - REMOVE BEFORE RELEASE
+static void DebugTestSetup(void)
+{
+    struct Pokemon *mon;
+
+    // --- Story Progress Flags ---
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    FlagSet(FLAG_SYS_B_DASH);
+    FlagSet(FLAG_BEAT_RIVAL_IN_OAKS_LAB);
+
+    // All 8 badges
+    FlagSet(FLAG_BADGE01_GET);
+    FlagSet(FLAG_BADGE02_GET);
+    FlagSet(FLAG_BADGE03_GET);
+    FlagSet(FLAG_BADGE04_GET);
+    FlagSet(FLAG_BADGE05_GET);
+    FlagSet(FLAG_BADGE06_GET);
+    FlagSet(FLAG_BADGE07_GET);
+    FlagSet(FLAG_BADGE08_GET);
+
+    // All 8 gym leaders defeated
+    FlagSet(FLAG_DEFEATED_BROCK);
+    FlagSet(FLAG_DEFEATED_MISTY);
+    FlagSet(FLAG_DEFEATED_LT_SURGE);
+    FlagSet(FLAG_DEFEATED_ERIKA);
+    FlagSet(FLAG_DEFEATED_KOGA);
+    FlagSet(FLAG_DEFEATED_SABRINA);
+    FlagSet(FLAG_DEFEATED_BLAINE);
+    FlagSet(FLAG_DEFEATED_LEADER_GIOVANNI);
+
+    // Hide early-game objects that should be gone
+    FlagSet(FLAG_HIDE_BULBASAUR_BALL);
+    FlagSet(FLAG_HIDE_SQUIRTLE_BALL);
+    FlagSet(FLAG_HIDE_CHARMANDER_BALL);
+    FlagSet(FLAG_HIDE_PEWTER_CITY_GYM_GUIDE);
+
+    // Scene vars — advance past intro sequences
+    VarSet(VAR_MAP_SCENE_PALLET_TOWN_OAK, 7);
+    VarSet(VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6);
+    VarSet(VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F, 2);
+    VarSet(VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_1F, 1);
+
+    // --- Money ---
+    SetMoney(&gSaveBlock1Ptr->money, 10000);
+
+    // --- Party ---
+    mon = AllocZeroed(sizeof(struct Pokemon));
+
+    // Charmander — non-neutral nature (Adamant: +Atk -SpA)
+    CreateMonWithNature(mon, SPECIES_CHARMANDER, 5, 0, NATURE_ADAMANT);
+    GiveMonToPlayer(mon);
+
+    // Bulbasaur — neutral nature (Hardy)
+    CreateMonWithNature(mon, SPECIES_BULBASAUR, 5, 0, NATURE_HARDY);
+    GiveMonToPlayer(mon);
+
+    // Squirtle — non-neutral nature (Modest: +SpA -Atk)
+    CreateMonWithNature(mon, SPECIES_SQUIRTLE, 5, 0, NATURE_MODEST);
+    GiveMonToPlayer(mon);
+
+    // Pidgeot — high level for Fly testing
+    CreateMonWithNature(mon, SPECIES_PIDGEOT, 36, 0, NATURE_JOLLY);
+    GiveMonToPlayer(mon);
+
+    Free(mon);
+
+    // --- Bag Items ---
+    AddBagItem(ITEM_POKE_BALL, 25);
+    AddBagItem(ITEM_RARE_CANDY, 25);
+    AddBagItem(ITEM_REPEL, 25);
+    AddBagItem(ITEM_HM01, 1);
+    AddBagItem(ITEM_HM02, 1);
+    AddBagItem(ITEM_HM03, 1);
+    AddBagItem(ITEM_HM04, 1);
+    AddBagItem(ITEM_HM05, 1);
+    AddBagItem(ITEM_HM06, 1);
+    AddBagItem(ITEM_HM07, 1);
+}
+#endif
 
 static void ResetMiniGamesResults(void)
 {

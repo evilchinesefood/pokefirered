@@ -18,7 +18,11 @@
 #include "constants/songs.h"
 #include "constants/flags.h"
 #include "event_data.h"
+#include "debug.h"
 
+#if defined(DEBUG_TEST_SETUP) && defined(DEBUG_SKIP_OAKS_INTRO)
+static const u8 sDebugPlayerName[] = _("DAVE");
+#endif
 
 #define INTRO_SPECIES SPECIES_NIDORAN_F
 
@@ -734,6 +738,16 @@ static void CB2_NewGameScene(void)
 
 void StartNewGameScene(void)
 {
+#if defined(DEBUG_TEST_SETUP) && defined(DEBUG_SKIP_OAKS_INTRO)
+    // DEBUG TEST SETUP - REMOVE BEFORE RELEASE
+    // Set player defaults and skip straight to game
+    gSaveBlock2Ptr->playerGender = MALE;
+    StringCopy(gSaveBlock2Ptr->playerName, sDebugPlayerName);
+    StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Gary);
+    FlagSet(FLAG_EXP_SHARE_PARTY);
+    SetMainCallback2(CB2_NewGame);
+    return;
+#endif
     gPlttBufferUnfaded[0] = RGB_BLACK;
     gPlttBufferFaded[0]   = RGB_BLACK;
     CreateTask(Task_NewGameScene, 0);
