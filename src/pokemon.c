@@ -3856,6 +3856,23 @@ void CopyMon(void *dest, void *src, size_t size)
     memcpy(dest, src, size);
 }
 
+void SetPerfectIVsIfMinimalGrinding(struct Pokemon *mon)
+{
+    if (FlagGet(FLAG_MINIMAL_GRINDING))
+    {
+        u32 iv = MAX_PER_STAT_IVS;
+        u32 zero = 0;
+        s32 i;
+
+        for (i = 0; i < NUM_STATS; i++)
+        {
+            SetMonData(mon, MON_DATA_HP_IV + i, &iv);
+            SetMonData(mon, MON_DATA_HP_EV + i, &zero);
+        }
+        CalculateMonStats(mon);
+    }
+}
+
 u8 GiveMonToPlayer(struct Pokemon *mon)
 {
     s32 i;
@@ -3863,6 +3880,7 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+    SetPerfectIVsIfMinimalGrinding(mon);
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -4413,6 +4431,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[i], NULL);
                         if(itemEffect[idx] != 201)
                         {
+                            // Block EV-increasing items in Minimal Grinding Mode
+                            if (FlagGet(FLAG_MINIMAL_GRINDING))
+                                return TRUE;
                             // Limit the increase
                             if (evCount >= 510)
                                 return TRUE;
@@ -4631,11 +4652,14 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     case 2: // ITEM5_EV_SPDEF
                     case 3: // ITEM5_EV_SPATK
                         evCount = GetMonEVCount(mon);
-                        
+
                         // Has EV increase limit already been reached?
                         dataSigned = GetMonData(mon, sGetMonDataEVConstants[i + 2], NULL);
                         if(itemEffect[idx] != 201)
                         {
+                            // Block EV-increasing items in Minimal Grinding Mode
+                            if (FlagGet(FLAG_MINIMAL_GRINDING))
+                                return TRUE;
                             if (evCount >= 510)
                                 return TRUE;
                             if (dataSigned < 100)
@@ -5712,6 +5736,9 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     u16 heldItem;
     u8 holdEffect;
     int i;
+
+    if (FlagGet(FLAG_MINIMAL_GRINDING))
+        return;
 
     for (i = 0; i < NUM_STATS; i++)
     {

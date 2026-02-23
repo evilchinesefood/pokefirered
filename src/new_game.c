@@ -123,6 +123,7 @@ void NewGameInitData(void)
     bool8 nuzlockePrev = FlagGet(FLAG_NUZLOCKE);
     bool8 hardPrev = FlagGet(FLAG_HARD);
     bool8 expSharePrev = FlagGet(FLAG_EXP_SHARE_PARTY);
+    bool8 mgmPrev = FlagGet(FLAG_MINIMAL_GRINDING);
     u16 shinyRatePrev = VarGet(VAR_SHINY_RATE);  // A function lower down here clears these, so retain and reset at the end
     u16 expMultPrev = VarGet(VAR_EXP_MULTIPLIER);
     u16 catchRateMultPrev = VarGet(VAR_CATCH_RATE_MULT);
@@ -177,6 +178,7 @@ void NewGameInitData(void)
     nuzlockePrev ? FlagSet(FLAG_NUZLOCKE) : FlagClear(FLAG_NUZLOCKE);
     hardPrev ? FlagSet(FLAG_HARD) : FlagClear(FLAG_HARD);
     expSharePrev ? FlagSet(FLAG_EXP_SHARE_PARTY) : FlagClear(FLAG_EXP_SHARE_PARTY);
+    mgmPrev ? FlagSet(FLAG_MINIMAL_GRINDING) : FlagClear(FLAG_MINIMAL_GRINDING);
     VarSet(VAR_SHINY_RATE, shinyRatePrev);
     VarSet(VAR_EXP_MULTIPLIER, expMultPrev);
     VarSet(VAR_CATCH_RATE_MULT, catchRateMultPrev);

@@ -95,6 +95,8 @@ static void Task_OakSpeech_ExpMultiplierSelection(u8);
 static void Task_OakSpeech_ProcessExpMultiplier(u8);
 static void Task_OakSpeech_CatchRateMultiplierSelection(u8);
 static void Task_OakSpeech_ProcessCatchRateMultiplier(u8);
+static void Task_OakSpeech_MinimalGrindingSelection(u8);
+static void Task_OakSpeech_ProcessMinimalGrinding(u8);
 static void Task_OakSpeech_LoadPlayerPic(u8);
 static void Task_OakSpeech_YourNameWhatIsIt(u8);
 static void Task_OakSpeech_FadeOutForPlayerNamingScreen(u8);
@@ -160,6 +162,7 @@ extern const u8 gText_CatchMult_Normal[];
 extern const u8 gText_CatchMult_Quarter[];
 extern const u8 gText_CatchMult_OneAndHalf[];
 extern const u8 gText_CatchMult_Always[];
+extern const u8 gText_Oak_MinimalGrinding[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x16;
@@ -1778,6 +1781,37 @@ static void Task_OakSpeech_ProcessCatchRateMultiplier(u8 taskId)
 
     ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
     RemoveWindow(gTasks[taskId].tMenuWindowId);
+
+    OakSpeechPrintMessage(gText_Oak_MinimalGrinding, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_MinimalGrindingSelection;
+}
+
+static void Task_OakSpeech_MinimalGrindingSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = Task_OakSpeech_ProcessMinimalGrinding;
+    }
+}
+
+static void Task_OakSpeech_ProcessMinimalGrinding(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_MINIMAL_GRINDING);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_MINIMAL_GRINDING);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
 
     gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;
 }

@@ -1727,6 +1727,7 @@ static void AddHatchedMonToParty(u8 id)
 
     MonRestorePP(mon);
     CalculateMonStats(mon);
+    SetPerfectIVsIfMinimalGrinding(mon);
 }
 
 void ScriptHatchMon(void)

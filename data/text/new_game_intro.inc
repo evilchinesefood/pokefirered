@@ -229,6 +229,13 @@ gText_CatchMult_OneAndHalf::
 gText_CatchMult_Always::
     .string "100% (Always)$"
 
+gText_Oak_MinimalGrinding::
+    .string "Would you like to enable\n"
+    .string "MINIMAL GRINDING MODE?\p"
+    .string "All acquired POKéMON will\n"
+    .string "have perfect IVs and no EVs.\n"
+    .string "Only NATURE affects stats.$"
+
 gPikachuIntro_Text_Page4::
 	.string "Thank you for Playing FIRERED\n"
 	.string "REIGNITED and LEAFGREEN REGROWN!\n"

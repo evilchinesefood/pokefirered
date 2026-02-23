@@ -841,7 +841,7 @@
 #define FLAG_GROUNDON_CHECKED               0x32C
 #define FLAG_SHINY_LOCK          0x32D
 #define FLAG_EXP_SHARE_PARTY     0x32E
-#define FLAG_UNUSED_0x32F        0x32F
+#define FLAG_MINIMAL_GRINDING    0x32F
 #define FLAG_0x330               0x330
 #define FLAG_0x331               0x331
 #define FLAG_0x332               0x332
