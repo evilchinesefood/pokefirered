@@ -358,7 +358,3 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
     .string "I think I'll try looking around\n"
     .string "ONE ISLAND first…\p"
     .string "Anyways, I'm outta here!$"
-
-PalletTown_PlayersHouse_1F_Text_PressB::
-    .string "With the RUNNING SHOES,\n"
-    .string "press the B Button to run!$"

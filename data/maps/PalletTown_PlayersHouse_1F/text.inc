@@ -37,19 +37,23 @@ PalletTown_PlayersHouse_1F_Text_OopsWrongSide::
     .string "Oops, wrong side…$"
 
 PalletTown_PlayersHouse_1F_Text_MomShoes::
-    .string "MOM: …Right.\n"
-    .string "All boys leave home someday.\l"
-    .string "It said so on TV.\p"
-    .string "Oh, yes. PROF. OAK, next door, was\n"
-    .string "looking for you.$"
+    .string "MOM: {PLAYER}, wait!\p"
+    .string "Here, take these RUNNING SHOES\n"
+    .string "with you.\p"
+    .string "You can't go on an adventure\n"
+    .string "without a good pair of shoes!$"
 
 PalletTown_PlayersHouse_1F_Text_ReceivedRunningShoesFromAide::
     .string "{PLAYER} received the\n"
-    .string "RUNNING SHOES from PROF. OAK.$"
+    .string "RUNNING SHOES from MOM.$"
 
 PalletTown_PlayersHouse_1F_Text_ReceivedRunningShoesFromAide2::
     .string "{PLAYER} put on the\n"
     .string "RUNNING SHOES.$"
+
+PalletTown_PlayersHouse_1F_Text_PressB::
+    .string "With the RUNNING SHOES,\n"
+    .string "press the B Button to run!$"
 
 PalletTown_PlayersHouse_1F_Text_Champion::
 	.string "MOM: {PLAYER}!\p"

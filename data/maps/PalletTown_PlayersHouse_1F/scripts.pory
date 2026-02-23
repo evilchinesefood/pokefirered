@@ -2,9 +2,11 @@ raw `
 .equ LOCALID_MOM, 1
 
 PalletTown_PlayersHouse_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_PlayersHouse_1F_OnFrame
 	.byte 0
 
 PalletTown_PlayersHouse_1F_OnFrame::
+	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_1F, 0, PalletTown_PlayersHouse_1F_EventScript_MomShoes
 	.2byte 0
 
 PalletTown_PlayersHouse_1F_EventScript_MomShoes::
@@ -31,6 +33,7 @@ PalletTown_PlayersHouse_1F_EventScript_MomShoes::
 	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_RivalExit
 	waitmovement 0
 	setflag FLAG_SYS_B_DASH
+	msgbox PalletTown_PlayersHouse_1F_Text_PressB
 	fadedefaultbgm
 	delay 35
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_1F, 1
