@@ -187,7 +187,8 @@ struct PokemonSummaryScreenData
         u8 ALIGNED(4) expPointsStrBuf[9];
         u8 ALIGNED(4) expToNextLevelStrBuf[9];
 
-        u8 ALIGNED(4) ivEvStrBufs[6][8]; /* 6 stats (HP,ATK,DEF,SPA,SPD,SPE), "31/252\0" = 7 chars + pad */
+        u8 ALIGNED(4) ivEvStrBufs[6][12]; /* 6 stats, up to 9 chars (e.g. 31*\/252*) + pad */
+        u8 ALIGNED(4) ivEvMaxFlags[6]; /* bit 0 = IV maxed, bit 1 = EV maxed */
 
         u8 ALIGNED(4) abilityNameStrBuf[13];
         u8 ALIGNED(4) abilityDescStrBuf[52];
@@ -362,6 +363,8 @@ static const u8 sEvMonData[] = {
     MON_DATA_HP_EV, MON_DATA_ATK_EV, MON_DATA_DEF_EV,
     MON_DATA_SPATK_EV, MON_DATA_SPDEF_EV, MON_DATA_SPEED_EV
 };
+
+static const u8 sText_Star[] = _("×");
 
 static const struct OamData sMoveSelectionCursorOamData =
 {
@@ -2414,12 +2417,23 @@ static void BufferMonIvEv(void)
 
     for (i = 0; i < 6; i++)
     {
+        sMonSummaryScreen->summary.ivEvMaxFlags[i] = 0;
         iv = GetMonData(&sMonSummaryScreen->currentMon, sIvMonData[i]);
         ev = GetMonData(&sMonSummaryScreen->currentMon, sEvMonData[i]);
         ConvertIntToDecimalStringN(sMonSummaryScreen->summary.ivEvStrBufs[i], iv, STR_CONV_MODE_LEFT_ALIGN, 2);
+        if (iv == 31)
+        {
+            StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], sText_Star);
+            sMonSummaryScreen->summary.ivEvMaxFlags[i] |= 1;
+        }
         StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], gText_Slash);
         ConvertIntToDecimalStringN(tempStr, ev, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], tempStr);
+        if (ev == 252)
+        {
+            StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], sText_Star);
+            sMonSummaryScreen->summary.ivEvMaxFlags[i] |= 2;
+        }
     }
 }
 
@@ -2693,29 +2707,37 @@ static void PrintSkillsPage(void)
 {
     if (sMonSummaryScreen->showIvEv)
     {
+        const u8 *ivEvColor;
+
+        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[0] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
             14 + GetNumberRightAlign63(sMonSummaryScreen->summary.ivEvStrBufs[0]),
-            4, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+            4, ivEvColor, TEXT_SKIP_DRAW,
             sMonSummaryScreen->summary.ivEvStrBufs[0]);
+        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[1] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
             44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[1]),
-            22, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+            22, ivEvColor, TEXT_SKIP_DRAW,
             sMonSummaryScreen->summary.ivEvStrBufs[1]);
+        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[2] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
             44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[2]),
-            35, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+            35, ivEvColor, TEXT_SKIP_DRAW,
             sMonSummaryScreen->summary.ivEvStrBufs[2]);
+        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[3] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
             44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[3]),
-            48, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+            48, ivEvColor, TEXT_SKIP_DRAW,
             sMonSummaryScreen->summary.ivEvStrBufs[3]);
+        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[4] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
             44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[4]),
-            61, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+            61, ivEvColor, TEXT_SKIP_DRAW,
             sMonSummaryScreen->summary.ivEvStrBufs[4]);
+        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[5] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
             44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[5]),
-            74, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+            74, ivEvColor, TEXT_SKIP_DRAW,
             sMonSummaryScreen->summary.ivEvStrBufs[5]);
     }
     else
