@@ -20,8 +20,22 @@
 #include "event_data.h"
 #include "debug.h"
 
-#if defined(DEBUG_TEST_SETUP) && defined(DEBUG_SKIP_OAKS_INTRO)
+#ifdef DEBUG_TEST_SETUP
 static const u8 sDebugPlayerName[] = _("DAVE");
+static const u8 sDebugText_NormalStart[] = _("Normal Start");
+static const u8 sDebugText_SkipIntro[] = _("Skip Intro");
+static const u8 sDebugText_FullDebug[] = _("Full Debug");
+EWRAM_DATA bool8 gDebugDoFullSetup = FALSE;
+
+static const struct WindowTemplate sDebugMenuWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 2,
+    .tilemapTop = 2,
+    .width = 14,
+    .height = 6,
+    .paletteNum = 15,
+    .baseBlock = 1
+};
 #endif
 
 #define INTRO_SPECIES SPECIES_NIDORAN_F
@@ -121,6 +135,11 @@ static void Task_OakSpeech_FadePlayerPicWhite(u8);
 static void Task_OakSpeech_FadePlayerPicToBlack(u8);
 static void Task_OakSpeech_WaitForFade(u8);
 static void Task_OakSpeech_FreeResources(u8);
+
+#ifdef DEBUG_TEST_SETUP
+static void Task_DebugStartMenu(u8);
+static void Task_DebugStartMenu_HandleInput(u8);
+#endif
 
 static void CB2_ReturnFromNamingScreen(void);
 static void CreateNidoranFSprite(u8);
@@ -749,17 +768,6 @@ static void CB2_NewGameScene(void)
 
 void StartNewGameScene(void)
 {
-#if defined(DEBUG_TEST_SETUP) && defined(DEBUG_SKIP_OAKS_INTRO)
-    // DEBUG TEST SETUP - REMOVE BEFORE RELEASE
-    // Set player defaults and skip straight to game
-    gSaveBlock2Ptr->playerGender = MALE;
-    StringCopy(gSaveBlock2Ptr->playerName, sDebugPlayerName);
-    StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Gary);
-    FlagSet(FLAG_EXP_SHARE_PARTY);
-    VarSet(VAR_EXP_MULTIPLIER, 50);
-    SetMainCallback2(CB2_NewGame);
-    return;
-#endif
     gPlttBufferUnfaded[0] = RGB_BLACK;
     gPlttBufferFaded[0]   = RGB_BLACK;
     CreateTask(Task_NewGameScene, 0);
@@ -853,14 +861,87 @@ static void Task_NewGameScene(u8 taskId)
         ShowBg(0);
         ShowBg(1);
         SetVBlankCallback(VBlankCB_NewGameScene);
+#ifdef DEBUG_TEST_SETUP
+        gTasks[taskId].func = Task_DebugStartMenu;
+#else
         gTasks[taskId].tTimer = 0;
         gTasks[taskId].func = Task_OakSpeech_Init;
+#endif
         gMain.state = 0;
         return;
     }
 
     gMain.state++;
 }
+
+#ifdef DEBUG_TEST_SETUP
+static void Task_DebugStartMenu(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        s16 *data = gTasks[taskId].data;
+        tMenuWindowId = AddWindow(&sDebugMenuWindowTemplate);
+        PutWindowTilemap(tMenuWindowId);
+        DrawStdFrameWithCustomTileAndPalette(tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+        FillWindowPixelBuffer(tMenuWindowId, PIXEL_FILL(1));
+        sOakSpeechResources->textColor[0] = 1;
+        sOakSpeechResources->textColor[1] = 2;
+        sOakSpeechResources->textColor[2] = 3;
+        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 1, sOakSpeechResources->textColor, 0, sDebugText_NormalStart);
+        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 17, sOakSpeechResources->textColor, 0, sDebugText_SkipIntro);
+        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 33, sOakSpeechResources->textColor, 0, sDebugText_FullDebug);
+        Menu_InitCursor(tMenuWindowId, FONT_NORMAL, 0, 1, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 3, 3, 0);
+        CopyWindowToVram(tMenuWindowId, COPYWIN_FULL);
+        gTasks[taskId].func = Task_DebugStartMenu_HandleInput;
+    }
+}
+
+static void Task_DebugStartMenu_HandleInput(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapAround();
+    switch (input)
+    {
+    case MENU_B_PRESSED:
+    case 0: // Normal Start
+        PlaySE(SE_SELECT);
+        ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
+        RemoveWindow(gTasks[taskId].tMenuWindowId);
+        gTasks[taskId].tTimer = 0;
+        gTasks[taskId].func = Task_OakSpeech_Init;
+        break;
+    case 1: // Skip Intro
+        PlaySE(SE_SELECT);
+        gDebugDoFullSetup = FALSE;
+        gSaveBlock2Ptr->playerGender = MALE;
+        StringCopy(gSaveBlock2Ptr->playerName, sDebugPlayerName);
+        StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Gary);
+        FlagSet(FLAG_EXP_SHARE_PARTY);
+        VarSet(VAR_EXP_MULTIPLIER, 100);
+        VarSet(VAR_SHINY_RATE, 16);
+        VarSet(VAR_CATCH_RATE_MULT, 100);
+        Free(sOakSpeechResources);
+        sOakSpeechResources = NULL;
+        DestroyTask(taskId);
+        SetMainCallback2(CB2_NewGame);
+        break;
+    case 2: // Full Debug
+        PlaySE(SE_SELECT);
+        gDebugDoFullSetup = TRUE;
+        gSaveBlock2Ptr->playerGender = MALE;
+        StringCopy(gSaveBlock2Ptr->playerName, sDebugPlayerName);
+        StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Gary);
+        FlagSet(FLAG_EXP_SHARE_PARTY);
+        VarSet(VAR_EXP_MULTIPLIER, 100);
+        VarSet(VAR_SHINY_RATE, 16);
+        VarSet(VAR_CATCH_RATE_MULT, 100);
+        Free(sOakSpeechResources);
+        sOakSpeechResources = NULL;
+        DestroyTask(taskId);
+        SetMainCallback2(CB2_NewGame);
+        break;
+    }
+}
+#endif
 
 static void ControlsGuide_LoadPage1(void)
 {

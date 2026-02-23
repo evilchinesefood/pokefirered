@@ -171,7 +171,8 @@ void NewGameInitData(void)
     RunScriptImmediately(EventScript_ResetAllMapFlags);
 #ifdef DEBUG_TEST_SETUP
     // DEBUG TEST SETUP - REMOVE BEFORE RELEASE
-    DebugTestSetup();
+    if (gDebugDoFullSetup)
+        DebugTestSetup();
 #endif
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
