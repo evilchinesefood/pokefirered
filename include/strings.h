@@ -1549,6 +1549,7 @@ extern const u8 gText_PokeSum_PageName_PokemonInfo[];
 extern const u8 gText_PokeSum_Controls_PageCancel[];
 extern const u8 gText_PokeSum_Controls_Cancel[];
 extern const u8 gText_PokeSum_PageName_PokemonSkills[];
+extern const u8 gText_PokeSum_PageName_EvIvCheck[];
 extern const u8 gText_PokeSum_Controls_Page[];
 extern const u8 gText_PokeSum_Controls_PickDelete[];
 extern const u8 gText_PokeSum_HmMovesCantBeForgotten[];

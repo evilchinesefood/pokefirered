@@ -1221,6 +1221,8 @@ static void Task_InputHandler_Info(u8 taskId)
                     sMonSummaryScreen->showIvEv ^= 1;
                     PokeSum_PrintRightPaneText();
                     CopyWindowToVram(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], COPYWIN_GFX);
+                    PokeSum_PrintPageHeaderText(sMonSummaryScreen->curPageIndex);
+                    CopyWindowToVram(sMonSummaryScreen->windowIds[POKESUM_WIN_PAGE_NAME], COPYWIN_GFX);
                 }
             }
         }
@@ -3191,7 +3193,10 @@ static void PokeSum_PrintPageHeaderText(u8 curPageIndex)
         PrintMonLevelNickOnWindow2(gText_PokeSum_NoData);
         break;
     case PSS_PAGE_SKILLS:
-        PokeSum_PrintPageName(gText_PokeSum_PageName_PokemonSkills);
+        if (sMonSummaryScreen->showIvEv)
+            PokeSum_PrintPageName(gText_PokeSum_PageName_EvIvCheck);
+        else
+            PokeSum_PrintPageName(gText_PokeSum_PageName_PokemonSkills);
         PokeSum_PrintControlsString(gText_PokeSum_Controls_Page);
         PrintMonLevelNickOnWindow2(gText_PokeSum_NoData);
         break;
