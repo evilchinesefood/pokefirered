@@ -1253,7 +1253,7 @@
 #define FLAG_SEVIIJOHTO          0x4BF
 #define FLAG_ARMSTRONG_DEFEATED  0x4C0
 #define FLAG_SEVIIMATCH          0x4C1
-#define FLAG_UNUSED1             0x4C2
+#define FLAG_SHADY_DEALER_PRICING 0x4C2
 #define FLAG_UNUSED2             0x4C3
 #define FLAG_UNUSED3             0x4C4
 #define FLAG_UNUSED4             0x4C5

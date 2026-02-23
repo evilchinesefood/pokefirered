@@ -19,7 +19,9 @@ PalletTown_PlayersHouse_1F_EventScript_MomShoes::
 	applymovement LOCALID_MOM, Common_Movement_Delay48
 	waitmovement 0
 	delay 25
-	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_RivalApproach
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_PlayersHouse_1F_Movement_PlayerApproachMom
+	waitmovement 0
+	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	msgbox PalletTown_PlayersHouse_1F_Text_MomShoes
 	playfanfare MUS_OBTAIN_KEY_ITEM
@@ -30,8 +32,6 @@ PalletTown_PlayersHouse_1F_EventScript_MomShoes::
 	special DisableMsgBoxWalkaway
 	signmsg
 	closemessage
-	applymovement LOCALID_MOM, PalletTown_PlayersHouse_1F_Movement_RivalExit
-	waitmovement 0
 	setflag FLAG_SYS_B_DASH
 	msgbox PalletTown_PlayersHouse_1F_Text_PressB
 	fadedefaultbgm
@@ -40,16 +40,13 @@ PalletTown_PlayersHouse_1F_EventScript_MomShoes::
 	releaseall
 	end
 
-PalletTown_PlayersHouse_1F_Movement_RivalApproach::
-	walk_right
-	walk_right
-	walk_up
-	step_end
-
-PalletTown_PlayersHouse_1F_Movement_RivalExit::
+@ Player walks from stairs area to Mom instead of Mom walking to player
+@ (Mom sprite lacks walking frames so she would slide)
+PalletTown_PlayersHouse_1F_Movement_PlayerApproachMom::
+	walk_left
 	walk_down
-	walk_left
-	walk_left
+	walk_down
+	walk_in_place_faster_left
 	step_end
 
 PalletTown_PlayersHouse_1F_EventScript_Mom::

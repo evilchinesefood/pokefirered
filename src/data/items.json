@@ -19,7 +19,7 @@
     {
       "english": "MASTER BALL",
       "itemId": "ITEM_MASTER_BALL",
-      "price": 1,
+      "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "The best BALL with the ultimate\\nperformance. It will catch any wild\\nPOKéMON without fail.",
@@ -65,7 +65,7 @@
       "secondaryId": 2
     },
     {
-      "english": "POK\u00e9 BALL",
+      "english": "POKé BALL",
       "itemId": "ITEM_POKE_BALL",
       "price": 50,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -307,7 +307,7 @@
     {
       "english": "FULL RESTORE",
       "itemId": "ITEM_FULL_RESTORE",
-      "price": 1,
+      "price": 3000,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 255,
       "description_english": "A medicine that fully restores the\\nHP and heals any status problems\\nof one POKéMON.",
@@ -595,7 +595,7 @@
     {
       "english": "MAX ELIXIR",
       "itemId": "ITEM_MAX_ELIXIR",
-      "price": 1,
+      "price": 4500,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 255,
       "description_english": "Fully restores the PP of all moves\\nfor one POKéMON.",
@@ -1011,7 +1011,7 @@
     {
       "english": "HP UP",
       "itemId": "ITEM_HP_UP",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nutritious drink for POKéMON.\\nIt raises the base HP of one\\nPOKéMON.",
@@ -1027,7 +1027,7 @@
     {
       "english": "PROTEIN",
       "itemId": "ITEM_PROTEIN",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nutritious drink for POKéMON.\\nIt raises the base ATTACK stat of\\none POKéMON.",
@@ -1043,7 +1043,7 @@
     {
       "english": "IRON",
       "itemId": "ITEM_IRON",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nutritious drink for POKéMON.\\nIt raises the base DEFENSE stat of\\none POKéMON.",
@@ -1059,7 +1059,7 @@
     {
       "english": "CARBOS",
       "itemId": "ITEM_CARBOS",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nutritious drink for POKéMON.\\nIt raises the base SPEED stat of\\none POKéMON.",
@@ -1075,7 +1075,7 @@
     {
       "english": "CALCIUM",
       "itemId": "ITEM_CALCIUM",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nutritious drink for POKéMON.\\nIt raises the base SP. ATK stat\\nof one POKéMON.",
@@ -1091,7 +1091,7 @@
     {
       "english": "RARE CANDY",
       "itemId": "ITEM_RARE_CANDY",
-      "price": 1,
+      "price": 4800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A candy that is packed with energy.\\nIt raises the level of a POKéMON\\nby one.",
@@ -1107,7 +1107,7 @@
     {
       "english": "PP UP",
       "itemId": "ITEM_PP_UP",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "Slightly raises the maximum PP of\\na selected move for one POKéMON.",
@@ -1123,7 +1123,7 @@
     {
       "english": "ZINC",
       "itemId": "ITEM_ZINC",
-      "price": 1,
+      "price": 9800,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nutritious drink for POKéMON.\\nIt raises the base SP. DEF stat\\nof one POKéMON.",
@@ -1281,7 +1281,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POK\u00e9 DOLL",
+      "english": "POKé DOLL",
       "itemId": "ITEM_POKE_DOLL",
       "price": 1000,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -1347,7 +1347,7 @@
     {
       "english": "MAX REPEL",
       "itemId": "ITEM_MAX_REPEL",
-      "price": 1,
+      "price": 700,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 250,
       "description_english": "Prevents weak wild POKéMON from\\nappearing for 250 steps.",
@@ -1763,7 +1763,7 @@
     {
       "english": "NUGGET",
       "itemId": "ITEM_NUGGET",
-      "price": 1,
+      "price": 10000,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A nugget of pure gold that gives\\noff a lustrous gleam.\\nIt can be sold at a high price.",
@@ -5659,7 +5659,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POK\u00e9 FLUTE",
+      "english": "POKé FLUTE",
       "itemId": "ITEM_POKE_FLUTE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",

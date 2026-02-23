@@ -473,147 +473,16 @@ PalletTown_Text_Science:
 	.string "POKEMON are truly fascinating.$"
 
 @ =============================================
-@ Sanctuary entrance — Oak intercept triggers
-@ Entrance is at x=22, y=7/8/9 (gap in tree line)
+@ Sanctuary entrance — fence gate (blocked until Pokédex)
+@ Cut tree objects at x=22, y=7/8/9/10 hidden by FLAG_SYS_POKEDEX_GET
 @ =============================================
 
-PalletTown_EventScript_OakTriggerSanctuary_Y7::
-	lockall
-	setvar VAR_TEMP_1, 2
-	goto PalletTown_EventScript_OakTriggerSanctuary
+PalletTown_EventScript_SanctuaryFence::
+	msgbox PalletTown_Text_SanctuaryFence, MSGBOX_SIGN
 	end
 
-PalletTown_EventScript_OakTriggerSanctuary_Y8::
-	lockall
-	setvar VAR_TEMP_1, 3
-	goto PalletTown_EventScript_OakTriggerSanctuary
-	end
-
-PalletTown_EventScript_OakTriggerSanctuary_Y9::
-	lockall
-	setvar VAR_TEMP_1, 4
-	goto PalletTown_EventScript_OakTriggerSanctuary
-	end
-
-PalletTown_EventScript_OakTriggerSanctuary::
-	famechecker FAMECHECKER_OAK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	textcolor NPC_TEXT_COLOR_MALE
-	delay 30
-	playbgm MUS_OAK, 0
-	message PalletTown_Text_OakDontGoOut
-	waitmessage
-	delay 85
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	playse SE_PIN
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
-	waitmovement 0
-	delay 30
-	addobject LOCALID_PROF_OAK
-	@ Oak walks from (10,8) to sanctuary; player aligns to y=8
-	call_if_eq VAR_TEMP_1, 2, PalletTown_EventScript_OakEnterSanctuary_AlignDown
-	call_if_eq VAR_TEMP_1, 3, PalletTown_EventScript_OakEnterSanctuary_NoAlign
-	call_if_eq VAR_TEMP_1, 4, PalletTown_EventScript_OakEnterSanctuary_AlignUp
-	delay 30
-	msgbox PalletTown_Text_OakGrassUnsafeNeedMon
-	closemessage
-	delay 30
-	@ Both walk to lab (Oak from (21,8), Player from (22,8))
-	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabFromSanctuary
-	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabFromSanctuary
-	waitmovement 0
-	opendoor 16, 13
-	waitdooranim
-	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterLab
-	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerEnterLab
-	waitmovement 0
-	closedoor 16, 13
-	waitdooranim
-	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1
-	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 1
-	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
-	setflag FLAG_DONT_TRANSITION_MUSIC
-	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
-	waitstate
-	releaseall
-	end
-
-@ Player at y=7: walk down to align to y=8 while Oak enters
-PalletTown_EventScript_OakEnterSanctuary_AlignDown::
-	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterSanctuary
-	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_AlignDown
-	waitmovement 0
-	return
-
-@ Player at y=8: no alignment needed
-PalletTown_EventScript_OakEnterSanctuary_NoAlign::
-	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterSanctuary
-	waitmovement 0
-	return
-
-@ Player at y=9: walk up to align to y=8 while Oak enters
-PalletTown_EventScript_OakEnterSanctuary_AlignUp::
-	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterSanctuary
-	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_AlignUp
-	waitmovement 0
-	return
-
-@ Oak walks from spawn (10,8) to sanctuary entrance (21,8)
-PalletTown_Movement_OakEnterSanctuary::
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-PalletTown_Movement_AlignDown::
-	walk_down
-	step_end
-
-PalletTown_Movement_AlignUp::
-	walk_up
-	step_end
-
-@ Oak walks from (21,8) to lab door approach (16,14)
-PalletTown_Movement_OakWalkToLabFromSanctuary::
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_in_place_faster_up
-	step_end
-
-@ Player walks from (22,8) to lab door approach (15,14)
-PalletTown_Movement_PlayerWalkToLabFromSanctuary::
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	step_end
+PalletTown_Text_SanctuaryFence:
+	.string "The path ahead is blocked\n"
+	.string "by thick bushes.$"
 
 `

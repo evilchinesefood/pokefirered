@@ -23,7 +23,8 @@
 #ifdef DEBUG_TEST_SETUP
 static const u8 sDebugPlayerName[] = _("DAVE");
 static const u8 sDebugText_NormalStart[] = _("Normal Start");
-static const u8 sDebugText_SkipIntro[] = _("Skip Intro");
+static const u8 sDebugText_SkipIntroNormal[] = _("Skip Oak Intro + Normal");
+static const u8 sDebugText_OakDebug[] = _("Oak Intro + Debug");
 static const u8 sDebugText_FullDebug[] = _("Full Debug");
 EWRAM_DATA bool8 gDebugDoFullSetup = FALSE;
 
@@ -31,8 +32,8 @@ static const struct WindowTemplate sDebugMenuWindowTemplate = {
     .bg = 0,
     .tilemapLeft = 2,
     .tilemapTop = 2,
-    .width = 14,
-    .height = 6,
+    .width = 22,
+    .height = 8,
     .paletteNum = 15,
     .baseBlock = 1
 };
@@ -888,9 +889,10 @@ static void Task_DebugStartMenu(u8 taskId)
         sOakSpeechResources->textColor[1] = 2;
         sOakSpeechResources->textColor[2] = 3;
         AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 1, sOakSpeechResources->textColor, 0, sDebugText_NormalStart);
-        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 17, sOakSpeechResources->textColor, 0, sDebugText_SkipIntro);
-        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 33, sOakSpeechResources->textColor, 0, sDebugText_FullDebug);
-        Menu_InitCursor(tMenuWindowId, FONT_NORMAL, 0, 1, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 3, 3, 0);
+        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 17, sOakSpeechResources->textColor, 0, sDebugText_SkipIntroNormal);
+        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 33, sOakSpeechResources->textColor, 0, sDebugText_OakDebug);
+        AddTextPrinterParameterized3(tMenuWindowId, FONT_NORMAL, 8, 49, sOakSpeechResources->textColor, 0, sDebugText_FullDebug);
+        Menu_InitCursor(tMenuWindowId, FONT_NORMAL, 0, 1, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 3, 4, 0);
         CopyWindowToVram(tMenuWindowId, COPYWIN_FULL);
         gTasks[taskId].func = Task_DebugStartMenu_HandleInput;
     }
@@ -909,7 +911,7 @@ static void Task_DebugStartMenu_HandleInput(u8 taskId)
         gTasks[taskId].tTimer = 0;
         gTasks[taskId].func = Task_OakSpeech_Init;
         break;
-    case 1: // Skip Intro
+    case 1: // Skip Oak Intro + Normal
         PlaySE(SE_SELECT);
         gDebugDoFullSetup = FALSE;
         gSaveBlock2Ptr->playerGender = MALE;
@@ -924,7 +926,15 @@ static void Task_DebugStartMenu_HandleInput(u8 taskId)
         DestroyTask(taskId);
         SetMainCallback2(CB2_NewGame);
         break;
-    case 2: // Full Debug
+    case 2: // Oak Intro + Debug
+        PlaySE(SE_SELECT);
+        gDebugDoFullSetup = TRUE;
+        ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
+        RemoveWindow(gTasks[taskId].tMenuWindowId);
+        gTasks[taskId].tTimer = 0;
+        gTasks[taskId].func = Task_OakSpeech_Init;
+        break;
+    case 3: // Full Debug
         PlaySE(SE_SELECT);
         gDebugDoFullSetup = TRUE;
         gSaveBlock2Ptr->playerGender = MALE;

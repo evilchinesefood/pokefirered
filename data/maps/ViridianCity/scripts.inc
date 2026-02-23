@@ -597,48 +597,52 @@ ViridianCity_EventScript_ShadyDealer::
 # 299 "data/maps/ViridianCity/scripts.pory"
 	waitmessage
 # 300 "data/maps/ViridianCity/scripts.pory"
-	pokemart ViridianCity_ShadyDealer_Items
+	setflag FLAG_SHADY_DEALER_PRICING
 # 301 "data/maps/ViridianCity/scripts.pory"
-	msgbox ViridianCity_Text_ShadyDealerBye
+	pokemart ViridianCity_ShadyDealer_Items
 # 302 "data/maps/ViridianCity/scripts.pory"
-	release
+	clearflag FLAG_SHADY_DEALER_PRICING
 # 303 "data/maps/ViridianCity/scripts.pory"
-	end
+	msgbox ViridianCity_Text_ShadyDealerBye
 # 304 "data/maps/ViridianCity/scripts.pory"
-
-# 305 "data/maps/ViridianCity/scripts.pory"
-	.align 2
-# 306 "data/maps/ViridianCity/scripts.pory"
-ViridianCity_ShadyDealer_Items::
-# 307 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_MASTER_BALL
-# 308 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_RARE_CANDY
-# 309 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_PP_UP
-# 310 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_HP_UP
-# 311 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_PROTEIN
-# 312 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_IRON
-# 313 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_CALCIUM
-# 314 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_ZINC
-# 315 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_CARBOS
-# 316 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_NUGGET
-# 317 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_MAX_REPEL
-# 318 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_MAX_ELIXIR
-# 319 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_FULL_RESTORE
-# 320 "data/maps/ViridianCity/scripts.pory"
-	.2byte ITEM_NONE
-# 321 "data/maps/ViridianCity/scripts.pory"
 	release
+# 305 "data/maps/ViridianCity/scripts.pory"
+	end
+# 306 "data/maps/ViridianCity/scripts.pory"
+
+# 307 "data/maps/ViridianCity/scripts.pory"
+	.align 2
+# 308 "data/maps/ViridianCity/scripts.pory"
+ViridianCity_ShadyDealer_Items::
+# 309 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_MASTER_BALL
+# 310 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_RARE_CANDY
+# 311 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_PP_UP
+# 312 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_HP_UP
+# 313 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_PROTEIN
+# 314 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_IRON
+# 315 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_CALCIUM
+# 316 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_ZINC
+# 317 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_CARBOS
+# 318 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_NUGGET
+# 319 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_MAX_REPEL
+# 320 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_MAX_ELIXIR
+# 321 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_FULL_RESTORE
 # 322 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_NONE
+# 323 "data/maps/ViridianCity/scripts.pory"
+	release
+# 324 "data/maps/ViridianCity/scripts.pory"
 	end

@@ -7,6 +7,7 @@
 #include "load_save.h"
 #include "quest_log.h"
 #include "strings.h"
+#include "constants/flags.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -620,6 +621,8 @@ u16 ItemId_GetId(u16 itemId)
 
 u16 ItemId_GetPrice(u16 itemId)
 {
+    if (FlagGet(FLAG_SHADY_DEALER_PRICING))
+        return 1;
     return gItems[SanitizeItemId(itemId)].price;
 }
 

@@ -297,7 +297,9 @@ ViridianCity_EventScript_ShadyDealer::
 	faceplayer
 	message ViridianCity_Text_ShadyDealerGreeting
 	waitmessage
+	setflag FLAG_SHADY_DEALER_PRICING
 	pokemart ViridianCity_ShadyDealer_Items
+	clearflag FLAG_SHADY_DEALER_PRICING
 	msgbox ViridianCity_Text_ShadyDealerBye
 	release
 	end

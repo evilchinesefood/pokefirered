@@ -187,8 +187,9 @@ struct PokemonSummaryScreenData
         u8 ALIGNED(4) expPointsStrBuf[9];
         u8 ALIGNED(4) expToNextLevelStrBuf[9];
 
-        u8 ALIGNED(4) ivEvStrBufs[6][12]; /* 6 stats, up to 9 chars (e.g. 31*\/252*) + pad */
-        u8 ALIGNED(4) ivEvMaxFlags[6]; /* bit 0 = IV maxed, bit 1 = EV maxed */
+        u8 ALIGNED(4) ivStrBufs[6][4];    /* IV: up to "31" + null + pad */
+        u8 ALIGNED(4) evStrBufs[6][4];    /* EV: up to "252" + null */
+        u8 ALIGNED(4) ivEvMaxFlags[6];    /* bit 0 = IV maxed, bit 1 = EV maxed */
 
         u8 ALIGNED(4) abilityNameStrBuf[13];
         u8 ALIGNED(4) abilityDescStrBuf[52];
@@ -2411,7 +2412,6 @@ static void BufferMonSkills(void)
 
 static void BufferMonIvEv(void)
 {
-    u8 tempStr[4];
     u16 iv, ev;
     u8 i;
 
@@ -2420,20 +2420,12 @@ static void BufferMonIvEv(void)
         sMonSummaryScreen->summary.ivEvMaxFlags[i] = 0;
         iv = GetMonData(&sMonSummaryScreen->currentMon, sIvMonData[i]);
         ev = GetMonData(&sMonSummaryScreen->currentMon, sEvMonData[i]);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.ivEvStrBufs[i], iv, STR_CONV_MODE_LEFT_ALIGN, 2);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.ivStrBufs[i], iv, STR_CONV_MODE_LEFT_ALIGN, 2);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.evStrBufs[i], ev, STR_CONV_MODE_LEFT_ALIGN, 3);
         if (iv == 31)
-        {
-            StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], sText_Star);
             sMonSummaryScreen->summary.ivEvMaxFlags[i] |= 1;
-        }
-        StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], gText_Slash);
-        ConvertIntToDecimalStringN(tempStr, ev, STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], tempStr);
         if (ev == 252)
-        {
-            StringAppend(sMonSummaryScreen->summary.ivEvStrBufs[i], sText_Star);
             sMonSummaryScreen->summary.ivEvMaxFlags[i] |= 2;
-        }
     }
 }
 
@@ -2707,38 +2699,70 @@ static void PrintSkillsPage(void)
 {
     if (sMonSummaryScreen->showIvEv)
     {
-        const u8 *ivEvColor;
+        const u8 *ivColor, *evColor;
+        u8 ivLen, combinedLen;
+        u8 xStart;
+        u8 winId = sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE];
 
-        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[0] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
-        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
-            14 + GetNumberRightAlign63(sMonSummaryScreen->summary.ivEvStrBufs[0]),
-            4, ivEvColor, TEXT_SKIP_DRAW,
-            sMonSummaryScreen->summary.ivEvStrBufs[0]);
-        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[1] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
-        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
-            44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[1]),
-            22, ivEvColor, TEXT_SKIP_DRAW,
-            sMonSummaryScreen->summary.ivEvStrBufs[1]);
-        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[2] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
-        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
-            44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[2]),
-            35, ivEvColor, TEXT_SKIP_DRAW,
-            sMonSummaryScreen->summary.ivEvStrBufs[2]);
-        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[3] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
-        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
-            44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[3]),
-            48, ivEvColor, TEXT_SKIP_DRAW,
-            sMonSummaryScreen->summary.ivEvStrBufs[3]);
-        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[4] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
-        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
-            44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[4]),
-            61, ivEvColor, TEXT_SKIP_DRAW,
-            sMonSummaryScreen->summary.ivEvStrBufs[4]);
-        ivEvColor = sMonSummaryScreen->summary.ivEvMaxFlags[5] ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
-        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL,
-            44 + GetNumberRightAlign27(sMonSummaryScreen->summary.ivEvStrBufs[5]),
-            74, ivEvColor, TEXT_SKIP_DRAW,
-            sMonSummaryScreen->summary.ivEvStrBufs[5]);
+        // HP stat (index 0): base 14, align 63
+        ivLen = StringLength(sMonSummaryScreen->summary.ivStrBufs[0]);
+        combinedLen = ivLen + 1 + StringLength(sMonSummaryScreen->summary.evStrBufs[0]);
+        xStart = 14 + (63 - combinedLen * 6);
+        ivColor = (sMonSummaryScreen->summary.ivEvMaxFlags[0] & 1) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        evColor = (sMonSummaryScreen->summary.ivEvMaxFlags[0] & 2) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart, 4, ivColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.ivStrBufs[0]);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + ivLen * 6, 4, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_Slash);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + (ivLen + 1) * 6, 4, evColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.evStrBufs[0]);
+
+        // ATK (index 1): base 44, align 27
+        ivLen = StringLength(sMonSummaryScreen->summary.ivStrBufs[1]);
+        combinedLen = ivLen + 1 + StringLength(sMonSummaryScreen->summary.evStrBufs[1]);
+        xStart = 44 + (27 - combinedLen * 6);
+        ivColor = (sMonSummaryScreen->summary.ivEvMaxFlags[1] & 1) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        evColor = (sMonSummaryScreen->summary.ivEvMaxFlags[1] & 2) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart, 22, ivColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.ivStrBufs[1]);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + ivLen * 6, 22, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_Slash);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + (ivLen + 1) * 6, 22, evColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.evStrBufs[1]);
+
+        // DEF (index 2)
+        ivLen = StringLength(sMonSummaryScreen->summary.ivStrBufs[2]);
+        combinedLen = ivLen + 1 + StringLength(sMonSummaryScreen->summary.evStrBufs[2]);
+        xStart = 44 + (27 - combinedLen * 6);
+        ivColor = (sMonSummaryScreen->summary.ivEvMaxFlags[2] & 1) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        evColor = (sMonSummaryScreen->summary.ivEvMaxFlags[2] & 2) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart, 35, ivColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.ivStrBufs[2]);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + ivLen * 6, 35, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_Slash);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + (ivLen + 1) * 6, 35, evColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.evStrBufs[2]);
+
+        // SPA (index 3)
+        ivLen = StringLength(sMonSummaryScreen->summary.ivStrBufs[3]);
+        combinedLen = ivLen + 1 + StringLength(sMonSummaryScreen->summary.evStrBufs[3]);
+        xStart = 44 + (27 - combinedLen * 6);
+        ivColor = (sMonSummaryScreen->summary.ivEvMaxFlags[3] & 1) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        evColor = (sMonSummaryScreen->summary.ivEvMaxFlags[3] & 2) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart, 48, ivColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.ivStrBufs[3]);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + ivLen * 6, 48, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_Slash);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + (ivLen + 1) * 6, 48, evColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.evStrBufs[3]);
+
+        // SPD (index 4)
+        ivLen = StringLength(sMonSummaryScreen->summary.ivStrBufs[4]);
+        combinedLen = ivLen + 1 + StringLength(sMonSummaryScreen->summary.evStrBufs[4]);
+        xStart = 44 + (27 - combinedLen * 6);
+        ivColor = (sMonSummaryScreen->summary.ivEvMaxFlags[4] & 1) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        evColor = (sMonSummaryScreen->summary.ivEvMaxFlags[4] & 2) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart, 61, ivColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.ivStrBufs[4]);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + ivLen * 6, 61, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_Slash);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + (ivLen + 1) * 6, 61, evColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.evStrBufs[4]);
+
+        // SPE (index 5)
+        ivLen = StringLength(sMonSummaryScreen->summary.ivStrBufs[5]);
+        combinedLen = ivLen + 1 + StringLength(sMonSummaryScreen->summary.evStrBufs[5]);
+        xStart = 44 + (27 - combinedLen * 6);
+        ivColor = (sMonSummaryScreen->summary.ivEvMaxFlags[5] & 1) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        evColor = (sMonSummaryScreen->summary.ivEvMaxFlags[5] & 2) ? sLevelNickTextColors[5] : sLevelNickTextColors[0];
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart, 74, ivColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.ivStrBufs[5]);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + ivLen * 6, 74, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_Slash);
+        AddTextPrinterParameterized3(winId, FONT_NORMAL, xStart + (ivLen + 1) * 6, 74, evColor, TEXT_SKIP_DRAW, sMonSummaryScreen->summary.evStrBufs[5]);
     }
     else
     {
