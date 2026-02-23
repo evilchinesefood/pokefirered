@@ -36,6 +36,7 @@
 #include "constants/species.h"
 #include "constants/pokemon.h"
 #include "constants/moves.h"
+#include "constants/heal_locations.h"
 #include "malloc.h"
 #endif
 
@@ -262,6 +263,13 @@ static void DebugTestSetup(void)
     FlagSet(FLAG_WORLD_MAP_SAFFRON_CITY);
     FlagSet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F);
     FlagSet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F);
+    FlagSet(FLAG_WORLD_MAP_ONE_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_TWO_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_THREE_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_FOUR_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_FIVE_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_SIX_ISLAND);
+    FlagSet(FLAG_WORLD_MAP_SEVEN_ISLAND);
 
     // --- Bag Items ---
     AddBagItem(ITEM_POKE_BALL, 25);
@@ -274,6 +282,13 @@ static void DebugTestSetup(void)
     AddBagItem(ITEM_HM05, 1);
     AddBagItem(ITEM_HM06, 1);
     AddBagItem(ITEM_HM07, 1);
+
+    // --- Start Location ---
+    if (DEBUG_START_LOCATION != SPAWN_PALLET_TOWN)
+    {
+        SetWarpDestinationToHealLocation(DEBUG_START_LOCATION);
+        WarpIntoMap();
+    }
 }
 #endif
 

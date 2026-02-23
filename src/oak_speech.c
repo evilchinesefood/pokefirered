@@ -745,6 +745,7 @@ void StartNewGameScene(void)
     StringCopy(gSaveBlock2Ptr->playerName, sDebugPlayerName);
     StringCopy(gSaveBlock1Ptr->rivalName, gNameChoice_Gary);
     FlagSet(FLAG_EXP_SHARE_PARTY);
+    VarSet(VAR_EXP_MULTIPLIER, 50);
     SetMainCallback2(CB2_NewGame);
     return;
 #endif
