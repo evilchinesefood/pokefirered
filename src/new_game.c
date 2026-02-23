@@ -232,26 +232,57 @@ static void DebugTestSetup(void)
     SetMoney(&gSaveBlock1Ptr->money, 10000);
 
     // --- Party ---
-    mon = AllocZeroed(sizeof(struct Pokemon));
+    {
+        u32 iv = 31;
+        mon = AllocZeroed(sizeof(struct Pokemon));
 
-    // Charmander — non-neutral nature (Adamant: +Atk -SpA)
-    CreateMonWithNature(mon, SPECIES_CHARMANDER, 5, 0, NATURE_ADAMANT);
-    GiveMonToPlayer(mon);
+        // Charmander — non-neutral nature (Adamant: +Atk -SpA)
+        CreateMonWithNature(mon, SPECIES_CHARMANDER, 5, 0, NATURE_ADAMANT);
+        SetMonData(mon, MON_DATA_HP_IV, &iv);
+        SetMonData(mon, MON_DATA_ATK_IV, &iv);
+        SetMonData(mon, MON_DATA_DEF_IV, &iv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        CalculateMonStats(mon);
+        GiveMonToPlayer(mon);
 
-    // Bulbasaur — neutral nature (Hardy)
-    CreateMonWithNature(mon, SPECIES_BULBASAUR, 5, 0, NATURE_HARDY);
-    GiveMonToPlayer(mon);
+        // Bulbasaur — neutral nature (Hardy)
+        CreateMonWithNature(mon, SPECIES_BULBASAUR, 5, 0, NATURE_HARDY);
+        SetMonData(mon, MON_DATA_HP_IV, &iv);
+        SetMonData(mon, MON_DATA_ATK_IV, &iv);
+        SetMonData(mon, MON_DATA_DEF_IV, &iv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        CalculateMonStats(mon);
+        GiveMonToPlayer(mon);
 
-    // Squirtle — non-neutral nature (Modest: +SpA -Atk)
-    CreateMonWithNature(mon, SPECIES_SQUIRTLE, 5, 0, NATURE_MODEST);
-    GiveMonToPlayer(mon);
+        // Squirtle — non-neutral nature (Modest: +SpA -Atk)
+        CreateMonWithNature(mon, SPECIES_SQUIRTLE, 5, 0, NATURE_MODEST);
+        SetMonData(mon, MON_DATA_HP_IV, &iv);
+        SetMonData(mon, MON_DATA_ATK_IV, &iv);
+        SetMonData(mon, MON_DATA_DEF_IV, &iv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        CalculateMonStats(mon);
+        GiveMonToPlayer(mon);
 
-    // Pidgeot — high level for Fly testing
-    CreateMonWithNature(mon, SPECIES_PIDGEOT, 36, 0, NATURE_JOLLY);
-    SetMonMoveSlot(mon, MOVE_FLY, 0);
-    GiveMonToPlayer(mon);
+        // Pidgeot — high level for Fly testing
+        CreateMonWithNature(mon, SPECIES_PIDGEOT, 36, 0, NATURE_JOLLY);
+        SetMonMoveSlot(mon, MOVE_FLY, 0);
+        SetMonData(mon, MON_DATA_HP_IV, &iv);
+        SetMonData(mon, MON_DATA_ATK_IV, &iv);
+        SetMonData(mon, MON_DATA_DEF_IV, &iv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        CalculateMonStats(mon);
+        GiveMonToPlayer(mon);
 
-    Free(mon);
+        Free(mon);
+    }
 
     // --- Fly Destinations ---
     FlagSet(FLAG_WORLD_MAP_PALLET_TOWN);
