@@ -181,4 +181,11 @@ ViridianCity_Text_PostRematchPokedude::
     .string "on your journey?\p"
     .string "I wish you the best!$"
 
+ViridianCity_Text_ShadyDealerGreeting::
+    .string "Psst… hey, kid.\n"
+    .string "Want some rare items?\p"
+    .string "Don't tell anyone where you\n"
+    .string "got 'em…$"
 
+ViridianCity_Text_ShadyDealerBye::
+    .string "You didn't see me here, got it?$"

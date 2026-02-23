@@ -290,5 +290,35 @@ ViridianCity_EventScript_PostRematchPokedude::
 	cleartrainerflag TRAINER_POKEDUDE
 	release
 	end
+
+ViridianCity_EventScript_ShadyDealer::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	message ViridianCity_Text_ShadyDealerGreeting
+	waitmessage
+	pokemart ViridianCity_ShadyDealer_Items
+	msgbox ViridianCity_Text_ShadyDealerBye
+	release
+	end
+
+	.align 2
+ViridianCity_ShadyDealer_Items::
+	.2byte ITEM_MASTER_BALL
+	.2byte ITEM_RARE_CANDY
+	.2byte ITEM_PP_UP
+	.2byte ITEM_HP_UP
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_IRON
+	.2byte ITEM_CALCIUM
+	.2byte ITEM_ZINC
+	.2byte ITEM_CARBOS
+	.2byte ITEM_NUGGET
+	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_MAX_ELIXIR
+	.2byte ITEM_FULL_RESTORE
+	.2byte ITEM_NONE
+	release
+	end
 `
 

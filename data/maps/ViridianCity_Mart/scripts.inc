@@ -149,100 +149,96 @@ ViridianCity_Mart_Items::
 # 75 "data/maps/ViridianCity_Mart/scripts.pory"
 	.2byte ITEM_REPEL
 # 76 "data/maps/ViridianCity_Mart/scripts.pory"
-	.2byte ITEM_MASTER_BALL
-# 77 "data/maps/ViridianCity_Mart/scripts.pory"
-	.2byte ITEM_RARE_CANDY
-# 78 "data/maps/ViridianCity_Mart/scripts.pory"
 	.2byte ITEM_NONE
+# 77 "data/maps/ViridianCity_Mart/scripts.pory"
+	release
+# 78 "data/maps/ViridianCity_Mart/scripts.pory"
+	end
 # 79 "data/maps/ViridianCity_Mart/scripts.pory"
-	release
+
 # 80 "data/maps/ViridianCity_Mart/scripts.pory"
-	end
-# 81 "data/maps/ViridianCity_Mart/scripts.pory"
-
-# 82 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_SayHiToOak::
-# 83 "data/maps/ViridianCity_Mart/scripts.pory"
+# 81 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_SayHiToOakForMe
+# 82 "data/maps/ViridianCity_Mart/scripts.pory"
+	release
+# 83 "data/maps/ViridianCity_Mart/scripts.pory"
+	end
 # 84 "data/maps/ViridianCity_Mart/scripts.pory"
-	release
+
 # 85 "data/maps/ViridianCity_Mart/scripts.pory"
-	end
-# 86 "data/maps/ViridianCity_Mart/scripts.pory"
-
-# 87 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_Woman::
-# 88 "data/maps/ViridianCity_Mart/scripts.pory"
+# 86 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_ShopDoesGoodBusinessInAntidotes, MSGBOX_NPC
+# 87 "data/maps/ViridianCity_Mart/scripts.pory"
+	end
+# 88 "data/maps/ViridianCity_Mart/scripts.pory"
+
 # 89 "data/maps/ViridianCity_Mart/scripts.pory"
-	end
-# 90 "data/maps/ViridianCity_Mart/scripts.pory"
-
-# 91 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_Youngster::
-# 92 "data/maps/ViridianCity_Mart/scripts.pory"
+# 90 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_GotToBuySomePotions, MSGBOX_NPC
+# 91 "data/maps/ViridianCity_Mart/scripts.pory"
+	end
+# 92 "data/maps/ViridianCity_Mart/scripts.pory"
+
 # 93 "data/maps/ViridianCity_Mart/scripts.pory"
-	end
-# 94 "data/maps/ViridianCity_Mart/scripts.pory"
-
-# 95 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_FishingGuru::
-# 96 "data/maps/ViridianCity_Mart/scripts.pory"
+# 94 "data/maps/ViridianCity_Mart/scripts.pory"
 	lock
-# 97 "data/maps/ViridianCity_Mart/scripts.pory"
+# 95 "data/maps/ViridianCity_Mart/scripts.pory"
 	faceplayer
-# 98 "data/maps/ViridianCity_Mart/scripts.pory"
+# 96 "data/maps/ViridianCity_Mart/scripts.pory"
 	goto_if_set FLAG_GOT_OLD_ROD, ViridianCity_Mart_EventScript_AlreadyGotOldRod
-# 99 "data/maps/ViridianCity_Mart/scripts.pory"
+# 97 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_ImFishingGuruDoYouLikeToFish, MSGBOX_YESNO
-# 100 "data/maps/ViridianCity_Mart/scripts.pory"
+# 98 "data/maps/ViridianCity_Mart/scripts.pory"
 	goto_if_eq VAR_RESULT, YES, ViridianCity_Mart_EventScript_GiveOldRod
-# 101 "data/maps/ViridianCity_Mart/scripts.pory"
+# 99 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_OhThatsSoDisappointing
+# 100 "data/maps/ViridianCity_Mart/scripts.pory"
+	release
+# 101 "data/maps/ViridianCity_Mart/scripts.pory"
+	end
 # 102 "data/maps/ViridianCity_Mart/scripts.pory"
-	release
+
 # 103 "data/maps/ViridianCity_Mart/scripts.pory"
-	end
-# 104 "data/maps/ViridianCity_Mart/scripts.pory"
-
-# 105 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_AlreadyGotOldRod::
-# 106 "data/maps/ViridianCity_Mart/scripts.pory"
+# 104 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_HowAreTheFishBiting
+# 105 "data/maps/ViridianCity_Mart/scripts.pory"
+	release
+# 106 "data/maps/ViridianCity_Mart/scripts.pory"
+	end
 # 107 "data/maps/ViridianCity_Mart/scripts.pory"
-	release
+
 # 108 "data/maps/ViridianCity_Mart/scripts.pory"
-	end
-# 109 "data/maps/ViridianCity_Mart/scripts.pory"
-
-# 110 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_GiveOldRod::
-# 111 "data/maps/ViridianCity_Mart/scripts.pory"
+# 109 "data/maps/ViridianCity_Mart/scripts.pory"
 	checkitemspace ITEM_OLD_ROD
-# 112 "data/maps/ViridianCity_Mart/scripts.pory"
+# 110 "data/maps/ViridianCity_Mart/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, ViridianCity_Mart_EventScript_NoRoomForOldRod
-# 113 "data/maps/ViridianCity_Mart/scripts.pory"
+# 111 "data/maps/ViridianCity_Mart/scripts.pory"
 	additem ITEM_OLD_ROD
-# 114 "data/maps/ViridianCity_Mart/scripts.pory"
+# 112 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_TakeThisAndFish
-# 115 "data/maps/ViridianCity_Mart/scripts.pory"
+# 113 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgreceiveditem ViridianCity_Mart_Text_ReceivedOldRodFromFishingGuru, ITEM_OLD_ROD
-# 116 "data/maps/ViridianCity_Mart/scripts.pory"
+# 114 "data/maps/ViridianCity_Mart/scripts.pory"
 	setflag FLAG_GOT_OLD_ROD
-# 117 "data/maps/ViridianCity_Mart/scripts.pory"
+# 115 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_FishingIsAWayOfLife
-# 118 "data/maps/ViridianCity_Mart/scripts.pory"
+# 116 "data/maps/ViridianCity_Mart/scripts.pory"
 	release
-# 119 "data/maps/ViridianCity_Mart/scripts.pory"
+# 117 "data/maps/ViridianCity_Mart/scripts.pory"
 	end
-# 120 "data/maps/ViridianCity_Mart/scripts.pory"
+# 118 "data/maps/ViridianCity_Mart/scripts.pory"
 
-# 121 "data/maps/ViridianCity_Mart/scripts.pory"
+# 119 "data/maps/ViridianCity_Mart/scripts.pory"
 ViridianCity_Mart_EventScript_NoRoomForOldRod::
-# 122 "data/maps/ViridianCity_Mart/scripts.pory"
+# 120 "data/maps/ViridianCity_Mart/scripts.pory"
 	msgbox ViridianCity_Mart_Text_NoRoomForNiceGift
-# 123 "data/maps/ViridianCity_Mart/scripts.pory"
+# 121 "data/maps/ViridianCity_Mart/scripts.pory"
 	release
-# 124 "data/maps/ViridianCity_Mart/scripts.pory"
+# 122 "data/maps/ViridianCity_Mart/scripts.pory"
 	end

@@ -582,3 +582,63 @@ ViridianCity_EventScript_PostRematchPokedude::
 	release
 # 292 "data/maps/ViridianCity/scripts.pory"
 	end
+# 293 "data/maps/ViridianCity/scripts.pory"
+
+# 294 "data/maps/ViridianCity/scripts.pory"
+ViridianCity_EventScript_ShadyDealer::
+# 295 "data/maps/ViridianCity/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 296 "data/maps/ViridianCity/scripts.pory"
+	lock
+# 297 "data/maps/ViridianCity/scripts.pory"
+	faceplayer
+# 298 "data/maps/ViridianCity/scripts.pory"
+	message ViridianCity_Text_ShadyDealerGreeting
+# 299 "data/maps/ViridianCity/scripts.pory"
+	waitmessage
+# 300 "data/maps/ViridianCity/scripts.pory"
+	pokemart ViridianCity_ShadyDealer_Items
+# 301 "data/maps/ViridianCity/scripts.pory"
+	msgbox ViridianCity_Text_ShadyDealerBye
+# 302 "data/maps/ViridianCity/scripts.pory"
+	release
+# 303 "data/maps/ViridianCity/scripts.pory"
+	end
+# 304 "data/maps/ViridianCity/scripts.pory"
+
+# 305 "data/maps/ViridianCity/scripts.pory"
+	.align 2
+# 306 "data/maps/ViridianCity/scripts.pory"
+ViridianCity_ShadyDealer_Items::
+# 307 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_MASTER_BALL
+# 308 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_RARE_CANDY
+# 309 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_PP_UP
+# 310 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_HP_UP
+# 311 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_PROTEIN
+# 312 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_IRON
+# 313 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_CALCIUM
+# 314 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_ZINC
+# 315 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_CARBOS
+# 316 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_NUGGET
+# 317 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_MAX_REPEL
+# 318 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_MAX_ELIXIR
+# 319 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_FULL_RESTORE
+# 320 "data/maps/ViridianCity/scripts.pory"
+	.2byte ITEM_NONE
+# 321 "data/maps/ViridianCity/scripts.pory"
+	release
+# 322 "data/maps/ViridianCity/scripts.pory"
+	end
