@@ -836,7 +836,7 @@ static const struct WindowTemplate sWindowTemplates_Skills[] =
         .tilemapTop = 2,
         .width = 10,
         .height = 14,
-        .paletteNum = 6,
+        .paletteNum = 7,
         .baseBlock = 0x0001
     },
     [POKESUM_WIN_SKILLS_4 - 3] = {
