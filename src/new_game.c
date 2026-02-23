@@ -282,6 +282,8 @@ static void DebugTestSetup(void)
     AddBagItem(ITEM_HM05, 1);
     AddBagItem(ITEM_HM06, 1);
     AddBagItem(ITEM_HM07, 1);
+    AddBagItem(ITEM_TRI_PASS, 1);
+    AddBagItem(ITEM_RAINBOW_PASS, 1);
 
     // --- Start Location ---
     if (DEBUG_START_LOCATION != SPAWN_PALLET_TOWN)
