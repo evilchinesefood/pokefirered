@@ -4515,16 +4515,15 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc func)
     if (canHeal)
     {
         gPartyMenuUseExitCallback = FALSE;
-        if (canHeal && FlagGet(FLAG_NUZLOCKE) && GetMonData(mon, MON_DATA_DEAD))
-            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
-        else
-            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);        
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = func;
     }
     else
     {
-        ItemUseCB_MedicineStep(taskId, func);
+        ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, item, 0xFFFF);
+        Task_DoUseItemAnim(taskId);
+        gItemUseCB = ItemUseCB_MedicineStep;
     }
 }
 
