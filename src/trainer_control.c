@@ -10,15 +10,28 @@
  #include "constants/battle.h"
  #include "constants/moves.h"
  #include "trainer_control.h"
+ #include "constants/flags.h"
+ #include "event_data.h"
+ #include "randomizer.h"
  
  void CreateTrainerMon(struct Pokemon *party, const struct Trainer *trainer, u32 partySlot, u32 personalityValue, u32 fixedOtId)
  {
      const struct TrainerMon *partyData = &trainer->party[partySlot];
      u32 otIdType, i;
+     u16 species = partyData->species;
+     bool8 isRandomized = FALSE;
+
+     if (FlagGet(FLAG_TRAINER_RANDOMIZER))
+     {
+         u32 context = ((u32)gTrainerBattleOpponent_A << 16) | partySlot;
+         species = GetRandomizedSpecies(GetRandomizerSeed(), context);
+         isRandomized = TRUE;
+     }
+
      if (partyData->gender != 0)
      {
          u32 newPersonality = personalityValue & 0xFFFFFF00;
-         u32 genderRatio = gSpeciesInfo[partyData->species].genderRatio;
+         u32 genderRatio = gSpeciesInfo[species].genderRatio;
          if (partyData->gender == TRAINER_PARTY_GENDER(MALE))
              newPersonality |= ((255 - genderRatio) / 2) + genderRatio;
          else
@@ -46,12 +59,11 @@
          otIdType = OT_ID_PRESET;
          fixedOtId ^= GET_SHINY_VALUE(fixedOtId, personalityValue) << 16; // Make shiny by xoring SID.
      }
-     CreateMon(party, partyData->species, partyData->lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+     CreateMon(party, species, partyData->lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
      if (partyData->heldItem != ITEM_NONE)
          SetMonData(party, MON_DATA_HELD_ITEM, &partyData->heldItem);
- 
-     
-     if (partyData->moves[0] != MOVE_NONE)
+
+     if (partyData->moves[0] != MOVE_NONE && !isRandomized)
      {
          u32 friendship = 0;
          for (i = 0; i < MAX_MON_MOVES; i++)
@@ -65,14 +77,14 @@
          }
          SetMonData(party, MON_DATA_FRIENDSHIP, &friendship);
      }
-        
+
      SetMonData(party, MON_DATA_IVS, &partyData->iv);
      if (partyData->ev != NULL)
      {
          for (i = 0; i < NUM_STATS; i++)
              SetMonData(party, MON_DATA_HP_EV + i, &partyData->ev[i]);
      }
-     if (gSpeciesInfo[partyData->species].abilities[1])
+     if (gSpeciesInfo[species].abilities[1])
      {
          u32 abilityNum = partyData->abilityNum;
          SetMonData(party, MON_DATA_ABILITY_NUM, &abilityNum);

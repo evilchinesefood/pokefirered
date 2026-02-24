@@ -19,6 +19,7 @@
 #include "constants/flags.h"
 #include "event_data.h"
 #include "debug.h"
+#include "randomizer.h"
 
 #ifdef DEBUG_TEST_SETUP
 static const u8 sDebugPlayerName[] = _("DAVE");
@@ -112,6 +113,14 @@ static void Task_OakSpeech_CatchRateMultiplierSelection(u8);
 static void Task_OakSpeech_ProcessCatchRateMultiplier(u8);
 static void Task_OakSpeech_MinimalGrindingSelection(u8);
 static void Task_OakSpeech_ProcessMinimalGrinding(u8);
+static void Task_OakSpeech_WildRandomizerSelection(u8);
+static void Task_OakSpeech_ProcessWildRandomizer(u8);
+static void Task_OakSpeech_TrainerRandomizerSelection(u8);
+static void Task_OakSpeech_ProcessTrainerRandomizer(u8);
+static void Task_OakSpeech_AbilityRandomizerSelection(u8);
+static void Task_OakSpeech_ProcessAbilityRandomizer(u8);
+static void Task_OakSpeech_StarterRandomizerSelection(u8);
+static void Task_OakSpeech_ProcessStarterRandomizer(u8);
 static void Task_OakSpeech_LoadPlayerPic(u8);
 static void Task_OakSpeech_YourNameWhatIsIt(u8);
 static void Task_OakSpeech_FadeOutForPlayerNamingScreen(u8);
@@ -183,6 +192,10 @@ extern const u8 gText_CatchMult_Quarter[];
 extern const u8 gText_CatchMult_OneAndHalf[];
 extern const u8 gText_CatchMult_Always[];
 extern const u8 gText_Oak_MinimalGrinding[];
+extern const u8 gText_Oak_WildRandomizer[];
+extern const u8 gText_Oak_TrainerRandomizer[];
+extern const u8 gText_Oak_AbilityRandomizer[];
+extern const u8 gText_Oak_StarterRandomizer[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x16;
@@ -1895,6 +1908,137 @@ static void Task_OakSpeech_ProcessMinimalGrinding(u8 taskId)
             break;
         case MENU_NOTHING_CHOSEN:
             return;
+    }
+
+    OakSpeechPrintMessage(gText_Oak_WildRandomizer, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_WildRandomizerSelection;
+}
+
+static void Task_OakSpeech_WildRandomizerSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = Task_OakSpeech_ProcessWildRandomizer;
+    }
+}
+
+static void Task_OakSpeech_ProcessWildRandomizer(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_WILD_RANDOMIZER);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_WILD_RANDOMIZER);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
+
+    OakSpeechPrintMessage(gText_Oak_TrainerRandomizer, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_TrainerRandomizerSelection;
+}
+
+static void Task_OakSpeech_TrainerRandomizerSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = Task_OakSpeech_ProcessTrainerRandomizer;
+    }
+}
+
+static void Task_OakSpeech_ProcessTrainerRandomizer(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_TRAINER_RANDOMIZER);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_TRAINER_RANDOMIZER);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
+
+    OakSpeechPrintMessage(gText_Oak_AbilityRandomizer, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_AbilityRandomizerSelection;
+}
+
+static void Task_OakSpeech_AbilityRandomizerSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = Task_OakSpeech_ProcessAbilityRandomizer;
+    }
+}
+
+static void Task_OakSpeech_ProcessAbilityRandomizer(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_ABILITY_RANDOMIZER);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_ABILITY_RANDOMIZER);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
+
+    OakSpeechPrintMessage(gText_Oak_StarterRandomizer, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_StarterRandomizerSelection;
+}
+
+static void Task_OakSpeech_StarterRandomizerSelection(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
+        gTasks[taskId].func = Task_OakSpeech_ProcessStarterRandomizer;
+    }
+}
+
+static void Task_OakSpeech_ProcessStarterRandomizer(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
+    switch (input)
+    {
+        case 0: // YES
+            PlaySE(SE_SELECT);
+            FlagSet(FLAG_STARTER_RANDOMIZER);
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            PlaySE(SE_SELECT);
+            FlagClear(FLAG_STARTER_RANDOMIZER);
+            break;
+        case MENU_NOTHING_CHOSEN:
+            return;
+    }
+
+    // Generate seed if any randomizer is enabled
+    if (FlagGet(FLAG_WILD_RANDOMIZER) || FlagGet(FLAG_TRAINER_RANDOMIZER)
+     || FlagGet(FLAG_ABILITY_RANDOMIZER) || FlagGet(FLAG_STARTER_RANDOMIZER))
+    {
+        SetRandomizerSeed(Random32());
     }
 
     gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;

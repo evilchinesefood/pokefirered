@@ -236,6 +236,22 @@ gText_Oak_MinimalGrinding::
     .string "have perfect IVs and no EVs.\n"
     .string "Only NATURE affects stats.$"
 
+gText_Oak_WildRandomizer::
+    .string "Do you want to randomize\n"
+    .string "wild POKéMON encounters?$"
+
+gText_Oak_TrainerRandomizer::
+    .string "Do you want to randomize\n"
+    .string "trainer POKéMON teams?$"
+
+gText_Oak_AbilityRandomizer::
+    .string "Do you want to randomize\n"
+    .string "abilities and moves?$"
+
+gText_Oak_StarterRandomizer::
+    .string "Do you want to randomize\n"
+    .string "starter POKéMON?$"
+
 gPikachuIntro_Text_Page4::
 	.string "Thank you for Playing FIRERED\n"
 	.string "REIGNITED and LEAFGREEN REGROWN!\n"

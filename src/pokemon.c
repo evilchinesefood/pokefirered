@@ -39,6 +39,8 @@
 #include "constants/union_room.h"
 #include "constants/daycare.h"
 #include "daycare.h"
+#include "constants/flags.h"
+#include "randomizer.h"
 
 #define SPECIES_TO_HOENN(name)      [SPECIES_##name - 1] = HOENN_DEX_##name
 #define SPECIES_TO_NATIONAL(name)   [SPECIES_##name - 1] = NATIONAL_DEX_##name
@@ -2368,8 +2370,14 @@ static void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromBoxMonExp(boxMon);
     s32 i;
-
     u8 deoxysForme;
+
+    if (FlagGet(FLAG_ABILITY_RANDOMIZER))
+    {
+        GiveRandomizedMoveset(boxMon, GetRandomizerSeed());
+        return;
+    }
+
     if(species == SPECIES_DEOXYS)
     {
         deoxysForme = GetBoxMonData(boxMon, MON_DATA_FORME, NULL);
@@ -3977,6 +3985,12 @@ u8 GetMonsStateToDoubles(void)
 
 u8 GetAbilityBySpecies(u16 species, bool8 abilityNum)
 {
+    if (FlagGet(FLAG_ABILITY_RANDOMIZER))
+    {
+        gLastUsedAbility = GetRandomizedAbility(GetRandomizerSeed(), species, abilityNum);
+        return gLastUsedAbility;
+    }
+
     if (abilityNum)
         gLastUsedAbility = gSpeciesInfo[species].abilities[1];
     else

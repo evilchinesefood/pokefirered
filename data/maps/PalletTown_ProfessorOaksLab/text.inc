@@ -122,6 +122,10 @@ PalletTown_ProfessorOaksLab_Text_OakChoosingBulbasaur::
     .string "So, {PLAYER}, you want to go with\n"
     .string "the GRASS POKéMON BULBASAUR?$"
 
+PalletTown_ProfessorOaksLab_Text_OakChoosingRandomStarter::
+    .string "So, {PLAYER}, you want to go with\n"
+    .string "{STR_VAR_1}?$"
+
 PalletTown_ProfessorOaksLab_Text_OakThisMonIsEnergetic::
     .string "This POKéMON is really quite\n"
     .string "energetic!$"

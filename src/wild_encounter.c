@@ -17,6 +17,8 @@
 #include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/weather.h"
+#include "constants/flags.h"
+#include "randomizer.h"
 
 #define MAX_ENCOUNTER_RATE 1600
 
@@ -587,7 +589,17 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
     if (flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
     
-    GenerateWildMon(info->wildPokemon[slot].species, level, slot);
+    {
+        u16 species = info->wildPokemon[slot].species;
+        if (FlagGet(FLAG_WILD_RANDOMIZER))
+        {
+            u32 context = ((u32)gSaveBlock1Ptr->location.mapGroup << 24)
+                        | ((u32)gSaveBlock1Ptr->location.mapNum << 16)
+                        | ((u32)area << 8) | slot;
+            species = GetRandomizedSpecies(GetRandomizerSeed(), context);
+        }
+        GenerateWildMon(species, level, slot);
+    }
     return TRUE;
 }
 
@@ -595,8 +607,16 @@ static u16 GenerateFishingEncounter(const struct WildPokemonInfo * info, u8 rod)
 {
     u8 slot = ChooseWildMonIndex_Fishing(rod);
     u8 level = ChooseWildMonLevel(&info->wildPokemon[slot]);
-    GenerateWildMon(info->wildPokemon[slot].species, level, slot);
-    return info->wildPokemon[slot].species;
+    u16 species = info->wildPokemon[slot].species;
+    if (FlagGet(FLAG_WILD_RANDOMIZER))
+    {
+        u32 context = ((u32)gSaveBlock1Ptr->location.mapGroup << 24)
+                    | ((u32)gSaveBlock1Ptr->location.mapNum << 16)
+                    | ((u32)rod << 8) | slot;
+        species = GetRandomizedSpecies(GetRandomizerSeed(), context);
+    }
+    GenerateWildMon(species, level, slot);
+    return species;
 }
 
 static bool8 DoWildEncounterRateDiceRoll(u16 encounterRate)

@@ -31,6 +31,8 @@
 #include "pokemon_jump.h"
 #include "event_scripts.h"
 #include "debug.h"
+#include "randomizer.h"
+#include "constants/flags.h"
 #ifdef DEBUG_TEST_SETUP
 #include "pokemon.h"
 #include "constants/species.h"
@@ -124,6 +126,11 @@ void NewGameInitData(void)
     bool8 hardPrev = FlagGet(FLAG_HARD);
     bool8 expSharePrev = FlagGet(FLAG_EXP_SHARE_PARTY);
     bool8 mgmPrev = FlagGet(FLAG_MINIMAL_GRINDING);
+    bool8 wildRandPrev = FlagGet(FLAG_WILD_RANDOMIZER);
+    bool8 trainerRandPrev = FlagGet(FLAG_TRAINER_RANDOMIZER);
+    bool8 abilityRandPrev = FlagGet(FLAG_ABILITY_RANDOMIZER);
+    bool8 starterRandPrev = FlagGet(FLAG_STARTER_RANDOMIZER);
+    u32 randSeedPrev = GetRandomizerSeed();
     u16 shinyRatePrev = VarGet(VAR_SHINY_RATE);  // A function lower down here clears these, so retain and reset at the end
     u16 expMultPrev = VarGet(VAR_EXP_MULTIPLIER);
     u16 catchRateMultPrev = VarGet(VAR_CATCH_RATE_MULT);
@@ -180,6 +187,11 @@ void NewGameInitData(void)
     hardPrev ? FlagSet(FLAG_HARD) : FlagClear(FLAG_HARD);
     expSharePrev ? FlagSet(FLAG_EXP_SHARE_PARTY) : FlagClear(FLAG_EXP_SHARE_PARTY);
     mgmPrev ? FlagSet(FLAG_MINIMAL_GRINDING) : FlagClear(FLAG_MINIMAL_GRINDING);
+    wildRandPrev ? FlagSet(FLAG_WILD_RANDOMIZER) : FlagClear(FLAG_WILD_RANDOMIZER);
+    trainerRandPrev ? FlagSet(FLAG_TRAINER_RANDOMIZER) : FlagClear(FLAG_TRAINER_RANDOMIZER);
+    abilityRandPrev ? FlagSet(FLAG_ABILITY_RANDOMIZER) : FlagClear(FLAG_ABILITY_RANDOMIZER);
+    starterRandPrev ? FlagSet(FLAG_STARTER_RANDOMIZER) : FlagClear(FLAG_STARTER_RANDOMIZER);
+    SetRandomizerSeed(randSeedPrev);
     VarSet(VAR_SHINY_RATE, shinyRatePrev);
     VarSet(VAR_EXP_MULTIPLIER, expMultPrev);
     VarSet(VAR_CATCH_RATE_MULT, catchRateMultPrev);

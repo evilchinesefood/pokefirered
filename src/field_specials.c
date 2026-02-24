@@ -21,6 +21,8 @@
 #include "menu_indicators.h"
 #include "random.h"
 #include "mail_data.h"
+#include "randomizer.h"
+#include "constants/flags.h"
 #include "help_system.h"
 #include "pokemon_storage_system.h"
 #include "script_menu.h"
@@ -2822,4 +2824,21 @@ void BattleTrophy(void)
     {
         gSpecialVar_Result = FALSE;
     }
+}
+
+void Special_ApplyStarterRandomizer(void)
+{
+    u16 starterNum;
+    u16 species[3];
+    u8 i;
+
+    if (!FlagGet(FLAG_STARTER_RANDOMIZER))
+        return;
+
+    for (i = 0; i < 3; i++)
+        species[i] = GetRandomizedStarterSpecies(GetRandomizerSeed(), i);
+
+    starterNum = VarGet(VAR_TEMP_1); // PLAYER_STARTER_NUM
+    VarSet(VAR_TEMP_2, species[starterNum]);  // PLAYER_STARTER_SPECIES
+    VarSet(VAR_TEMP_3, species[(starterNum + 1) % 3]);  // RIVAL_STARTER_SPECIES
 }

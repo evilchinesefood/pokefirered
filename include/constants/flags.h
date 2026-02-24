@@ -842,10 +842,10 @@
 #define FLAG_SHINY_LOCK          0x32D
 #define FLAG_EXP_SHARE_PARTY     0x32E
 #define FLAG_MINIMAL_GRINDING    0x32F
-#define FLAG_0x330               0x330
-#define FLAG_0x331               0x331
-#define FLAG_0x332               0x332
-#define FLAG_0x333               0x333
+#define FLAG_WILD_RANDOMIZER     0x330
+#define FLAG_TRAINER_RANDOMIZER  0x331
+#define FLAG_ABILITY_RANDOMIZER  0x332
+#define FLAG_STARTER_RANDOMIZER  0x333
 #define FLAG_0x334               0x334
 #define FLAG_0x335               0x335
 #define FLAG_0x336               0x336
