@@ -552,6 +552,7 @@ static void Debug_DrawNumberPair(s16 num1, s16 num2, u16 *dest)
 #define sTypeIcon1SpriteId      data[0]
 #define sTypeIcon2SpriteId      data[1]
 #define sDualTyped              data[2]
+#define sTypeIconsReady         data[3]
 #define sHealthBarSpriteId      data[5]
 #define sBattlerId              data[6]
 
@@ -781,9 +782,12 @@ void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
     gSprites[healthboxSpriteId].invisible = FALSE;
     gSprites[gSprites[healthboxSpriteId].sHealthBarSpriteId].invisible = FALSE;
     gSprites[gSprites[healthboxSpriteId].sHealthboxOtherSpriteId].invisible = FALSE;
-    gSprites[gSprites[healthboxSpriteId].sTypeIcon1SpriteId].invisible = FALSE;
-    if (gSprites[healthboxSpriteId].sDualTyped)
-        gSprites[gSprites[healthboxSpriteId].sTypeIcon2SpriteId].invisible = FALSE;
+    if (gSprites[healthboxSpriteId].sTypeIconsReady)
+    {
+        gSprites[gSprites[healthboxSpriteId].sTypeIcon1SpriteId].invisible = FALSE;
+        if (gSprites[healthboxSpriteId].sDualTyped)
+            gSprites[gSprites[healthboxSpriteId].sTypeIcon2SpriteId].invisible = FALSE;
+    }
 }
 
 static void UpdateSpritePos(u8 spriteId, s16 x, s16 y)
@@ -1893,25 +1897,30 @@ static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 type1 = gSpeciesInfo[species].types[0];
     u8 type2 = gSpeciesInfo[species].types[1];
-    bool8 isPlayerSide = (GetBattlerSide(battlerId) == B_SIDE_PLAYER);
     s16 yOffset, xOffset1, xOffset2;
     u16 windowId;
     u8 *windowTileData;
 
-    if (isPlayerSide)
+    // Per-position offsets to avoid overlap and screen-edge clipping
+    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
     {
-        xOffset1 = 16;
+        if (IsDoubleBattle() && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)
+            xOffset1 = 8;  // Shift left to keep dual-type icon 2 away from screen edge
+        else
+            xOffset1 = 16;
         yOffset = -10;
     }
     else
     {
         xOffset1 = -8;
-        yOffset = 15;
+        yOffset = 22; // Below the healthbox (clears the 64x32 sprite's bottom edge)
     }
     xOffset2 = xOffset1 + 34;
 
     // Render type 1 icon into temp window, copy tiles to OBJ VRAM
     windowId = AddWindow(&sTypeIconWindowTemplate);
+    if (windowId == WINDOW_NONE)
+        return;
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     BlitMenuInfoIcon(windowId, type1 + 1, 0, 2);
     windowTileData = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
@@ -1926,6 +1935,8 @@ static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
     {
         // Render type 2 icon
         windowId = AddWindow(&sTypeIconWindowTemplate);
+        if (windowId == WINDOW_NONE)
+            return;
         FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
         BlitMenuInfoIcon(windowId, type2 + 1, 0, 2);
         windowTileData = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
@@ -1939,9 +1950,13 @@ static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
     }
     else
     {
+        // Clear stale tile data and hide type icon 2
+        CpuFill32(0, (void *)(OBJ_VRAM0) + gSprites[typeIcon2SpriteId].oam.tileNum * TILE_SIZE_4BPP, 8 * TILE_SIZE_4BPP);
         gSprites[typeIcon2SpriteId].invisible = TRUE;
         gSprites[healthboxSpriteId].sDualTyped = FALSE;
     }
+
+    gSprites[healthboxSpriteId].sTypeIconsReady = TRUE;
 }
 
 void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId)
