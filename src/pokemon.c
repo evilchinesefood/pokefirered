@@ -4450,7 +4450,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                 break;
                                 //do something with vars and break, EV is 0 already
                             }
-                            dataSigned -= 10;
+                            if (dataSigned > 100)
+                                dataSigned -= 100;
+                            else
+                                dataSigned -= 10;
                             if(dataSigned < 0)
                             {
                                 dataSigned = 0;
@@ -4672,7 +4675,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                 break;
                                 //do something with vars and break, EV is 0 already
                             }
-                            dataSigned -= 10;
+                            if (dataSigned > 100)
+                                dataSigned -= 100;
+                            else
+                                dataSigned -= 10;
                             if(dataSigned < 0)
                             {
                                 dataSigned = 0;
