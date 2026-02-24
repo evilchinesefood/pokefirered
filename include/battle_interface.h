@@ -51,6 +51,17 @@ enum
 #define TAG_HEALTHBOX_PAL                       TAG_HEALTHBOX_PLAYER1_TILE
 #define TAG_HEALTHBAR_PAL                       TAG_HEALTHBAR_PLAYER1_TILE
 
+#define TAG_TYPE_ICONS_PAL                      55048
+
+#define TAG_TYPE_ICON_TILE_0                    55070
+#define TAG_TYPE_ICON_TILE_1                    55071
+#define TAG_TYPE_ICON_TILE_2                    55072
+#define TAG_TYPE_ICON_TILE_3                    55073
+#define TAG_TYPE_ICON_TILE_4                    55074
+#define TAG_TYPE_ICON_TILE_5                    55075
+#define TAG_TYPE_ICON_TILE_6                    55076
+#define TAG_TYPE_ICON_TILE_7                    55077
+
 enum
 {
     HEALTHBOX_ALL,
@@ -64,7 +75,8 @@ enum
     HEALTHBOX_UNUSED_8,
     HEALTHBOX_STATUS_ICON,
     HEALTHBOX_SAFARI_ALL_TEXT,
-    HEALTHBOX_SAFARI_BALLS_TEXT
+    HEALTHBOX_SAFARI_BALLS_TEXT,
+    HEALTHBOX_TYPE_ICONS,
 };
 
 void Task_HidePartyStatusSummary(u8 taskId);
