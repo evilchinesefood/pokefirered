@@ -820,3 +820,29 @@ CinnabarIsland_EventScript_GymSign::
 	releaseall
 # 411 "data/maps/CinnabarIsland/scripts.pory"
 	end
+# 412 "data/maps/CinnabarIsland/scripts.pory"
+
+# 413 "data/maps/CinnabarIsland/scripts.pory"
+CinnabarIsland_EventScript_ShadyDealer::
+# 414 "data/maps/CinnabarIsland/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 415 "data/maps/CinnabarIsland/scripts.pory"
+	lock
+# 416 "data/maps/CinnabarIsland/scripts.pory"
+	faceplayer
+# 417 "data/maps/CinnabarIsland/scripts.pory"
+	message ViridianCity_Text_ShadyDealerGreeting
+# 418 "data/maps/CinnabarIsland/scripts.pory"
+	waitmessage
+# 419 "data/maps/CinnabarIsland/scripts.pory"
+	setflag FLAG_SHADY_DEALER_PRICING
+# 420 "data/maps/CinnabarIsland/scripts.pory"
+	pokemart ViridianCity_ShadyDealer_Items
+# 421 "data/maps/CinnabarIsland/scripts.pory"
+	clearflag FLAG_SHADY_DEALER_PRICING
+# 422 "data/maps/CinnabarIsland/scripts.pory"
+	msgbox ViridianCity_Text_ShadyDealerBye
+# 423 "data/maps/CinnabarIsland/scripts.pory"
+	release
+# 424 "data/maps/CinnabarIsland/scripts.pory"
+	end

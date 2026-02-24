@@ -212,3 +212,29 @@ CeladonCity_EventScript_GameCornerSign::
 	msgbox CeladonCity_Text_GameCornerSign, MSGBOX_SIGN
 # 107 "data/maps/CeladonCity/scripts.pory"
 	end
+# 108 "data/maps/CeladonCity/scripts.pory"
+
+# 109 "data/maps/CeladonCity/scripts.pory"
+CeladonCity_EventScript_ShadyDealer::
+# 110 "data/maps/CeladonCity/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 111 "data/maps/CeladonCity/scripts.pory"
+	lock
+# 112 "data/maps/CeladonCity/scripts.pory"
+	faceplayer
+# 113 "data/maps/CeladonCity/scripts.pory"
+	message ViridianCity_Text_ShadyDealerGreeting
+# 114 "data/maps/CeladonCity/scripts.pory"
+	waitmessage
+# 115 "data/maps/CeladonCity/scripts.pory"
+	setflag FLAG_SHADY_DEALER_PRICING
+# 116 "data/maps/CeladonCity/scripts.pory"
+	pokemart ViridianCity_ShadyDealer_Items
+# 117 "data/maps/CeladonCity/scripts.pory"
+	clearflag FLAG_SHADY_DEALER_PRICING
+# 118 "data/maps/CeladonCity/scripts.pory"
+	msgbox ViridianCity_Text_ShadyDealerBye
+# 119 "data/maps/CeladonCity/scripts.pory"
+	release
+# 120 "data/maps/CeladonCity/scripts.pory"
+	end

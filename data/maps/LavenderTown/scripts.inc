@@ -166,3 +166,29 @@ LavenderTown_EventScript_PostRematchKaren::
 	release
 # 84 "data/maps/LavenderTown/scripts.pory"
 	end
+# 85 "data/maps/LavenderTown/scripts.pory"
+
+# 86 "data/maps/LavenderTown/scripts.pory"
+LavenderTown_EventScript_ShadyDealer::
+# 87 "data/maps/LavenderTown/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 88 "data/maps/LavenderTown/scripts.pory"
+	lock
+# 89 "data/maps/LavenderTown/scripts.pory"
+	faceplayer
+# 90 "data/maps/LavenderTown/scripts.pory"
+	message ViridianCity_Text_ShadyDealerGreeting
+# 91 "data/maps/LavenderTown/scripts.pory"
+	waitmessage
+# 92 "data/maps/LavenderTown/scripts.pory"
+	setflag FLAG_SHADY_DEALER_PRICING
+# 93 "data/maps/LavenderTown/scripts.pory"
+	pokemart ViridianCity_ShadyDealer_Items
+# 94 "data/maps/LavenderTown/scripts.pory"
+	clearflag FLAG_SHADY_DEALER_PRICING
+# 95 "data/maps/LavenderTown/scripts.pory"
+	msgbox ViridianCity_Text_ShadyDealerBye
+# 96 "data/maps/LavenderTown/scripts.pory"
+	release
+# 97 "data/maps/LavenderTown/scripts.pory"
+	end

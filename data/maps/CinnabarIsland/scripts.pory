@@ -409,4 +409,17 @@ CinnabarIsland_EventScript_GymSign::
 	msgbox CinnabarIsland_Text_GymSign
 	releaseall
 	end
+
+CinnabarIsland_EventScript_ShadyDealer::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	message ViridianCity_Text_ShadyDealerGreeting
+	waitmessage
+	setflag FLAG_SHADY_DEALER_PRICING
+	pokemart ViridianCity_ShadyDealer_Items
+	clearflag FLAG_SHADY_DEALER_PRICING
+	msgbox ViridianCity_Text_ShadyDealerBye
+	release
+	end
 `

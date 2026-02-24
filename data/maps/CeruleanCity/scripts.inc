@@ -796,3 +796,29 @@ CeruleanCity_EventScript_GymSign::
 	releaseall
 # 399 "data/maps/CeruleanCity/scripts.pory"
 	end
+# 400 "data/maps/CeruleanCity/scripts.pory"
+
+# 401 "data/maps/CeruleanCity/scripts.pory"
+CeruleanCity_EventScript_ShadyDealer::
+# 402 "data/maps/CeruleanCity/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 403 "data/maps/CeruleanCity/scripts.pory"
+	lock
+# 404 "data/maps/CeruleanCity/scripts.pory"
+	faceplayer
+# 405 "data/maps/CeruleanCity/scripts.pory"
+	message ViridianCity_Text_ShadyDealerGreeting
+# 406 "data/maps/CeruleanCity/scripts.pory"
+	waitmessage
+# 407 "data/maps/CeruleanCity/scripts.pory"
+	setflag FLAG_SHADY_DEALER_PRICING
+# 408 "data/maps/CeruleanCity/scripts.pory"
+	pokemart ViridianCity_ShadyDealer_Items
+# 409 "data/maps/CeruleanCity/scripts.pory"
+	clearflag FLAG_SHADY_DEALER_PRICING
+# 410 "data/maps/CeruleanCity/scripts.pory"
+	msgbox ViridianCity_Text_ShadyDealerBye
+# 411 "data/maps/CeruleanCity/scripts.pory"
+	release
+# 412 "data/maps/CeruleanCity/scripts.pory"
+	end
