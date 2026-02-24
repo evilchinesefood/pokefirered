@@ -201,6 +201,9 @@ static const struct SpriteTemplate sSpriteTemplate_TypeIcon = {
     .callback = SpriteCB_TypeIcon
 };
 
+static bool8 sTypeIconMatrixAllocated;
+static u8 sTypeIconAffineMatrixNum;
+
 static const struct CompressedSpriteSheet sSpriteSheets_TypeIcons[MAX_BATTLERS_COUNT * 2] = {
     { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_0 },
     { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_1 },
@@ -662,6 +665,27 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
         gSprites[typeIcon2Id].invisible = TRUE;
         gSprites[healthboxSpriteId].sTypeIcon1SpriteId = typeIcon1Id;
         gSprites[healthboxSpriteId].sTypeIcon2SpriteId = typeIcon2Id;
+
+        // Half-size type icons via OAM affine scaling (shared matrix)
+        // Reset on first battler so stale matrix from previous battle is re-allocated
+        if (battlerId == 0)
+            sTypeIconMatrixAllocated = FALSE;
+        if (!sTypeIconMatrixAllocated)
+        {
+            sTypeIconAffineMatrixNum = AllocOamMatrix();
+            if (sTypeIconAffineMatrixNum != 0xFF)
+            {
+                SetOamMatrix(sTypeIconAffineMatrixNum, 0x200, 0, 0, 0x200);
+                sTypeIconMatrixAllocated = TRUE;
+            }
+        }
+        if (sTypeIconMatrixAllocated)
+        {
+            gSprites[typeIcon1Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+            gSprites[typeIcon1Id].oam.matrixNum = sTypeIconAffineMatrixNum;
+            gSprites[typeIcon2Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+            gSprites[typeIcon2Id].oam.matrixNum = sTypeIconAffineMatrixNum;
+        }
     }
 
     return healthboxSpriteId;
@@ -701,6 +725,20 @@ u8 CreateSafariPlayerHealthboxSprites(void)
         gSprites[typeIcon2Id].invisible = TRUE;
         gSprites[healthboxSpriteId].sTypeIcon1SpriteId = typeIcon1Id;
         gSprites[healthboxSpriteId].sTypeIcon2SpriteId = typeIcon2Id;
+
+        // Half-size type icons via OAM affine scaling (shared matrix)
+        // Safari is always battler 0, so reset stale matrix from previous battle
+        sTypeIconMatrixAllocated = FALSE;
+        sTypeIconAffineMatrixNum = AllocOamMatrix();
+        if (sTypeIconAffineMatrixNum != 0xFF)
+        {
+            SetOamMatrix(sTypeIconAffineMatrixNum, 0x200, 0, 0, 0x200);
+            sTypeIconMatrixAllocated = TRUE;
+            gSprites[typeIcon1Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+            gSprites[typeIcon1Id].oam.matrixNum = sTypeIconAffineMatrixNum;
+            gSprites[typeIcon2Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+            gSprites[typeIcon2Id].oam.matrixNum = sTypeIconAffineMatrixNum;
+        }
     }
 
     return healthboxSpriteId;
@@ -1901,21 +1939,20 @@ static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
     u16 windowId;
     u8 *windowTileData;
 
-    // Per-position offsets to avoid overlap and screen-edge clipping
-    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+    // Position half-size type icons above the frame, top-right corner
+    // Icons are 16x8 visual (32x16 OAM with 2x affine scale)
+    yOffset = -24;
+    if (type1 != type2)
     {
-        if (IsDoubleBattle() && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)
-            xOffset1 = 8;  // Shift left to keep dual-type icon 2 away from screen edge
-        else
-            xOffset1 = 16;
-        yOffset = -10;
+        // Dual type: push pair to the left so both fit
+        xOffset1 = 18;
+        xOffset2 = 36;
     }
     else
     {
-        xOffset1 = -8;
-        yOffset = 22; // Below the healthbox (clears the 64x32 sprite's bottom edge)
+        xOffset1 = 36;
+        xOffset2 = 36;
     }
-    xOffset2 = xOffset1 + 34;
 
     // Render type 1 icon into temp window, copy tiles to OBJ VRAM
     windowId = AddWindow(&sTypeIconWindowTemplate);
