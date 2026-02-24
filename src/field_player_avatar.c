@@ -26,7 +26,9 @@
 #include "constants/metatile_behaviors.h"
 #include "constants/moves.h"
 #include "constants/trainer_types.h"
+#include "item.h"
 #include "constants/abilities.h"
+#include "constants/items.h"
 
 static EWRAM_DATA struct ObjectEvent * sPlayerObjectPtr = NULL;
 static EWRAM_DATA u8 sTeleportSavedFacingDirection = DIR_NONE;
@@ -1201,6 +1203,9 @@ bool8 PartyHasMonWithSurf(void)
             if (MonKnowsMove(&gPlayerParty[i], MOVE_SURF))
                 return TRUE;
         }
+        // HM-less: check bag for Surf HM
+        if (CheckBagHasItem(ITEM_HM03_SURF, 1))
+            return TRUE;
     }
     return FALSE;
 }

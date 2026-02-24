@@ -2959,6 +2959,25 @@ static void LoadPartyMenuAilmentGfx(void)
     LoadCompressedSpritePalette(&sSpritePalette_StatusIcons);
 }
 
+// HM-less: lookup table mapping FIELD_MOVE_* index to HM item ID
+static const u16 sFieldMoveToHMItem[FIELD_MOVE_WATERFALL + 1] = {
+    [FIELD_MOVE_FLASH]      = ITEM_HM05_FLASH,
+    [FIELD_MOVE_CUT]        = ITEM_HM01_CUT,
+    [FIELD_MOVE_FLY]        = ITEM_HM02_FLY,
+    [FIELD_MOVE_STRENGTH]   = ITEM_HM04_STRENGTH,
+    [FIELD_MOVE_SURF]       = ITEM_HM03_SURF,
+    [FIELD_MOVE_ROCK_SMASH] = ITEM_HM06_ROCK_SMASH,
+    [FIELD_MOVE_WATERFALL]  = ITEM_HM07_WATERFALL,
+};
+
+static bool8 CanUseHMFieldMoveFromBag(u8 fieldMoveId)
+{
+    if (fieldMoveId > FIELD_MOVE_WATERFALL)
+        return FALSE;
+    return FlagGet(FLAG_BADGE01_GET + fieldMoveId)
+        && CheckBagHasItem(sFieldMoveToHMItem[fieldMoveId], 1);
+}
+
 static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 action)
 {
     u8 i;
@@ -2994,6 +3013,27 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
                 break;
             }
         }
+    }
+    // HM-less: add field moves available from bag (badge + HM item)
+    for (j = 0; j <= FIELD_MOVE_WATERFALL; j++)
+    {
+        u8 k;
+        bool8 alreadyAdded = FALSE;
+
+        if (sPartyMenuInternal->numActions >= 6)
+            break;
+
+        for (k = 0; k < sPartyMenuInternal->numActions; k++)
+        {
+            if (sPartyMenuInternal->actions[k] == j + CURSOR_OPTION_FIELD_MOVES)
+            {
+                alreadyAdded = TRUE;
+                break;
+            }
+        }
+
+        if (!alreadyAdded && CanUseHMFieldMoveFromBag(j))
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + CURSOR_OPTION_FIELD_MOVES);
     }
     if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SWITCH);

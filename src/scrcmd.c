@@ -23,6 +23,7 @@
 #include "data.h"
 #include "field_specials.h"
 #include "constants/items.h"
+#include "constants/moves.h"
 #include "script_pokemon_util.h"
 #include "pokemon_storage_system.h"
 #include "party_menu.h"
@@ -1761,6 +1762,18 @@ bool8 ScrCmd_setmonmove(struct ScriptContext * ctx)
     return FALSE;
 }
 
+static u16 GetHMItemForMove(u16 moveId)
+{
+    if (moveId == MOVE_CUT)        return ITEM_HM01_CUT;
+    if (moveId == MOVE_FLY)        return ITEM_HM02_FLY;
+    if (moveId == MOVE_SURF)       return ITEM_HM03_SURF;
+    if (moveId == MOVE_STRENGTH)   return ITEM_HM04_STRENGTH;
+    if (moveId == MOVE_FLASH)      return ITEM_HM05_FLASH;
+    if (moveId == MOVE_ROCK_SMASH) return ITEM_HM06_ROCK_SMASH;
+    if (moveId == MOVE_WATERFALL)  return ITEM_HM07_WATERFALL;
+    return ITEM_NONE;
+}
+
 bool8 ScrCmd_checkpartymove(struct ScriptContext * ctx)
 {
     u8 i;
@@ -1779,6 +1792,27 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext * ctx)
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
             break;
+        }
+    }
+    // HM-less: if no party mon knows the move, check for HM item in bag
+    if (gSpecialVar_Result == PARTY_SIZE)
+    {
+        u16 hmItem = GetHMItemForMove(moveId);
+        if (hmItem != ITEM_NONE && CheckBagHasItem(hmItem, 1))
+        {
+            for (i = 0; i < PARTY_SIZE; i++)
+            {
+                u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+                if (!species)
+                    break;
+                if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG)
+                    && !(GetMonData(&gPlayerParty[i], MON_DATA_DEAD) && FlagGet(FLAG_NUZLOCKE)))
+                {
+                    gSpecialVar_Result = i;
+                    gSpecialVar_0x8004 = species;
+                    break;
+                }
+            }
         }
     }
     return FALSE;

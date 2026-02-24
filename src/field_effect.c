@@ -24,7 +24,10 @@
 #include "trainer_pokemon_sprites.h"
 #include "trig.h"
 #include "util.h"
+#include "pokemon.h"
 #include "constants/event_object_movement.h"
+#include "constants/moves.h"
+#include "constants/species.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/songs.h"
 #include "constants/sound.h"
@@ -1090,6 +1093,9 @@ static void Task_UseFly(u8 taskId)
         gFieldEffectArguments[0] = GetCursorSelectionMonId();
         if ((int)gFieldEffectArguments[0] >= PARTY_SIZE)
             gFieldEffectArguments[0] = 0;
+        // HM-less Fly: signal Pidgeot display if mon doesn't know Fly
+        if (!MonKnowsMove(&gPlayerParty[gFieldEffectArguments[0] & 0xFF], MOVE_FLY))
+            gFieldEffectArguments[0] |= 0x40000000;
         FieldEffectStart(FLDEFF_FLY_OUT);
         task->data[0]++;
     }
@@ -2590,10 +2596,21 @@ u32 FldEff_FieldMoveShowMon(void)
 u32 FldEff_FieldMoveShowMonInit(void)
 {
     u32 r6 = gFieldEffectArguments[0] & 0x80000000;
-    u8 partyIdx = gFieldEffectArguments[0];
-    gFieldEffectArguments[0] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_SPECIES);
-    gFieldEffectArguments[1] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_OT_ID);
-    gFieldEffectArguments[2] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_PERSONALITY);
+    bool32 usePidgeot = gFieldEffectArguments[0] & 0x40000000;
+    u8 partyIdx = gFieldEffectArguments[0] & 0xFF;
+
+    if (usePidgeot)
+    {
+        gFieldEffectArguments[0] = SPECIES_PIDGEOT;
+        gFieldEffectArguments[1] = 0xFFFF;
+        gFieldEffectArguments[2] = 0;
+    }
+    else
+    {
+        gFieldEffectArguments[0] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_SPECIES);
+        gFieldEffectArguments[1] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_OT_ID);
+        gFieldEffectArguments[2] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_PERSONALITY);
+    }
     gFieldEffectArguments[0] |= r6;
     FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON);
     FieldEffectActiveListRemove(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
