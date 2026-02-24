@@ -677,6 +677,31 @@ u8 CreateSafariPlayerHealthboxSprites(void)
     gSprites[healthboxSpriteId].sHealthboxOtherSpriteId = healthboxOtherSpriteId;
     gSprites[healthboxOtherSpriteId].sHealthboxSpriteId = healthboxSpriteId;
     gSprites[healthboxOtherSpriteId].callback = SpriteCB_HealthBoxOther;
+
+    // Create type icon sprites for Safari healthbox (unused but required
+    // so that sTypeIcon1SpriteId/sTypeIcon2SpriteId are valid sprite IDs
+    // rather than 0, which would corrupt gSprites[0] in visibility functions).
+    {
+        struct SpriteTemplate typeIconTemplate;
+        u8 typeIcon1Id, typeIcon2Id;
+
+        LoadCompressedSpriteSheetUsingHeap(&sSpriteSheets_TypeIcons[0]);
+        LoadCompressedSpriteSheetUsingHeap(&sSpriteSheets_TypeIcons[1]);
+
+        typeIconTemplate = sSpriteTemplate_TypeIcon;
+        typeIconTemplate.tileTag = TAG_TYPE_ICON_TILE_0;
+        typeIcon1Id = CreateSpriteAtEnd(&typeIconTemplate, 240, 160, 0);
+        typeIconTemplate.tileTag = TAG_TYPE_ICON_TILE_1;
+        typeIcon2Id = CreateSpriteAtEnd(&typeIconTemplate, 240, 160, 0);
+
+        gSprites[typeIcon1Id].sHealthboxSpriteId = healthboxSpriteId;
+        gSprites[typeIcon2Id].sHealthboxSpriteId = healthboxSpriteId;
+        gSprites[typeIcon1Id].invisible = TRUE;
+        gSprites[typeIcon2Id].invisible = TRUE;
+        gSprites[healthboxSpriteId].sTypeIcon1SpriteId = typeIcon1Id;
+        gSprites[healthboxSpriteId].sTypeIcon2SpriteId = typeIcon2Id;
+    }
+
     return healthboxSpriteId;
 }
 
@@ -1850,6 +1875,16 @@ static void UpdateLeftNoOfBallsTextOnHealthbox(u8 healthboxSpriteId)
     RemoveWindowOnHealthbox(windowId);
 }
 
+static const struct WindowTemplate sTypeIconWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 4,
+    .height = 2,
+    .paletteNum = 0,
+    .baseBlock = 0
+};
+
 static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
 {
     u8 typeIcon1SpriteId = gSprites[healthboxSpriteId].sTypeIcon1SpriteId;
@@ -1862,16 +1897,6 @@ static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
     s16 yOffset, xOffset1, xOffset2;
     u16 windowId;
     u8 *windowTileData;
-
-    static const struct WindowTemplate sTypeIconWindowTemplate = {
-        .bg = 0,
-        .tilemapLeft = 0,
-        .tilemapTop = 0,
-        .width = 4,
-        .height = 2,
-        .paletteNum = 0,
-        .baseBlock = 0,
-    };
 
     if (isPlayerSide)
     {
