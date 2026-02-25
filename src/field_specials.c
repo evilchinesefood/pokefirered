@@ -2830,13 +2830,28 @@ void Special_ApplyStarterRandomizer(void)
 {
     u16 starterNum;
     u16 species[3];
-    u8 i;
+    u8 i, salt;
 
     if (!FlagGet(FLAG_STARTER_RANDOMIZER))
         return;
 
-    for (i = 0; i < 3; i++)
-        species[i] = GetRandomizedStarterSpecies(GetRandomizerSeed(), i);
+    // Generate 3 unique starter species with deterministic re-rolls
+    species[0] = GetRandomizedStarterSpecies(GetRandomizerSeed(), 0);
+
+    salt = 3;
+    species[1] = GetRandomizedStarterSpecies(GetRandomizerSeed(), 1);
+    while (species[1] == species[0])
+    {
+        species[1] = GetRandomizedStarterSpecies(GetRandomizerSeed(), salt);
+        salt++;
+    }
+
+    species[2] = GetRandomizedStarterSpecies(GetRandomizerSeed(), 2);
+    while (species[2] == species[0] || species[2] == species[1])
+    {
+        species[2] = GetRandomizedStarterSpecies(GetRandomizerSeed(), salt);
+        salt++;
+    }
 
     starterNum = VarGet(VAR_TEMP_1); // PLAYER_STARTER_NUM
     VarSet(VAR_TEMP_2, species[starterNum]);  // PLAYER_STARTER_SPECIES

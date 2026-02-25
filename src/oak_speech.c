@@ -111,8 +111,8 @@ static void Task_OakSpeech_ExpMultiplierSelection(u8);
 static void Task_OakSpeech_ProcessExpMultiplier(u8);
 static void Task_OakSpeech_CatchRateMultiplierSelection(u8);
 static void Task_OakSpeech_ProcessCatchRateMultiplier(u8);
-static void Task_OakSpeech_MinimalGrindingSelection(u8);
-static void Task_OakSpeech_ProcessMinimalGrinding(u8);
+static void Task_OakSpeech_PerfectIVsSelection(u8);
+static void Task_OakSpeech_ProcessPerfectIVs(u8);
 static void Task_OakSpeech_WildRandomizerSelection(u8);
 static void Task_OakSpeech_ProcessWildRandomizer(u8);
 static void Task_OakSpeech_TrainerRandomizerSelection(u8);
@@ -191,7 +191,7 @@ extern const u8 gText_CatchMult_Normal[];
 extern const u8 gText_CatchMult_Quarter[];
 extern const u8 gText_CatchMult_OneAndHalf[];
 extern const u8 gText_CatchMult_Always[];
-extern const u8 gText_Oak_MinimalGrinding[];
+extern const u8 gText_Oak_PerfectIVs[];
 extern const u8 gText_Oak_WildRandomizer[];
 extern const u8 gText_Oak_TrainerRandomizer[];
 extern const u8 gText_Oak_AbilityRandomizer[];
@@ -1879,32 +1879,32 @@ static void Task_OakSpeech_ProcessCatchRateMultiplier(u8 taskId)
     ClearStdWindowAndFrameToTransparent(gTasks[taskId].tMenuWindowId, TRUE);
     RemoveWindow(gTasks[taskId].tMenuWindowId);
 
-    OakSpeechPrintMessage(gText_Oak_MinimalGrinding, sOakSpeechResources->textSpeed);
-    gTasks[taskId].func = Task_OakSpeech_MinimalGrindingSelection;
+    OakSpeechPrintMessage(gText_Oak_PerfectIVs, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeech_PerfectIVsSelection;
 }
 
-static void Task_OakSpeech_MinimalGrindingSelection(u8 taskId)
+static void Task_OakSpeech_PerfectIVsSelection(u8 taskId)
 {
     if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
     {
         CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
-        gTasks[taskId].func = Task_OakSpeech_ProcessMinimalGrinding;
+        gTasks[taskId].func = Task_OakSpeech_ProcessPerfectIVs;
     }
 }
 
-static void Task_OakSpeech_ProcessMinimalGrinding(u8 taskId)
+static void Task_OakSpeech_ProcessPerfectIVs(u8 taskId)
 {
     s8 input = Menu_ProcessInputNoWrapClearOnChoose();
     switch (input)
     {
         case 0: // YES
             PlaySE(SE_SELECT);
-            FlagSet(FLAG_MINIMAL_GRINDING);
+            FlagSet(FLAG_PERFECT_IVS);
             break;
         case 1: // NO
         case MENU_B_PRESSED:
             PlaySE(SE_SELECT);
-            FlagClear(FLAG_MINIMAL_GRINDING);
+            FlagClear(FLAG_PERFECT_IVS);
             break;
         case MENU_NOTHING_CHOSEN:
             return;

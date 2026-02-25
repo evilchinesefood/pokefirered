@@ -125,7 +125,7 @@ void NewGameInitData(void)
     bool8 nuzlockePrev = FlagGet(FLAG_NUZLOCKE);
     bool8 hardPrev = FlagGet(FLAG_HARD);
     bool8 expSharePrev = FlagGet(FLAG_EXP_SHARE_PARTY);
-    bool8 mgmPrev = FlagGet(FLAG_MINIMAL_GRINDING);
+    bool8 perfectIvsPrev = FlagGet(FLAG_PERFECT_IVS);
     bool8 wildRandPrev = FlagGet(FLAG_WILD_RANDOMIZER);
     bool8 trainerRandPrev = FlagGet(FLAG_TRAINER_RANDOMIZER);
     bool8 abilityRandPrev = FlagGet(FLAG_ABILITY_RANDOMIZER);
@@ -186,7 +186,7 @@ void NewGameInitData(void)
     nuzlockePrev ? FlagSet(FLAG_NUZLOCKE) : FlagClear(FLAG_NUZLOCKE);
     hardPrev ? FlagSet(FLAG_HARD) : FlagClear(FLAG_HARD);
     expSharePrev ? FlagSet(FLAG_EXP_SHARE_PARTY) : FlagClear(FLAG_EXP_SHARE_PARTY);
-    mgmPrev ? FlagSet(FLAG_MINIMAL_GRINDING) : FlagClear(FLAG_MINIMAL_GRINDING);
+    perfectIvsPrev ? FlagSet(FLAG_PERFECT_IVS) : FlagClear(FLAG_PERFECT_IVS);
     wildRandPrev ? FlagSet(FLAG_WILD_RANDOMIZER) : FlagClear(FLAG_WILD_RANDOMIZER);
     trainerRandPrev ? FlagSet(FLAG_TRAINER_RANDOMIZER) : FlagClear(FLAG_TRAINER_RANDOMIZER);
     abilityRandPrev ? FlagSet(FLAG_ABILITY_RANDOMIZER) : FlagClear(FLAG_ABILITY_RANDOMIZER);

@@ -229,9 +229,9 @@ gText_CatchMult_OneAndHalf::
 gText_CatchMult_Always::
     .string "100% (Always)$"
 
-gText_Oak_MinimalGrinding::
+gText_Oak_PerfectIVs::
     .string "Would you like to enable\n"
-    .string "MINIMAL GRINDING MODE?\p"
+    .string "PERFECT IVs?\p"
     .string "All acquired POKéMON will\n"
     .string "have perfect IVs and no EVs.\n"
     .string "Only NATURE affects stats.$"

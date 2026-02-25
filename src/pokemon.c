@@ -3864,9 +3864,9 @@ void CopyMon(void *dest, void *src, size_t size)
     memcpy(dest, src, size);
 }
 
-void SetPerfectIVsIfMinimalGrinding(struct Pokemon *mon)
+void SetPerfectIVsIfEnabled(struct Pokemon *mon)
 {
-    if (FlagGet(FLAG_MINIMAL_GRINDING))
+    if (FlagGet(FLAG_PERFECT_IVS))
     {
         u32 iv = MAX_PER_STAT_IVS;
         s32 i;
@@ -3884,7 +3884,7 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
-    SetPerfectIVsIfMinimalGrinding(mon);
+    SetPerfectIVsIfEnabled(mon);
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
