@@ -67,8 +67,6 @@ struct TestingBar
 
 static void SpriteCB_HealthBoxOther(struct Sprite *sprite);
 static void SpriteCB_HealthBar(struct Sprite *sprite);
-static void SpriteCB_TypeIcon(struct Sprite *sprite);
-static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon);
 static const u8 *GetBattleInterfaceGfxPtr(u8 which);
 static void UpdateHpTextInHealthboxInDoubles(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent);
 static void Task_HidePartyStatusSummary_BattleStart_1(u8 taskId);
@@ -184,35 +182,6 @@ static const struct SpriteTemplate sHealthbarSpriteTemplates[] = {
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCB_HealthBar
     }
-};
-
-static const struct OamData sOamData_TypeIcon = {
-    .shape = SPRITE_SHAPE(32x16),
-    .size = SPRITE_SIZE(32x16),
-    .priority = 1
-};
-
-static const struct SpriteTemplate sSpriteTemplate_TypeIcon = {
-    .tileTag = TAG_TYPE_ICON_TILE_0,
-    .paletteTag = TAG_TYPE_ICONS_PAL,
-    .oam = &sOamData_TypeIcon,
-    .anims = gDummySpriteAnimTable,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_TypeIcon
-};
-
-static bool8 sTypeIconMatrixAllocated;
-static u8 sTypeIconAffineMatrixNum;
-
-static const struct CompressedSpriteSheet sSpriteSheets_TypeIcons[MAX_BATTLERS_COUNT * 2] = {
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_0 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_1 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_2 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_3 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_4 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_5 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_6 },
-    { gBlankGfxCompressed, 0x100, TAG_TYPE_ICON_TILE_7 },
 };
 
 static const struct Subsprite sUnused_Subsprites_0[] = {
@@ -552,10 +521,6 @@ static void Debug_DrawNumberPair(s16 num1, s16 num2, u16 *dest)
 
 // sprite data for main (left) healthbox sprite
 #define sHealthboxOtherSpriteId oam.affineParam
-#define sTypeIcon1SpriteId      data[0]
-#define sTypeIcon2SpriteId      data[1]
-#define sDualTyped              data[2]
-#define sTypeIconsReady         data[3]
 #define sHealthBarSpriteId      data[5]
 #define sBattlerId              data[6]
 
@@ -645,49 +610,6 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
     healthbarSprite->sHealthbarType = healthbarType;
     healthbarSprite->invisible = TRUE;
 
-    // Create type icon sprites (2 per battler)
-    {
-        struct SpriteTemplate typeIconTemplate;
-        u8 typeIcon1Id, typeIcon2Id;
-
-        LoadCompressedSpriteSheetUsingHeap(&sSpriteSheets_TypeIcons[battlerId * 2]);
-        LoadCompressedSpriteSheetUsingHeap(&sSpriteSheets_TypeIcons[battlerId * 2 + 1]);
-
-        typeIconTemplate = sSpriteTemplate_TypeIcon;
-        typeIconTemplate.tileTag = TAG_TYPE_ICON_TILE_0 + battlerId * 2;
-        typeIcon1Id = CreateSpriteAtEnd(&typeIconTemplate, 240, 160, 0);
-        typeIconTemplate.tileTag = TAG_TYPE_ICON_TILE_0 + battlerId * 2 + 1;
-        typeIcon2Id = CreateSpriteAtEnd(&typeIconTemplate, 240, 160, 0);
-
-        gSprites[typeIcon1Id].sHealthboxSpriteId = healthboxSpriteId;
-        gSprites[typeIcon2Id].sHealthboxSpriteId = healthboxSpriteId;
-        gSprites[typeIcon1Id].invisible = TRUE;
-        gSprites[typeIcon2Id].invisible = TRUE;
-        gSprites[healthboxSpriteId].sTypeIcon1SpriteId = typeIcon1Id;
-        gSprites[healthboxSpriteId].sTypeIcon2SpriteId = typeIcon2Id;
-
-        // Half-size type icons via OAM affine scaling (shared matrix)
-        // Reset on first battler so stale matrix from previous battle is re-allocated
-        if (battlerId == 0)
-            sTypeIconMatrixAllocated = FALSE;
-        if (!sTypeIconMatrixAllocated)
-        {
-            sTypeIconAffineMatrixNum = AllocOamMatrix();
-            if (sTypeIconAffineMatrixNum != 0xFF)
-            {
-                SetOamMatrix(sTypeIconAffineMatrixNum, 0x200, 0, 0, 0x200);
-                sTypeIconMatrixAllocated = TRUE;
-            }
-        }
-        if (sTypeIconMatrixAllocated)
-        {
-            gSprites[typeIcon1Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
-            gSprites[typeIcon1Id].oam.matrixNum = sTypeIconAffineMatrixNum;
-            gSprites[typeIcon2Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
-            gSprites[typeIcon2Id].oam.matrixNum = sTypeIconAffineMatrixNum;
-        }
-    }
-
     return healthboxSpriteId;
 }
 
@@ -702,44 +624,6 @@ u8 CreateSafariPlayerHealthboxSprites(void)
     gSprites[healthboxSpriteId].sHealthboxOtherSpriteId = healthboxOtherSpriteId;
     gSprites[healthboxOtherSpriteId].sHealthboxSpriteId = healthboxSpriteId;
     gSprites[healthboxOtherSpriteId].callback = SpriteCB_HealthBoxOther;
-
-    // Create type icon sprites for Safari healthbox (unused but required
-    // so that sTypeIcon1SpriteId/sTypeIcon2SpriteId are valid sprite IDs
-    // rather than 0, which would corrupt gSprites[0] in visibility functions).
-    {
-        struct SpriteTemplate typeIconTemplate;
-        u8 typeIcon1Id, typeIcon2Id;
-
-        LoadCompressedSpriteSheetUsingHeap(&sSpriteSheets_TypeIcons[0]);
-        LoadCompressedSpriteSheetUsingHeap(&sSpriteSheets_TypeIcons[1]);
-
-        typeIconTemplate = sSpriteTemplate_TypeIcon;
-        typeIconTemplate.tileTag = TAG_TYPE_ICON_TILE_0;
-        typeIcon1Id = CreateSpriteAtEnd(&typeIconTemplate, 240, 160, 0);
-        typeIconTemplate.tileTag = TAG_TYPE_ICON_TILE_1;
-        typeIcon2Id = CreateSpriteAtEnd(&typeIconTemplate, 240, 160, 0);
-
-        gSprites[typeIcon1Id].sHealthboxSpriteId = healthboxSpriteId;
-        gSprites[typeIcon2Id].sHealthboxSpriteId = healthboxSpriteId;
-        gSprites[typeIcon1Id].invisible = TRUE;
-        gSprites[typeIcon2Id].invisible = TRUE;
-        gSprites[healthboxSpriteId].sTypeIcon1SpriteId = typeIcon1Id;
-        gSprites[healthboxSpriteId].sTypeIcon2SpriteId = typeIcon2Id;
-
-        // Half-size type icons via OAM affine scaling (shared matrix)
-        // Safari is always battler 0, so reset stale matrix from previous battle
-        sTypeIconMatrixAllocated = FALSE;
-        sTypeIconAffineMatrixNum = AllocOamMatrix();
-        if (sTypeIconAffineMatrixNum != 0xFF)
-        {
-            SetOamMatrix(sTypeIconAffineMatrixNum, 0x200, 0, 0, 0x200);
-            sTypeIconMatrixAllocated = TRUE;
-            gSprites[typeIcon1Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
-            gSprites[typeIcon1Id].oam.matrixNum = sTypeIconAffineMatrixNum;
-            gSprites[typeIcon2Id].oam.affineMode = ST_OAM_AFFINE_NORMAL;
-            gSprites[typeIcon2Id].oam.matrixNum = sTypeIconAffineMatrixNum;
-        }
-    }
 
     return healthboxSpriteId;
 }
@@ -785,18 +669,6 @@ static void SpriteCB_HealthBoxOther(struct Sprite *sprite)
     sprite->y2 = gSprites[healthboxSpriteId].y2;
 }
 
-// Type icon sprites track the healthbox position with offsets stored in data[6] (x) and data[7] (y)
-static void SpriteCB_TypeIcon(struct Sprite *sprite)
-{
-    u8 healthboxSpriteId = sprite->sHealthboxSpriteId;
-
-    sprite->x = gSprites[healthboxSpriteId].x + sprite->data[6];
-    sprite->y = gSprites[healthboxSpriteId].y + sprite->data[7];
-
-    sprite->x2 = gSprites[healthboxSpriteId].x2;
-    sprite->y2 = gSprites[healthboxSpriteId].y2;
-}
-
 void SetBattleBarStruct(u8 battlerId, u8 healthboxSpriteId, s32 maxVal, s32 oldVal, s32 receivedValue)
 {
     gBattleSpritesDataPtr->battleBars[battlerId].healthboxSpriteId = healthboxSpriteId;
@@ -811,8 +683,6 @@ void SetHealthboxSpriteInvisible(u8 healthboxSpriteId)
     gSprites[healthboxSpriteId].invisible = TRUE;
     gSprites[gSprites[healthboxSpriteId].sHealthBarSpriteId].invisible = TRUE;
     gSprites[gSprites[healthboxSpriteId].sHealthboxOtherSpriteId].invisible = TRUE;
-    gSprites[gSprites[healthboxSpriteId].sTypeIcon1SpriteId].invisible = TRUE;
-    gSprites[gSprites[healthboxSpriteId].sTypeIcon2SpriteId].invisible = TRUE;
 }
 
 void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
@@ -820,12 +690,6 @@ void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
     gSprites[healthboxSpriteId].invisible = FALSE;
     gSprites[gSprites[healthboxSpriteId].sHealthBarSpriteId].invisible = FALSE;
     gSprites[gSprites[healthboxSpriteId].sHealthboxOtherSpriteId].invisible = FALSE;
-    if (gSprites[healthboxSpriteId].sTypeIconsReady)
-    {
-        gSprites[gSprites[healthboxSpriteId].sTypeIcon1SpriteId].invisible = FALSE;
-        if (gSprites[healthboxSpriteId].sDualTyped)
-            gSprites[gSprites[healthboxSpriteId].sTypeIcon2SpriteId].invisible = FALSE;
-    }
 }
 
 static void UpdateSpritePos(u8 spriteId, s16 x, s16 y)
@@ -838,8 +702,6 @@ void DestoryHealthboxSprite(u8 healthboxSpriteId)
 {
     DestroySprite(&gSprites[gSprites[healthboxSpriteId].sHealthboxOtherSpriteId]);
     DestroySprite(&gSprites[gSprites[healthboxSpriteId].sHealthBarSpriteId]);
-    DestroySprite(&gSprites[gSprites[healthboxSpriteId].sTypeIcon1SpriteId]);
-    DestroySprite(&gSprites[gSprites[healthboxSpriteId].sTypeIcon2SpriteId]);
     DestroySprite(&gSprites[healthboxSpriteId]);
 }
 
@@ -856,14 +718,10 @@ void UpdateOamPriorityInAllHealthboxes(u8 priority)
         u8 healthboxSpriteId = gHealthboxSpriteIds[i];
         u8 healthboxOtherSpriteId = gSprites[gHealthboxSpriteIds[i]].sHealthboxOtherSpriteId;
         u8 healthbarSpriteId = gSprites[gHealthboxSpriteIds[i]].sHealthBarSpriteId;
-        u8 typeIcon1SpriteId = gSprites[gHealthboxSpriteIds[i]].sTypeIcon1SpriteId;
-        u8 typeIcon2SpriteId = gSprites[gHealthboxSpriteIds[i]].sTypeIcon2SpriteId;
 
         gSprites[healthboxSpriteId].oam.priority = priority;
         gSprites[healthboxOtherSpriteId].oam.priority = priority;
         gSprites[healthbarSpriteId].oam.priority = priority;
-        gSprites[typeIcon1SpriteId].oam.priority = priority;
-        gSprites[typeIcon2SpriteId].oam.priority = priority;
     }
 }
 
@@ -1917,85 +1775,6 @@ static void UpdateLeftNoOfBallsTextOnHealthbox(u8 healthboxSpriteId)
     RemoveWindowOnHealthbox(windowId);
 }
 
-static const struct WindowTemplate sTypeIconWindowTemplate = {
-    .bg = 0,
-    .tilemapLeft = 0,
-    .tilemapTop = 0,
-    .width = 4,
-    .height = 2,
-    .paletteNum = 0,
-    .baseBlock = 0
-};
-
-static void UpdateTypeIconSprites(u8 healthboxSpriteId, struct Pokemon *mon)
-{
-    u8 typeIcon1SpriteId = gSprites[healthboxSpriteId].sTypeIcon1SpriteId;
-    u8 typeIcon2SpriteId = gSprites[healthboxSpriteId].sTypeIcon2SpriteId;
-    u8 battlerId = gSprites[healthboxSpriteId].sBattlerId;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u8 type1 = gSpeciesInfo[species].types[0];
-    u8 type2 = gSpeciesInfo[species].types[1];
-    s16 yOffset, xOffset1, xOffset2;
-    u16 windowId;
-    u8 *windowTileData;
-
-    // Position half-size type icons above the frame, top-right corner
-    // Icons are 16x8 visual (32x16 OAM with 2x affine scale)
-    yOffset = -24;
-    if (type1 != type2)
-    {
-        // Dual type: push pair to the left so both fit
-        xOffset1 = 18;
-        xOffset2 = 36;
-    }
-    else
-    {
-        xOffset1 = 36;
-        xOffset2 = 36;
-    }
-
-    // Render type 1 icon into temp window, copy tiles to OBJ VRAM
-    windowId = AddWindow(&sTypeIconWindowTemplate);
-    if (windowId == WINDOW_NONE)
-        return;
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
-    BlitMenuInfoIcon(windowId, type1 + 1, 0, 2);
-    windowTileData = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-    CpuCopy32(windowTileData, (void *)(OBJ_VRAM0) + gSprites[typeIcon1SpriteId].oam.tileNum * TILE_SIZE_4BPP, 8 * TILE_SIZE_4BPP);
-    RemoveWindow(windowId);
-
-    gSprites[typeIcon1SpriteId].data[6] = xOffset1;
-    gSprites[typeIcon1SpriteId].data[7] = yOffset;
-    gSprites[typeIcon1SpriteId].invisible = FALSE;
-
-    if (type1 != type2)
-    {
-        // Render type 2 icon
-        windowId = AddWindow(&sTypeIconWindowTemplate);
-        if (windowId == WINDOW_NONE)
-            return;
-        FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
-        BlitMenuInfoIcon(windowId, type2 + 1, 0, 2);
-        windowTileData = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-        CpuCopy32(windowTileData, (void *)(OBJ_VRAM0) + gSprites[typeIcon2SpriteId].oam.tileNum * TILE_SIZE_4BPP, 8 * TILE_SIZE_4BPP);
-        RemoveWindow(windowId);
-
-        gSprites[typeIcon2SpriteId].data[6] = xOffset2;
-        gSprites[typeIcon2SpriteId].data[7] = yOffset;
-        gSprites[typeIcon2SpriteId].invisible = FALSE;
-        gSprites[healthboxSpriteId].sDualTyped = TRUE;
-    }
-    else
-    {
-        // Clear stale tile data and hide type icon 2
-        CpuFill32(0, (void *)(OBJ_VRAM0) + gSprites[typeIcon2SpriteId].oam.tileNum * TILE_SIZE_4BPP, 8 * TILE_SIZE_4BPP);
-        gSprites[typeIcon2SpriteId].invisible = TRUE;
-        gSprites[healthboxSpriteId].sDualTyped = FALSE;
-    }
-
-    gSprites[healthboxSpriteId].sTypeIconsReady = TRUE;
-}
-
 void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId)
 {
     s32 maxHp, currHp;
@@ -2067,8 +1846,6 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
             UpdateStatusIconInHealthbox(healthboxSpriteId);
     }
 
-    if (elementId == HEALTHBOX_TYPE_ICONS || elementId == HEALTHBOX_ALL)
-        UpdateTypeIconSprites(healthboxSpriteId, mon);
 }
 
 #define B_HEALTHBAR_NUM_PIXELS 48

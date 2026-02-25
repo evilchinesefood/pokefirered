@@ -115,10 +115,11 @@ static void Task_OakSpeech_PerfectIVsSelection(u8);
 static void Task_OakSpeech_ProcessPerfectIVs(u8);
 static void Task_OakSpeech_WildRandomizerSelection(u8);
 static void Task_OakSpeech_ProcessWildRandomizer(u8);
-static void Task_OakSpeech_TrainerRandomizerSelection(u8);
-static void Task_OakSpeech_ProcessTrainerRandomizer(u8);
-static void Task_OakSpeech_AbilityRandomizerSelection(u8);
-static void Task_OakSpeech_ProcessAbilityRandomizer(u8);
+// DISABLED — Trainer and Ability/Move randomizers commented out, can re-enable later
+// static void Task_OakSpeech_TrainerRandomizerSelection(u8);
+// static void Task_OakSpeech_ProcessTrainerRandomizer(u8);
+// static void Task_OakSpeech_AbilityRandomizerSelection(u8);
+// static void Task_OakSpeech_ProcessAbilityRandomizer(u8);
 static void Task_OakSpeech_StarterRandomizerSelection(u8);
 static void Task_OakSpeech_ProcessStarterRandomizer(u8);
 static void Task_OakSpeech_LoadPlayerPic(u8);
@@ -193,8 +194,9 @@ extern const u8 gText_CatchMult_OneAndHalf[];
 extern const u8 gText_CatchMult_Always[];
 extern const u8 gText_Oak_PerfectIVs[];
 extern const u8 gText_Oak_WildRandomizer[];
-extern const u8 gText_Oak_TrainerRandomizer[];
-extern const u8 gText_Oak_AbilityRandomizer[];
+// DISABLED — Trainer and Ability/Move randomizers
+// extern const u8 gText_Oak_TrainerRandomizer[];
+// extern const u8 gText_Oak_AbilityRandomizer[];
 extern const u8 gText_Oak_StarterRandomizer[];
 extern const struct OamData gOamData_AffineOff_ObjBlend_32x32;
 extern const struct OamData gOamData_AffineOff_ObjNormal_32x32;
@@ -1941,68 +1943,7 @@ static void Task_OakSpeech_ProcessWildRandomizer(u8 taskId)
             return;
     }
 
-    OakSpeechPrintMessage(gText_Oak_TrainerRandomizer, sOakSpeechResources->textSpeed);
-    gTasks[taskId].func = Task_OakSpeech_TrainerRandomizerSelection;
-}
-
-static void Task_OakSpeech_TrainerRandomizerSelection(u8 taskId)
-{
-    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
-    {
-        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
-        gTasks[taskId].func = Task_OakSpeech_ProcessTrainerRandomizer;
-    }
-}
-
-static void Task_OakSpeech_ProcessTrainerRandomizer(u8 taskId)
-{
-    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
-    switch (input)
-    {
-        case 0: // YES
-            PlaySE(SE_SELECT);
-            FlagSet(FLAG_TRAINER_RANDOMIZER);
-            break;
-        case 1: // NO
-        case MENU_B_PRESSED:
-            PlaySE(SE_SELECT);
-            FlagClear(FLAG_TRAINER_RANDOMIZER);
-            break;
-        case MENU_NOTHING_CHOSEN:
-            return;
-    }
-
-    OakSpeechPrintMessage(gText_Oak_AbilityRandomizer, sOakSpeechResources->textSpeed);
-    gTasks[taskId].func = Task_OakSpeech_AbilityRandomizerSelection;
-}
-
-static void Task_OakSpeech_AbilityRandomizerSelection(u8 taskId)
-{
-    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
-    {
-        CreateYesNoMenu(&sIntro_WindowTemplates[WIN_INTRO_YESNO], FONT_NORMAL, 0, 2, GetStdWindowBaseTileNum(), 14, 0);
-        gTasks[taskId].func = Task_OakSpeech_ProcessAbilityRandomizer;
-    }
-}
-
-static void Task_OakSpeech_ProcessAbilityRandomizer(u8 taskId)
-{
-    s8 input = Menu_ProcessInputNoWrapClearOnChoose();
-    switch (input)
-    {
-        case 0: // YES
-            PlaySE(SE_SELECT);
-            FlagSet(FLAG_ABILITY_RANDOMIZER);
-            break;
-        case 1: // NO
-        case MENU_B_PRESSED:
-            PlaySE(SE_SELECT);
-            FlagClear(FLAG_ABILITY_RANDOMIZER);
-            break;
-        case MENU_NOTHING_CHOSEN:
-            return;
-    }
-
+    // DISABLED — skip Trainer/Ability randomizers, go straight to Starter
     OakSpeechPrintMessage(gText_Oak_StarterRandomizer, sOakSpeechResources->textSpeed);
     gTasks[taskId].func = Task_OakSpeech_StarterRandomizerSelection;
 }
@@ -2035,8 +1976,7 @@ static void Task_OakSpeech_ProcessStarterRandomizer(u8 taskId)
     }
 
     // Generate seed if any randomizer is enabled
-    if (FlagGet(FLAG_WILD_RANDOMIZER) || FlagGet(FLAG_TRAINER_RANDOMIZER)
-     || FlagGet(FLAG_ABILITY_RANDOMIZER) || FlagGet(FLAG_STARTER_RANDOMIZER))
+    if (FlagGet(FLAG_WILD_RANDOMIZER) || FlagGet(FLAG_STARTER_RANDOMIZER))
     {
         SetRandomizerSeed(Random32());
     }

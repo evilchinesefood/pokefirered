@@ -496,6 +496,41 @@ static const struct MenuAction sMultichoiceList_Exit[] = {
     { gOtherText_Exit }
 };
 
+// Debug warper multichoice lists
+static const u8 sText_Jirachi[] = _("Jirachi");
+static const u8 sText_Latias[] = _("Latias");
+static const u8 sText_Latios[] = _("Latios");
+static const u8 sText_Regirock[] = _("Regirock");
+static const u8 sText_Regice[] = _("Regice");
+static const u8 sText_Registeel[] = _("Registeel");
+static const u8 sText_Groudon[] = _("Groudon");
+static const u8 sText_Kyogre[] = _("Kyogre");
+static const u8 sText_Rayquaza[] = _("Rayquaza");
+
+static const struct MenuAction sMultichoiceList_DebugSeviiWarper[] = {
+    { gText_OneIsland },
+    { gText_TwoIsland },
+    { gText_ThreeIsland },
+    { gText_FourIsland },
+    { gText_FiveIsland },
+    { gText_SixIsland },
+    { gText_SevenIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sMultichoiceList_DebugLegendaryWarper[] = {
+    { sText_Jirachi },
+    { sText_Latias },
+    { sText_Latios },
+    { sText_Regirock },
+    { sText_Regice },
+    { sText_Registeel },
+    { sText_Groudon },
+    { sText_Kyogre },
+    { sText_Rayquaza },
+    { gOtherText_Exit }
+};
+
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
@@ -562,6 +597,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_62]                                         = MULTICHOICE(sMultichoiceList_62),
     [MULTICHOICE_JOIN_OR_LEAD]                               = MULTICHOICE(sMultichoiceList_JoinOrLead),
     [MULTICHOICE_TRAINER_TOWER_MODE]                         = MULTICHOICE(sMultichoiceList_TrainerTowerMode),
+    [MULTICHOICE_DEBUG_SEVII_WARPER]                         = MULTICHOICE(sMultichoiceList_DebugSeviiWarper),
+    [MULTICHOICE_DEBUG_LEGENDARY_WARPER]                     = MULTICHOICE(sMultichoiceList_DebugLegendaryWarper),
 };
 
 // From Cool to Berries goes unused

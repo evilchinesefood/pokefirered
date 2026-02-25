@@ -843,10 +843,10 @@
 #define FLAG_EXP_SHARE_PARTY     0x32E
 #define FLAG_PERFECT_IVS         0x32F
 #define FLAG_WILD_RANDOMIZER     0x330
-#define FLAG_TRAINER_RANDOMIZER  0x331
-#define FLAG_ABILITY_RANDOMIZER  0x332
+#define FLAG_TRAINER_RANDOMIZER  0x331  // DISABLED — commented out, can re-enable later
+#define FLAG_ABILITY_RANDOMIZER  0x332  // DISABLED — commented out, can re-enable later
 #define FLAG_STARTER_RANDOMIZER  0x333
-#define FLAG_0x334               0x334
+#define FLAG_HIDE_DEBUG_WARPERS  0x334
 #define FLAG_0x335               0x335
 #define FLAG_0x336               0x336
 #define FLAG_0x337               0x337

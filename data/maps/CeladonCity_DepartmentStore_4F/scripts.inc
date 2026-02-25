@@ -128,3 +128,49 @@ CeladonCity_DepartmentStore_4F_BerryItems::
 	release
 # 65 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	end
+# 66 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+
+# 67 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+CeladonCity_DepartmentStore_4F_EventScript_EVBerryClerk::
+# 68 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 69 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	lock
+# 70 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	faceplayer
+# 71 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	message Text_MayIHelpYou
+# 72 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	waitmessage
+# 73 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	pokemart CeladonCity_DepartmentStore_4F_EVBerries
+# 74 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	msgbox Text_PleaseComeAgain
+# 75 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	release
+# 76 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	end
+# 77 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+
+# 78 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.align 2
+# 79 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+CeladonCity_DepartmentStore_4F_EVBerries::
+# 80 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_POMEG_BERRY
+# 81 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_KELPSY_BERRY
+# 82 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_QUALOT_BERRY
+# 83 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_HONDEW_BERRY
+# 84 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_GREPA_BERRY
+# 85 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_TAMATO_BERRY
+# 86 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_NONE
+# 87 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	release
+# 88 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	end

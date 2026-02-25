@@ -485,4 +485,153 @@ PalletTown_Text_SanctuaryFence:
 	.string "The path ahead is blocked\n"
 	.string "by thick bushes.$"
 
+@ =============================================
+@ Debug Warp NPCs — Sevii Islands + Legendaries
+@ Hidden by FLAG_HIDE_DEBUG_WARPERS (cleared in DebugTestSetup)
+@ =============================================
+
+PalletTown_EventScript_DebugSeviiWarper::
+	lock
+	faceplayer
+	message PalletTown_Text_DebugSeviiWarper
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_DEBUG_SEVII_WARPER, FALSE
+	switch VAR_RESULT
+	case 0, PalletTown_EventScript_WarpOneIsland
+	case 1, PalletTown_EventScript_WarpTwoIsland
+	case 2, PalletTown_EventScript_WarpThreeIsland
+	case 3, PalletTown_EventScript_WarpFourIsland
+	case 4, PalletTown_EventScript_WarpFiveIsland
+	case 5, PalletTown_EventScript_WarpSixIsland
+	case 6, PalletTown_EventScript_WarpSevenIsland
+	case 7, PalletTown_EventScript_DebugWarpCancel
+	case SCR_MENU_CANCEL, PalletTown_EventScript_DebugWarpCancel
+	end
+
+PalletTown_EventScript_WarpOneIsland::
+	warp MAP_ONE_ISLAND, 12, 20
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpTwoIsland::
+	warp MAP_TWO_ISLAND, 14, 18
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpThreeIsland::
+	warp MAP_THREE_ISLAND, 25, 18
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpFourIsland::
+	warp MAP_FOUR_ISLAND, 14, 18
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpFiveIsland::
+	warp MAP_FIVE_ISLAND, 22, 25
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpSixIsland::
+	warp MAP_SIX_ISLAND, 14, 18
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpSevenIsland::
+	warp MAP_SEVEN_ISLAND, 20, 24
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_DebugWarpCancel::
+	release
+	end
+
+PalletTown_EventScript_DebugLegendaryWarper::
+	lock
+	faceplayer
+	message PalletTown_Text_DebugLegendaryWarper
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_DEBUG_LEGENDARY_WARPER, FALSE
+	switch VAR_RESULT
+	case 0, PalletTown_EventScript_WarpJirachi
+	case 1, PalletTown_EventScript_WarpLatias
+	case 2, PalletTown_EventScript_WarpLatios
+	case 3, PalletTown_EventScript_WarpRegirock
+	case 4, PalletTown_EventScript_WarpRegice
+	case 5, PalletTown_EventScript_WarpRegisteel
+	case 6, PalletTown_EventScript_WarpGroudon
+	case 7, PalletTown_EventScript_WarpKyogre
+	case 8, PalletTown_EventScript_WarpRayquaza
+	case 9, PalletTown_EventScript_DebugWarpCancel
+	case SCR_MENU_CANCEL, PalletTown_EventScript_DebugWarpCancel
+	end
+
+PalletTown_EventScript_WarpJirachi::
+	warp MAP_MT_MOON_SQUARE, 14, 7
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpLatias::
+	warp MAP_SIX_ISLAND_PATTERN_BUSH, 20, 20
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpLatios::
+	warp MAP_FIVE_ISLAND_LOST_CAVE_ROOM14, 5, 5
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpRegirock::
+	warp MAP_ROCK_TUNNEL_1F, 15, 10
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpRegice::
+	warp MAP_SEAFOAM_ISLANDS_B4F, 15, 10
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpRegisteel::
+	warp MAP_POWER_PLANT, 15, 10
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpGroudon::
+	warp MAP_MT_EMBER_RUBY_PATH_B5F, 5, 5
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpKyogre::
+	warp MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK, 10, 10
+	waitstate
+	release
+	end
+
+PalletTown_EventScript_WarpRayquaza::
+	warp MAP_SEVEN_ISLAND_SEVAULT_CANYON_TANOBY_KEY, 10, 10
+	waitstate
+	release
+	end
+
+PalletTown_Text_DebugSeviiWarper:
+	.string "Where to in the SEVII ISLANDS?$"
+
+PalletTown_Text_DebugLegendaryWarper:
+	.string "Which legendary encounter?$"
+
 `

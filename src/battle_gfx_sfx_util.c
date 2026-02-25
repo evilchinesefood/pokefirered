@@ -107,12 +107,6 @@ static const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2] =
     },
 };
 
-static const struct SpritePalette sSpritePalette_TypeIcons =
-{
-    .data = gMenuInfoElements2_Pal,
-    .tag = TAG_TYPE_ICONS_PAL,
-};
-
 void AllocateBattleSpritesData(void)
 {
     gBattleSpritesDataPtr = AllocZeroed(sizeof(struct BattleSpriteData));
@@ -480,7 +474,6 @@ static void BattleLoadAllHealthBoxesGfxAtOnce(void)
 
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
-    LoadSpritePalette(&sSpritePalette_TypeIcons);
     if (!IsDoubleBattle())
     {
         LoadCompressedSpriteSheetUsingHeap(&sSpriteSheet_SinglesPlayerHealthbox);
@@ -509,7 +502,6 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
         {
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
-            LoadSpritePalette(&sSpritePalette_TypeIcons);
         }
         else if (!IsDoubleBattle())
         {

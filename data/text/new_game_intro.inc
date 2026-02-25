@@ -233,8 +233,8 @@ gText_Oak_PerfectIVs::
     .string "Would you like to enable\n"
     .string "PERFECT IVs?\p"
     .string "All acquired POKéMON will\n"
-    .string "have perfect IVs and no EVs.\n"
-    .string "Only NATURE affects stats.$"
+    .string "have perfect IVs (31 across\n"
+    .string "the board).$"
 
 gText_Oak_WildRandomizer::
     .string "Do you want to randomize\n"

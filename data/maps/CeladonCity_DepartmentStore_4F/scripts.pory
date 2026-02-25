@@ -63,4 +63,27 @@ CeladonCity_DepartmentStore_4F_BerryItems::
 	.2byte ITEM_NONE
 	release
 	end
+
+CeladonCity_DepartmentStore_4F_EventScript_EVBerryClerk::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	message Text_MayIHelpYou
+	waitmessage
+	pokemart CeladonCity_DepartmentStore_4F_EVBerries
+	msgbox Text_PleaseComeAgain
+	release
+	end
+
+	.align 2
+CeladonCity_DepartmentStore_4F_EVBerries::
+	.2byte ITEM_POMEG_BERRY
+	.2byte ITEM_KELPSY_BERRY
+	.2byte ITEM_QUALOT_BERRY
+	.2byte ITEM_HONDEW_BERRY
+	.2byte ITEM_GREPA_BERRY
+	.2byte ITEM_TAMATO_BERRY
+	.2byte ITEM_NONE
+	release
+	end
 `

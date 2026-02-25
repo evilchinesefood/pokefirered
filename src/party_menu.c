@@ -2970,6 +2970,17 @@ static const u16 sFieldMoveToHMItem[FIELD_MOVE_WATERFALL + 1] = {
     [FIELD_MOVE_WATERFALL]  = ITEM_HM07_WATERFALL,
 };
 
+// HM-less: lookup table mapping FIELD_MOVE_* index to TM/HM learnset index
+static const u8 sFieldMoveToTMHMIndex[FIELD_MOVE_WATERFALL + 1] = {
+    [FIELD_MOVE_FLASH]      = ITEM_HM05 - ITEM_TM01,
+    [FIELD_MOVE_CUT]        = ITEM_HM01 - ITEM_TM01,
+    [FIELD_MOVE_FLY]        = ITEM_HM02 - ITEM_TM01,
+    [FIELD_MOVE_STRENGTH]   = ITEM_HM04 - ITEM_TM01,
+    [FIELD_MOVE_SURF]       = ITEM_HM03 - ITEM_TM01,
+    [FIELD_MOVE_ROCK_SMASH] = ITEM_HM06 - ITEM_TM01,
+    [FIELD_MOVE_WATERFALL]  = ITEM_HM07 - ITEM_TM01,
+};
+
 static bool8 CanUseHMFieldMoveFromBag(u8 fieldMoveId)
 {
     if (fieldMoveId > FIELD_MOVE_WATERFALL)
@@ -3032,7 +3043,8 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             }
         }
 
-        if (!alreadyAdded && CanUseHMFieldMoveFromBag(j))
+        if (!alreadyAdded && CanUseHMFieldMoveFromBag(j)
+            && CanMonLearnTMHM(&mons[slotId], sFieldMoveToTMHMIndex[j]))
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + CURSOR_OPTION_FIELD_MOVES);
     }
     if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
@@ -4527,6 +4539,25 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc func)
     }
 }
 
+static bool8 IsRepeatableStatItem(u16 itemId)
+{
+    return (itemId == ITEM_HP_UP || itemId == ITEM_PROTEIN || itemId == ITEM_IRON
+         || itemId == ITEM_CARBOS || itemId == ITEM_CALCIUM || itemId == ITEM_ZINC
+         || itemId == ITEM_POMEG_BERRY || itemId == ITEM_KELPSY_BERRY
+         || itemId == ITEM_QUALOT_BERRY || itemId == ITEM_HONDEW_BERRY
+         || itemId == ITEM_GREPA_BERRY || itemId == ITEM_TAMATO_BERRY);
+}
+
+static void Task_WaitThenReapplyStatItem(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        ClearStdWindowAndFrameToTransparent(6, FALSE);
+        ClearWindowTilemap(6);
+        gItemUseCB(taskId, Task_ClosePartyMenuAfterText);
+    }
+}
+
 void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
 {
     u16 hp = 0;
@@ -4598,7 +4629,12 @@ void ItemUseCB_MedicineStep(u8 taskId, TaskFunc func)
             DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1))
-                gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            {
+                if (IsRepeatableStatItem(item))
+                    gTasks[taskId].func = Task_WaitThenReapplyStatItem;
+                else
+                    gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            }
             else
                 gTasks[taskId].func = func;
         }
@@ -6548,7 +6584,11 @@ void ItemUseCB_ReduceEV2(u8 taskId, TaskFunc task)
         }
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1)
+            && IsRepeatableStatItem(item))
+            gTasks[taskId].func = Task_WaitThenReapplyStatItem;
+        else
+            gTasks[taskId].func = task;
     }
 }
 

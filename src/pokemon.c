@@ -2372,11 +2372,12 @@ static void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
     s32 i;
     u8 deoxysForme;
 
-    if (FlagGet(FLAG_ABILITY_RANDOMIZER))
-    {
-        GiveRandomizedMoveset(boxMon, GetRandomizerSeed());
-        return;
-    }
+    // DISABLED — Ability/Move Randomizer commented out, can re-enable later
+    // if (FlagGet(FLAG_ABILITY_RANDOMIZER))
+    // {
+    //     GiveRandomizedMoveset(boxMon, GetRandomizerSeed());
+    //     return;
+    // }
 
     if(species == SPECIES_DEOXYS)
     {
@@ -3985,11 +3986,12 @@ u8 GetMonsStateToDoubles(void)
 
 u8 GetAbilityBySpecies(u16 species, bool8 abilityNum)
 {
-    if (FlagGet(FLAG_ABILITY_RANDOMIZER))
-    {
-        gLastUsedAbility = GetRandomizedAbility(GetRandomizerSeed(), species, abilityNum);
-        return gLastUsedAbility;
-    }
+    // DISABLED — Ability/Move Randomizer commented out, can re-enable later
+    // if (FlagGet(FLAG_ABILITY_RANDOMIZER))
+    // {
+    //     gLastUsedAbility = GetRandomizedAbility(GetRandomizerSeed(), species, abilityNum);
+    //     return gLastUsedAbility;
+    // }
 
     if (abilityNum)
         gLastUsedAbility = gSpeciesInfo[species].abilities[1];

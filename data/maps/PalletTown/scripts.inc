@@ -970,3 +970,301 @@ PalletTown_Text_SanctuaryFence:
 	.string "The path ahead is blocked\n"
 # 486 "data/maps/PalletTown/scripts.pory"
 	.string "by thick bushes.$"
+# 487 "data/maps/PalletTown/scripts.pory"
+
+# 488 "data/maps/PalletTown/scripts.pory"
+@ =============================================
+# 489 "data/maps/PalletTown/scripts.pory"
+@ Debug Warp NPCs — Sevii Islands + Legendaries
+# 490 "data/maps/PalletTown/scripts.pory"
+@ Hidden by FLAG_HIDE_DEBUG_WARPERS (cleared in DebugTestSetup)
+# 491 "data/maps/PalletTown/scripts.pory"
+@ =============================================
+# 492 "data/maps/PalletTown/scripts.pory"
+
+# 493 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_DebugSeviiWarper::
+# 494 "data/maps/PalletTown/scripts.pory"
+	lock
+# 495 "data/maps/PalletTown/scripts.pory"
+	faceplayer
+# 496 "data/maps/PalletTown/scripts.pory"
+	message PalletTown_Text_DebugSeviiWarper
+# 497 "data/maps/PalletTown/scripts.pory"
+	waitmessage
+# 498 "data/maps/PalletTown/scripts.pory"
+	multichoice 0, 0, MULTICHOICE_DEBUG_SEVII_WARPER, FALSE
+# 499 "data/maps/PalletTown/scripts.pory"
+	switch VAR_RESULT
+# 500 "data/maps/PalletTown/scripts.pory"
+	case 0, PalletTown_EventScript_WarpOneIsland
+# 501 "data/maps/PalletTown/scripts.pory"
+	case 1, PalletTown_EventScript_WarpTwoIsland
+# 502 "data/maps/PalletTown/scripts.pory"
+	case 2, PalletTown_EventScript_WarpThreeIsland
+# 503 "data/maps/PalletTown/scripts.pory"
+	case 3, PalletTown_EventScript_WarpFourIsland
+# 504 "data/maps/PalletTown/scripts.pory"
+	case 4, PalletTown_EventScript_WarpFiveIsland
+# 505 "data/maps/PalletTown/scripts.pory"
+	case 5, PalletTown_EventScript_WarpSixIsland
+# 506 "data/maps/PalletTown/scripts.pory"
+	case 6, PalletTown_EventScript_WarpSevenIsland
+# 507 "data/maps/PalletTown/scripts.pory"
+	case 7, PalletTown_EventScript_DebugWarpCancel
+# 508 "data/maps/PalletTown/scripts.pory"
+	case SCR_MENU_CANCEL, PalletTown_EventScript_DebugWarpCancel
+# 509 "data/maps/PalletTown/scripts.pory"
+	end
+# 510 "data/maps/PalletTown/scripts.pory"
+
+# 511 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpOneIsland::
+# 512 "data/maps/PalletTown/scripts.pory"
+	warp MAP_ONE_ISLAND, 12, 20
+# 513 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 514 "data/maps/PalletTown/scripts.pory"
+	release
+# 515 "data/maps/PalletTown/scripts.pory"
+	end
+# 516 "data/maps/PalletTown/scripts.pory"
+
+# 517 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpTwoIsland::
+# 518 "data/maps/PalletTown/scripts.pory"
+	warp MAP_TWO_ISLAND, 14, 18
+# 519 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 520 "data/maps/PalletTown/scripts.pory"
+	release
+# 521 "data/maps/PalletTown/scripts.pory"
+	end
+# 522 "data/maps/PalletTown/scripts.pory"
+
+# 523 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpThreeIsland::
+# 524 "data/maps/PalletTown/scripts.pory"
+	warp MAP_THREE_ISLAND, 25, 18
+# 525 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 526 "data/maps/PalletTown/scripts.pory"
+	release
+# 527 "data/maps/PalletTown/scripts.pory"
+	end
+# 528 "data/maps/PalletTown/scripts.pory"
+
+# 529 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpFourIsland::
+# 530 "data/maps/PalletTown/scripts.pory"
+	warp MAP_FOUR_ISLAND, 14, 18
+# 531 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 532 "data/maps/PalletTown/scripts.pory"
+	release
+# 533 "data/maps/PalletTown/scripts.pory"
+	end
+# 534 "data/maps/PalletTown/scripts.pory"
+
+# 535 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpFiveIsland::
+# 536 "data/maps/PalletTown/scripts.pory"
+	warp MAP_FIVE_ISLAND, 22, 25
+# 537 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 538 "data/maps/PalletTown/scripts.pory"
+	release
+# 539 "data/maps/PalletTown/scripts.pory"
+	end
+# 540 "data/maps/PalletTown/scripts.pory"
+
+# 541 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpSixIsland::
+# 542 "data/maps/PalletTown/scripts.pory"
+	warp MAP_SIX_ISLAND, 14, 18
+# 543 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 544 "data/maps/PalletTown/scripts.pory"
+	release
+# 545 "data/maps/PalletTown/scripts.pory"
+	end
+# 546 "data/maps/PalletTown/scripts.pory"
+
+# 547 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpSevenIsland::
+# 548 "data/maps/PalletTown/scripts.pory"
+	warp MAP_SEVEN_ISLAND, 20, 24
+# 549 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 550 "data/maps/PalletTown/scripts.pory"
+	release
+# 551 "data/maps/PalletTown/scripts.pory"
+	end
+# 552 "data/maps/PalletTown/scripts.pory"
+
+# 553 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_DebugWarpCancel::
+# 554 "data/maps/PalletTown/scripts.pory"
+	release
+# 555 "data/maps/PalletTown/scripts.pory"
+	end
+# 556 "data/maps/PalletTown/scripts.pory"
+
+# 557 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_DebugLegendaryWarper::
+# 558 "data/maps/PalletTown/scripts.pory"
+	lock
+# 559 "data/maps/PalletTown/scripts.pory"
+	faceplayer
+# 560 "data/maps/PalletTown/scripts.pory"
+	message PalletTown_Text_DebugLegendaryWarper
+# 561 "data/maps/PalletTown/scripts.pory"
+	waitmessage
+# 562 "data/maps/PalletTown/scripts.pory"
+	multichoice 0, 0, MULTICHOICE_DEBUG_LEGENDARY_WARPER, FALSE
+# 563 "data/maps/PalletTown/scripts.pory"
+	switch VAR_RESULT
+# 564 "data/maps/PalletTown/scripts.pory"
+	case 0, PalletTown_EventScript_WarpJirachi
+# 565 "data/maps/PalletTown/scripts.pory"
+	case 1, PalletTown_EventScript_WarpLatias
+# 566 "data/maps/PalletTown/scripts.pory"
+	case 2, PalletTown_EventScript_WarpLatios
+# 567 "data/maps/PalletTown/scripts.pory"
+	case 3, PalletTown_EventScript_WarpRegirock
+# 568 "data/maps/PalletTown/scripts.pory"
+	case 4, PalletTown_EventScript_WarpRegice
+# 569 "data/maps/PalletTown/scripts.pory"
+	case 5, PalletTown_EventScript_WarpRegisteel
+# 570 "data/maps/PalletTown/scripts.pory"
+	case 6, PalletTown_EventScript_WarpGroudon
+# 571 "data/maps/PalletTown/scripts.pory"
+	case 7, PalletTown_EventScript_WarpKyogre
+# 572 "data/maps/PalletTown/scripts.pory"
+	case 8, PalletTown_EventScript_WarpRayquaza
+# 573 "data/maps/PalletTown/scripts.pory"
+	case 9, PalletTown_EventScript_DebugWarpCancel
+# 574 "data/maps/PalletTown/scripts.pory"
+	case SCR_MENU_CANCEL, PalletTown_EventScript_DebugWarpCancel
+# 575 "data/maps/PalletTown/scripts.pory"
+	end
+# 576 "data/maps/PalletTown/scripts.pory"
+
+# 577 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpJirachi::
+# 578 "data/maps/PalletTown/scripts.pory"
+	warp MAP_MT_MOON_SQUARE, 14, 7
+# 579 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 580 "data/maps/PalletTown/scripts.pory"
+	release
+# 581 "data/maps/PalletTown/scripts.pory"
+	end
+# 582 "data/maps/PalletTown/scripts.pory"
+
+# 583 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpLatias::
+# 584 "data/maps/PalletTown/scripts.pory"
+	warp MAP_SIX_ISLAND_PATTERN_BUSH, 20, 20
+# 585 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 586 "data/maps/PalletTown/scripts.pory"
+	release
+# 587 "data/maps/PalletTown/scripts.pory"
+	end
+# 588 "data/maps/PalletTown/scripts.pory"
+
+# 589 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpLatios::
+# 590 "data/maps/PalletTown/scripts.pory"
+	warp MAP_FIVE_ISLAND_LOST_CAVE_ROOM14, 5, 5
+# 591 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 592 "data/maps/PalletTown/scripts.pory"
+	release
+# 593 "data/maps/PalletTown/scripts.pory"
+	end
+# 594 "data/maps/PalletTown/scripts.pory"
+
+# 595 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpRegirock::
+# 596 "data/maps/PalletTown/scripts.pory"
+	warp MAP_ROCK_TUNNEL_1F, 15, 10
+# 597 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 598 "data/maps/PalletTown/scripts.pory"
+	release
+# 599 "data/maps/PalletTown/scripts.pory"
+	end
+# 600 "data/maps/PalletTown/scripts.pory"
+
+# 601 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpRegice::
+# 602 "data/maps/PalletTown/scripts.pory"
+	warp MAP_SEAFOAM_ISLANDS_B4F, 15, 10
+# 603 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 604 "data/maps/PalletTown/scripts.pory"
+	release
+# 605 "data/maps/PalletTown/scripts.pory"
+	end
+# 606 "data/maps/PalletTown/scripts.pory"
+
+# 607 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpRegisteel::
+# 608 "data/maps/PalletTown/scripts.pory"
+	warp MAP_POWER_PLANT, 15, 10
+# 609 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 610 "data/maps/PalletTown/scripts.pory"
+	release
+# 611 "data/maps/PalletTown/scripts.pory"
+	end
+# 612 "data/maps/PalletTown/scripts.pory"
+
+# 613 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpGroudon::
+# 614 "data/maps/PalletTown/scripts.pory"
+	warp MAP_MT_EMBER_RUBY_PATH_B5F, 5, 5
+# 615 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 616 "data/maps/PalletTown/scripts.pory"
+	release
+# 617 "data/maps/PalletTown/scripts.pory"
+	end
+# 618 "data/maps/PalletTown/scripts.pory"
+
+# 619 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpKyogre::
+# 620 "data/maps/PalletTown/scripts.pory"
+	warp MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK, 10, 10
+# 621 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 622 "data/maps/PalletTown/scripts.pory"
+	release
+# 623 "data/maps/PalletTown/scripts.pory"
+	end
+# 624 "data/maps/PalletTown/scripts.pory"
+
+# 625 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_WarpRayquaza::
+# 626 "data/maps/PalletTown/scripts.pory"
+	warp MAP_SEVEN_ISLAND_SEVAULT_CANYON_TANOBY_KEY, 10, 10
+# 627 "data/maps/PalletTown/scripts.pory"
+	waitstate
+# 628 "data/maps/PalletTown/scripts.pory"
+	release
+# 629 "data/maps/PalletTown/scripts.pory"
+	end
+# 630 "data/maps/PalletTown/scripts.pory"
+
+# 631 "data/maps/PalletTown/scripts.pory"
+PalletTown_Text_DebugSeviiWarper:
+# 632 "data/maps/PalletTown/scripts.pory"
+	.string "Where to in the SEVII ISLANDS?$"
+# 633 "data/maps/PalletTown/scripts.pory"
+
+# 634 "data/maps/PalletTown/scripts.pory"
+PalletTown_Text_DebugLegendaryWarper:
+# 635 "data/maps/PalletTown/scripts.pory"
+	.string "Which legendary encounter?$"

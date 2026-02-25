@@ -127,8 +127,9 @@ void NewGameInitData(void)
     bool8 expSharePrev = FlagGet(FLAG_EXP_SHARE_PARTY);
     bool8 perfectIvsPrev = FlagGet(FLAG_PERFECT_IVS);
     bool8 wildRandPrev = FlagGet(FLAG_WILD_RANDOMIZER);
-    bool8 trainerRandPrev = FlagGet(FLAG_TRAINER_RANDOMIZER);
-    bool8 abilityRandPrev = FlagGet(FLAG_ABILITY_RANDOMIZER);
+    // DISABLED — Trainer and Ability/Move randomizers
+    // bool8 trainerRandPrev = FlagGet(FLAG_TRAINER_RANDOMIZER);
+    // bool8 abilityRandPrev = FlagGet(FLAG_ABILITY_RANDOMIZER);
     bool8 starterRandPrev = FlagGet(FLAG_STARTER_RANDOMIZER);
     u32 randSeedPrev = GetRandomizerSeed();
     u16 shinyRatePrev = VarGet(VAR_SHINY_RATE);  // A function lower down here clears these, so retain and reset at the end
@@ -188,8 +189,9 @@ void NewGameInitData(void)
     expSharePrev ? FlagSet(FLAG_EXP_SHARE_PARTY) : FlagClear(FLAG_EXP_SHARE_PARTY);
     perfectIvsPrev ? FlagSet(FLAG_PERFECT_IVS) : FlagClear(FLAG_PERFECT_IVS);
     wildRandPrev ? FlagSet(FLAG_WILD_RANDOMIZER) : FlagClear(FLAG_WILD_RANDOMIZER);
-    trainerRandPrev ? FlagSet(FLAG_TRAINER_RANDOMIZER) : FlagClear(FLAG_TRAINER_RANDOMIZER);
-    abilityRandPrev ? FlagSet(FLAG_ABILITY_RANDOMIZER) : FlagClear(FLAG_ABILITY_RANDOMIZER);
+    // DISABLED — Trainer and Ability/Move randomizers
+    // trainerRandPrev ? FlagSet(FLAG_TRAINER_RANDOMIZER) : FlagClear(FLAG_TRAINER_RANDOMIZER);
+    // abilityRandPrev ? FlagSet(FLAG_ABILITY_RANDOMIZER) : FlagClear(FLAG_ABILITY_RANDOMIZER);
     starterRandPrev ? FlagSet(FLAG_STARTER_RANDOMIZER) : FlagClear(FLAG_STARTER_RANDOMIZER);
     SetRandomizerSeed(randSeedPrev);
     VarSet(VAR_SHINY_RATE, shinyRatePrev);
@@ -202,6 +204,9 @@ void NewGameInitData(void)
 static void DebugTestSetup(void)
 {
     struct Pokemon *mon;
+
+    // --- Debug Warp NPCs ---
+    FlagClear(FLAG_HIDE_DEBUG_WARPERS);
 
     // --- Story Progress Flags ---
     FlagSet(FLAG_SYS_POKEMON_GET);

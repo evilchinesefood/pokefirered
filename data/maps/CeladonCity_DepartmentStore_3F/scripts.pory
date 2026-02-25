@@ -50,26 +50,4 @@ CeladonCity_DepartmentStore_3F_EventScript_Poster::
 	msgbox CeladonCity_DepartmentStore_3F_Text_RedGreenBothArePokemon, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_ClerkBerries::
-	goto_if_questlog EventScript_ReleaseEnd
-	lock
-	faceplayer
-	message Text_MayIHelpYou
-	waitmessage
-	pokemart CeladonCity_DepartmentStore_3F_Berries
-	msgbox Text_PleaseComeAgain
-	release
-	end
-
-	.align 2
-CeladonCity_DepartmentStore_3F_Berries::
-	.2byte ITEM_POMEG_BERRY
-	.2byte ITEM_KELPSY_BERRY
-	.2byte ITEM_QUALOT_BERRY
-	.2byte ITEM_HONDEW_BERRY
-	.2byte ITEM_GREPA_BERRY
-	.2byte ITEM_TAMATO_BERRY
-	.2byte ITEM_NONE
-	release
-	end
 `

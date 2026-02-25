@@ -19,14 +19,15 @@
      const struct TrainerMon *partyData = &trainer->party[partySlot];
      u32 otIdType, i;
      u16 species = partyData->species;
+     // DISABLED — Trainer Randomizer commented out, can re-enable later
      bool8 isRandomized = FALSE;
 
-     if (FlagGet(FLAG_TRAINER_RANDOMIZER))
-     {
-         u32 context = ((u32)gTrainerBattleOpponent_A << 16) | partySlot;
-         species = GetRandomizedSpecies(GetRandomizerSeed(), context);
-         isRandomized = TRUE;
-     }
+     // if (FlagGet(FLAG_TRAINER_RANDOMIZER))
+     // {
+     //     u32 context = ((u32)gTrainerBattleOpponent_A << 16) | partySlot;
+     //     species = GetRandomizedSpecies(GetRandomizerSeed(), context);
+     //     isRandomized = TRUE;
+     // }
 
      if (partyData->gender != 0)
      {
