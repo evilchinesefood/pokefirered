@@ -1,11 +1,9 @@
 #ifndef GUARD_DEBUG_H
 #define GUARD_DEBUG_H
 
-// DEBUG TEST SETUP - REMOVE BEFORE RELEASE
-// TODO: AUDIT(Low) — Comment this out before any release/distribution build.
+// DEBUG TEST SETUP - Uncomment to enable debug test setup (party, items, badges)
 // When enabled, a 4-option debug menu appears on every new game start.
-// Uncomment to enable debug test setup (party, items, badges)
-#define DEBUG_TEST_SETUP
+// #define DEBUG_TEST_SETUP
 
 // Start location for debug setup (uses SPAWN_* constants from heal_locations.h)
 // Common values: SPAWN_PALLET_TOWN, SPAWN_ONE_ISLAND, SPAWN_TWO_ISLAND,

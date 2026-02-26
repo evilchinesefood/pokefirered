@@ -9588,13 +9588,11 @@ static void Cmd_handleballthrow(void)
         if (gBattleMons[gBattlerTarget].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
             odds = (odds * 15) / 10;
 
-        // TODO: AUDIT(Low) — 65535 (0xFFFF) is a magic number for "guaranteed catch". Consider
-        // defining CATCH_RATE_ALWAYS 65535 in a header. Value 0 defaults to 100 (normal rate).
         {
             u16 catchMult = VarGet(VAR_CATCH_RATE_MULT);
             if (catchMult == 0)
                 catchMult = 100;
-            if (catchMult == 65535)
+            if (catchMult == CATCH_RATE_GUARANTEED)
                 odds = 255;
             else
             {

@@ -882,14 +882,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .split = SPLIT_SPECIAL,
     },
 
-    // TODO: AUDIT(Medium) — Hyper Beam is SPLIT_PHYSICAL but traditionally Special in Gen 4+.
-    // This is an upstream (pokefireredlegacy) design choice. Verify this is intentional.
-    // Also: EFFECT_ATTACK_DOWN_HIT (not EFFECT_RECHARGE) + secondaryEffectChance=0 means
-    // the attack-down side effect never triggers. Consider setting secondaryEffectChance > 0
-    // or changing effect to EFFECT_HIT if no side effect is desired.
     [MOVE_HYPER_BEAM] =
     {
-        .effect = EFFECT_ATTACK_DOWN_HIT,
+        .effect = EFFECT_HIT,
         .power = 180,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -4319,7 +4314,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BLAST_BURN] =
     {
-        .effect = EFFECT_BURN_HIT,
+        .effect = EFFECT_HIT,
         .power = 180,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -4333,7 +4328,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_HYDRO_CANNON] =
     {
-        .effect = EFFECT_CONFUSE_HIT,
+        .effect = EFFECT_HIT,
         .power = 180,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -4753,7 +4748,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FRENZY_PLANT] =
     {
-        .effect = EFFECT_HIGH_CRITICAL,
+        .effect = EFFECT_HIT,
         .power = 180,
         .type = TYPE_GRASS,
         .accuracy = 100,

@@ -16,6 +16,7 @@
 #include "random.h"
 #include "data.h"
 #include "constants/songs.h"
+#include "constants/battle.h"
 #include "constants/flags.h"
 #include "event_data.h"
 #include "debug.h"
@@ -1721,7 +1722,7 @@ static const u16 sShinyOddsValues[] = {
     128,     // 1/512
     1024,    // 1/64
     4096,    // 1/16
-    65535,   // 1/1 (Always)
+    CATCH_RATE_GUARANTEED, // 1/1 (Always)
 };
 
 static const u8 *const sExpMultiplierOptions[] = {
@@ -1749,7 +1750,7 @@ static const u16 sCatchRateMultiplierValues[] = {
     100,    // 1x (default)
     125,    // 1.25x
     150,    // 1.5x
-    65535,  // 100% (always catch)
+    CATCH_RATE_GUARANTEED, // 100% (always catch)
 };
 
 static const struct WindowTemplate sExpMultiplierWindowTemplate = {

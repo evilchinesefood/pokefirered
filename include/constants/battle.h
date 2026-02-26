@@ -362,4 +362,7 @@
 // Indicator for the party summary bar to display an empty slot.
 #define HP_EMPTY_SLOT 0xFFFF
 
+// Sentinel value for guaranteed catch (100% catch rate multiplier)
+#define CATCH_RATE_GUARANTEED 65535
+
 #endif // GUARD_CONSTANTS_BATTLE_H
