@@ -1,3 +1,6 @@
+// TODO: AUDIT(Medium) — EWRAM usage is at 99.68% (261304 / 262144 bytes). Only ~840 bytes free.
+// Any new EWRAM_DATA or large static allocations will cause a linker overflow.
+// Before adding features, audit EWRAM usage with `make` and check the memory report.
 #ifndef GUARD_CONFIG_H
 #define GUARD_CONFIG_H
 

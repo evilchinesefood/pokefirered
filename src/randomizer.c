@@ -8,6 +8,7 @@
 
 extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
+// TODO: AUDIT(Low) — Standard glibc LCG constants. Intentional u32 overflow for randomness.
 static u32 RandomizerRng(u32 *state)
 {
     *state = 1103515245 * (*state) + 24691;
@@ -77,6 +78,7 @@ u16 GetRandomizedStarterSpecies(u32 seed, u8 starterNum)
         species = GetRandomizedSpecies(seed, context);
         context++;
         attempts++;
+        // TODO: AUDIT(Low) — 1000 is a magic number. Consider #define RANDOMIZER_MAX_ATTEMPTS 1000
         if (attempts > 1000)
             return SPECIES_BULBASAUR;
     } while (IsLegendary(species) || !CanEvolve(species));

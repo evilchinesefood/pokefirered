@@ -882,6 +882,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .split = SPLIT_SPECIAL,
     },
 
+    // TODO: AUDIT(Medium) — Hyper Beam is SPLIT_PHYSICAL but traditionally Special in Gen 4+.
+    // This is an upstream (pokefireredlegacy) design choice. Verify this is intentional.
+    // Also: EFFECT_ATTACK_DOWN_HIT (not EFFECT_RECHARGE) + secondaryEffectChance=0 means
+    // the attack-down side effect never triggers. Consider setting secondaryEffectChance > 0
+    // or changing effect to EFFECT_HIT if no side effect is desired.
     [MOVE_HYPER_BEAM] =
     {
         .effect = EFFECT_ATTACK_DOWN_HIT,
@@ -3479,11 +3484,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 25,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-            .split = SPLIT_PHYSICAL,
+            .split = SPLIT_SPECIAL,
     },
 
     [MOVE_FUTURE_SIGHT] =

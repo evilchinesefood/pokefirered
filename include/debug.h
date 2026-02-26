@@ -2,6 +2,8 @@
 #define GUARD_DEBUG_H
 
 // DEBUG TEST SETUP - REMOVE BEFORE RELEASE
+// TODO: AUDIT(Low) — Comment this out before any release/distribution build.
+// When enabled, a 4-option debug menu appears on every new game start.
 // Uncomment to enable debug test setup (party, items, badges)
 #define DEBUG_TEST_SETUP
 

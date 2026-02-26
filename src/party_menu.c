@@ -3005,6 +3005,9 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
     }
 }
 
+// TODO: AUDIT(Medium) — actions[9] buffer is filled to exact capacity with no safety margin.
+// Worst case: SUMMARY(1) + RELEARN(1) + fieldMoves(4) + HM-less(0, capped at 6) + SWITCH(1) + ITEM(1) + CANCEL(1) = 9.
+// If any future feature adds another menu option, this will overflow. Consider increasing to actions[12].
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
