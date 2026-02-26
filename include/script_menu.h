@@ -10,6 +10,7 @@ bool8 ScriptMenu_MultichoiceWithDefault(u8 left, u8 top, u8 var3, u8 var4, u8 va
 bool8 ScriptMenu_YesNo(u8 var1, u8 var2);
 bool8 ScriptMenu_MultichoiceGrid(u8 left, u8 top, u8 multichoiceId, u8 a4, u8 columnCount);
 bool8 ScriptMenu_ShowPokemonPic(u16 var1, u8 var2, u8 var3);
+bool8 ScriptMenu_ShowPokemonPicWithPersonality(u16 species, u32 otId, u32 personality, u8 x, u8 y);
 bool8 CreatePCMenu(void);
 void ScriptMenu_DisplayPCStartupPrompt(void);
 

@@ -124,6 +124,21 @@ gNameChoice_Momo::
 gNameChoice_Suzi::
     .string "SUZI$"
 
+gNameChoice_Dave::
+    .string "DAVE$"
+
+gNameChoice_Jack::
+    .string "JACK$"
+
+gNameChoice_Misty::
+    .string "MISTY$"
+
+gNameChoice_Blue::
+    .string "BLUE$"
+
+gNameChoice_Thea::
+    .string "THEA$"
+
 gControlsGuide_Text_Intro::
     .string "The various buttons will be explained in\n"
     .string "the order of their importance.$"
@@ -233,8 +248,8 @@ gText_Oak_PerfectIVs::
     .string "Would you like to enable\n"
     .string "PERFECT IVs?\p"
     .string "All acquired POKéMON will\n"
-    .string "have perfect IVs (31 across\n"
-    .string "the board).$"
+    .string "have max IVs (31 in every\n"
+    .string "stat).$"
 
 gText_Oak_WildRandomizer::
     .string "Do you want to randomize\n"

@@ -2857,3 +2857,50 @@ void Special_ApplyStarterRandomizer(void)
     VarSet(VAR_TEMP_2, species[starterNum]);  // PLAYER_STARTER_SPECIES
     VarSet(VAR_TEMP_3, species[(starterNum + 1) % 3]);  // RIVAL_STARTER_SPECIES
 }
+
+void Special_PreGenerateStarter(void)
+{
+    u16 species = VarGet(VAR_0x8004);
+    u32 personality;
+    struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
+
+    CreateMon(mon, species, 5, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+    personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    VarSet(VAR_TEMP_D, personality & 0xFFFF);
+    VarSet(VAR_TEMP_E, personality >> 16);
+    gSpecialVar_Result = IsMonShiny(mon);
+    Free(mon);
+}
+
+void Special_ShowStarterPicShinyAware(void)
+{
+    u16 species = VarGet(VAR_0x8004);
+    u32 personality = VarGet(VAR_TEMP_D) | ((u32)VarGet(VAR_TEMP_E) << 16);
+    u32 otId = GetPlayerTrainerId();
+
+    ScriptMenu_ShowPokemonPicWithPersonality(species, otId, personality, 10, 3);
+}
+
+void Special_GivePregenStarter(void)
+{
+    u16 species = VarGet(VAR_0x8004);
+    u8 level = VarGet(VAR_0x8005);
+    u32 personality = VarGet(VAR_TEMP_D) | ((u32)VarGet(VAR_TEMP_E) << 16);
+    u16 nationalDexNum;
+    int sentToPc;
+    struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
+
+    CreateMon(mon, species, level, 32, TRUE, personality, OT_ID_PLAYER_ID, 0);
+    sentToPc = GiveMonToPlayer(mon);
+    nationalDexNum = SpeciesToNationalPokedexNum(species);
+    switch (sentToPc)
+    {
+    case MON_GIVEN_TO_PARTY:
+    case MON_GIVEN_TO_PC:
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        break;
+    }
+    Free(mon);
+    gSpecialVar_Result = sentToPc;
+}

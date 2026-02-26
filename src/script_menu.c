@@ -804,8 +804,12 @@ static u8 GetMCWindowHeight(u8 count)
         return 13;
     case 8:
         return 14;
+    case 9:
+        return 16;
+    case 10:
+        return 18;
     default:
-        return 1;
+        return 18;
     }
 }
 
@@ -1102,6 +1106,27 @@ bool8 ScriptMenu_ShowPokemonPic(u16 species, u8 x, u8 y)
     if (FindTaskIdByFunc(Task_ScriptShowMonPic) != TASK_NONE)
         return FALSE;
     spriteId = CreateMonSprite_PicBox(species, 8 * x + 40, 8 * y + 40, FALSE);
+    taskId = CreateTask(Task_ScriptShowMonPic, 80);
+    gTasks[taskId].tWindowId = CreateWindowFromRect(x, y, 8, 8);
+    gTasks[taskId].tState = 0;
+    gTasks[taskId].tSpecies = species;
+    gTasks[taskId].tSpriteId = spriteId;
+    gSprites[spriteId].callback = SpriteCallbackDummy;
+    gSprites[spriteId].oam.priority = 0;
+    SetStdWindowBorderStyle(gTasks[taskId].tWindowId, TRUE);
+    ScheduleBgCopyTilemapToVram(0);
+    return TRUE;
+}
+
+bool8 ScriptMenu_ShowPokemonPicWithPersonality(u16 species, u32 otId, u32 personality, u8 x, u8 y)
+{
+    u8 spriteId;
+    u8 taskId;
+    if (QL_AvoidDisplay(QL_DestroyAbortedDisplay) == TRUE)
+        return TRUE;
+    if (FindTaskIdByFunc(Task_ScriptShowMonPic) != TASK_NONE)
+        return FALSE;
+    spriteId = CreateMonSprite_PicBox_WithPersonality(species, otId, personality, 8 * x + 40, 8 * y + 40, FALSE);
     taskId = CreateTask(Task_ScriptShowMonPic, 80);
     gTasks[taskId].tWindowId = CreateWindowFromRect(x, y, 8, 8);
     gTasks[taskId].tState = 0;

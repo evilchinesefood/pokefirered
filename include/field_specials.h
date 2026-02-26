@@ -29,5 +29,8 @@ void QuestLog_CheckDepartingIndoorsMap(void);
 void QuestLog_TryRecordDepartedLocation(void);
 void FillPokedex(void);
 void Special_ApplyStarterRandomizer(void);
+void Special_PreGenerateStarter(void);
+void Special_ShowStarterPicShinyAware(void);
+void Special_GivePregenStarter(void);
 
 #endif // GUARD_FIELD_SPECIALS_H

@@ -4550,10 +4550,23 @@ static bool8 IsRepeatableStatItem(u16 itemId)
 
 static void Task_WaitThenReapplyStatItem(u8 taskId)
 {
-    if (IsPartyMenuTextPrinterActive() != TRUE)
+    if (IsPartyMenuTextPrinterActive() != TRUE
+        && (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON)))
     {
+        PlaySE(SE_SELECT);
         ClearStdWindowAndFrameToTransparent(6, FALSE);
         ClearWindowTilemap(6);
+        // Re-enter from the entry callback so the full chain (including animation) runs
+        if (gSpecialVar_ItemId == ITEM_POMEG_BERRY || gSpecialVar_ItemId == ITEM_KELPSY_BERRY
+            || gSpecialVar_ItemId == ITEM_QUALOT_BERRY || gSpecialVar_ItemId == ITEM_HONDEW_BERRY
+            || gSpecialVar_ItemId == ITEM_GREPA_BERRY || gSpecialVar_ItemId == ITEM_TAMATO_BERRY)
+        {
+            gItemUseCB = ItemUseCB_ReduceEV;
+        }
+        else
+        {
+            gItemUseCB = ItemUseCB_Medicine;
+        }
         gItemUseCB(taskId, Task_ClosePartyMenuAfterText);
     }
 }

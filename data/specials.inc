@@ -454,4 +454,7 @@ gSpecials::
 	def_special LoopWingFlapSound
 	def_special CreateEnemyEventMon
 	def_special Special_ApplyStarterRandomizer
+	def_special Special_PreGenerateStarter
+	def_special Special_ShowStarterPicShinyAware
+	def_special Special_GivePregenStarter
 gSpecialsEnd::
