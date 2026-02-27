@@ -49,8 +49,36 @@ DiglettsCave_B1F_EventScript_OrbingCheck::
 	release
 	end
 
+DiglettsCave_B1F_Text_Freddy:
+	.string "Hey! You look like a tough\n"
+	.string "TRAINER!\p"
+	.string "Want to have a battle?$"
+
+DiglettsCave_B1F_Text_FreddyDefeat:
+	.string "Wow, you're strong!$"
+
+DiglettsCave_B1F_Text_FreddyPostBattle:
+	.string "That was a great battle!\n"
+	.string "Come back anytime!$"
+
+DiglettsCave_B1F_Text_NoFreddy:
+	.string "That's too bad.\n"
+	.string "Maybe next time!$"
+
 DiglettsCave_B1F_Text_OrbingCheck:
 	.string "The orbs are glowing with a strange\n"
 	.string "light...$"
+
+DiglettsCave_B1F_Text_RematchFreddy:
+	.string "You want to battle again?$"
+
+DiglettsCave_B1F_Text_YesFreddy:
+	.string "Let's do this!$"
+
+DiglettsCave_B1F_Text_RematchFreddyDefeat:
+	.string "You got me again...$"
+
+DiglettsCave_B1F_Text_PostRematchFreddy:
+	.string "Good battle as always.$"
 
 `

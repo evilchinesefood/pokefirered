@@ -58,4 +58,14 @@ FiveIsland_LostCave_Room14_EventScript_RanFromLatios::
 	setflag FLAG_FOUGHT_LATIOS
 	setvar VAR_0x8004, SPECIES_LATIOS
 	goto EventScript_MonFlewAway
+
+FiveIsland_LostCave_Room14_EventScript_Freddy::
+	lock
+	faceplayer
+	msgbox FiveIsland_LostCave_Room14_Text_Freddy, MSGBOX_DEFAULT
+	release
+	end
+
+FiveIsland_LostCave_Room14_Text_Freddy:
+	.string "...$"
 `

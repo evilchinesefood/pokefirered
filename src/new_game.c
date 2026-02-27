@@ -251,51 +251,52 @@ static void DebugTestSetup(void)
 
     // --- Party ---
     {
-        u32 iv = 31;
+        u32 maxIv = 31;
+        u32 zeroIv = 0;
         mon = AllocZeroed(sizeof(struct Pokemon));
 
-        // Charmander — non-neutral nature (Adamant: +Atk -SpA)
+        // Charmander — perfect HP and Speed, 0 rest
         CreateMonWithNature(mon, SPECIES_CHARMANDER, 50, 0, NATURE_ADAMANT);
-        SetMonData(mon, MON_DATA_HP_IV, &iv);
-        SetMonData(mon, MON_DATA_ATK_IV, &iv);
-        SetMonData(mon, MON_DATA_DEF_IV, &iv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        SetMonData(mon, MON_DATA_HP_IV, &maxIv);
+        SetMonData(mon, MON_DATA_ATK_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_DEF_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &maxIv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &zeroIv);
         CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
-        // Bulbasaur — neutral nature (Hardy)
+        // Bulbasaur — perfect Defense and Sp.Def, 0 rest
         CreateMonWithNature(mon, SPECIES_BULBASAUR, 50, 0, NATURE_HARDY);
-        SetMonData(mon, MON_DATA_HP_IV, &iv);
-        SetMonData(mon, MON_DATA_ATK_IV, &iv);
-        SetMonData(mon, MON_DATA_DEF_IV, &iv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        SetMonData(mon, MON_DATA_HP_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_ATK_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_DEF_IV, &maxIv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &maxIv);
         CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
-        // Squirtle — non-neutral nature (Modest: +SpA -Atk)
+        // Squirtle — perfect Attack and Sp.Atk, 0 rest
         CreateMonWithNature(mon, SPECIES_SQUIRTLE, 50, 0, NATURE_MODEST);
-        SetMonData(mon, MON_DATA_HP_IV, &iv);
-        SetMonData(mon, MON_DATA_ATK_IV, &iv);
-        SetMonData(mon, MON_DATA_DEF_IV, &iv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        SetMonData(mon, MON_DATA_HP_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_ATK_IV, &maxIv);
+        SetMonData(mon, MON_DATA_DEF_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &zeroIv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &maxIv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &zeroIv);
         CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
-        // Pidgeot — high level for Fly testing
+        // Pidgeot — high level for Fly testing (keep all 31 IVs)
         CreateMonWithNature(mon, SPECIES_PIDGEOT, 50, 0, NATURE_JOLLY);
         SetMonMoveSlot(mon, MOVE_FLY, 0);
-        SetMonData(mon, MON_DATA_HP_IV, &iv);
-        SetMonData(mon, MON_DATA_ATK_IV, &iv);
-        SetMonData(mon, MON_DATA_DEF_IV, &iv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &iv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &iv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &iv);
+        SetMonData(mon, MON_DATA_HP_IV, &maxIv);
+        SetMonData(mon, MON_DATA_ATK_IV, &maxIv);
+        SetMonData(mon, MON_DATA_DEF_IV, &maxIv);
+        SetMonData(mon, MON_DATA_SPEED_IV, &maxIv);
+        SetMonData(mon, MON_DATA_SPATK_IV, &maxIv);
+        SetMonData(mon, MON_DATA_SPDEF_IV, &maxIv);
         CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 

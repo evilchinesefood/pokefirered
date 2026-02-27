@@ -101,8 +101,64 @@ DiglettsCave_B1F_EventScript_OrbingCheck::
 # 51 "data/maps/DiglettsCave_B1F/scripts.pory"
 
 # 52 "data/maps/DiglettsCave_B1F/scripts.pory"
-DiglettsCave_B1F_Text_OrbingCheck:
+DiglettsCave_B1F_Text_Freddy:
 # 53 "data/maps/DiglettsCave_B1F/scripts.pory"
-	.string "The orbs are glowing with a strange\n"
+	.string "Hey! You look like a tough\n"
 # 54 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "TRAINER!\p"
+# 55 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Want to have a battle?$"
+# 56 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 57 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_FreddyDefeat:
+# 58 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Wow, you're strong!$"
+# 59 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 60 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_FreddyPostBattle:
+# 61 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "That was a great battle!\n"
+# 62 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Come back anytime!$"
+# 63 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 64 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_NoFreddy:
+# 65 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "That's too bad.\n"
+# 66 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Maybe next time!$"
+# 67 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 68 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_OrbingCheck:
+# 69 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "The orbs are glowing with a strange\n"
+# 70 "data/maps/DiglettsCave_B1F/scripts.pory"
 	.string "light...$"
+# 71 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 72 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_RematchFreddy:
+# 73 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "You want to battle again?$"
+# 74 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 75 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_YesFreddy:
+# 76 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Let's do this!$"
+# 77 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 78 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_RematchFreddyDefeat:
+# 79 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "You got me again...$"
+# 80 "data/maps/DiglettsCave_B1F/scripts.pory"
+
+# 81 "data/maps/DiglettsCave_B1F/scripts.pory"
+DiglettsCave_B1F_Text_PostRematchFreddy:
+# 82 "data/maps/DiglettsCave_B1F/scripts.pory"
+	.string "Good battle as always.$"

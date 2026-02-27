@@ -118,3 +118,23 @@ FiveIsland_LostCave_Room14_EventScript_RanFromLatios::
 	setvar VAR_0x8004, SPECIES_LATIOS
 # 60 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
 	goto EventScript_MonFlewAway
+# 61 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+
+# 62 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+FiveIsland_LostCave_Room14_EventScript_Freddy::
+# 63 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+	lock
+# 64 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+	faceplayer
+# 65 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+	msgbox FiveIsland_LostCave_Room14_Text_Freddy, MSGBOX_DEFAULT
+# 66 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+	release
+# 67 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+	end
+# 68 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+
+# 69 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+FiveIsland_LostCave_Room14_Text_Freddy:
+# 70 "data/maps/FiveIsland_LostCave_Room14/scripts.pory"
+	.string "...$"

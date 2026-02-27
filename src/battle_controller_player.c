@@ -1488,7 +1488,7 @@ static void MoveSelectionDisplayMoveDescription(void)
      u16 pwr = gBattleMoves[move].power;
      u16 acc = gBattleMoves[move].accuracy;
      s16 pri = gBattleMoves[move].priority;
-     u8 pwr_num[3], acc_num[3], pri_num[3], i;
+     u8 pwr_num[4], acc_num[4], pri_num[4], i;
      u8 pwr_desc[7] = _("PWR: ");
      u8 acc_desc[7] = _("ACC: ");
      u8 pri_desc[7] = _("PRI: ");

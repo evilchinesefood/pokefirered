@@ -1254,8 +1254,8 @@
 #define FLAG_ARMSTRONG_DEFEATED  0x4C0
 #define FLAG_SEVIIMATCH          0x4C1
 #define FLAG_SHADY_DEALER_PRICING 0x4C2
-#define FLAG_UNUSED2             0x4C3
-#define FLAG_UNUSED3             0x4C4
+#define FLAG_ARMSTRONG_CLONE     0x4C3
+#define FLAG_DEFEATED_OAK_REMATCH 0x4C4
 #define FLAG_UNUSED4             0x4C5
 #define FLAG_UNUSED5             0x4C6
 #define FLAG_UNUSED6             0x4C7
