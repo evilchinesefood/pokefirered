@@ -133,7 +133,6 @@ EWRAM_DATA u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = {0};
 static EWRAM_DATA u32 sFlickerArray[25] = {0};
 EWRAM_DATA u32 gBattleTypeFlags = 0;
 EWRAM_DATA u8 gBattleTerrain = 0;
-EWRAM_DATA u32 gUnusedFirstBattleVar1 = 0;
 EWRAM_DATA struct MultiBattlePokemonTx gMultiPartnerParty[3] = {0};
 EWRAM_DATA u8 *gBattleAnimBgTileBuffer = NULL;
 EWRAM_DATA u8 *gBattleAnimBgTilemapBuffer = NULL;
@@ -183,7 +182,6 @@ EWRAM_DATA u8 gLastHitBy[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
-static EWRAM_DATA u8 sUnusedBattlersArray[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0;
 EWRAM_DATA u16 gSideStatuses[2] = {0};
@@ -2162,7 +2160,6 @@ static void BattleStartClearSetData(void)
             dataPtr[j] = 0;
 
         gDisableStructs[i].isFirstTurn = 2;
-        sUnusedBattlersArray[i] = 0;
         gLastMoves[i] = MOVE_NONE;
         gLastLandedMoves[i] = MOVE_NONE;
         gLastHitByType[i] = 0;

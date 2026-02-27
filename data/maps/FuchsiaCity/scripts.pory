@@ -119,6 +119,12 @@ FuchsiaCity_EventScript_LaprasSign::
 	releaseall
 	end
 
+FuchsiaCity_EventScript_Pokemon::
+	lock
+	faceplayer
+	release
+	end
+
 FuchsiaCity_EventScript_FossilMonSign::
 	lockall
 	goto_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_OmanyteSign

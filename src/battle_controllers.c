@@ -14,7 +14,6 @@
 
 static EWRAM_DATA u8 sLinkSendTaskId = 0;
 static EWRAM_DATA u8 sLinkReceiveTaskId = 0;
-static EWRAM_DATA u8 sUnused = 0; // Debug? Never read
 EWRAM_DATA struct UnusedControllerStruct gUnusedControllerStruct = {}; // Debug? Unused code that writes to it, never read
 static EWRAM_DATA u8 sBattleBuffersTransferData[0x100] = {};
 
@@ -58,8 +57,6 @@ void SetUpBattleVars(void)
     ClearBattleMonForms();
     BattleAI_HandleItemUseBeforeAISetup();
 
-    // Below are never read
-    gUnusedFirstBattleVar1 = 0;
     gUnusedFirstBattleVar2 = 0;
 }
 
@@ -393,7 +390,6 @@ static void CreateTasksForSendRecvLinkBuffers(void)
     gTasks[sLinkReceiveTaskId].data[14] = 0;
     gTasks[sLinkReceiveTaskId].data[15] = 0;
 
-    sUnused = 0;
 }
 
 enum

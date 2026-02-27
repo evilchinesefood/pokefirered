@@ -1,4 +1,16 @@
 raw `
 FiveIsland_LostCave_Room11_MapScripts::
 	.byte 0
+
+FiveIsland_LostCave_Room11_EventScript_Armstrong::
+	lock
+	faceplayer
+	msgbox FiveIsland_LostCave_Room11_Text_Armstrong, MSGBOX_DEFAULT
+	release
+	end
+
+FiveIsland_LostCave_Room11_Text_Armstrong:
+	.string "ARMSTRONG: The art of getting\n"
+	.string "lost is passed down through\l"
+	.string "generations of my family!$"
 `

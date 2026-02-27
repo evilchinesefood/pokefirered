@@ -1,4 +1,17 @@
 raw `
 FiveIsland_LostCave_Room13_MapScripts::
 	.byte 0
+
+FiveIsland_LostCave_Room13_EventScript_Oak::
+	lock
+	faceplayer
+	msgbox FiveIsland_LostCave_Room13_Text_Oak, MSGBOX_DEFAULT
+	release
+	end
+
+FiveIsland_LostCave_Room13_Text_Oak:
+	.string "OAK: Oh! How did you find me\n"
+	.string "all the way down here?\p"
+	.string "I was just doing some, er…\n"
+	.string "field research. Yes, that's it.$"
 `

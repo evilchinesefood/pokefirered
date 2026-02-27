@@ -58,16 +58,14 @@
 #define UNITS_METRIC
 #endif // ENGLISH
 
-// Crashes may occur due to section reordering in the modern build,
-// so we force BUGFIX here.
-#if MODERN
+// Enable bug fixes unconditionally (including for agbcc builds).
+// These fix uninitialized variable bugs in m4a.c and other issues.
 #ifndef BUGFIX
 #define BUGFIX
 #endif // BUGFIX
 #ifndef UBFIX
 #define UBFIX
 #endif // UBFIX
-#endif // MODERN
 
 #define PHYSICAL_SPECIAL_SPLIT
 
