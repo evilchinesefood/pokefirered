@@ -43,6 +43,7 @@
 #include "constants/menu.h"
 #include "constants/event_objects.h"
 #include "constants/metatile_labels.h"
+#include "item_menu_icons.h"
 
 static EWRAM_DATA u8 sElevatorCurrentFloorWindowId = 0;
 static EWRAM_DATA u16 sElevatorScroll = 0;
@@ -2903,4 +2904,34 @@ void Special_GivePregenStarter(void)
     }
     Free(mon);
     gSpecialVar_Result = sentToPc;
+}
+
+#define ITEM_ICON_TAG 12345
+
+static EWRAM_DATA u8 sObtainedItemIconSpriteId = MAX_SPRITES;
+
+void Special_ShowItemObtainIcon(void)
+{
+    u16 itemId = gSpecialVar_0x8000;
+
+    if (sObtainedItemIconSpriteId != MAX_SPRITES)
+        return;
+
+    sObtainedItemIconSpriteId = AddItemIconObject(ITEM_ICON_TAG, ITEM_ICON_TAG, itemId);
+    if (sObtainedItemIconSpriteId != MAX_SPRITES)
+    {
+        gSprites[sObtainedItemIconSpriteId].x = 36;
+        gSprites[sObtainedItemIconSpriteId].y = 140;
+    }
+}
+
+void Special_HideItemObtainIcon(void)
+{
+    if (sObtainedItemIconSpriteId != MAX_SPRITES)
+    {
+        FreeSpriteTilesByTag(ITEM_ICON_TAG);
+        FreeSpritePaletteByTag(ITEM_ICON_TAG);
+        DestroySprite(&gSprites[sObtainedItemIconSpriteId]);
+        sObtainedItemIconSpriteId = MAX_SPRITES;
+    }
 }

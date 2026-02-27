@@ -27,6 +27,8 @@
 #include "menu.h"
 #include "new_menu_helpers.h"
 #include "pokemon_summary_screen.h"
+#include "pokedex.h"
+#include "battle_main.h"
 
 static void PlayerHandleGetMonData(void);
 static void PlayerHandleSetMonData(void);
@@ -1392,19 +1394,68 @@ static void DoHitAnimBlinkSpriteEffect(void)
     }
 }
 
+static const u8 sText_EffSuperEffective[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN} {UP_ARROW}");
+static const u8 sText_EffNotVeryEffective[] = _("{COLOR RED}{SHADOW LIGHT_RED} {DOWN_ARROW}");
+static const u8 sText_EffNoEffect[] = _("{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} --");
+
+static u8 CalcMoveEffectivenessForDisplay(u8 moveType, u8 defType1, u8 defType2)
+{
+    u8 result = TYPE_MUL_NORMAL;
+    s32 i = 0;
+
+    while (TYPE_EFFECT_ATK_TYPE(i) != TYPE_ENDTABLE)
+    {
+        if (TYPE_EFFECT_ATK_TYPE(i) == TYPE_FORESIGHT)
+        {
+            i += 3;
+            continue;
+        }
+        if (TYPE_EFFECT_ATK_TYPE(i) == moveType)
+        {
+            if (TYPE_EFFECT_DEF_TYPE(i) == defType1)
+                result = (result * TYPE_EFFECT_MULTIPLIER(i)) / TYPE_MUL_NORMAL;
+            if (TYPE_EFFECT_DEF_TYPE(i) == defType2 && defType1 != defType2)
+                result = (result * TYPE_EFFECT_MULTIPLIER(i)) / TYPE_MUL_NORMAL;
+        }
+        i += 3;
+    }
+    return result;
+}
+
 static void MoveSelectionDisplayMoveNames(void)
 {
     s32 i;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleBufferA[gActiveBattler][4]);
+    u8 opposing = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+    u16 oppSpecies = gBattleMons[opposing].species;
+    bool8 showEffectiveness = GetSetPokedexFlag(SpeciesToNationalPokedexNum(oppSpecies), FLAG_GET_SEEN);
+
     gNumberOfMovesToChoose = 0;
 
     for (i = 0; i < MAX_MON_MOVES; ++i)
     {
+        u16 move = moveInfo->moves[i];
         MoveSelectionDestroyCursorAt(i);
         StringCopy(gDisplayedStringBattle, gText_MoveInterfaceDynamicColors);
-        StringAppend(gDisplayedStringBattle, gMoveNames[moveInfo->moves[i]]);
+        StringAppend(gDisplayedStringBattle, gMoveNames[move]);
+
+        if (showEffectiveness && move != MOVE_NONE && gBattleMoves[move].power > 1)
+        {
+            u8 eff = CalcMoveEffectivenessForDisplay(
+                gBattleMoves[move].type,
+                gBattleMons[opposing].type1,
+                gBattleMons[opposing].type2);
+
+            if (eff == TYPE_MUL_NO_EFFECT)
+                StringAppend(gDisplayedStringBattle, sText_EffNoEffect);
+            else if (eff < TYPE_MUL_NORMAL)
+                StringAppend(gDisplayedStringBattle, sText_EffNotVeryEffective);
+            else if (eff > TYPE_MUL_NORMAL)
+                StringAppend(gDisplayedStringBattle, sText_EffSuperEffective);
+        }
+
         BattlePutTextOnWindow(gDisplayedStringBattle, i + 3);
-        if (moveInfo->moves[i] != MOVE_NONE)
+        if (move != MOVE_NONE)
             ++gNumberOfMovesToChoose;
     }
 }

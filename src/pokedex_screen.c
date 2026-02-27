@@ -93,6 +93,13 @@ struct PokedexCategoryPage
 
 EWRAM_DATA static struct PokedexScreenData * sPokedexScreenData = NULL;
 
+static const u8 sText_BaseStatHP[]  = _("HP");
+static const u8 sText_BaseStatAtk[] = _("Atk");
+static const u8 sText_BaseStatDef[] = _("Def");
+static const u8 sText_BaseStatSpA[] = _("SpA");
+static const u8 sText_BaseStatSpD[] = _("SpD");
+static const u8 sText_BaseStatSpd[] = _("Spd");
+
 static void Task_PokedexScreen(u8 taskId);
 static void DexScreen_InitGfxForTopMenu(void);
 static void Task_DexScreen_NumericalOrder(u8 taskId);
@@ -2943,7 +2950,27 @@ static u8 DexScreen_DrawMonDexPage(bool8 justRegistered)
 
     // Dex entry
     FillWindowPixelBuffer(sPokedexScreenData->windowIds[2], PIXEL_FILL(0));
-    DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 8);
+    DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 0);
+    // Base stats (caught Pokemon only)
+    if (DexScreen_GetSetPokedexFlag(sPokedexScreenData->dexSpecies, FLAG_GET_CAUGHT, TRUE))
+    {
+        u8 win = sPokedexScreenData->windowIds[2];
+        u16 sp = sPokedexScreenData->dexSpecies;
+        // Row 1: HP, Atk, Def
+        DexScreen_AddTextPrinterParameterized(win, FONT_SMALL, sText_BaseStatHP,  4, 40, 3);
+        DexScreen_PrintNum3RightAlign(win, FONT_SMALL, gSpeciesInfo[sp].baseHP, 20, 40, 0);
+        DexScreen_AddTextPrinterParameterized(win, FONT_SMALL, sText_BaseStatAtk, 52, 40, 3);
+        DexScreen_PrintNum3RightAlign(win, FONT_SMALL, gSpeciesInfo[sp].baseAttack, 72, 40, 0);
+        DexScreen_AddTextPrinterParameterized(win, FONT_SMALL, sText_BaseStatDef, 100, 40, 3);
+        DexScreen_PrintNum3RightAlign(win, FONT_SMALL, gSpeciesInfo[sp].baseDefense, 120, 40, 0);
+        // Row 2: SpA, SpD, Spd
+        DexScreen_AddTextPrinterParameterized(win, FONT_SMALL, sText_BaseStatSpA, 4, 48, 3);
+        DexScreen_PrintNum3RightAlign(win, FONT_SMALL, gSpeciesInfo[sp].baseSpAttack, 24, 48, 0);
+        DexScreen_AddTextPrinterParameterized(win, FONT_SMALL, sText_BaseStatSpD, 52, 48, 3);
+        DexScreen_PrintNum3RightAlign(win, FONT_SMALL, gSpeciesInfo[sp].baseSpDefense, 76, 48, 0);
+        DexScreen_AddTextPrinterParameterized(win, FONT_SMALL, sText_BaseStatSpd, 100, 48, 3);
+        DexScreen_PrintNum3RightAlign(win, FONT_SMALL, gSpeciesInfo[sp].baseSpeed, 120, 48, 0);
+    }
     PutWindowTilemap(sPokedexScreenData->windowIds[2]);
     CopyWindowToVram(sPokedexScreenData->windowIds[2], COPYWIN_GFX);
 

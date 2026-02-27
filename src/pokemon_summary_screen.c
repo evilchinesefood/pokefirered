@@ -3361,7 +3361,7 @@ static void PokeSum_FlipPages_SlideLayerLeft(void)
 {
     if (sMonSummaryScreen->flipPagesBgHofs < 240)
     {
-        sMonSummaryScreen->flipPagesBgHofs += 60;
+        sMonSummaryScreen->flipPagesBgHofs += 30;
         if (sMonSummaryScreen->flipPagesBgHofs > 240)
             sMonSummaryScreen->flipPagesBgHofs = 240;
 
@@ -3374,9 +3374,9 @@ static void PokeSum_FlipPages_SlideLayerLeft(void)
 
 static void PokeSum_FlipPages_SlideLayeRight(void)
 {
-    if (sMonSummaryScreen->flipPagesBgHofs >= 60)
+    if (sMonSummaryScreen->flipPagesBgHofs >= 30)
     {
-        sMonSummaryScreen->flipPagesBgHofs -= 60;
+        sMonSummaryScreen->flipPagesBgHofs -= 30;
         if (sMonSummaryScreen->flipPagesBgHofs < 0)
             sMonSummaryScreen->flipPagesBgHofs = 0;
 

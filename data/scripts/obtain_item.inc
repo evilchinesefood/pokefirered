@@ -59,9 +59,11 @@ EventScript_BufferBerryPouch::
 	return
 
 EventScript_ObtainedItem::
+	special Special_ShowItemObtainIcon
 	message Text_ObtainedTheX
 	waitfanfare
 	waitmessage
+	special Special_HideItemObtainIcon
 	msgbox Text_PutItemAway
 	setvar VAR_RESULT, 1
 	return
@@ -122,12 +124,15 @@ Std_FindItem::
 EventScript_PickUpItem::
 	removeobject VAR_LAST_TALKED
 	additem VAR_0x8004, VAR_0x8005
+	copyvar VAR_0x8000, VAR_0x8004
+	special Special_ShowItemObtainIcon
 	specialvar VAR_RESULT, BufferTMHMMoveName
 	copyvar VAR_0x8008, VAR_RESULT
 	call_if_eq VAR_0x8008, TRUE, EventScript_FoundTMHM
 	call_if_eq VAR_0x8008, FALSE, EventScript_FoundItem
 	waitfanfare
 	waitmessage
+	special Special_HideItemObtainIcon
 	msgbox Text_PutItemAway
 	return
 
@@ -164,10 +169,13 @@ EventScript_TryPickUpHiddenItem::
 	return
 
 EventScript_PickedUpHiddenItem::
+	copyvar VAR_0x8000, VAR_0x8005
+	special Special_ShowItemObtainIcon
 	call_if_eq VAR_0x8006, 1, EventScript_FoundSingleItem
 	call_if_ne VAR_0x8006, 1, EventScript_FoundMultipleItems
 	waitfanfare
 	waitmessage
+	special Special_HideItemObtainIcon
 	msgbox Text_PutItemAway
 	special SetHiddenItemFlag
 	releaseall
