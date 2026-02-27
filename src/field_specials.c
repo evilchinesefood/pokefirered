@@ -2855,7 +2855,7 @@ void Special_ApplyStarterRandomizer(void)
 
     starterNum = VarGet(VAR_TEMP_1); // PLAYER_STARTER_NUM
     VarSet(VAR_TEMP_2, species[starterNum]);  // PLAYER_STARTER_SPECIES
-    VarSet(VAR_TEMP_3, species[(starterNum + 1) % 3]);  // RIVAL_STARTER_SPECIES
+    VarSet(VAR_TEMP_3, species[(starterNum + 2) % 3]);  // RIVAL_STARTER_SPECIES
 }
 
 void Special_PreGenerateStarter(void)

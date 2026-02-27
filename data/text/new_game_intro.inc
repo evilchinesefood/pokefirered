@@ -245,10 +245,8 @@ gText_CatchMult_Always::
     .string "100% (Always)$"
 
 gText_Oak_PerfectIVs::
-    .string "Would you like to enable\n"
-    .string "PERFECT IVs?\p"
-    .string "All acquired POKéMON will\n"
-    .string "have max IVs.$"
+    .string "Enable PERFECT IVs?\n"
+    .string "All POKéMON will have max IVs.$"
 
 gText_Oak_WildRandomizer::
     .string "Do you want to randomize\n"
