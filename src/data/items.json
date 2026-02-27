@@ -4417,7 +4417,7 @@
       "secondaryId": 1
     },
     {
-      "english": "RE ORB",
+      "english": "RED ORB",
       "itemId": "ITEM_RED_ORB",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -4433,7 +4433,7 @@
       "secondaryId": 0
     },
     {
-      "english": "BATTLE ORB",
+      "english": "BLUE ORB",
       "itemId": "ITEM_BLUE_ORB",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
