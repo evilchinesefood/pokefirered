@@ -191,6 +191,11 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blastoise;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Venusaur;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hex_Maniac;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Groudon;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kyogre;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latias;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latios;
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
     [OBJ_EVENT_GFX_RED_BIKE]                 = &gObjectEventGraphicsInfo_RedBike,
@@ -383,4 +388,9 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_VENUSAUR] = &gObjectEventGraphicsInfo_Venusaur,
     [OBJ_EVENT_GFX_SUDOWOODO] = &gObjectEventGraphicsInfo_Sudowoodo,
     [OBJ_EVENT_GFX_HEX_MANIAC] = &gObjectEventGraphicsInfo_Hex_Maniac,
+    [OBJ_EVENT_GFX_GROUDON] = &gObjectEventGraphicsInfo_Groudon,
+    [OBJ_EVENT_GFX_KYOGRE] = &gObjectEventGraphicsInfo_Kyogre,
+    [OBJ_EVENT_GFX_RAYQUAZA] = &gObjectEventGraphicsInfo_Rayquaza,
+    [OBJ_EVENT_GFX_LATIAS] = &gObjectEventGraphicsInfo_Latias,
+    [OBJ_EVENT_GFX_LATIOS] = &gObjectEventGraphicsInfo_Latios,
 };

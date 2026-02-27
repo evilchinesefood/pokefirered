@@ -248,8 +248,7 @@ gText_Oak_PerfectIVs::
     .string "Would you like to enable\n"
     .string "PERFECT IVs?\p"
     .string "All acquired POKéMON will\n"
-    .string "have max IVs (31 in every\n"
-    .string "stat).$"
+    .string "have max IVs.$"
 
 gText_Oak_WildRandomizer::
     .string "Do you want to randomize\n"

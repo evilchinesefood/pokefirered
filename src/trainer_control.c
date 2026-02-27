@@ -29,6 +29,18 @@
      //     isRandomized = TRUE;
      // }
 
+     // Starter Randomizer: override rival's Oak Lab battle species
+     if (FlagGet(FLAG_STARTER_RANDOMIZER))
+     {
+         u16 trainerId = gTrainerBattleOpponent_A;
+         if (trainerId == TRAINER_RIVAL_OAKS_LAB_SQUIRTLE
+          || trainerId == TRAINER_RIVAL_OAKS_LAB_BULBASAUR
+          || trainerId == TRAINER_RIVAL_OAKS_LAB_CHARMANDER)
+         {
+             species = VarGet(VAR_TEMP_3);
+         }
+     }
+
      if (partyData->gender != 0)
      {
          u32 newPersonality = personalityValue & 0xFFFFFF00;

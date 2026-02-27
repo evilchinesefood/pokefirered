@@ -193,7 +193,12 @@
 #define OBJ_EVENT_GFX_VENUSAUR 188
 #define OBJ_EVENT_GFX_SUDOWOODO 189
 #define OBJ_EVENT_GFX_HEX_MANIAC 190
-#define NUM_OBJ_EVENT_GFX 191
+#define OBJ_EVENT_GFX_GROUDON 191
+#define OBJ_EVENT_GFX_KYOGRE 192
+#define OBJ_EVENT_GFX_RAYQUAZA 193
+#define OBJ_EVENT_GFX_LATIAS 194
+#define OBJ_EVENT_GFX_LATIOS 195
+#define NUM_OBJ_EVENT_GFX 196
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

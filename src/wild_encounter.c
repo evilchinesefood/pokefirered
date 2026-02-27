@@ -939,7 +939,7 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
             if (wildLevel < ourLevel)
                 return FALSE;
             else
-                return TRUE;
+                return FALSE;
         }
     }
 

@@ -255,7 +255,7 @@ static void DebugTestSetup(void)
         mon = AllocZeroed(sizeof(struct Pokemon));
 
         // Charmander — non-neutral nature (Adamant: +Atk -SpA)
-        CreateMonWithNature(mon, SPECIES_CHARMANDER, 5, 0, NATURE_ADAMANT);
+        CreateMonWithNature(mon, SPECIES_CHARMANDER, 50, 0, NATURE_ADAMANT);
         SetMonData(mon, MON_DATA_HP_IV, &iv);
         SetMonData(mon, MON_DATA_ATK_IV, &iv);
         SetMonData(mon, MON_DATA_DEF_IV, &iv);
@@ -266,7 +266,7 @@ static void DebugTestSetup(void)
         GiveMonToPlayer(mon);
 
         // Bulbasaur — neutral nature (Hardy)
-        CreateMonWithNature(mon, SPECIES_BULBASAUR, 5, 0, NATURE_HARDY);
+        CreateMonWithNature(mon, SPECIES_BULBASAUR, 50, 0, NATURE_HARDY);
         SetMonData(mon, MON_DATA_HP_IV, &iv);
         SetMonData(mon, MON_DATA_ATK_IV, &iv);
         SetMonData(mon, MON_DATA_DEF_IV, &iv);
@@ -277,7 +277,7 @@ static void DebugTestSetup(void)
         GiveMonToPlayer(mon);
 
         // Squirtle — non-neutral nature (Modest: +SpA -Atk)
-        CreateMonWithNature(mon, SPECIES_SQUIRTLE, 5, 0, NATURE_MODEST);
+        CreateMonWithNature(mon, SPECIES_SQUIRTLE, 50, 0, NATURE_MODEST);
         SetMonData(mon, MON_DATA_HP_IV, &iv);
         SetMonData(mon, MON_DATA_ATK_IV, &iv);
         SetMonData(mon, MON_DATA_DEF_IV, &iv);
@@ -288,7 +288,7 @@ static void DebugTestSetup(void)
         GiveMonToPlayer(mon);
 
         // Pidgeot — high level for Fly testing
-        CreateMonWithNature(mon, SPECIES_PIDGEOT, 36, 0, NATURE_JOLLY);
+        CreateMonWithNature(mon, SPECIES_PIDGEOT, 50, 0, NATURE_JOLLY);
         SetMonMoveSlot(mon, MOVE_FLY, 0);
         SetMonData(mon, MON_DATA_HP_IV, &iv);
         SetMonData(mon, MON_DATA_ATK_IV, &iv);

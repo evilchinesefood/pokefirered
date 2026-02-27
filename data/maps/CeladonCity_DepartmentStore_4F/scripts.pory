@@ -37,8 +37,6 @@ CeladonCity_DepartmentStore_4F_Items::
 	.2byte ITEM_YELLOW_FLUTE
 	.2byte ITEM_RED_FLUTE
 	.2byte ITEM_NONE
-	release
-	end
 
 CeladonCity_DepartmentStore_4F_EventScript_BerryClerk::
 	goto_if_questlog EventScript_ReleaseEnd
@@ -61,8 +59,6 @@ CeladonCity_DepartmentStore_4F_BerryItems::
 	.2byte ITEM_ASPEAR_BERRY
 	.2byte ITEM_PERSIM_BERRY
 	.2byte ITEM_NONE
-	release
-	end
 
 CeladonCity_DepartmentStore_4F_EventScript_EVBerryClerk::
 	goto_if_questlog EventScript_ReleaseEnd
@@ -84,6 +80,4 @@ CeladonCity_DepartmentStore_4F_EVBerries::
 	.2byte ITEM_GREPA_BERRY
 	.2byte ITEM_TAMATO_BERRY
 	.2byte ITEM_NONE
-	release
-	end
 `

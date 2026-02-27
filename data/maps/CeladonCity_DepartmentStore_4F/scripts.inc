@@ -77,100 +77,88 @@ CeladonCity_DepartmentStore_4F_Items::
 # 39 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_NONE
 # 40 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	release
+
 # 41 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	end
-# 42 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-
-# 43 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 CeladonCity_DepartmentStore_4F_EventScript_BerryClerk::
+# 42 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	goto_if_questlog EventScript_ReleaseEnd
+# 43 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	lock
 # 44 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	goto_if_questlog EventScript_ReleaseEnd
+	faceplayer
 # 45 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	lock
+	message Text_MayIHelpYou
 # 46 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	faceplayer
+	waitmessage
 # 47 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	message Text_MayIHelpYou
-# 48 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	waitmessage
-# 49 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	pokemart CeladonCity_DepartmentStore_4F_BerryItems
+# 48 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	msgbox Text_PleaseComeAgain
+# 49 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	release
 # 50 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	msgbox Text_PleaseComeAgain
+	end
 # 51 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	release
+
 # 52 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	end
+	.align 2
 # 53 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-
-# 54 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	.align 2
-# 55 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 CeladonCity_DepartmentStore_4F_BerryItems::
-# 56 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 54 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_ORAN_BERRY
-# 57 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 55 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_CHERI_BERRY
-# 58 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 56 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_CHESTO_BERRY
-# 59 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 57 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_PECHA_BERRY
-# 60 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 58 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_RAWST_BERRY
-# 61 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 59 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_ASPEAR_BERRY
-# 62 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 60 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_PERSIM_BERRY
+# 61 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+	.2byte ITEM_NONE
+# 62 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+
 # 63 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	.2byte ITEM_NONE
-# 64 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	release
-# 65 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	end
-# 66 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-
-# 67 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 CeladonCity_DepartmentStore_4F_EventScript_EVBerryClerk::
-# 68 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 64 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	goto_if_questlog EventScript_ReleaseEnd
-# 69 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 65 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	lock
-# 70 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 66 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	faceplayer
-# 71 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 67 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	message Text_MayIHelpYou
-# 72 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 68 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	waitmessage
-# 73 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 69 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	pokemart CeladonCity_DepartmentStore_4F_EVBerries
-# 74 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 70 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	msgbox Text_PleaseComeAgain
-# 75 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 71 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	release
-# 76 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 72 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	end
-# 77 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 73 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 
-# 78 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 74 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.align 2
-# 79 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 75 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 CeladonCity_DepartmentStore_4F_EVBerries::
-# 80 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 76 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_POMEG_BERRY
-# 81 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 77 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_KELPSY_BERRY
-# 82 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 78 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_QUALOT_BERRY
-# 83 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 79 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_HONDEW_BERRY
-# 84 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 80 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_GREPA_BERRY
-# 85 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 81 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_TAMATO_BERRY
-# 86 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
+# 82 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
 	.2byte ITEM_NONE
-# 87 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	release
-# 88 "data/maps/CeladonCity_DepartmentStore_4F/scripts.pory"
-	end
