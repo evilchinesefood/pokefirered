@@ -156,6 +156,8 @@ static void CursorCB_Cancel1(u8 taskId);
 static void CursorCB_Item(u8 taskId);
 static void CursorCB_Give(u8 taskId);
 static void CursorCB_TakeItem(u8 taskId);
+static void CursorCB_MoveItem(u8 taskId);
+static void MoveItemBetweenMons(u8 taskId);
 static void CursorCB_Mail(u8 taskId);
 static void CursorCB_Read(u8 taskId);
 static void CursorCB_TakeMail(u8 taskId);
@@ -1152,7 +1154,7 @@ void Task_HandleChooseMonInput(u8 taskId)
 
 static s8 *GetCurrentPartySlotPtr(void)
 {
-    if (gPartyMenu.action == PARTY_ACTION_SWITCH || gPartyMenu.action == PARTY_ACTION_SOFTBOILED)
+    if (gPartyMenu.action == PARTY_ACTION_SWITCH || gPartyMenu.action == PARTY_ACTION_SOFTBOILED || gPartyMenu.action == PARTY_ACTION_MOVE_ITEM)
         return &gPartyMenu.slotId2;
     else
         return &gPartyMenu.slotId;
@@ -1204,6 +1206,10 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
             PlaySE(SE_SELECT);
             SwitchSelectedMons(taskId);
             break;
+        case PARTY_ACTION_MOVE_ITEM:
+            PlaySE(SE_SELECT);
+            MoveItemBetweenMons(taskId);
+            break;
         case PARTY_ACTION_CHOOSE_AND_CLOSE:
             PlaySE(SE_SELECT);
             gSpecialVar_0x8004 = *slotPtr;
@@ -1244,6 +1250,7 @@ static void HandleChooseMonCancel(u8 taskId, s8 *slotPtr)
         break;
     case PARTY_ACTION_SWITCH:
     case PARTY_ACTION_SOFTBOILED:
+    case PARTY_ACTION_MOVE_ITEM:
         PlaySE(SE_SELECT);
         FinishTwoMonAction(taskId);
         break;
@@ -3692,6 +3699,63 @@ static void CursorCB_TakeItem(u8 taskId)
     }
     ScheduleBgCopyTilemapToVram(2);
     gTasks[taskId].func = Task_UpdateHeldItemSprite;
+}
+
+static void CursorCB_MoveItem(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    gPartyMenu.action = PARTY_ACTION_MOVE_ITEM;
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    DisplayPartyMenuStdMessage(PARTY_MSG_MOVE_ITEM_WHERE);
+    AnimatePartySlot(gPartyMenu.slotId, 1);
+    gPartyMenu.slotId2 = gPartyMenu.slotId;
+    gTasks[taskId].func = Task_HandleChooseMonInput;
+}
+
+static void MoveItemBetweenMons(u8 taskId)
+{
+    struct Pokemon *srcMon = &gPlayerParty[gPartyMenu.slotId];
+    struct Pokemon *dstMon = &gPlayerParty[gPartyMenu.slotId2];
+    u16 srcItem = GetMonData(srcMon, MON_DATA_HELD_ITEM);
+    u16 dstItem = GetMonData(dstMon, MON_DATA_HELD_ITEM);
+
+    if (gPartyMenu.slotId2 == gPartyMenu.slotId)
+    {
+        // Selected same mon — cancel
+        FinishTwoMonAction(taskId);
+        return;
+    }
+
+    // Transfer or swap items
+    SetMonData(srcMon, MON_DATA_HELD_ITEM, &dstItem);
+    SetMonData(dstMon, MON_DATA_HELD_ITEM, &srcItem);
+
+    // Update both held item sprites
+    UpdatePartyMonHeldItemSprite(&gPlayerParty[gPartyMenu.slotId], &sPartyMenuBoxes[gPartyMenu.slotId]);
+    UpdatePartyMonHeldItemSprite(&gPlayerParty[gPartyMenu.slotId2], &sPartyMenuBoxes[gPartyMenu.slotId2]);
+
+    // Display message
+    if (dstItem == ITEM_NONE)
+    {
+        // Transferred item (no swap)
+        GetMonNickname(srcMon, gStringVar1);
+        CopyItemName(srcItem, gStringVar2);
+        GetMonNickname(dstMon, gStringVar3);
+        StringExpandPlaceholders(gStringVar4, gText_MovedItemToMon);
+    }
+    else
+    {
+        // Swapped items
+        GetMonNickname(srcMon, gStringVar1);
+        GetMonNickname(dstMon, gStringVar3);
+        StringExpandPlaceholders(gStringVar4, gText_SwappedItemsBetweenMons);
+    }
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gPartyMenu.action = PARTY_ACTION_CHOOSE_MON;
+    AnimatePartySlot(gPartyMenu.slotId, 0);
+    gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
 }
 
 static void CursorCB_Mail(u8 taskId)

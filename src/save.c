@@ -21,17 +21,13 @@ static u16 CalculateChecksum(void *data, u16 size);
 /*
  * Sector Layout:
  *
- * Sectors 0 - 13:      Save Slot 1
- * Sectors 14 - 27:     Save Slot 2
- * Sectors 28 - 29:     Hall of Fame
- * Sectors 30 - 31:     Trainer Tower
+ * Sectors 0 - 20:      Save Slot 1 (1 SB2 + 4 SB1 + 16 PkmnStorage)
+ * Sectors 21 - 22:     Hall of Fame
+ * Sectors 23 - 24:     Trainer Tower
  *
- * There are two save slots for saving the player's game data. We alternate between
- * them each time the game is saved, so that if the current save slot is corrupt,
- * we can load the previous one. We also rotate the sectors in each save slot
- * so that the same data is not always being written to the same sector. This
- * might be done to reduce wear on the flash memory, but I'm not sure, since all
- * 14 sectors get written anyway.
+ * With 25 PC boxes the PokemonStorage struct needs 16 flash sectors,
+ * so we use a single save slot to fit everything in 128 KB of flash.
+ * Sectors are still rotated within the slot to reduce wear.
  *
  * See SECTOR_ID_* constants in save.h
  */
@@ -67,7 +63,14 @@ struct
     SAVEBLOCK_CHUNK(struct PokemonStorage, 5),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 6),
     SAVEBLOCK_CHUNK(struct PokemonStorage, 7),
-    SAVEBLOCK_CHUNK(struct PokemonStorage, 8), // SECTOR_ID_PKMN_STORAGE_END
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 8),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 9),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 10),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 11),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 12),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 13),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 14),
+    SAVEBLOCK_CHUNK(struct PokemonStorage, 15), // SECTOR_ID_PKMN_STORAGE_END
 };
 
 // These will produce an error if a save struct is larger than the space
@@ -490,6 +493,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
     else
         slot1Status = SAVE_STATUS_EMPTY;
 
+#if NUM_SAVE_SLOTS >= 2
     // check save slot 2.
     validSectors = 0;
     signatureValid = FALSE;
@@ -557,6 +561,18 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
     }
 
     if (slot1Status == SAVE_STATUS_EMPTY && slot2Status == SAVE_STATUS_EMPTY)
+#else
+    // Single save slot — no slot 2 to check
+    slot2Status = SAVE_STATUS_EMPTY;
+
+    if (slot1Status == SAVE_STATUS_OK)
+    {
+        gSaveCounter = slot1saveCounter;
+        return SAVE_STATUS_OK;
+    }
+
+    if (slot1Status == SAVE_STATUS_EMPTY)
+#endif
     {
         gSaveCounter = 0;
         gLastWrittenSector = 0;

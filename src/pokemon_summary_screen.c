@@ -191,7 +191,7 @@ struct PokemonSummaryScreenData
         u8 ALIGNED(4) evStrBufs[6][4];    /* EV: up to "252" + null */
         u8 ALIGNED(4) ivEvMaxFlags[6];    /* bit 0 = IV maxed, bit 1 = EV maxed */
 
-        u8 ALIGNED(4) abilityNameStrBuf[13];
+        u8 ALIGNED(4) abilityNameStrBuf[ABILITY_NAME_LENGTH + 1];
         u8 ALIGNED(4) abilityDescStrBuf[52];
     } summary;
 

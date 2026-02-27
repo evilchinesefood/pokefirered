@@ -14,6 +14,61 @@
  #include "event_data.h"
  #include "randomizer.h"
  
+ static u32 GetTrainerClassBall(u8 trainerClass)
+ {
+     switch (trainerClass)
+     {
+     case TRAINER_CLASS_SWIMMER_M:
+     case TRAINER_CLASS_SWIMMER_F:
+     case TRAINER_CLASS_RS_SWIMMER_M:
+     case TRAINER_CLASS_RS_SWIMMER_F:
+     case TRAINER_CLASS_SAILOR:
+     case TRAINER_CLASS_RS_SAILOR:
+         return ITEM_DIVE_BALL;
+     case TRAINER_CLASS_BUG_CATCHER:
+     case TRAINER_CLASS_RS_BUG_CATCHER:
+     case TRAINER_CLASS_BUG_MANIAC:
+     case TRAINER_CLASS_FISHERMAN:
+     case TRAINER_CLASS_RS_FISHERMAN:
+         return ITEM_NET_BALL;
+     case TRAINER_CLASS_PKMN_BREEDER:
+     case TRAINER_CLASS_RS_PKMN_BREEDER:
+         return ITEM_NEST_BALL;
+     case TRAINER_CLASS_GENTLEMAN:
+     case TRAINER_CLASS_RS_GENTLEMAN:
+     case TRAINER_CLASS_LADY:
+     case TRAINER_CLASS_RS_LADY:
+     case TRAINER_CLASS_RICH_BOY:
+         return ITEM_LUXURY_BALL;
+     case TRAINER_CLASS_SCIENTIST:
+         return ITEM_TIMER_BALL;
+     case TRAINER_CLASS_COOLTRAINER:
+     case TRAINER_CLASS_RS_COOLTRAINER:
+     case TRAINER_CLASS_HIKER:
+     case TRAINER_CLASS_RS_HIKER:
+     case TRAINER_CLASS_BLACK_BELT:
+     case TRAINER_CLASS_RS_BLACK_BELT:
+     case TRAINER_CLASS_TAMER:
+     case TRAINER_CLASS_PKMN_RANGER:
+     case TRAINER_CLASS_RS_PKMN_RANGER:
+         return ITEM_GREAT_BALL;
+     case TRAINER_CLASS_LEADER:
+     case TRAINER_CLASS_RS_LEADER:
+     case TRAINER_CLASS_JOHTO_LEADER:
+     case TRAINER_CLASS_ELITE_FOUR:
+     case TRAINER_CLASS_RS_ELITE_FOUR:
+     case TRAINER_CLASS_DRAGON_TAMER:
+     case TRAINER_CLASS_BOSS:
+     case TRAINER_CLASS_SEVII_CHAMPION:
+         return ITEM_ULTRA_BALL;
+     case TRAINER_CLASS_CHAMPION:
+     case TRAINER_CLASS_RS_CHAMPION:
+         return ITEM_PREMIER_BALL;
+     default:
+         return ITEM_POKE_BALL;
+     }
+ }
+
  void CreateTrainerMon(struct Pokemon *party, const struct Trainer *trainer, u32 partySlot, u32 personalityValue, u32 fixedOtId)
  {
      const struct TrainerMon *partyData = &trainer->party[partySlot];
@@ -102,9 +157,12 @@
          u32 abilityNum = partyData->abilityNum;
          SetMonData(party, MON_DATA_ABILITY_NUM, &abilityNum);
      }
-     if (partyData->pokeball != 0)
      {
-         u32 pokeball = partyData->pokeball;
+         u32 pokeball;
+         if (partyData->pokeball != 0)
+             pokeball = partyData->pokeball;
+         else
+             pokeball = GetTrainerClassBall(trainer->trainerClass);
          SetMonData(party, MON_DATA_POKEBALL, &pokeball);
      }
 

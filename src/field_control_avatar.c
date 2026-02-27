@@ -59,6 +59,7 @@ static void UpdateHappinessStepCounter(void);
 static bool8 UpdatePoisonStepCounter(void);
 static bool8 CheckStandardWildEncounter(u32 metatileAttributes);
 static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 metatileBehavior, u8 playerDirection);
+static void TryPlayFootstepSound(u16 metatileBehavior);
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection);
 static u8 GetFacingSignpostType(u16 metatileBehvaior, u8 direction);
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition * position);
@@ -216,6 +217,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 
     if (input->tookStep)
     {
+        TryPlayFootstepSound(metatileBehavior);
         IncrementGameStat(GAME_STAT_STEPS);
         WonderNews_IncrementStepCounter();
         IncrementRenewableHiddenItemStepCounter();
@@ -1201,4 +1203,22 @@ static bool8 SwitchBikeGears(void)
         return FALSE;
     }
     return TRUE;
+}
+
+static EWRAM_DATA u8 sFootstepCounter = 0;
+
+static void TryPlayFootstepSound(u16 metatileBehavior)
+{
+    sFootstepCounter++;
+
+    // Play every other step to avoid audio spam
+    if (sFootstepCounter & 1)
+        return;
+
+    if (MetatileBehavior_IsPokeGrass(metatileBehavior))
+        PlaySE(SE_FU_ZAKU);
+    else if (MetatileBehavior_IsSand(metatileBehavior))
+        PlaySE(SE_FU_ZAKU);
+    else if (MetatileBehavior_IsShallowFlowingWater(metatileBehavior))
+        PlaySE(SE_PUDDLE);
 }

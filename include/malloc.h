@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-#define HEAP_SIZE 0x1C000
+#define HEAP_SIZE 0x15000
 #define malloc Alloc
 #define calloc(ct, sz) AllocZeroed((ct) * (sz))
 #define free Free

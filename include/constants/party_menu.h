@@ -80,6 +80,7 @@
 #define PARTY_ACTION_MOVE_TUTOR         12
 #define PARTY_ACTION_MINIGAME           13
 #define PARTY_ACTION_REUSABLE_ITEM      14
+#define PARTY_ACTION_MOVE_ITEM          15
 
 // IDs for DisplayPartyMenuStdMessage, to display the message at the bottom of the party menu
 #define PARTY_MSG_CHOOSE_MON                0
@@ -109,6 +110,7 @@
 #define PARTY_MSG_BOOST_PP_WHICH_MOVE       24
 #define PARTY_MSG_DO_WHAT_WITH_ITEM         25
 #define PARTY_MSG_DO_WHAT_WITH_MAIL         26
+#define PARTY_MSG_MOVE_ITEM_WHERE           27
 #define PARTY_MSG_NONE                      127
 
 // IDs for DisplayPartyPokemonDescriptionText, to display a message in the party pokemon's box
