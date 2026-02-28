@@ -4935,15 +4935,26 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
                     {
                     case 0: // ITEM4_EV_HP
                     case 1: // ITEM4_EV_ATK
-
-                        // Has EV increase limit already been reached?
-                        if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
-                            return TRUE;
                         data = GetMonData(mon, sGetMonDataEVConstants[i], NULL);
-                        if (data < EV_ITEM_RAISE_LIMIT)
+                        if (itemEffect[idx] == 201)
                         {
-                            idx++;
-                            retVal = FALSE;
+                            // EV-lowering berry: usable if EV > 0
+                            if (data > 0)
+                            {
+                                idx++;
+                                retVal = FALSE;
+                            }
+                        }
+                        else
+                        {
+                            // EV-raising vitamin: usable if under limits
+                            if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
+                                return TRUE;
+                            if (data < EV_ITEM_RAISE_LIMIT)
+                            {
+                                idx++;
+                                retVal = FALSE;
+                            }
                         }
                         break;
                     case 2: // ITEM4_HEAL_HP
@@ -5021,13 +5032,26 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
                     case 1: // ITEM5_EV_SPEED
                     case 2: // ITEM5_EV_SPDEF
                     case 3: // ITEM5_EV_SPATK
-                        if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
-                            return TRUE;
                         data = GetMonData(mon, sGetMonDataEVConstants[i + 2], NULL);
-                        if (data < EV_ITEM_RAISE_LIMIT)
+                        if (itemEffect[idx] == 201)
                         {
-                            retVal = FALSE;
-                            idx++;
+                            // EV-lowering berry: usable if EV > 0
+                            if (data > 0)
+                            {
+                                retVal = FALSE;
+                                idx++;
+                            }
+                        }
+                        else
+                        {
+                            // EV-raising vitamin: usable if under limits
+                            if (GetMonEVCount(mon) >= MAX_TOTAL_EVS)
+                                return TRUE;
+                            if (data < EV_ITEM_RAISE_LIMIT)
+                            {
+                                retVal = FALSE;
+                                idx++;
+                            }
                         }
                         break;
                     case 4: // ITEM5_PP_MAX
