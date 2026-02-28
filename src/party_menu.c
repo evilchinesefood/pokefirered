@@ -4572,7 +4572,6 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc func)
     u16 item = gSpecialVar_ItemId;
     bool8 canHeal;
 
-    DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
     if (!NotUsingHPEVItemOnShedinja(mon, item))
     {
         canHeal = TRUE;
@@ -6583,15 +6582,8 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 item = gSpecialVar_ItemId;
-    u8 effectType = GetItemEffectType(item);
-    u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
-    u16 ev = ItemEffectToMonEv(mon, effectType);
-    u16 hp = GetMonData(mon, MON_DATA_HP);
-    bool8 cannotUseEffect = ExecuteTableBasedItemEffect_(gPartyMenu.slotId, item, 0);
-    u16 newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
-    u16 newEv = ItemEffectToMonEv(mon, effectType);
 
-    if (cannotUseEffect || (friendship == newFriendship && ev == newEv))
+    if (PokemonItemUseNoEffect(mon, item, gPartyMenu.slotId, 0))
     {
         gPartyMenuUseExitCallback = FALSE;
         PlaySE(SE_SELECT);
@@ -6599,32 +6591,8 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
     }
-    else //can use effect, restore old ev, friendship, hp
+    else
     {
-        SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
-        switch (effectType)
-        {
-        case ITEM_EFFECT_HP_EV:
-            SetMonData(mon, MON_DATA_HP_EV, &ev);
-            //SetMonData(mon, MON_DATA_HP, &hp);
-            break;
-        case ITEM_EFFECT_ATK_EV:
-            SetMonData(mon, MON_DATA_ATK_EV, &ev);
-            break;
-        case ITEM_EFFECT_DEF_EV:
-            SetMonData(mon, MON_DATA_DEF_EV, &ev);
-            break;
-        case ITEM_EFFECT_SPEED_EV:
-            SetMonData(mon, MON_DATA_SPEED_EV, &ev);
-            break;
-        case ITEM_EFFECT_SPATK_EV:
-            SetMonData(mon, MON_DATA_SPATK_EV, &ev);
-            break;
-        case ITEM_EFFECT_SPDEF_EV:
-            SetMonData(mon, MON_DATA_SPDEF_EV, &ev);
-            break;
-        }
-
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, item, 0xFFFF);
         Task_DoUseItemAnim(taskId);
         gItemUseCB = ItemUseCB_ReduceEV2;
@@ -6638,44 +6606,36 @@ void ItemUseCB_ReduceEV2(u8 taskId, TaskFunc task)
     u8 effectType = GetItemEffectType(item);
     u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
     u16 ev = ItemEffectToMonEv(mon, effectType);
-    bool8 cannotUseEffect = ExecuteTableBasedItemEffect_(gPartyMenu.slotId, item, 0);
-    u16 newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
-    u16 newEv = ItemEffectToMonEv(mon, effectType);
+    u16 newFriendship;
+    u16 newEv;
 
-    if (cannotUseEffect || (friendship == newFriendship && ev == newEv))
+    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, item, 0);
+    newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+    newEv = ItemEffectToMonEv(mon, effectType);
+
+    gPartyMenuUseExitCallback = TRUE;
+    PlaySE(SE_USE_ITEM);
+    RemoveBagItem(item, 1);
+    GetMonNickname(mon, gStringVar1);
+    ItemEffectToStatString(effectType, gStringVar2);
+    if (friendship != newFriendship)
     {
-        gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
-        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (ev != newEv)
+            StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2Fell);
+        else
+            StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2CantFall);
     }
     else
     {
-        gPartyMenuUseExitCallback = TRUE;
-        PlaySE(SE_USE_ITEM);
-        RemoveBagItem(item, 1);
-        GetMonNickname(mon, gStringVar1);
-        ItemEffectToStatString(effectType, gStringVar2);
-        if (friendship != newFriendship)
-        {
-            if (ev != newEv)
-                StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2Fell);
-            else
-                StringExpandPlaceholders(gStringVar4, gText_PkmnFriendlyBaseVar2CantFall);
-        }
-        else
-        {
-            StringExpandPlaceholders(gStringVar4, gText_PkmnAdoresBaseVar2Fell);
-        }
-        DisplayPartyMenuMessage(gStringVar4, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1)
-            && IsRepeatableStatItem(item))
-            gTasks[taskId].func = Task_WaitThenReapplyStatItem;
-        else
-            gTasks[taskId].func = task;
+        StringExpandPlaceholders(gStringVar4, gText_PkmnAdoresBaseVar2Fell);
     }
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(item, 1)
+        && IsRepeatableStatItem(item))
+        gTasks[taskId].func = Task_WaitThenReapplyStatItem;
+    else
+        gTasks[taskId].func = task;
 }
 
 static u16 ItemEffectToMonEv(struct Pokemon *mon, u8 effectType)

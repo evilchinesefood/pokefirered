@@ -4467,7 +4467,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                 idx++;
                                 break;
                             }
-                            dataSigned -= 10;
+                            dataSigned -= 20;
                             if(dataSigned < 0)
                             {
                                 dataSigned = 0;
@@ -4688,7 +4688,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                 idx++;
                                 break;
                             }
-                            dataSigned -= 10;
+                            dataSigned -= 20;
                             if(dataSigned < 0)
                             {
                                 dataSigned = 0;
