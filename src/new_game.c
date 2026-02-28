@@ -251,56 +251,66 @@ static void DebugTestSetup(void)
 
     // --- Party ---
     {
-        u32 maxIv = 31;
-        u32 zeroIv = 0;
+        u32 maxIv = MAX_PER_STAT_IVS; // 31
+        u32 maxEv = 252;
+        u32 zeroEv = 0;
+        s32 i;
         mon = AllocZeroed(sizeof(struct Pokemon));
 
-        // Charmander — perfect HP and Speed, 0 rest
+        // Create all 4 party members using a single temp buffer
         CreateMonWithNature(mon, SPECIES_CHARMANDER, 50, 0, NATURE_ADAMANT);
-        SetMonData(mon, MON_DATA_HP_IV, &maxIv);
-        SetMonData(mon, MON_DATA_ATK_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_DEF_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &maxIv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &zeroIv);
-        CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
-        // Bulbasaur — perfect Defense and Sp.Def, 0 rest
         CreateMonWithNature(mon, SPECIES_BULBASAUR, 50, 0, NATURE_HARDY);
-        SetMonData(mon, MON_DATA_HP_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_ATK_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_DEF_IV, &maxIv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &maxIv);
-        CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
-        // Squirtle — perfect Attack and Sp.Atk, 0 rest
         CreateMonWithNature(mon, SPECIES_SQUIRTLE, 50, 0, NATURE_MODEST);
-        SetMonData(mon, MON_DATA_HP_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_ATK_IV, &maxIv);
-        SetMonData(mon, MON_DATA_DEF_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &zeroIv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &maxIv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &zeroIv);
-        CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
-        // Pidgeot — high level for Fly testing (keep all 31 IVs)
         CreateMonWithNature(mon, SPECIES_PIDGEOT, 50, 0, NATURE_JOLLY);
         SetMonMoveSlot(mon, MOVE_FLY, 0);
-        SetMonData(mon, MON_DATA_HP_IV, &maxIv);
-        SetMonData(mon, MON_DATA_ATK_IV, &maxIv);
-        SetMonData(mon, MON_DATA_DEF_IV, &maxIv);
-        SetMonData(mon, MON_DATA_SPEED_IV, &maxIv);
-        SetMonData(mon, MON_DATA_SPATK_IV, &maxIv);
-        SetMonData(mon, MON_DATA_SPDEF_IV, &maxIv);
-        CalculateMonStats(mon);
         GiveMonToPlayer(mon);
 
         Free(mon);
+
+        // Set perfect IVs on all 4 party members
+        for (i = 0; i < 4; i++)
+        {
+            SetMonData(&gPlayerParty[i], MON_DATA_HP_IV, &maxIv);
+            SetMonData(&gPlayerParty[i], MON_DATA_ATK_IV, &maxIv);
+            SetMonData(&gPlayerParty[i], MON_DATA_DEF_IV, &maxIv);
+            SetMonData(&gPlayerParty[i], MON_DATA_SPEED_IV, &maxIv);
+            SetMonData(&gPlayerParty[i], MON_DATA_SPATK_IV, &maxIv);
+            SetMonData(&gPlayerParty[i], MON_DATA_SPDEF_IV, &maxIv);
+        }
+
+        // Charmander EVs — 252 HP, 252 Speed
+        SetMonData(&gPlayerParty[0], MON_DATA_HP_EV, &maxEv);
+        SetMonData(&gPlayerParty[0], MON_DATA_ATK_EV, &zeroEv);
+        SetMonData(&gPlayerParty[0], MON_DATA_DEF_EV, &zeroEv);
+        SetMonData(&gPlayerParty[0], MON_DATA_SPEED_EV, &maxEv);
+        SetMonData(&gPlayerParty[0], MON_DATA_SPATK_EV, &zeroEv);
+        SetMonData(&gPlayerParty[0], MON_DATA_SPDEF_EV, &zeroEv);
+
+        // Bulbasaur EVs — 252 Def, 252 SpDef
+        SetMonData(&gPlayerParty[1], MON_DATA_HP_EV, &zeroEv);
+        SetMonData(&gPlayerParty[1], MON_DATA_ATK_EV, &zeroEv);
+        SetMonData(&gPlayerParty[1], MON_DATA_DEF_EV, &maxEv);
+        SetMonData(&gPlayerParty[1], MON_DATA_SPEED_EV, &zeroEv);
+        SetMonData(&gPlayerParty[1], MON_DATA_SPATK_EV, &zeroEv);
+        SetMonData(&gPlayerParty[1], MON_DATA_SPDEF_EV, &maxEv);
+
+        // Squirtle EVs — 252 Atk, 252 SpAtk
+        SetMonData(&gPlayerParty[2], MON_DATA_HP_EV, &zeroEv);
+        SetMonData(&gPlayerParty[2], MON_DATA_ATK_EV, &maxEv);
+        SetMonData(&gPlayerParty[2], MON_DATA_DEF_EV, &zeroEv);
+        SetMonData(&gPlayerParty[2], MON_DATA_SPEED_EV, &zeroEv);
+        SetMonData(&gPlayerParty[2], MON_DATA_SPATK_EV, &maxEv);
+        SetMonData(&gPlayerParty[2], MON_DATA_SPDEF_EV, &zeroEv);
+
+        // Recalculate stats for all 4
+        for (i = 0; i < 4; i++)
+            CalculateMonStats(&gPlayerParty[i]);
     }
 
     // --- Fly Destinations ---
