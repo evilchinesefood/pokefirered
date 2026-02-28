@@ -9597,6 +9597,8 @@ static void Cmd_handleballthrow(void)
             else
             {
                 odds = (odds * catchMult) / 100;
+                if (odds == 0)
+                    odds = 1;
                 if (odds > 255)
                     odds = 255;
             }
