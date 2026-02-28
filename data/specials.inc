@@ -457,6 +457,4 @@ gSpecials::
 	def_special Special_PreGenerateStarter
 	def_special Special_ShowStarterPicShinyAware
 	def_special Special_GivePregenStarter
-	def_special Special_ShowItemObtainIcon
-	def_special Special_HideItemObtainIcon
 gSpecialsEnd::
