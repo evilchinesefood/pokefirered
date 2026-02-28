@@ -1,4 +1,4 @@
-// NOTE: EWRAM usage is near capacity (~99.68%). Check sym_ewram.txt before adding new EWRAM_DATA.
+// NOTE: EWRAM is near capacity. Check sym_ewram.txt before adding new EWRAM_DATA.
 #ifndef GUARD_CONFIG_H
 #define GUARD_CONFIG_H
 
@@ -58,14 +58,16 @@
 #define UNITS_METRIC
 #endif // ENGLISH
 
-// Enable bug fixes unconditionally (including for agbcc builds).
-// These fix uninitialized variable bugs in m4a.c and other issues.
+// Bug fixes are enabled for modern GCC builds only.
+// agbcc builds leave these disabled to avoid potential compiler interaction issues.
+#if MODERN
 #ifndef BUGFIX
 #define BUGFIX
 #endif // BUGFIX
 #ifndef UBFIX
 #define UBFIX
 #endif // UBFIX
+#endif // MODERN
 
 #define PHYSICAL_SPECIAL_SPLIT
 

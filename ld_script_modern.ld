@@ -15,7 +15,7 @@ SECTIONS {
     {
         gHeap = .;
 
-        . = 0x18000;
+        . = 0x1C000;
 
         *(ewram_data);
     } > EWRAM
