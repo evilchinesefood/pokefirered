@@ -847,7 +847,7 @@
 #define FLAG_ABILITY_RANDOMIZER  0x332  // DISABLED — commented out, can re-enable later
 #define FLAG_STARTER_RANDOMIZER  0x333
 #define FLAG_HIDE_DEBUG_WARPERS  0x334
-#define FLAG_0x335               0x335
+#define FLAG_DAY_NIGHT_OFF       0x335
 #define FLAG_0x336               0x336
 #define FLAG_0x337               0x337
 #define FLAG_0x338               0x338

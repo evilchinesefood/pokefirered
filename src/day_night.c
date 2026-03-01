@@ -2,7 +2,9 @@
 #include "day_night.h"
 #include "palette.h"
 #include "rtc.h"
+#include "event_data.h"
 #include "global.fieldmap.h"
+#include "constants/flags.h"
 #include "constants/map_types.h"
 
 // Channel scale factors (0-256, where 256 = identity / no change)
@@ -68,6 +70,9 @@ void DayNight_ApplyTint(void)
     u16 r, g, b;
 
     if (!IsOutdoorMap())
+        return;
+
+    if (FlagGet(FLAG_DAY_NIGHT_OFF))
         return;
 
     tint = GetDayNightTint(GetCurrentTimeOfDay());
