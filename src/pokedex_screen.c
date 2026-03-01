@@ -2951,8 +2951,8 @@ static u8 DexScreen_DrawMonDexPage(bool8 justRegistered)
     // Dex entry
     FillWindowPixelBuffer(sPokedexScreenData->windowIds[2], PIXEL_FILL(0));
     DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 0);
-    // Base stats (caught Pokemon only)
-    if (DexScreen_GetSetPokedexFlag(sPokedexScreenData->dexSpecies, FLAG_GET_CAUGHT, TRUE))
+    // Base stats (caught Pokemon only, not during catch registration)
+    if (!justRegistered && DexScreen_GetSetPokedexFlag(sPokedexScreenData->dexSpecies, FLAG_GET_CAUGHT, TRUE))
     {
         u8 win = sPokedexScreenData->windowIds[2];
         u16 sp = sPokedexScreenData->dexSpecies;

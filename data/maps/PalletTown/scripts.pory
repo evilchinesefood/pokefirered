@@ -634,4 +634,21 @@ PalletTown_Text_DebugSeviiWarper:
 PalletTown_Text_DebugLegendaryWarper:
 	.string "Which legendary encounter?$"
 
+@ =============================================
+@ Debug Time of Day NPC
+@ Hidden by FLAG_HIDE_DEBUG_WARPERS (cleared in DebugTestSetup)
+@ =============================================
+
+PalletTown_EventScript_DebugTimeOfDay::
+	lock
+	faceplayer
+	special Special_DebugTimeOfDay
+	msgbox PalletTown_Text_DebugTimeSet, MSGBOX_DEFAULT
+	release
+	end
+
+PalletTown_Text_DebugTimeSet:
+	.string "Time set to {STR_VAR_1}.\n"
+	.string "Step outside to see the change.$"
+
 `

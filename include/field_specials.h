@@ -32,5 +32,6 @@ void Special_ApplyStarterRandomizer(void);
 void Special_PreGenerateStarter(void);
 void Special_ShowStarterPicShinyAware(void);
 void Special_GivePregenStarter(void);
+void Special_DebugTimeOfDay(void);
 
 #endif // GUARD_FIELD_SPECIALS_H

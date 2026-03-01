@@ -2905,3 +2905,27 @@ void Special_GivePregenStarter(void)
     Free(mon);
     gSpecialVar_Result = sentToPc;
 }
+
+void Special_DebugTimeOfDay(void)
+{
+    static const u8 sHoursForTime[] = { 22, 7, 12, 18 };
+    static const u8 sText_Night[] = _("Night");
+    static const u8 sText_Dawn[]  = _("Dawn");
+    static const u8 sText_Day[]   = _("Day");
+    static const u8 sText_Dusk[]  = _("Dusk");
+    static const u8 *const sTimeNames[] = {
+        sText_Night, sText_Dawn, sText_Day, sText_Dusk
+    };
+
+    u8 timeSlot = gSpecialVar_Result;
+
+    if (timeSlot > 3)
+        timeSlot = 0;
+
+    gSaveBlock2Ptr->playTimeHours = sHoursForTime[timeSlot];
+
+    StringCopy(gStringVar1, sTimeNames[timeSlot]);
+
+    // Advance to next time slot for next talk
+    gSpecialVar_Result = (timeSlot + 1) % 4;
+}

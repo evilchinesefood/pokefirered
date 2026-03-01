@@ -1268,3 +1268,37 @@ PalletTown_Text_DebugSeviiWarper:
 PalletTown_Text_DebugLegendaryWarper:
 # 635 "data/maps/PalletTown/scripts.pory"
 	.string "Which legendary encounter?$"
+# 636 "data/maps/PalletTown/scripts.pory"
+
+# 637 "data/maps/PalletTown/scripts.pory"
+@ =============================================
+# 638 "data/maps/PalletTown/scripts.pory"
+@ Debug Time of Day NPC
+# 639 "data/maps/PalletTown/scripts.pory"
+@ Hidden by FLAG_HIDE_DEBUG_WARPERS (cleared in DebugTestSetup)
+# 640 "data/maps/PalletTown/scripts.pory"
+@ =============================================
+# 641 "data/maps/PalletTown/scripts.pory"
+
+# 642 "data/maps/PalletTown/scripts.pory"
+PalletTown_EventScript_DebugTimeOfDay::
+# 643 "data/maps/PalletTown/scripts.pory"
+	lock
+# 644 "data/maps/PalletTown/scripts.pory"
+	faceplayer
+# 645 "data/maps/PalletTown/scripts.pory"
+	special Special_DebugTimeOfDay
+# 646 "data/maps/PalletTown/scripts.pory"
+	msgbox PalletTown_Text_DebugTimeSet, MSGBOX_DEFAULT
+# 647 "data/maps/PalletTown/scripts.pory"
+	release
+# 648 "data/maps/PalletTown/scripts.pory"
+	end
+# 649 "data/maps/PalletTown/scripts.pory"
+
+# 650 "data/maps/PalletTown/scripts.pory"
+PalletTown_Text_DebugTimeSet:
+# 651 "data/maps/PalletTown/scripts.pory"
+	.string "Time set to {STR_VAR_1}.\n"
+# 652 "data/maps/PalletTown/scripts.pory"
+	.string "Step outside to see the change.$"
